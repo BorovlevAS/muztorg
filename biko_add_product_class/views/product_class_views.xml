@@ -1,0 +1,18 @@
+<odoo>
+    <record id="action_biko_product_class_tree" model="ir.actions.act_window">
+        <field name="name">Product Class</field>
+        <field name="res_model">biko.product.class</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="biko_product_class_tree" model="ir.ui.view">
+        <field name="name">biko.product.class.view.tree</field>
+        <field name="model">biko.product.class</field>
+        <field name="arch" type="xml">
+            <tree string="Product Class" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
