@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 {
     "name": "BIKO: Добавить класс товара",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": ["pim", "product"],
     "data": [
         'views/product_class_views.xml',
-        'views/product_class_menus.xml',
+        'views/product_model_views.xml',
+        'views/biko_pim_menus.xml',
         'views/product_template_views.xml',
         
         'security/ir_access_roles.xml',

@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
                 <field name="biko_product_class" readonly="1"/>
+                <field name="biko_product_model" options="{'no_create': True}"/>
             </field>
         </field>
     </record>
