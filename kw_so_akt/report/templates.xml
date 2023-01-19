@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="kw_so_akt_template">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="50%" align="center" valign="top">
+                            ЗАТВЕРДЖУЮ
+                            <br/>
+                            <span t-field="doc.company_id.partner_id.chief.function"/>
+                            <br/>
+                            <span t-esc="doc.company_id.partner_id.legal_short_name or doc.company_id.partner_id.legal_name"/>
+                            <br/>
+                            _______________
+                            <br/>
+                            <t t-if="doc.user_id">
+                                <span t-field="doc.company_id.partner_id.chief.name"/>
+                            </t>
+                        </td>
+                        <td width="50%" align="center" valign="top">
+                            ЗАТВЕРДЖУЮ
+                            <br/>
+                            <span t-field="doc.partner_id.chief.function"/>
+                            <br/>
+                            <t t-if="doc.partner_id">
+                                <span t-esc="doc.partner_id.legal_short_name or doc.partner_id.legal_name"/>
+                            </t>
+                            <br/>
+                            _______________
+                            <br/>
+                            <t t-if="doc.partner_id and doc.partner_id.chief">
+                                <span t-field="doc.partner_id.chief.name"/>
+                            </t>
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <br/>
+                        <br/>
+                        <td width="100%" align="center">
+                            <b>
+                                <span style="white-space:nowrap;">АКТ №
+                                    <span t-field="doc.name"/>
+                                </span>
+                                <br/>
+                                задачі-прийняття робіт (надання послуг)
+                                <br/>
+                                від
+                                <span t-field="doc.date_order"
+                                      t-options="{'format': 'dd MMMM YYYY'}"/>
+                                року
+                                <br/>
+                                <br/>
+                            </b>
+                        </td>
+                    </tr>
+                </table>
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="100%" align="left">
+                            Ми, представники Замовника -
+                            <t t-if="not doc.partner_id ==0">
+                                <span t-field="doc.partner_id.legal_name"/>
+                            </t>
+                            <t t-else="">
+                                ________________________
+                            </t>
+                            <t t-if="not doc.partner_id.legal_name ==0">
+                                <span t-field="doc.partner_id.parent_id.name"/>
+                            </t>
+                            <t t-else="">
+                                ________________________
+                            </t>
+                            <span t-field="doc.kw_responsible_person.name"/>, з
+                            одної сторони, та представник Виконавця -
+                            <t t-if="doc.company_id and doc.company_id.partner_id and not doc.company_id.partner_id.legal_name== 0">
+                                <span t-field="doc.company_id.partner_id.legal_name"/>
+                            </t>
+                            <t t-else="">
+                                ________________________
+                            </t>
+                            <t t-if="not doc.user_id == 0">
+                                <span t-field="doc.user_id"/>
+                            </t>
+                            <t t-else="">________________________</t>, з другої
+                            сторони, склали цей акт про те, що Виконавцем були
+                            проведені такі роботи (надані такі послуги)
+                            <t t-if="False">
+                                згідно з
+                                <span style="white-space:nowrap;">рахунком №
+                                    <span t-field="doc.name"/>
+                                </span>
+                                <span style="white-space:nowrap;">від
+                                    <span t-field="doc.date_order"
+                                          t-options="{'format': 'dd MMMM YYYY'}"/>
+                                </span>
+                            </t>
+                            :
+                            <br/>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+                <style>
+                    #o_main_table td {
+                    padding: 0px 10px;
+                    border: 1px solid black;
+                    }
+                </style>
+                <table width="100%" id="o_main_table"
+                       class="table table-sm o_main_table" border="1"
+                       cellspacing="0"
+                       cellpadding="2" style="border-collapse: collapse;">
+                    <thead style="display: table-row-group">
+                        <tr>
+                            <td name="th_number" class="text-center">
+                                <b>№</b>
+                            </td>
+                            <td name="th_description" class="text-center">
+                                <b>
+                                    Найменування
+                                </b>
+                            </td>
+                            <td name="th_quantity" class="text-center">
+                                <b>Кіл-сть
+                                </b>
+                            </td>
+                            <td name="th_units" class="text-center">
+                                <b>Од.вим.</b>
+                            </td>
+                            <td name="th_priceunit" class="text-center">
+                                <b>Ціна без
+                                    ПДВ
+                                </b>
+                            </td>
+                            <td name="th_subtotal" class="text-center">
+                                <span groups="account.group_show_line_subtotals_tax_excluded">
+                                    <b>Сума без ПДВ</b>
+                                </span>
+                                <span groups="account.group_show_line_subtotals_tax_included">
+                                    <b>Сума</b>
+                                </span>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+
+                        <t t-set="current_subtotal" t-value="0"/>
+                        <t t-set="current_row_number" t-value="0"/>
+
+                        <t t-foreach="doc.order_line" t-as="line">
+
+                            <t t-set="current_subtotal"
+                               t-value="current_subtotal + line.price_subtotal"
+                               groups="account.group_show_line_subtotals_tax_excluded"/>
+                            <t t-set="current_subtotal"
+                               t-value="current_subtotal + line.price_total"
+                               groups="account.group_show_line_subtotals_tax_included"/>
+
+                            <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                <t t-if="not line.display_type and not line.price_unit == 0 and line.kw_is_added_to_so">
+                                    <td name="td_number" align="center">
+                                        <t t-set="current_row_number"
+                                            t-value="current_row_number + 1"/>
+                                        <span t-raw="current_row_number"
+                                              style="text-indent:10px"/>
+                                    </td>
+                                    <td name="td_name">
+                                        <span t-field="line.name"
+                                              style="text-indent:10px"/>
+                                    </td>
+                                    <td name="td_quantity" class="text-right"
+                                        align="right">
+                                        <span t-field="line.product_uom_qty"/>
+                                    </td>
+                                    <td name="td_units" class="text-right"
+                                        align="center">
+                                        <span t-field="line.product_uom"/>
+                                    </td>
+                                    <td name="td_priceunit" class="text-right"
+                                        align="right">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td name="td_subtotal"
+                                        class="text-right o_price_total"
+                                        align="right">
+                                        <span t-esc="'{:10.2f}'.format(line.price_subtotal).replace('.',',')"
+                                              groups="account.group_show_line_subtotals_tax_excluded"/>
+                                        <span t-esc="'{:10.2f}'.format(line.price_total).replace('.',',')"
+                                              groups="account.group_show_line_subtotals_tax_included"/>
+                                    </td>
+                                </t>
+                                <t t-if="line.display_type == 'line_section'">
+                                    <td name="td_section_line" colspan="99">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <t t-set="current_section" t-value="line"/>
+                                    <t t-set="current_subtotal" t-value="0"/>
+                                </t>
+                                <t t-if="line.display_type == 'line_note'">
+                                    <td name="td_note_line" colspan="99">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                </t>
+                            </tr>
+
+                            <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section')">
+                                <tr class="is-subtotal text-right">
+                                    <td name="td_section_subtotal"
+                                        colspan="99">
+                                        <strong class="mr16">Subtotal</strong>
+                                        <span
+                                                t-esc="current_subtotal"
+                                                t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                        />
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+                <table id="o_sub_table" width="100%">
+                    <tr>
+                        <td align="right">Разом без ПДВ:</td>
+                        <td align="right" width="17%">
+                            <span t-esc="'{:10.2f}'.format(doc.amount_untaxed).replace('.',',')"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">ПДВ:</td>
+                        <td align="right">
+                            <span t-esc="'{:10.2f}'.format(doc.amount_tax).replace('.',',')"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">Всього з ПДВ:</td>
+                        <td align="right">
+                            <span t-esc="'{:10.2f}'.format(doc.amount_total).replace('.',',')"/>
+                        </td>
+                    </tr>
+                </table>
+                <div>
+                    Загальна вартість робіт (послуг) без ПДВ
+                    <span t-esc="'{:10.2f}'.format(doc.amount_untaxed).replace('.',',')"/>
+                    <span t-esc="doc.kw_currency_name"/>
+                    (<span t-esc="doc.kw_amount_untaxed_ukr_text"/>),
+
+                    <t t-if="doc.amount_tax">
+                        <span style="white-space:nowrap;">ПДВ
+                            <span t-esc="'{:10.2f}'.format(doc.amount_tax).replace('.',',')"/>
+                        </span>
+                        <span t-esc="doc.kw_currency_name"/>
+                        <br/>
+                        Загальна вартість робіт (послуг) з ПДВ :
+                        (<span t-esc="doc.kw_amount_ukr_text"/>)
+                    </t>
+                </div>
+                <div>
+                    <br/>Сторони претензій одна до одної не мають.
+                    <br/>
+                    <br/>
+                </div>
+                <div>
+                    Місце складання:
+                    <span t-esc="doc.kw_city_of_assembly"/>
+                    <br/>
+                    <br/>
+                </div>
+
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="50%" align="left" valign="top"
+                            style="padding-right: 15px;">
+                            Від Виконавця *:
+                            <br/>
+                            <br/>
+                            _______________
+                            <br/>
+                            <span t-field="doc.user_id.function"/>
+                            <br/>
+                            <span t-field="doc.user_id.name"/>
+                            <br/>
+                            <sub>* Відповідальний за здійснення господарської
+                                операції і правильність її оформлення
+                            </sub>
+                            <br/>
+                            <t t-if="doc.date_order">
+                                <span t-field="doc.date_order"
+                                      t-options="{'format': 'dd MMMM YYYY'}"/>
+                                року
+                            </t>
+                            <br/>
+                            <span t-esc="doc.company_id.partner_id.legal_short_name or doc.company_id.partner_id.legal_name"/>
+                            <br/>
+                            <t t-if="doc.company_id and doc.company_id.partner_id">
+                                <span style="white-space:nowrap;">ЄДРПОУ:
+                                    <span t-field="doc.company_id.partner_id.enterprise_code"/>
+                                </span>
+                            </t>
+                            <br/>
+                            <t t-if="doc.company_id">
+                                <span style="white-space:nowrap;">тел.
+                                    <span t-field="doc.company_id.phone"/>
+                                </span>
+                            </t>
+                            <br/>
+                            <t t-if="doc.company_id and doc.company_id.partner_id and doc.company_id.partner_id.bank_ids">
+                                <span style="white-space:nowrap;">р/р:
+                                    <span t-field="doc.company_id.partner_id.bank_ids[0].acc_number"/>
+                                </span>
+                            </t>
+                            <t t-if="doc.company_id and doc.company_id.partner_id and doc.company_id.partner_id.bank_ids and doc.company_id.partner_id.bank_ids[0].bank_id">
+                                в
+                                <span t-field="doc.company_id.partner_id.bank_ids[0].bank_id.name"/>
+                            </t>
+
+                            <br/>
+
+                            <t t-if="doc.company_id and doc.company_id.partner_id and doc.company_id.partner_id.bank_ids and doc.company_id.partner_id.bank_ids[0].bank_id">
+                                <span style="white-space:nowrap;">МФО:
+                                    <span t-field="doc.company_id.partner_id.bank_ids[0].bank_id.bic"/>
+                                </span>
+                            </t>
+                            <br/>
+
+                            <t t-if="doc.company_id and doc.company_id.partner_id">
+                                <span style="white-space:nowrap;">ІНП:
+                                    <span t-field="doc.company_id.partner_id.tax_ident_number"/>
+                                </span>
+                            </t>
+
+                            <t t-if="doc.company_id and doc.company_id.partner_id">
+                                <br/>
+                                <span style="white-space:nowrap;">номер
+                                    свідотства:
+                                    <span t-field="doc.company_id.partner_id.payer_certificate_number"/>
+                                </span>
+                            </t>
+                            <br/>
+                            <span t-field="doc.company_id.partner_id.kw_taxation_scheme_id"/>
+                            <br/>
+
+                            <t t-if="doc.company_id and doc.company_id.partner_id">
+                                <span style="white-space:nowrap;">Адреса:
+                                    <span t-field="doc.company_id.partner_id.legal_address.name"/>
+                                </span>
+                            </t>
+                        </td>
+                        <td width="50%" align="left" valign="top"
+                            style="padding-right: 15px;">
+                            Від Замовника
+                            <br/>
+                            <br/>
+                            _______________
+                            <br/>
+                            <t t-if="doc.kw_responsible_person">
+                                <span t-field="doc.kw_responsible_person.function"/>
+                            </t>
+                            <br/>
+                            <t t-if="doc.kw_responsible_person">
+                                <span t-field="doc.kw_responsible_person.name"/>
+                            </t>
+                            <br/>
+                            <br/>
+                            <t t-if="doc.date_order">
+                                <span t-field="doc.date_order"
+                                      t-options="{'format': 'dd MMMM YYYY'}"/>
+                                року
+                            </t>
+                            <br/>
+                            <br/>
+                            <t t-if="doc.partner_id">
+                                <span t-esc="doc.partner_id.legal_short_name or doc.partner_id.legal_name"/>
+                            </t>
+                            <br/>
+                            <br/>
+                            <t t-if="doc.partner_id">
+                                <span style="white-space:nowrap;">ЄДРПОУ:
+                                    <span t-field="doc.partner_id.enterprise_code"/>
+                                </span>
+                            </t>
+                            <br/>
+                            <t t-if="doc.partner_id">
+                                <span style="white-space:nowrap;">тел.
+                                    <span t-field="doc.partner_id.phone"/>
+                                </span>
+                            </t>
+                            <br/>
+                            <t t-if="doc.partner_id and doc.partner_id.bank_ids">
+                                <span style="white-space:nowrap;">р/р:
+                                    <span t-field="doc.partner_id.bank_ids[0].acc_number"/>
+                                </span>
+                            </t>
+                            <t t-if="doc.partner_id and doc.partner_id.bank_ids and doc.partner_id.bank_ids[0].bank_id">
+                                в
+                                <span
+                                        t-field="doc.partner_id.bank_ids[0].bank_id.name"/>
+                                ,
+                            </t>
+                            <br/>
+                            <t t-if="doc.partner_id and doc.partner_id.bank_ids and doc.partner_id.bank_ids[0].bank_id">
+                                <span style="white-space:nowrap;">МФО:
+                                    <span t-field="doc.partner_id.bank_ids[0].bank_id.bic"/>
+                                </span>
+                            </t>
+                            <br/>
+                            <t t-if="doc.partner_id and doc.partner_id.tax_ident_number">
+                                <span style="white-space:nowrap;">ІНП:
+                                    <span t-field="doc.partner_id.tax_ident_number"/>
+                                </span>
+                            </t>
+
+                            <t t-if="doc.partner_id and doc.partner_id.payer_certificate_number">
+                                <br/>
+                                <span style="white-space:nowrap;">номер
+                                    свідотства:
+                                    <span t-field="doc.partner_id.payer_certificate_number"/>
+                                </span>
+                            </t>
+                            <br/>
+                            <span t-field="doc.partner_id.kw_taxation_scheme_id"/>
+                            <br/>
+
+                            <t t-if="doc.partner_id and doc.partner_id.legal_address">
+                                <span style="white-space:nowrap;">Адреса:
+                                    <span t-field="doc.partner_id.legal_address.name"/>
+                                </span>
+                            </t>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="kw_so_akt_container">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="kw_so_akt.kw_so_akt_template"
+                   t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
