@@ -22,9 +22,6 @@
                                 <field name="responsible_officer"
                                        context="{'default_partner_id':id}"
                                        domain="[('parent_id','child_of',id),('id','!=', id)]"/>
-                                <field name="legal_address"
-                                       context="{'default_partner_id':id}"
-                                       domain="[('parent_id','child_of',id),('id','!=', id)]"/>
                                 <field name="postal_address"
                                        context="{'default_partner_id':id}"
                                        domain="[('parent_id','child_of',id),('id','!=', id)]"/>

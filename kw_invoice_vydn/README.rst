@@ -1,3 +1,0 @@
-Vydatkova Nakladna Invoice
-==============================
-
