@@ -1,0 +1,29 @@
+<odoo>
+    <record id="kw_invoice_rahf_paperformat_a4" model="report.paperformat">
+        <field name="name">Rahunok Faktura Invoice A4</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">7</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="kw_invoice_rahf_account_move_report" model="ir.actions.report">
+        <field name="name">Rahunok Faktura Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">kw_invoice_rahf.kw_invoice_rahf_container</field>
+        <field name="report_file">kw_invoice_rahf.kw_invoice_rahf_container</field>
+        <field name="print_report_name">(object.state in ('draft', 'sent') and 'Rahunok Faktura - %s' % (object.name)) or 'Rahunok Faktura - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="kw_invoice_rahf.kw_invoice_rahf_paperformat_a4"/>
+    </record>
+</odoo>
