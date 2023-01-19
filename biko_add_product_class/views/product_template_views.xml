@@ -17,6 +17,9 @@
                     <field name="biko_character_ukr" nolabel="1"/>
                 </group>
             </xpath>
+            <field name="type" position="before">
+                <field name="biko_vendor_code"/>
+            </field>
         </field>
     </record>
 
