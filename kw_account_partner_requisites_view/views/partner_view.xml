@@ -1,0 +1,139 @@
+<odoo>
+    <record id="kw_account_partner_requisites_view_res_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form (kw_account_partner_requisites_view)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+                <notebook colspan="4" position="inside">
+                    <page string="Partner Requisites"
+                          attrs="{'invisible': [('is_company','=', False)]}">
+                        <group>
+                            <group>
+                                <field name="legal_name" placeholder="XYZ Ltd"/>
+                                <field name="legal_short_name" placeholder="XYZ Ltd"/>
+                                <field name="chief"
+                                       context="{'default_partner_id':id}"
+                                       domain="[('parent_id','child_of',id),('id','!=', id)]"/>
+                                <field name="chief_reason"/>
+                                <field name="chief_accountant"
+                                       context="{'default_partner_id':id}"
+                                       domain="[('parent_id','child_of',id),('id','!=', id)]"/>
+                                <field name="responsible_officer"
+                                       context="{'default_partner_id':id}"
+                                       domain="[('parent_id','child_of',id),('id','!=', id)]"/>
+                                <field name="legal_address"
+                                       context="{'default_partner_id':id}"
+                                       domain="[('parent_id','child_of',id),('id','!=', id)]"/>
+                                <field name="postal_address"
+                                       context="{'default_partner_id':id}"
+                                       domain="[('parent_id','child_of',id),('id','!=', id)]"/>
+                            </group>
+                            <group>
+                                <field name="enterprise_code"/>
+                                <field name="tax_ident_number"/>
+                                <field name="payer_certificate_number"/>
+                                <field name="kw_taxation_scheme_id"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+        </field>
+    </record>
+    <record id="view_partner_category_form" model="ir.ui.view">
+        <field name="name">123</field>
+        <field name="model">res.partner.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="active" widget="boolean_toggle"/>
+                        <field name="parent_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_partner_category_list" model="ir.ui.view">
+        <field name="name">123</field>
+        <field name="model">res.partner.category</field>
+        <field eval="6" name="priority"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="display_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="res_partner_category_view_search" model="ir.ui.view">
+        <field name="name">res.partner.category.view.search</field>
+        <field name="model">res.partner.category</field>
+        <field name="arch" type="xml">
+            <search string="Search Partner Category">
+                <field name="name"/>
+                <field name="display_name"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_partner_category_form" model="ir.actions.act_window">
+        <field name="name">123</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner.category</field>
+        <field name="search_view_id" ref="res_partner_category_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new contact tag
+            </p>
+            <p>
+                Manage contact tags to better classify them for tracking and analysis purposes.
+            </p>
+        </field>
+    </record>
+
+    <record id='taxation_scheme_action' model='ir.actions.act_window'>
+        <field name="name">Taxation Scheme</field>
+        <field name="res_model">kw.taxation.scheme</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem name="Taxation Scheme" id="kw_taxation_scheme_menu"
+              parent="contacts.res_partner_menu_config" action="taxation_scheme_action"/>
+
+    <record id="taxation_scheme_view_form" model="ir.ui.view">
+        <field name="name">Taxation Scheme Form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="taxation_scheme_view_tree" model="ir.ui.view">
+        <field name="name">Taxation Scheme List</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="taxation_scheme_view_search" model="ir.ui.view">
+        <field name="name">Taxation Scheme Search</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+</odoo>

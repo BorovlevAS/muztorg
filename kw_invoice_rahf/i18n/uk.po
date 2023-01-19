@@ -1,0 +1,178 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* kw_invoice_rahf
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-07 09:10+0000\n"
+"PO-Revision-Date: 2021-09-07 09:10+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: kw_invoice_rahf
+#: model:ir.actions.report,print_report_name:kw_invoice_rahf.kw_invoice_rahf_account_move_report
+msgid ""
+"(object.state in ('draft', 'sent') and 'Rahunok Faktura - %s' % "
+"(object.name)) or 'Rahunok Faktura - %s' % (object.name)"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid ""
+"<br/>\n"
+"                    від"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid ""
+"<br/>\n"
+"            Всьго на суму:"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Сума без ПДВ</span>\n"
+"                            <span groups=\"account.group_show_line_subtotals_tax_included\">Сума</span>"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid ""
+"<span style=\"white-"
+"space:nowrap;\">_______________________________________________</span>"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "<u>Замовлення:</u>"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "<u>Одержувач:</u>"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "<u>Платник:</u>"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "<u>Постачальник:</u>"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model:ir.actions.report,name:kw_invoice_rahf.kw_invoice_rahf_account_move_report
+msgid "Rahunok Faktura Invoice"
+msgstr "Рахунок-фактура"
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "ЄДРПОУ"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "ІНП:"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Адреса:"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid ""
+"Виписав:\n"
+"                    <span style=\"white-space:nowrap;\">________________________</span>"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Всього з ПДВ:"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Кіл-сть"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "МФО"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Найменування"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Од.вим."
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "ПДВ:"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Разом без ПДВ:"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Рахунок дійсний до"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Рахунок дійсний протягом"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Рахунок-фактура №"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Той самий"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "Ціна без ПДВ"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "номер свідотства:"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "р/р"
+msgstr ""
+
+#. module: kw_invoice_rahf
+#: model_terms:ir.ui.view,arch_db:kw_invoice_rahf.kw_invoice_rahf_template
+msgid "тел."
+msgstr ""

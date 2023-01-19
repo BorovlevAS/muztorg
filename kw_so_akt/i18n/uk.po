@@ -1,0 +1,224 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* kw_so_akt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-07 09:07+0000\n"
+"PO-Revision-Date: 2021-09-07 09:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: kw_so_akt
+#: model:ir.actions.report,print_report_name:kw_so_akt.kw_so_akt_sale_order_report
+msgid ""
+"(object.state in ('draft', 'sent') and 'Akt - %s' % (object.name)) or 'Akt - %s' % (object.name)\n"
+"        "
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+", з другої сторони, склали цей акт про те, що Виконавцем були\n"
+"                        проведені такі роботи (надані такі послуги)"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ", з одної сторони, та представник Виконавця -"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+"<br/>\n"
+"                        <br/>\n"
+"                        <sub>* Відповідальний за здійснення господарської операції і правильність її оформлення</sub>\n"
+"                        <br/>\n"
+"                        <br/>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+"<br/>\n"
+"                        задачі-прийняття робіт (надання послуг)\n"
+"                        <br/>\n"
+"                        <br/>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+"<br/>\n"
+"                Загальна вартість робіт (послуг) з ПДВ :\n"
+"                ("
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+"<br/><br/>\n"
+"                        _______________\n"
+"                        <br/>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "<br/><br/>Загальна вартість робіт (послуг) без ПДВ"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "<br/>Сторони претензій одна до одної не мають. <br/><br/>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Сума без ПДВ</span>\n"
+"                            <span groups=\"account.group_show_line_subtotals_tax_included\">Сума</span>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model:ir.actions.report,name:kw_so_akt.kw_so_akt_sale_order_report
+msgid "Akt Vikonanih Robit SO"
+msgstr "Акт виконаних робіт"
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "________________________"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "ЄДРПОУ:"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "ІНП:"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "АКТ №"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "Адреса:"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+"Від Виконавця *:\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        _______________\n"
+"                        <br/>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+"Від Замовника\n"
+"                        <br/>\n"
+"                        <br/>\n"
+"                        _______________\n"
+"                        <br/>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid ""
+"ЗАТВЕРДЖУЮ\n"
+"                        <br/>"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "Кіл-сть"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "МФО:"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "Ми, представники Замовника -"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "Місце складання:"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "Найменування"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "Од.вим."
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "ПДВ"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "Ціна без ПДВ"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "від"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "згідно з"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "номер свідотства:"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "р/р:"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "рахунком №"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "року"
+msgstr ""
+
+#. module: kw_so_akt
+#: model_terms:ir.ui.view,arch_db:kw_so_akt.kw_so_akt_template
+msgid "тел."
+msgstr ""

@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="kw_stock_ttn_stock_picking_ttn_report">
+        <t t-call="web.basic_layout">
+        <t t-set="doc" t-value="doc.with_context({'lang':'uk_UA'})"/>
+        <style>
+            @media print {
+            .more {
+            page-break-after: always;
+            }
+            }
+            h2 {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            }
+
+            p {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            }
+
+            a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            }
+            .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 1200px;
+            }
+            .box {
+            flex-direction: row-reverse;
+            display: flex;
+            margin-left: 700px;
+            margin-bottom: 20px;
+            }
+            .title {
+            text-align: center;
+            text-transform: uppercase;
+            }
+            .description {
+            font-size:15px;
+            margin-left: 90px;
+            }
+            .box-description{
+            border: 1px solid gray;
+            padding: 10px;
+            }
+            .tabel1 {
+            border-collapse: collapse;
+            width:100%
+            }
+            td {
+            border: 1px solid grey;
+            }
+            .table2 {
+            border-collapse: collapse;
+            }
+            .no_border_table {
+            border: 0 none white;
+            }
+            .no_border_table td {
+            border: 0 none white;
+            }
+            .border_table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            }
+            .border_table td {
+            border: 1px solid black;
+            }
+            .bottom_border {
+            border-bottom: 1px solid black !important;
+            }
+        </style>
+
+        <div>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   border="0" class="no_border_table">
+                <tr>
+                    <td width="50%"/>
+                    <td width="50%">
+                        Додаток 7
+                        <br/>
+                        до Правил перевезень вантажів
+                        автомобільним транспортом в Україні
+                        <br/>
+                        пункт 11.1 глави 11
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   border="0" class="no_border_table">
+                <tr>
+                    <td width="100%" align="center">
+                        <h4 class="title">Товарно транспортна накладна
+                        </h4>
+                        <h5 class="title">№
+                            <t t-esc="doc.name"/>
+                            від
+                            <t t-esc="doc.scheduled_date.strftime('%d %B %Y')"/>
+                            р.
+                        </h5>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   border="0" class="no_border_table">
+                <tr>
+                    <td width="100%" align="right">Форма N 1-ТН</td>
+                </tr>
+            </table>
+
+
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <style>
+                    th {
+                    border: 1px solid black;
+                    padding: 0px 0px;
+                    font-weight: normal;
+                    }
+                </style>
+                <tr class="border-black">
+                    <th class="text-center" width="39%" colspan="2"><b>Автомобіль</b></th>
+                    <th class="text-center" width="39%" colspan="2"><b>Причіп/напівпричіп</b></th>
+                    <th class="text-center" width="11%" colspan="2" rowspan="5"><b>Вид перевезень</b></th>
+                    <th class="text-center" width="11%" colspan="2" rowspan="5"/>
+                </tr>
+                <tr class="border-black">
+                    <th class="text-center" width="12%" ><small>марка, модель, тип, реєстраційний номер</small></th>
+                    <th class="text-center" width="12%" />
+                    <th class="text-center" width="12%" ><small>марка, модель, тип, реєстраційний номер</small></th>
+                    <th class="text-center" width="12%"/>
+                </tr>
+                <tr class="border-black">
+                    <th class="text-center" width="12%"><small>довжина/ ширина/ висота</small></th>
+                    <th class="text-center" width="12%"/>
+                    <th class="text-center" width="12%"><small>довжина/ ширина/ висота</small></th>
+                    <th class="text-center" width="12%"/>
+                </tr>
+                <tr class="border-black">
+                    <th class="text-center" width="12%"><small>загальна вага, у тому числі з вантажем</small></th>
+                    <th class="text-center" width="12%"/>
+                    <th class="text-center" width="12%"><small>загальна вага, у тому числі з вантажем</small></th>
+                    <th class="text-center" width="12%"/>
+                </tr>
+                <tr class="border-black">
+                    <th class="text-center" width="12%"><small>маса брутто</small></th>
+                    <th class="text-center" width="12%"/>
+                    <th class="text-center" width="12%"><small>маса брутто</small></th>
+                    <th class="text-center" width="12%"/>
+                </tr>
+            </table>
+            <br/>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <style>
+                    th {
+                    line-height:1
+                    }
+                    td {
+                    line-height:1
+                    }
+                </style>
+                <tr>
+                    <td width="20%">Автомобільний перевізник</td>
+                    <td width="40%" class="bottom_border"></td>
+                    <td width="6%">Водій</td>
+                    <td width="34%" class="bottom_border"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(найменування /
+                        П. І. Б.)
+                    </td>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(П. І. Б.,
+                        номер посвідчення водія)
+                    </td>
+                </tr>
+            </table>
+
+            <br/>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <tr>
+                    <td width="10%">Замовник</td>
+                    <td width="90%" class="bottom_border"
+                        style="text-align: center;">
+                        <t t-esc="doc.partner_id.name"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(найменування /
+                        П. І. Б.)
+                    </td>
+                </tr>
+            </table>
+
+            <br/>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <tr>
+                    <td width="15%">Вантажовідправник</td>
+                    <td width="85%" class="bottom_border"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(повне
+                        найменування, місцезнаходження / П. І. Б., місце
+                        проживання)
+                    </td>
+                </tr>
+            </table>
+
+            <br/>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <tr>
+                    <td width="15%">Вантажоодержувач</td>
+                    <td width="85%" class="bottom_border"
+                        style="text-align: center;">
+                        <p><t t-esc="doc.partner_id.name"/>, <t
+                                t-esc="doc.partner_id.zip"/>, <t
+                                t-esc="doc.partner_id.country_id.name"/>,
+                            <t t-esc="doc.partner_id.street"/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(повне
+                        найменування, місцезнаходження / П. І. Б., місце
+                        проживання)
+                    </td>
+                </tr>
+            </table>
+
+            <br/>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <tr>
+                    <td width="15%">Пункт навантаження</td>
+                    <td width="35%" class="bottom_border"></td>
+                    <td width="15%">Вантажоодержувач</td>
+                    <td width="35%" class="bottom_border"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">
+                        (місцезнаходження)
+                    </td>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">
+                        (місцезнаходження)
+                    </td>
+                </tr>
+            </table>
+
+            <br/>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <tr>
+                    <td width="10%">кількість місць</td>
+                    <td width="20%" class="bottom_border"></td>
+                    <td width="12%">масою брутто, т</td>
+                    <td width="18%" class="bottom_border"></td>
+                    <td width="17%">отримав водій/експедитор</td>
+                    <td width="17%" class="bottom_border"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(словами)</td>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(словами)</td>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(П. І. Б.,
+                        посада, підпис)
+                    </td>
+                </tr>
+            </table>
+
+            <br/>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <tr>
+                    <td width="23%">Усього відпущено на загальну суму</td>
+                    <td width="40%" class="bottom_border"></td>
+                    <td width="8%">, у т. ч. ПДВ</td>
+                    <td width="23%" class="bottom_border"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center">(словами, з
+                        урахуванням ПДВ)
+                    </td>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center"></td>
+                </tr>
+            </table>
+
+            <br/>
+            <table width="100%" cellpadding="0" cellspacing="0" align="center"
+                   class="no_border_table">
+                <tr>
+                    <td width="25%">Супровідні документи на вантаж</td>
+                    <td width="75%" class="bottom_border"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="font-size: 10px;" align="center"></td>
+                </tr>
+            </table>
+
+<!--            <table width="100%" cellpadding="0" cellspacing="0" align="center"-->
+<!--                   class="no_border_table">-->
+<!--                <tr>-->
+<!--                    <td width="99%" height="30" class="bottom_border"></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+
+
+        </div>
+<!--        <p style="page-break-before:always;"></p>-->
+            <br/>
+            <br/>
+        <div>
+            <p style="text-align: right">Зворотний бік</p>
+            <p style="text-align: center">ВІДОМОСТІ ПРО ВАНТАЖ</p>
+        </div>
+        <table width="100%" class="tabel1">
+            <style>
+                th {
+                line-height:1.2
+                }
+                td {
+                line-height:1.2
+                }
+            </style>
+            <tr style="text-align: center">
+                <td width="30px">N<br/>з/п
+                </td>
+                <td width="100px">Найменування вантажу (номер контейнера), у
+                    разі перевезення небезпечних вантажів: клас небезпечних
+                    речовин, до якого віднесено вантаж
+                </td>
+                <td width="50px">Одиниця<br/>виміру
+                </td>
+                <td width="50px">Кількість<br/>місць
+                </td>
+                <td width="50px">Ціна без ПДВ за<br/>одиницю, грн
+                </td>
+                <td width="50px">Загальна сума з<br/>ПДВ, грн
+                </td>
+                <td width="50px">Вид<br/>пакування
+                </td>
+                <td width="200px">Документи з вантажем</td>
+                <td width="50px">Маса<br/>брутто, т
+                </td>
+            </tr>
+            <tr style="text-align: center" bgcolor="lightgrey">
+                <td>
+                    <strong>1</strong>
+                </td>
+                <td>
+                    <strong>2</strong>
+                </td>
+                <td>
+                    <strong>3</strong>
+                </td>
+                <td>
+                    <strong>4</strong>
+                </td>
+                <td>
+                    <strong>5</strong>
+                </td>
+                <td>
+                    <strong>6</strong>
+                </td>
+                <td>
+                    <strong>7</strong>
+                </td>
+                <td>
+                    <strong>8</strong>
+                </td>
+                <td>
+                    <strong>9</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td style="text-align: left" colspan="2">Всього:</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>&#160;
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+        </table>
+        <br/>
+
+        <table class="table2" style="text-align: center">
+            <tr>
+                <td>
+                    <table width="100%" style="padding-left: 20; padding-right: 20;"
+                           align="center" class="no_border_table">
+                        <tr>
+                            <td style="text-align: center;">Здав (відповідальна особа вантажовідправника)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td height="30" class="bottom_border"></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 10px;" align="center">(П. І.
+                                Б., посада, підпис)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <table width="100%" style="padding-left: 20; padding-right: 20;"
+                           align="center" class="no_border_table">
+                        <tr>
+                            <td style="text-align: center;">Прийняв (відповідальна особа вантажоодержувача)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td height="30" class="bottom_border"></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 10px;" align="center">(П. І. Б., посада, підпис)
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div>
+            <p style="text-align: center">ВАНТАЖНО-РОЗВАНТАЖУВАЛЬНІ ОПЕРАЦІЇ
+            </p>
+        </div>
+        <br/>
+        <table class="tabel1">
+            <tr style="text-align: center">
+                <td rowspan="2">Операція</td>
+                <td rowspan="2">Маса брутто, т</td>
+                <td colspan="3">Час (год., хв.)</td>
+                <td rowspan="2">Підпис відповідальної особи</td>
+            </tr>
+            <tr style="text-align: center">
+                <td>прибуття</td>
+                <td>вибуття</td>
+                <td>простою</td>
+            </tr>
+            <tr style="text-align: center" bgcolor="lightgrey">
+                <td>
+                    <strong>10</strong>
+                </td>
+                <td>
+                    <strong>11</strong>
+                </td>
+                <td>
+                    <strong>12</strong>
+                </td>
+                <td>
+                    <strong>13</strong>
+                </td>
+                <td>
+                    <strong>14</strong>
+                </td>
+                <td>
+                    <strong>15</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Навантаження</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td>Розвантаження</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+                <td>&#160;</td>
+            </tr>
+        </table>
+        </t>
+    </template>
+</odoo>

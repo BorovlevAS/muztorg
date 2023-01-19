@@ -1,0 +1,37 @@
+<odoo>
+    <record id="kw_stock_ttn_paperformat_a4" model="report.paperformat">
+        <field name="name">Tovarna Transportna Nakladna A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="kw_stock_ttn_ttn_container">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="kw_stock_ttn.kw_stock_ttn_stock_picking_ttn_report" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="kw_stock_ttn_ttn_report" model="ir.actions.report">
+        <field name="name">Tovarna Transportna Nakladna A4</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">kw_stock_ttn.kw_stock_ttn_ttn_container</field>
+        <field name="report_file">kw_stock_ttn.kw_stock_ttn_ttn_container</field>
+        <field name="print_report_name">(object.state in ('draft', 'sent') and 'Nakladna - %s' % (object.name)) or 'Nakladna - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="kw_stock_ttn.kw_stock_ttn_paperformat_a4"/>
+    </record>
+</odoo>
