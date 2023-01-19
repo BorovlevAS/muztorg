@@ -12,3 +12,16 @@ class ProductTemplate(models.Model):
     biko_product_model = fields.Many2one(
         string="Product model", comodel_name="biko.product.model"
     )
+
+    biko_country = fields.Many2one(
+        string="Country", comodel_name="res.country"
+    )
+
+    biko_country_customs = fields.Many2one(
+        string="Country for custom", comodel_name="res.country"
+    )
+
+    biko_character_ukr = fields.Text(
+        string='Characteristics (ukr)',
+    )
+    
