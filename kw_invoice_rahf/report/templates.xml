@@ -65,7 +65,7 @@
 
                         <t t-if="doc.company_id and doc.company_id.partner_id">
                             <span style="white-space:nowrap;">Адреса:
-                                <span t-field="doc.company_id.partner_id.legal_address.name"/>
+                                <span t-esc="doc.company_id.partner_id.get_legal_address()"/>
                             </span>
                         </t>
                         <br/>
@@ -196,7 +196,7 @@
                            groups="account.group_show_line_subtotals_tax_included"/>
 
                         <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_narration' if line.display_type == 'line_narration' else ''">
-                            <t t-if="not line.display_type and not line.price_unit == 0 and line.kw_is_added_to_doc">
+                            <t t-if="not line.display_type">
                                 <td name="td_number" align="center">
                                     <t t-set="current_row_number"
                                         t-value="current_row_number + 1"/>
