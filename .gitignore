@@ -1,0 +1,28 @@
+.idea/
+.local
+.svn
+.vsc
+.vscode
+**.pyc
+*.log
+logs
+odoo-server.conf
+.DS_Store
+venv
+backup
+odoo_source
+html
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*~
+# Distribution / packaging
+develop-eggs/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+config_local/odoo.conf
+.run
+muztorg.code-workspace

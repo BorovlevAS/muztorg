@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--1. Top menu-->
+    <menuitem id="biko_additional_menu"
+              name="Additional Information"
+              parent="pim.root_menu_pim"
+              sequence="50"/>
+
+    <!--1.1 Sub menu-->
+    <menuitem id="biko_product_class_menu"
+              name="Product Classes"
+              parent="biko_additional_menu"
+              sequence="40"
+              action="action_biko_product_class_tree"/>
+
+</odoo>
