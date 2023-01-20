@@ -11,6 +11,7 @@
                 <field name="biko_product_model" options="{'no_create': True}"/>
                 <field name="biko_country" options="{'no_create': True}"/>
                 <field name="biko_country_customs" options="{'no_create': True}"/>
+                <field name="biko_control_code" readonly="1"/>
             </field>
             <xpath expr="//*/page[@name='general_information']/group[2]" position="after">
                 <group string="Caharcteristics (ukr)">
