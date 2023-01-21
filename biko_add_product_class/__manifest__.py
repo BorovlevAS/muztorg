@@ -4,7 +4,7 @@
     "version": "14.0.1.1.3",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
-    "depends": ["pim", "product"],
+    "depends": ["biko_base_module", "pim", "product"],
     "data": [
         'views/product_class_views.xml',
         'views/biko_pim_menus.xml',
