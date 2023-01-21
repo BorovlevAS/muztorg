@@ -22,28 +22,12 @@
         <field name="name">User</field>
         <field name="category_id" ref="biko_add_product_class.category_biko_product_class"/>
     </record>
+    
     <record id="biko_group_product_class_admin" model="res.groups">
         <field name="name">Administrator</field>
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         <field name="implied_ids" eval="[(4, ref('biko_group_product_class_user'))]"/>
         <field name="category_id" ref="biko_add_product_class.category_biko_product_class"/>
-    </record>
-
-    <record id="category_biko_product_model" model="ir.module.category">
-        <field name="name">'Product Model' catalog</field>
-        <field name="sequence">30</field>
-        <field name="parent_id" ref="biko_add_product_class.category_biko_addon_roles"/>
-    </record>
-
-    <record id="biko_group_product_model_user" model="res.groups">
-        <field name="name">User</field>
-        <field name="category_id" ref="biko_add_product_class.category_biko_product_model"/>
-    </record>
-    <record id="biko_group_product_model_admin" model="res.groups">
-        <field name="name">Administrator</field>
-        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
-        <field name="implied_ids" eval="[(4, ref('biko_group_product_model_user'))]"/>
-        <field name="category_id" ref="biko_add_product_class.category_biko_product_model"/>
     </record>
 
 </odoo>
