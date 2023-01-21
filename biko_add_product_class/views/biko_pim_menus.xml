@@ -14,11 +14,4 @@
               sequence="40"
               action="action_biko_product_class_tree"/>
 
-    <!--1.2 Sub menu-->
-    <menuitem id="biko_product_model_menu"
-              name="Product Models"
-              parent="biko_additional_menu"
-              sequence="50"
-              action="action_biko_product_model_tree"/>
-
 </odoo>

@@ -7,7 +7,6 @@
     "depends": ["pim", "product"],
     "data": [
         'views/product_class_views.xml',
-        'views/product_model_views.xml',
         'views/biko_pim_menus.xml',
         'views/product_template_views.xml',
         
