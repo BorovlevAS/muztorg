@@ -9,11 +9,11 @@ class ProductTemplate(models.Model):
         string="Product class", comodel_name="biko.product.class"
     )
 
-    biko_product_model = fields.Many2one(
-        string="Product model", comodel_name="biko.product.model", required=True,
+    biko_product_model = fields.Char(
+        string="Product model", comodel_name="biko.product.model"
     )
 
-    biko_country = fields.Many2one(string="Country", comodel_name="res.country", required=True)
+    biko_country = fields.Many2one(string="Country", comodel_name="res.country")
 
     biko_country_customs = fields.Many2one(
         string="Country for custom", comodel_name="res.country"
@@ -23,7 +23,7 @@ class ProductTemplate(models.Model):
         string="Characteristics (ukr)",
     )
 
-    biko_vendor_code = fields.Char(string="Vendor Code", required=True)
+    biko_vendor_code = fields.Char(string="Vendor Code")
 
     _sql_constraints = [
         ("vendor_code_unique", "unique(biko_vendor_code)", "Vendor code must be unique")

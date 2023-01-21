@@ -8,8 +8,9 @@
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
                 <field name="biko_product_class" readonly="1"/>
-                <field name="biko_product_model" options="{'no_create': True}"/>
-                <field name="biko_country" options="{'no_create': True}"/>
+                <field name="biko_product_model" attrs="{'required': [('type', '=', 'product')]}"/>
+                <field name="biko_country" options="{'no_create': True}"
+                    attrs="{'required': [('type', '=', 'product')]}"/>
                 <field name="biko_country_customs" options="{'no_create': True}"/>
                 <field name="biko_control_code" readonly="1"/>
             </field>
@@ -19,7 +20,7 @@
                 </group>
             </xpath>
             <field name="type" position="before">
-                <field name="biko_vendor_code"/>
+                <field name="biko_vendor_code" attrs="{'required': [('type', '=', 'product')]}"/>
             </field>
         </field>
     </record>
