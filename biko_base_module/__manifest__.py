@@ -7,6 +7,7 @@
     "depends": ["base"],
     "data": [
         "security/ir_access_roles.xml",
+        "views/biko_base_menus.xml",
     ],
     "license": "LGPL-3",
     "installable": True,
