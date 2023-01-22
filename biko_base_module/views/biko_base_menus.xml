@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--1. Top menu-->
+    <menuitem id="biko_additional_menu"
+              name="Additional Information"
+              parent="pim.root_menu_pim"
+              sequence="50"/>
+
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="biko_product_prefix_menu"
+              name="Product Prefixes"
+              parent="biko_base_module.biko_additional_menu"
+              sequence="50"
+              action="action_biko_product_prefix_tree"/>
+
+</odoo>

@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="category_biko_addon_main" model="ir.module.category">
-        <field name="name">BIKO additional roles</field>
-        <field name="sequence">100</field>
-    </record>
-
-    <record id="category_biko_addon_roles" model="ir.module.category">
-        <field name="name">BIKO Roles</field>
-        <field name="sequence">300</field>
-        <field name="parent_id" ref="biko_add_product_class.category_biko_addon_main"/>
-    </record>
-
     <record id="category_biko_product_class" model="ir.module.category">
         <field name="name">'Product Class' catalog</field>
         <field name="sequence">20</field>
-        <field name="parent_id" ref="biko_add_product_class.category_biko_addon_roles"/>
+        <field name="parent_id" ref="biko_base_module.category_biko_addon_roles"/>
     </record>
 
     <record id="biko_group_product_class_user" model="res.groups">
