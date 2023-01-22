@@ -9,7 +9,7 @@ class ProductCategory(models.Model):
     _inherit = "product.category"
 
     biko_product_prefix = fields.Many2one(
-        string="Prefix", comodel_name="biko.product.prefix", required=True
+        string="Prefix", comodel_name="biko.product.prefix"
     )
 
     def name_get(self):
