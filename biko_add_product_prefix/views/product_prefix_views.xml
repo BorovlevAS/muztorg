@@ -1,0 +1,18 @@
+<odoo>
+    <record id="action_biko_product_prefix_tree" model="ir.actions.act_window">
+        <field name="name">Product Prefix</field>
+        <field name="res_model">biko.product.prefix</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="biko_product_prefix_tree" model="ir.ui.view">
+        <field name="name">biko.product.prefix.view.tree</field>
+        <field name="model">biko.product.prefix</field>
+        <field name="arch" type="xml">
+            <tree string="Product prefix" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
