@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        name="Product Brands"
+        id="biko_menu_product_brand"
+        action="product_brand.action_product_brand"
+        parent="biko_base_module.biko_additional_menu"
+    />
+
+</odoo>
