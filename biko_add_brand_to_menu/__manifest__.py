@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     "name": "BIKO: Добавляет бренд в меню",
-    "version": "15.0.1.1.0",
+    "version": "14.0.1.1.0",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": ["biko_base_module", "product_brand"],

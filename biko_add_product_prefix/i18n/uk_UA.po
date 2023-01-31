@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* biko_add_product_prefix
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-30 21:48+0000\n"
+"PO-Revision-Date: 2023-01-30 23:50+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: biko_add_product_prefix
+#: model:ir.module.category,name:biko_add_product_prefix.category_biko_product_prefix
+msgid "'Product prefix' catalog"
+msgstr "Каталог \"Префікси товарів\""
+
+#. module: biko_add_product_prefix
+#: model:res.groups,name:biko_add_product_prefix.biko_group_product_prefix_admin
+msgid "Administrator"
+msgstr "Адміністратор"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__display_name
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_category__display_name
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_template__display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__id
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_category__id
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix____last_update
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_category____last_update
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_category__biko_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_product__biko_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_template__biko_product_prefix
+msgid "Prefix"
+msgstr "Префікс"
+
+#. module: biko_add_product_prefix
+#: model:ir.model,name:biko_add_product_prefix.model_product_category
+msgid "Product Category"
+msgstr "Категорія товара"
+
+#. module: biko_add_product_prefix
+#: model:ir.actions.act_window,name:biko_add_product_prefix.action_biko_product_prefix_tree
+msgid "Product Prefix"
+msgstr "Префікс товара"
+
+#. module: biko_add_product_prefix
+#: model:ir.ui.menu,name:biko_add_product_prefix.biko_product_prefix_menu
+msgid "Product Prefixes"
+msgstr "Префікси товарів"
+
+#. module: biko_add_product_prefix
+#: model:ir.model,name:biko_add_product_prefix.model_product_template
+msgid "Product Template"
+msgstr "Шаблон продуктів"
+
+#. module: biko_add_product_prefix
+#: model_terms:ir.ui.view,arch_db:biko_add_product_prefix.biko_product_prefix_tree
+msgid "Product prefix"
+msgstr "Префікс товара"
+
+#. module: biko_add_product_prefix
+#: model:res.groups,name:biko_add_product_prefix.biko_group_product_prefix_user
+msgid "User"
+msgstr "Користувач"
+
+#. module: biko_add_product_prefix
+#: model:ir.model,name:biko_add_product_prefix.model_biko_product_prefix
+msgid "biko.product.prefix"
+msgstr "biko.product.prefix"
