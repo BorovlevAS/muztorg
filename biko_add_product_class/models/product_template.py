@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+from odoo import _
 
 
 class ProductTemplate(models.Model):
@@ -26,7 +27,7 @@ class ProductTemplate(models.Model):
     biko_vendor_code = fields.Char(string="Vendor Code")
 
     _sql_constraints = [
-        ("vendor_code_unique", "unique(biko_vendor_code)", "Vendor code must be unique")
+        ("vendor_code_unique", "unique(biko_vendor_code)", _("Vendor code must be unique"))
     ]
 
     biko_control_code = fields.Char(string='Control code')
