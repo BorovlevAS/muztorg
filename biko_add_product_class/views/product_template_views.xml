@@ -16,7 +16,7 @@
             </field>
             <xpath expr="//*/page[@name='general_information']/group[2]" position="after">
                 <group string="Characteristics (ukr)">
-                    <field name="biko_character_ukr" nolabel="1"/>
+                    <field name="biko_character_ukr" nolabel="1" attrs="{'required': [('type', '=', 'product')]}"/>
                 </group>
             </xpath>
             <field name="type" position="before">
