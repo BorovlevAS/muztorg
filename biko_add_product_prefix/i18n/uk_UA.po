@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-30 21:48+0000\n"
-"PO-Revision-Date: 2023-01-30 23:50+0200\n"
+"POT-Creation-Date: 2023-02-12 19:06+0000\n"
+"PO-Revision-Date: 2023-02-12 21:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -26,6 +26,11 @@ msgstr "Каталог \"Префікси товарів\""
 #: model:res.groups,name:biko_add_product_prefix.biko_group_product_prefix_admin
 msgid "Administrator"
 msgstr "Адміністратор"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__color
+msgid "Color Index"
+msgstr "Color Index"
 
 #. module: biko_add_product_prefix
 #: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__create_uid
@@ -74,8 +79,10 @@ msgid "Name"
 msgstr "Назва"
 
 #. module: biko_add_product_prefix
-#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_category__biko_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_category__biko_product_prefix_ids
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_product__biko_avail_prefixes
 #: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_product__biko_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_template__biko_avail_prefixes
 #: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_template__biko_product_prefix
 msgid "Prefix"
 msgstr "Префікс"
@@ -83,7 +90,7 @@ msgstr "Префікс"
 #. module: biko_add_product_prefix
 #: model:ir.model,name:biko_add_product_prefix.model_product_category
 msgid "Product Category"
-msgstr "Категорія товара"
+msgstr "Категорія продукту"
 
 #. module: biko_add_product_prefix
 #: model:ir.actions.act_window,name:biko_add_product_prefix.action_biko_product_prefix_tree
@@ -98,7 +105,7 @@ msgstr "Префікси товарів"
 #. module: biko_add_product_prefix
 #: model:ir.model,name:biko_add_product_prefix.model_product_template
 msgid "Product Template"
-msgstr "Шаблон продуктів"
+msgstr "Шаблон продукту"
 
 #. module: biko_add_product_prefix
 #: model_terms:ir.ui.view,arch_db:biko_add_product_prefix.biko_product_prefix_tree
