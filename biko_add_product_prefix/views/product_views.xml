@@ -23,6 +23,17 @@
         </field>
     </record>
 
+    <record id="biko_product_category_search_view" model="ir.ui.view">
+        <field name="name">BIKO: product category view inherit (MTD-1-15)</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="biko_product_prefix_ids" filter_domain="[('biko_product_prefix_ids.name', 'ilike', raw_value)]"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="biko_product_template_form_view_inherit" model="ir.ui.view">
         <field name="name">BIKO: product template view inherit (MTD-1-1)</field>
         <field name="model">product.template</field>
