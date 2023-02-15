@@ -27,4 +27,44 @@
         </field>
     </record>
 
+    <record id="biko_pim_product_template_tree_view_mtd_1_16_inherit" model="ir.ui.view">
+        <field name="name">BIKO: Change tree view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="pim.pim_product_template_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='image_512']" position="replace">
+                <field
+                    name="image_512"
+                    widget='image'
+                    class="oe_avatar"
+                    options='{"preview_image": "image_512", "size": [40, 40]}'
+                    readonly="1"
+                    optional="hide"
+                    string="Photo"
+                />
+            </xpath>
+            <field name="default_code" position="replace">
+                <field name="default_code" optional="hide"/>
+            </field>
+            <field name="barcode" position="replace">
+                <field name="barcode" optional="hide"/>
+            </field>
+            <field name="categ_id" position="replace">
+                <field name="categ_id" optional="hide"/>
+            </field>
+            <field name="attribute_set_id" position="replace">
+                <field name="attribute_set_id" optional="hide"/>
+            </field>
+            <field name="uom_id" position="replace">
+                <field name="uom_id" optional="hide"/>
+            </field>
+            <field name="attribute_set_completion_state" position="replace">
+                <field name="attribute_set_completion_state" optional="hide"/>
+            </field>
+            <field name="attribute_set_completion_rate" position="replace">
+                <field name="attribute_set_completion_rate" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>
