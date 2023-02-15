@@ -4,8 +4,9 @@
     "version": "14.0.1.1.0",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
-    "depends": ["contacts"],
+    "depends": ["base", "contacts", 'sms'],
     "data": [
+        "views/contact_actions.xml",
         "views/contact_views.xml",
     ],
     "license": "LGPL-3",
