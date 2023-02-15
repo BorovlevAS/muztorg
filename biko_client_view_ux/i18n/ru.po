@@ -1,0 +1,23 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* biko_client_view_ux
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-15 19:00+0000\n"
+"PO-Revision-Date: 2023-02-15 21:01+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: biko_client_view_ux
+#: model_terms:ir.ui.view,arch_db:biko_client_view_ux.biko_view_partner_form_
+msgid "Additional Phone"
+msgstr "Дополнительный телефон"
