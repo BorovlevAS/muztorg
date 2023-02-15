@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="biko_view_partner_form_" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sms.res_partner_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='phone']" position="replace">
+                <label for="phone" string="Additional Phone" class="oe_inline"/>
+            </xpath>
+            <xpath expr="//field[@name='mobile']//.." position="after">
+                <xpath expr="//label[@for='phone']" position="move"/>
+                <xpath expr="//field[@name='phone']//.." position="move"/>
+            </xpath>
+            <xpath expr="//field[@name='mobile']" position="attributes">
+                <attribute name="attrs">{'required': [('company_type', '=', 'person')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
