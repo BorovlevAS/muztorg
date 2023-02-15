@@ -57,7 +57,7 @@ class ResPartner(models.Model):
     def _check_mobile(self):
 
         for rec in self:
-            if rec.mobile and rec.company_type == "person":
+            if rec.mobile:
                 result, op_code = check_phone_mobile(
                     rec.mobile, rec.country_id.code if rec.country_id else "UA"
                 )
@@ -66,18 +66,18 @@ class ResPartner(models.Model):
                     raise ValidationError(
                         _("{} is not a mobile operator code").format(op_code)
                     )
+                if rec.company_type == "person":
+                    client_names = (
+                        self.env["res.partner"]
+                        .search([("mobile", "=", rec.mobile), ("id", "!=", rec.id)])
+                        .mapped("name")
+                    )
+                    if client_names:
 
-                client_names = (
-                    self.env["res.partner"]
-                    .search([("mobile", "=", rec.mobile), ("id", "!=", rec.id)])
-                    .mapped("name")
-                )
-                if client_names:
+                        message = _(
+                            "Client{} with mobile number {} is already exists\n"
+                        ).format("s" if len(client_names) > 1 else "", rec.mobile)
+                        for name in client_names:
+                            message += name + "\n"
 
-                    message = _(
-                        "Client{} with mobile number {} is already exists\n"
-                    ).format("s" if len(client_names) > 1 else "", rec.mobile)
-                    for name in client_names:
-                        message += name + "\n"
-
-                    raise ValidationError(message)
+                        raise ValidationError(message)

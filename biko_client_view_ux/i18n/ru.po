@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-15 21:19+0000\n"
-"PO-Revision-Date: 2023-02-15 23:20+0200\n"
+"POT-Creation-Date: 2023-02-15 22:13+0000\n"
+"PO-Revision-Date: 2023-02-16 00:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -47,3 +47,15 @@ msgstr "Последнее изменение в"
 #: model:ir.model,name:biko_client_view_ux.model_res_partner
 msgid "Res partner Sequences"
 msgstr "Последовательности клиента"
+
+#. module: biko_client_view_ux
+#: code:addons/biko_client_view_ux/models/res_partner.py:0
+#, python-format
+msgid "Unable to parse %(phone)s: %(error)s"
+msgstr "Невозможно разобрать %(phone)s: %(error)s"
+
+#. module: biko_client_view_ux
+#: code:addons/biko_client_view_ux/models/res_partner.py:0
+#, python-format
+msgid "{} is not a mobile operator code"
+msgstr "{} не является кодом мобильного оператора"
