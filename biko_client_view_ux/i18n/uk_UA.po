@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-15 19:00+0000\n"
-"PO-Revision-Date: 2023-02-15 21:01+0200\n"
+"POT-Creation-Date: 2023-02-15 21:20+0000\n"
+"PO-Revision-Date: 2023-02-15 23:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -21,3 +21,29 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:biko_client_view_ux.biko_view_partner_form_
 msgid "Additional Phone"
 msgstr "Додатковий телефон"
+
+#. module: biko_client_view_ux
+#: code:addons/biko_client_view_ux/models/res_partner.py:0
+#, python-format
+msgid "Client{} with mobile number {} is already exists\n"
+msgstr "Клієнт{} з номером мобільного {} вже є в базі\n"
+
+#. module: biko_client_view_ux
+#: model:ir.model.fields,field_description:biko_client_view_ux.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: biko_client_view_ux
+#: model:ir.model.fields,field_description:biko_client_view_ux.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: biko_client_view_ux
+#: model:ir.model.fields,field_description:biko_client_view_ux.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: biko_client_view_ux
+#: model:ir.model,name:biko_client_view_ux.model_res_partner
+msgid "Res partner Sequences"
+msgstr "Послідовності клієнта"
