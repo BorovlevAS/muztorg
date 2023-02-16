@@ -48,7 +48,10 @@ class ResPartner(models.Model):
 
             Partner = self.with_context(active_test=False).sudo()
 
-            domain = [("enterprise_code", "=", record.enterprise_code)]
+            domain = [
+                ("enterprise_code", "=", record.enterprise_code),
+                ("company_id", "in", [False, record.company_id.id]),
+            ]
             partner_id = record._origin.id
 
             if partner_id:
