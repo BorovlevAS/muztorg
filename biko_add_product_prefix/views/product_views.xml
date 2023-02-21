@@ -41,10 +41,20 @@
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
                 <field name="biko_avail_prefixes" invisible="1"/>
-                <field name="biko_product_prefix"
-                    attrs="{'required': [('type', '=', 'product')]}"
-                    options="{'no_create': True}"/>
+                <field name="biko_product_prefix" attrs="{'required': [('type', '=', 'product')]}" options="{'no_create': True}"/>
             </field>
+        </field>
+    </record>
+
+    <!-- search views -->
+    <record id="biko_product_template_search_view_prefix_inherit" model="ir.ui.view">
+        <field name="name">BIKO: add search by prefix (MTD-1-17)</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="biko_product_prefix" filter_domain="[('biko_product_prefix.name', 'ilike', raw_value)]"/>
+            </xpath>
         </field>
     </record>
 
