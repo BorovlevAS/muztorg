@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-12 19:08+0000\n"
-"PO-Revision-Date: 2023-02-12 21:08+0200\n"
+"POT-Creation-Date: 2023-02-21 19:02+0000\n"
+"PO-Revision-Date: 2023-02-21 21:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -111,6 +111,16 @@ msgstr "Шаблон продукта"
 #: model_terms:ir.ui.view,arch_db:biko_add_product_prefix.biko_product_prefix_tree
 msgid "Product prefix"
 msgstr "Префикс товара"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__uktzed_id
+msgid "UKTZED"
+msgstr "УКТЗЕД"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,help:biko_add_product_prefix.field_biko_product_prefix__uktzed_id
+msgid "Ukrainian classification of foreign economic activity goods"
+msgstr "Классификация товаров внешнеэкономической деятельности для Украины"
 
 #. module: biko_add_product_prefix
 #: model:res.groups,name:biko_add_product_prefix.biko_group_product_prefix_user
