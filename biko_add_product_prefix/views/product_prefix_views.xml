@@ -11,6 +11,7 @@
         <field name="arch" type="xml">
             <tree string="Product prefix" editable="bottom">
                 <field name="name"/>
+                <field name="uktzed_id"/>
             </tree>
         </field>
     </record>
