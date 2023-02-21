@@ -33,15 +33,7 @@
         <field name="inherit_id" ref="pim.pim_product_template_tree_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='image_512']" position="replace">
-                <field
-                    name="image_512"
-                    widget='image'
-                    class="oe_avatar"
-                    options='{"preview_image": "image_512", "size": [40, 40]}'
-                    readonly="1"
-                    optional="hide"
-                    string="Photo"
-                />
+                <field name="image_512" widget='image' class="oe_avatar" options='{"preview_image": "image_512", "size": [40, 40]}' readonly="1" optional="hide" string="Photo" />
             </xpath>
             <field name="default_code" position="replace">
                 <field name="default_code" optional="hide"/>
