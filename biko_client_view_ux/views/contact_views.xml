@@ -17,4 +17,15 @@
             </xpath>
         </field>
     </record>
+
+    <record id="biko_view_partner_tree_MT_D02_11_inherited" model="ir.ui.view">
+        <field name="name">BIKO: add mobile to the tree (MT-D02-11)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <field name="phone" position="before">
+                <field name="mobile" class="o_force_ltr" optional="show"/>
+            </field>
+        </field>
+    </record>
 </odoo>
