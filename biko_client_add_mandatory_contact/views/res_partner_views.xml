@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="biko_view_partner_form_mt_d02_3_inherit" model="ir.ui.view">
+        <field name="name">BIKO: add contacts (MT-D02-3)</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div attrs="{'invisible': [('same_vat_partner_id', '=', False)]}" position="after">
+                <div class="alert alert-danger" role="alert" attrs="{'invisible': [('biko_contact_person_id', '!=', False)]}">
+                    Field <b>Contact person</b> is not filled
+                </div>
+            </div>
+
+            <page name="contact_addresses" position="after">
+                <page name="biko_client_contacts" string="Client contacts">
+                    <group name="biko_clc_container_row_2" modifiers="{}">
+                        <group name="biko_clc_lef" string="Contacts">
+                            <field name="biko_contact_person_id" domain="[('parent_id', '=',id)]"/>
+                            <field name="biko_recipient_id" domain="[('parent_id', '=',id)]"/>
+                            <field name="biko_buyer_id" domain="[('parent_id', '=',id)]"/>
+                            <field name="biko_payer_id" domain="[('parent_id', '=',id)]"/>
+                        </group>
+                        <group name="biko_clc_right" string="Delivery addresses">
+                            <field name="biko_delivery_address_ids" nolabel="1" domain="[('parent_id', '=',id)]">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
