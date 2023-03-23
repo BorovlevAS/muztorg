@@ -1,0 +1,458 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* biko_change_product_view
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-23 19:49+0000\n"
+"PO-Revision-Date: 2023-03-23 23:53+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid ""
+"<span attrs=\"{'invisible': [('pricelist_item_count', '=', 1)]}\">\n"
+"                                          Extra Prices\n"
+"                                            </span>\n"
+"                                            <span attrs=\"{'invisible': "
+"[('pricelist_item_count', '!=', 1)]}\">\n"
+"                                          Extra Price\n"
+"                                            </span>"
+msgstr ""
+"<span attrs=\"{'invisible': [('pricelist_item_count', '=', 1)]}\">\n"
+"                                          Додаткові ціни\n"
+"                                            </span>\n"
+"                                            <span attrs=\"{'invisible': "
+"[('pricelist_item_count', '!=', 1)]}\">\n"
+"                                          Додаткові ціни\n"
+"                                            </span>"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "<span class=\"o_stat_text\">Forecasted</span>"
+msgstr "<span class=\"o_stat_text\">Прогнозовано</span>"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid ""
+"<span class=\"o_stat_text\">Min:</span>\n"
+"                                <span class=\"o_stat_text\">Max:</span>"
+msgstr ""
+"<span class=\"o_stat_text\">Мін:</span>\n"
+"                                <span class=\"o_stat_text\">Макс:</span>"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "<span class=\"o_stat_text\">On Hand</span>"
+msgstr "<span class=\"o_stat_text\">В наявності</span>"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "<span class=\"o_stat_text\">Purchased</span>"
+msgstr "<span class=\"o_stat_text\">Закуплено</span>"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "<span class=\"o_stat_text\">Sold</span>"
+msgstr "<span class=\"o_stat_text\">Продано</span>"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid ""
+"<strong>Warning</strong>: adding or deleting attributes\n"
+"                        will delete and recreate existing variants and "
+"lead\n"
+"                        to the loss of their possible customizations."
+msgstr ""
+"<strong>Попередження</strong>: додавання або видалення атрибутів\n"
+"                        видалить і перестворить існуючі варіанти і "
+"призведе\n"
+"                        до втрати їхніх можливих налаштувань."
+
+#. module: biko_change_product_view
+#: model:ir.model.fields,help:biko_change_product_view.field_product_product__type
+#: model:ir.model.fields,help:biko_change_product_view.field_product_template__type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory "
+"app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"Продукт, що зберігається, - це продукт, яким ви керуєте на складі. "
+"Необхідно встановити додаток Склад.\n"
+"Витратний продукт - це продукт, для якого склад не керується.\n"
+"Послуга - це нематеріальний продукт, який ви надаєте."
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Accounting"
+msgstr "Бухоблік"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Archived"
+msgstr "Архівовано"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Attributes"
+msgstr "Атрібути"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Availability"
+msgstr "Доступність"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_form_brand_reorder
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Brand"
+msgstr "Бренд"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Categories"
+msgstr "Категорії"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Characteristics (rus)"
+msgstr "Характеристика (рос.)"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Characteristics (ukr)"
+msgstr "Характеристика (укр.)"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Configure Variants"
+msgstr "Налаштувати Варіанти"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Content"
+msgstr "Вміст"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Counterpart Locations"
+msgstr "Протилежні місцезнаходження"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Custom Information"
+msgstr "Користувальницька інформація"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Description for Delivery Orders"
+msgstr "Опис для замовлень на доставку"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Description for Internal Transfers"
+msgstr "Опис для внутрішнього переміщення"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Description for Receipts"
+msgstr "Опис надходжень"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Dialog Content"
+msgstr "Вміст діалогу"
+
+#. module: biko_change_product_view
+#: model:ir.model.fields,field_description:biko_change_product_view.field_product_template__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Extra Product Media"
+msgstr "Медіа додаткових продуктів"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "FontAwesome"
+msgstr "FontAwesome"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "General Information"
+msgstr "Загальна інформація"
+
+#. module: biko_change_product_view
+#: model:ir.model.fields,field_description:biko_change_product_view.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Internal Notes"
+msgstr "Внутрішні примітки"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Inventory"
+msgstr "Склад"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Invoicing"
+msgstr "Виставлення рахунків"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Landed Costs"
+msgstr "Додаткові витрати"
+
+#. module: biko_change_product_view
+#: model:ir.model.fields,field_description:biko_change_product_view.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Logistics"
+msgstr "Логістика"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Lot/Serial Numbers"
+msgstr "Лот/Серійний номер"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Offers"
+msgstr "Пропозиції"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Operations"
+msgstr "Операції"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Options"
+msgstr "Опції"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Packaging"
+msgstr "Упаковка"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Payables"
+msgstr "Кредитори"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Product"
+msgstr "Продукт"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Product Category"
+msgstr "Категорія продукту"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Product Moves"
+msgstr "Переміщення продукту"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Product Name"
+msgstr "Назва продукту"
+
+#. module: biko_change_product_view
+#: model:ir.model,name:biko_change_product_view.model_product_template
+msgid "Product Template"
+msgstr "Шаблон продукту"
+
+#. module: biko_change_product_view
+#: model:ir.model.fields,field_description:biko_change_product_view.field_product_product__type
+#: model:ir.model.fields,field_description:biko_change_product_view.field_product_template__type
+msgid "Product Type"
+msgstr "Тип продукту"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Purchase"
+msgstr "Закупка"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Purchase Description"
+msgstr "Опис купівлі"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Purchased in the last 365 days"
+msgstr "Купівлі за останні 365 днів"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Putaway Rules"
+msgstr "Правила поповнення"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Receivables"
+msgstr "Дебіторська заборгованість"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Reordering"
+msgstr "Дозамовлення"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Replenish"
+msgstr "Поповнення"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Sales"
+msgstr "Продажі"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Sales Description"
+msgstr "Опис продажу"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Shop"
+msgstr "eCommerce"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Sold in the last 365 days"
+msgstr "Продано за останні 365 днів"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Tabs"
+msgstr "Tabs"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Theme Prime Configuration"
+msgstr "Конфігурація теми Prime"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Theme Prime Tabs and Offers"
+msgstr "Вкладки та пропозиції"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "This note is added to delivery orders."
+msgstr "примітки додані до замовлень на доставку"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid ""
+"This note is added to internal transfer orders (e.g. where to pick the "
+"product in the warehouse)."
+msgstr ""
+"ця примітка додана до замовлень на внутрішні переміщення (напр., де "
+"комплектувати продукт на складі)"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "This note is added to purchase orders."
+msgstr "ця примітка додається до замовлень на купівлю"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid ""
+"This note is added to receipt orders (e.g. where to store the product in "
+"the warehouse)."
+msgstr ""
+"ця примітка додається до наказів про отримання (наприклад, де зберігати "
+"продукт на складі)."
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "This note is added to sales orders and invoices."
+msgstr "ця примітка додається до замовлень на продаж і рахунків-фактур"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "This note is only for internal purposes."
+msgstr "ця примітка лише для внутрішніх цілей"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Traceability"
+msgstr "Відстеження"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Update Quantity"
+msgstr "Оновити Кількість"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Variants"
+msgstr "Варіанти"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Vendor Bills"
+msgstr "Рахунки постачальників"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "View Diagram"
+msgstr "Перегляд діаграми"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Volume"
+msgstr "Об'єм"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Warning when Purchasing this Product"
+msgstr "Попередження при купівлі цього продукту"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Warning when Selling this Product"
+msgstr "Попередження при продажу цього продукту"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "You can find icon at"
+msgstr "Ви можете знайти піктограму за адресою"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "days"
+msgstr "днів"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "eCommerce"
+msgstr "eCommerce"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "per"
+msgstr "за"

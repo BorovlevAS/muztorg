@@ -5,7 +5,7 @@
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": ["product"],
-    "data": ["views/product_views.xml",],
+    "data": [],
     "license": "LGPL-3",
     "installable": True,
     "application": True,
