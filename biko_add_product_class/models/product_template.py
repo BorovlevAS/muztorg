@@ -24,6 +24,10 @@ class ProductTemplate(models.Model):
         string="Characteristics (ukr)",
     )
 
+    biko_character_rus = fields.Text(
+        string="Characteristics (rus)",
+    )
+
     biko_vendor_code = fields.Char(string="Vendor Code")
 
     _sql_constraints = [
