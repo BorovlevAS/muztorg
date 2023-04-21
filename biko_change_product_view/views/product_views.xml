@@ -37,7 +37,7 @@
 
     <record id="biko_product_template_view" model="ir.ui.view">
         <field name="name">BIKO: new product template view</field>
-        <field name="priority">-1</field>
+        <field name="priority">100</field>
         <field name="model">product.template</field>
         <field name="arch" type="xml">
             <form string="Product" name="Product Template">
@@ -212,10 +212,10 @@
                                         </span>
                                     </div>
                                     <field name="barcode" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
-                                    <field name="biko_product_class"/>
+                                    <field name="biko_product_class" readonly="1"/>
                                     <field name="biko_country_customs" options="{'no_create': True}"/>
                                     <field name="uktzed_id" domain="[('not_select', '=', False)]"/>
-                                    <field name="biko_control_code"/>
+                                    <field name="biko_control_code" readonly="1"/>
                                     <field name="default_code" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
                                     <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                                     <field name="currency_id" invisible="1"/>
