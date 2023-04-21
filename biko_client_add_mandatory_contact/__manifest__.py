@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    "name": "BIKO: Добавляет контроль заполнения поля 'Контакт клиента'",
-    "version": "14.0.1.1.0",
+    "name": "BIKO: Добавляет контроль заполнения поля 'Контакт клиента', контроль дублей по ЕДРПОУ",
+    "version": "14.0.1.1.1",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
         "contacts",
+        "kw_account_partner_requisites",
     ],
     "data": [
         "views/res_partner_views.xml",

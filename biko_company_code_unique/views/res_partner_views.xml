@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    
+
     <record id="biko_kw_account_partner_requisites_view_res_partner_form_inherit" model="ir.ui.view">
         <field name="name">BIKO: adding EDRPOU mandatory</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="kw_account_partner_requisites_view.kw_account_partner_requisites_view_res_partner_form"/>
         <field name="arch" type="xml">
             <field name="enterprise_code" position="attributes">
-                <attribute name="attrs">{'required': [('company_type', '!=', 'person')]}</attribute>
+                <attribute name="attrs">{'required': [('is_company', '=', True), ('is_group', '=', False)]}</attribute>
             </field>
         </field>
     </record>
