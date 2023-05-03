@@ -6,14 +6,21 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
+            <field name="company_type" position="after">
+                <div>
+                    <label for="is_group"/>
+                    <field name="is_group" attrs="{'invisible': [('is_company', '=', False)]}"/>
+                </div>
+            </field>
+
             <div attrs="{'invisible': [('same_vat_partner_id', '=', False)]}" position="after">
-                <div class="alert alert-danger" role="alert" attrs="{'invisible': [('biko_contact_person_id', '!=', False)]}">
+                <div class="alert alert-danger" role="alert" attrs="{'invisible': ['|', ('biko_contact_person_id', '!=', False), ('is_group','=', True)]}">
                     Field <b>Contact person</b> is not filled
                 </div>
             </div>
 
             <page name="contact_addresses" position="after">
-                <page name="biko_client_contacts" string="Client contacts">
+                <page name="biko_client_contacts" string="Client contacts" attrs="{'invisible': [('is_group', '=', True)]}">
                     <group name="biko_clc_container_row_2" modifiers="{}">
                         <group name="biko_clc_lef" string="Contacts">
                             <field name="biko_contact_person_id" domain="[('parent_id', '=',id)]"/>
@@ -33,4 +40,16 @@
             </page>
         </field>
     </record>
+
+    <record id="biko_kw_account_partner_requisites_view_res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">BIKO: adding EDRPOU mandatory</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="kw_account_partner_requisites_view.kw_account_partner_requisites_view_res_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="enterprise_code" position="attributes">
+                <attribute name="attrs">{'required': [('is_company', '=', True), ('is_group', '=', False)]}</attribute>
+            </field>
+        </field>
+    </record>
+
 </odoo>
