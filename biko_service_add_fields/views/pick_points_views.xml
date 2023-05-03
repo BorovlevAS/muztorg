@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <record id="action_biko_pickup_point_tree" model="ir.actions.act_window">
+        <field name="name">Pickup/Out Points</field>
+        <field name="res_model">biko.pickup.point</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="action_biko_maintenance_point_tree" model="ir.actions.act_window">
+        <field name="name">Maintenance Points</field>
+        <field name="res_model">biko.maintenance.points</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <record id="biko_pickup_points_tree" model="ir.ui.view">
+        <field name="name">biko.pickup.point.tree</field>
+        <field name="model">biko.pickup.point</field>
+        <field name="arch" type="xml">
+            <tree string="Pickup points" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="biko_maintenance_points_tree" model="ir.ui.view">
+        <field name="name">biko.maintenance.points.tree</field>
+        <field name="model">biko.maintenance.points</field>
+        <field name="arch" type="xml">
+            <tree string="Maintenance point" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="biko_pickup_point_menu"
+              name="Pickup/Out Points"
+              parent="crm.crm_menu_config"
+              sequence="50"
+              action="action_biko_pickup_point_tree"/>
+
+    <menuitem id="biko_maintenance_point_menu"
+              name="Maintenance Points"
+              parent="crm.crm_menu_config"
+              sequence="50"
+              action="action_biko_maintenance_point_tree"/>
+
+</odoo>

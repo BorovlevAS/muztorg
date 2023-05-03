@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Pickup points -->
+    <record id="category_biko_pickup_point" model="ir.module.category">
+        <field name="name">'Pickup/Out points' catalog</field>
+        <field name="sequence">30</field>
+        <field name="parent_id" ref="biko_base_module.category_biko_addon_roles"/>
+    </record>
+
+    <record id="biko_group_pickup_point_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="biko_service_add_fields.category_biko_pickup_point"/>
+    </record>
+    
+    <record id="biko_group_pickup_point_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('biko_group_pickup_point_user'))]"/>
+        <field name="category_id" ref="biko_service_add_fields.category_biko_pickup_point"/>
+    </record>
+
+    <!-- Pickup maintenance -->
+    <record id="category_biko_maintenance_point" model="ir.module.category">
+        <field name="name">'Maintenance points' catalog</field>
+        <field name="sequence">30</field>
+        <field name="parent_id" ref="biko_base_module.category_biko_addon_roles"/>
+    </record>
+
+    <record id="biko_group_maintenance_point_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="biko_service_add_fields.category_biko_maintenance_point"/>
+    </record>
+    
+    <record id="biko_group_maintenance_point_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        <field name="implied_ids" eval="[(4, ref('biko_group_maintenance_point_user'))]"/>
+        <field name="category_id" ref="biko_service_add_fields.category_biko_maintenance_point"/>
+    </record>
+
+</odoo>

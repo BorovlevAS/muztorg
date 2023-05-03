@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="biko_crm_lead_view_form_m_bc_4_inherit" model="ir.ui.view">
+        <field name="name">BIKO: Muztorg Service Fields</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="biko_service_fields" string="Service Info">
+                    <group>
+                        <field name="product_name"/>
+                        <field name="product_serial"/>
+                        <field name="garanty_type"/>
+                        <field name="complexity"/>
+                        <field name="malfunction"/>
+                        <field name="pick_up_point"/>
+                        <field name="pick_out_point"/>
+                        <field name="maintenance_point"/>
+                        <field name="TTN"/>
+                        <field name="np_info"/>
+                        <field name="dealer_info"/>
+                        <field name="comment"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

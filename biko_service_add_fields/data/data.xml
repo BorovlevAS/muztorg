@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo noupdate="1">
+    <record id="biko_picking_wh" model="biko.pickup.point">
+        <field name="name">Warehouse</field>
+    </record>
+    <record id="biko_picking_mt" model="biko.pickup.point">
+        <field name="name">Muztorg</field>
+    </record>
+    <record id="biko_picking_np" model="biko.pickup.point">
+        <field name="name">Nova Poshta</field>
+    </record>
+</odoo>
