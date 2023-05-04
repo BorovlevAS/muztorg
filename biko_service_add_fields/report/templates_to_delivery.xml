@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="biko_akt_to_service_template">
+    <template id="biko_akt_to_delivery_template">
         <t t-call="web.basic_layout">
             <div class="page">
                 <style>
@@ -29,8 +29,7 @@
                     <tr>                        
                         <td width="100%" align="center">
                             <b>
-                                <h4 class="title">Акт прийняття-передачі на</h4>
-                                <h4 class="title">сервісне обслуговування № 
+                                <h4 class="title">Акт видачі товару № 
                                     <span t-field="doc.code" /> від 
                                     <span t-field="doc.create_date" t-options="{'format': 'dd MMMM YYYY'}" /> року
                                 </h4>
@@ -51,15 +50,14 @@
                             </t>
                             <br />
                             <t t-if="doc.company_id">
-                                <span style="white-space:nowrap;">Клиент:
+                                <span style="white-space:nowrap;"><b>Клиент:</b>
                                     <span t-field="doc.contact_name" />
                                 </span>
                             </t>
                             <br />
                             <t t-if="doc.company_id">
-                                <span style="white-space:nowrap;">Тел.:
+                                <span style="white-space:nowrap;"><b>Тел.:</b>
                                     <span t-field="doc.mobile" />
-                                    <!-- <span t-field="doc.phone" /> -->
                                 </span>
                             </t>
                             <br />
@@ -142,11 +140,11 @@
                 <table width="100%" cellpadding="0" cellspacing="0" class="report_content">
                     <tr>
                         <td width="100%" align="left" valign="top">
-                    Прийняв (працівник сервісного відділу) _________________________________
+                    Видав (працівник сервісного відділу) _________________________________
                     
                             <br />
                             <br />
-                    Передав (працівник транспортного відділу)______________________________
+                    Отримав (клієнт)______________________________
                             <br />
                             <br />
 
@@ -167,8 +165,7 @@
                     <tr>
                         <td width="100%" align="center">
                             <b>
-                                <p style="white-space:nowrap;">Квитанція про передачу товару на сервіс</p>
-                                <span style="white-space:nowrap;">через транспортний відділ № 
+                                <span style="white-space:nowrap;">Квитанція видачу товару № 
                                     <span t-field="doc.code" />
                                 </span>
                                 <span t-field="doc.create_date" t-options="{'format': 'dd MMMM YYYY'}" />
@@ -215,8 +212,8 @@
                                 <b>Ремонтний майданчик:</b>
                                 <span t-field="doc.maintenance_point" />
                             </p>
-                            <p>Прийняв (працівник сервісного відділу) _________________________________</p>
-                            <p>Передав (працівник транспортного відділу)______________________________</p>
+                            <p>Видав (працівник сервісного відділу) _________________________________</p>
+                            <p>Отримав (клієнт)______________________________</p>
                         </td>
                     </tr>
                 </table>
@@ -226,10 +223,10 @@
     </template>
 
 
-    <template id="biko_akt_to_service_container">
+    <template id="biko_akt_to_delivery_container">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="biko_service_add_fields.biko_akt_to_service_template" t-lang="uk_UA"/>
+                <t t-call="biko_service_add_fields.biko_akt_to_delivery_template" t-lang="uk_UA"/>
             </t>
         </t>
     </template>
