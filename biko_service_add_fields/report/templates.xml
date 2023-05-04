@@ -2,6 +2,7 @@
 <odoo>
     <template id="biko_akt_na_ekspertizu_template">
         <t t-call="web.basic_layout">
+        <t t-set="doc" t-value="doc.with_context({'lang':'uk_UA'})"/>
             <div class="page">
                 <style>
                         .pims_report_header{
