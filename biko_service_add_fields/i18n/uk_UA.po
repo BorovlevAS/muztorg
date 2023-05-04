@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-04 08:48+0000\n"
-"PO-Revision-Date: 2023-05-04 11:53+0300\n"
+"POT-Creation-Date: 2023-05-04 16:16+0000\n"
+"PO-Revision-Date: 2023-05-04 19:17+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.2.2\n"
+
+#. module: biko_service_add_fields
+#: model:ir.actions.report,print_report_name:biko_service_add_fields.biko_akt_na_ekspertizu_report
+msgid "'Akt - %s' % (object.code)"
+msgstr "'Акт приймання товарів - %s' % (object.code)"
 
 #. module: biko_service_add_fields
 #: model:ir.module.category,name:biko_service_add_fields.category_biko_maintenance_point
@@ -28,10 +33,74 @@ msgid "'Pickup/Out points' catalog"
 msgstr "Каталог \"Точки приймання-видачі\""
 
 #. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid ""
+"<b>Споживач зобов’язаний отримати відремонтований товар в термін до 5 "
+"робочих днів після завершення ремонту.</b> Подальше зберігання товару може "
+"проводитись виконавцем на платній основі."
+msgstr ""
+"<b>Споживач зобов’язаний отримати відремонтований товар в термін до 5 "
+"робочих днів після завершення ремонту.</b> Подальше зберігання товару може "
+"проводитись виконавцем на платній основі."
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid ""
+"<b>Термін виконання робіт по гарантійному ремонту складає 14 календарних "
+"днів.      </b> По узгодженню сторін, у випадку відсутності окремих "
+"запчастин, конструктивних елементів, термін виконання робіт по гарантійному "
+"ремонту може бути продовжено до їх отримання від виробника."
+msgstr ""
+"<b>Термін виконання робіт по гарантійному ремонту складає 14 календарних "
+"днів.      </b> По узгодженню сторін, у випадку відсутності окремих "
+"запчастин, конструктивних елементів, термін виконання робіт по гарантійному "
+"ремонту може бути продовжено до їх отримання від виробника."
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid ""
+"<b>У випадку негарантійного ремонту діагностика обладнання виконується на "
+"платній основі. Вартість діагностики залежить від виду інструменту і буде "
+"повідомлена додатково (не більше, ніж 650 грн., залежно від складності "
+"виконання діагностики). За умови, якщо ремонт пристрою виконується "
+"сервісним цетром компанії АТ-МТ Трейд, його діагностика безкоштовна.</b>"
+msgstr ""
+"<b>У випадку негарантійного ремонту діагностика обладнання виконується на "
+"платній основі. Вартість діагностики залежить від виду інструменту і буде "
+"повідомлена додатково (не більше, ніж 650 грн., залежно від складності "
+"виконання діагностики). За умови, якщо ремонт пристрою виконується "
+"сервісним цетром компанії АТ-МТ Трейд, його діагностика безкоштовна.</b>"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid ""
+"<br/>\n"
+"                                від"
+msgstr ""
+"<br/>\n"
+"                                від"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid ""
+"<br/>\n"
+"                Підпис співробітника:_______________\n"
+"                            <br/>"
+msgstr ""
+"<br/>\n"
+"                Підпис співробітника:_______________\n"
+"                            <br/>"
+
+#. module: biko_service_add_fields
 #: model:res.groups,name:biko_service_add_fields.biko_group_maintenance_point_admin
 #: model:res.groups,name:biko_service_add_fields.biko_group_pickup_point_admin
 msgid "Administrator"
 msgstr "Адміністратор"
+
+#. module: biko_service_add_fields
+#: model:ir.actions.report,name:biko_service_add_fields.biko_akt_na_ekspertizu_report
+msgid "Akt priema tovarov na ekspertizu CL"
+msgstr "Акт приймання товарів на експертизу"
 
 #. module: biko_service_add_fields
 #: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__complexity
@@ -208,3 +277,69 @@ msgstr "Користувач"
 #: model:biko.pickup.point,name:biko_service_add_fields.biko_picking_wh
 msgid "Warehouse"
 msgstr "Склад"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "e-mаil: <ins>servicegroup@attrade.kiev.ua</ins>"
+msgstr "e-mаil: <ins>servicegroup@attrade.kiev.ua</ins>"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Акт прийняття товара на експертизу №"
+msgstr "Акт прийняття товара на експертизу №"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Вид ремонту"
+msgstr "Вид ремонту"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Клиент:"
+msgstr "Клиент:"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Комплектність (комплектуючі, що були здані разом з пристроєм)"
+msgstr "Комплектність (комплектуючі, що були здані разом з пристроєм)"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Найменування"
+msgstr "Найменування"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Несправність (суть проблеми, якомога детальніше)"
+msgstr "Несправність (суть проблеми, якомога детальніше)"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Прийняв(ла):"
+msgstr "Прийняв(ла):"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Серійний номер"
+msgstr "Серійний номер"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Тел.:"
+msgstr "Тел.:"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid "Телефон: (044)-229-94-94, +38(067)-441-62-40"
+msgstr "Телефон: (044)-229-94-94, +38(067)-441-62-40"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_akt_na_ekspertizu_template
+msgid ""
+"року\n"
+"                                <br/>\n"
+"                                <br/>"
+msgstr ""
+"року\n"
+"                                <br/>\n"
+"                                <br/>"
