@@ -1,0 +1,210 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* biko_service_add_fields
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-04 08:48+0000\n"
+"PO-Revision-Date: 2023-05-04 11:53+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.2.2\n"
+
+#. module: biko_service_add_fields
+#: model:ir.module.category,name:biko_service_add_fields.category_biko_maintenance_point
+msgid "'Maintenance points' catalog"
+msgstr "Каталог \"Ремонтні майданчики\""
+
+#. module: biko_service_add_fields
+#: model:ir.module.category,name:biko_service_add_fields.category_biko_pickup_point
+msgid "'Pickup/Out points' catalog"
+msgstr "Каталог \"Точки приймання-видачі\""
+
+#. module: biko_service_add_fields
+#: model:res.groups,name:biko_service_add_fields.biko_group_maintenance_point_admin
+#: model:res.groups,name:biko_service_add_fields.biko_group_pickup_point_admin
+msgid "Administrator"
+msgstr "Адміністратор"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__complexity
+msgid "Coplexity"
+msgstr "Комплектність"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_maintenance_points__create_uid
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_pickup_point__create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_maintenance_points__create_date
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_pickup_point__create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_maintenance_points__display_name
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_pickup_point__display_name
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__garanty_type
+msgid "Garanty Type"
+msgstr "Гарантійність"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields.selection,name:biko_service_add_fields.selection__crm_lead__garanty_type__guarantee
+msgid "Guarantee"
+msgstr "Гарантія"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_maintenance_points__id
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_pickup_point__id
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__id
+msgid "ID"
+msgstr "ID"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_maintenance_points____last_update
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_pickup_point____last_update
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead____last_update
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_maintenance_points__write_uid
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_pickup_point__write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_maintenance_points__write_date
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_pickup_point__write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: biko_service_add_fields
+#: model:ir.model,name:biko_service_add_fields.model_crm_lead
+msgid "Lead/Opportunity"
+msgstr "Лід/Нагода"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__maintenance_point
+msgid "Maintenance Point"
+msgstr "Ремонтний майданчик"
+
+#. module: biko_service_add_fields
+#: model:ir.actions.act_window,name:biko_service_add_fields.action_biko_maintenance_point_tree
+#: model:ir.model,name:biko_service_add_fields.model_biko_maintenance_points
+#: model:ir.ui.menu,name:biko_service_add_fields.biko_maintenance_point_menu
+msgid "Maintenance Points"
+msgstr "Ремонтні майданчики"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_maintenance_points_tree
+msgid "Maintenance point"
+msgstr "Ремонтний майданчик"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__malfunction
+msgid "Malfunction"
+msgstr "Несправність"
+
+#. module: biko_service_add_fields
+#: model:biko.pickup.point,name:biko_service_add_fields.biko_picking_mt
+msgid "Muztorg"
+msgstr "Музторг"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__np_info
+msgid "NP Info"
+msgstr "Дані для відправки товара НП"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_maintenance_points__name
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_biko_pickup_point__name
+msgid "Name"
+msgstr "Name"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields.selection,name:biko_service_add_fields.selection__crm_lead__garanty_type__non_guarantee
+msgid "Non guarantee"
+msgstr "Без гарантії"
+
+#. module: biko_service_add_fields
+#: model:biko.pickup.point,name:biko_service_add_fields.biko_picking_np
+msgid "Nova Poshta"
+msgstr "Нова Пошта"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__dealer_info_date
+msgid "Order Date"
+msgstr "Дата накладної (для дилерів)"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__dealer_info_order
+msgid "Order Number"
+msgstr "Номер накладної (для дилерів)"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__pick_out_point
+msgid "Pickout Point"
+msgstr "Пункт видачі"
+
+#. module: biko_service_add_fields
+#: model:ir.model,name:biko_service_add_fields.model_biko_pickup_point
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__pick_up_point
+msgid "Pickup Point"
+msgstr "Пункт отримання"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_pickup_points_tree
+msgid "Pickup points"
+msgstr "Пункти видачі"
+
+#. module: biko_service_add_fields
+#: model:ir.actions.act_window,name:biko_service_add_fields.action_biko_pickup_point_tree
+#: model:ir.ui.menu,name:biko_service_add_fields.biko_pickup_point_menu
+msgid "Pickup/Out Points"
+msgstr "Пункти видачі/отримання"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__product_name
+msgid "Product Name"
+msgstr "Назва товару"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__product_serial
+msgid "Product Serial"
+msgstr "Серійний номер"
+
+#. module: biko_service_add_fields
+#: model_terms:ir.ui.view,arch_db:biko_service_add_fields.biko_crm_lead_view_form_m_bc_4_inherit
+msgid "Service Info"
+msgstr "Інформація для відділу сервіса"
+
+#. module: biko_service_add_fields
+#: model:ir.model.fields,field_description:biko_service_add_fields.field_crm_lead__TTN
+msgid "TTN"
+msgstr "ТТН"
+
+#. module: biko_service_add_fields
+#: model:res.groups,name:biko_service_add_fields.biko_group_maintenance_point_user
+#: model:res.groups,name:biko_service_add_fields.biko_group_pickup_point_user
+msgid "User"
+msgstr "Користувач"
+
+#. module: biko_service_add_fields
+#: model:biko.pickup.point,name:biko_service_add_fields.biko_picking_wh
+msgid "Warehouse"
+msgstr "Склад"

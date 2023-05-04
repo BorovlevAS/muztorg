@@ -18,8 +18,8 @@
                         <field name="maintenance_point"/>
                         <field name="TTN"/>
                         <field name="np_info"/>
-                        <field name="dealer_info"/>
-                        <field name="comment"/>
+                        <field name="dealer_info_date"/>
+                        <field name="dealer_info_order"/>
                     </group>
                 </page>
             </notebook>
