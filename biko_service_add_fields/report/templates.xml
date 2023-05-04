@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="biko_akt_na_ekspertizu_template">
+        <t t-call="web.basic_layout">
+        <t t-set="doc" t-value="doc.with_context({'lang':'uk_UA'})"/>
+            <div class="page">
+                <style>
+                        .pims_report_header{
+                            font-size: 16px;
+                            font-family" 'Cambria';
+                        }
+                        .pims_report_content{
+                            font-size: 14px;
+                            font-family" 'Calibri';
+                        }
+                        .pims_report_line{
+                            font-size: 14px;
+                            style="border: 1px solid black;
+                            font-family" 'Calibri';
+                            padding:10px;
+                        }
+                        .pims_report_content2{
+                            font-size: 13px;
+                            font-family" 'Calibri';
+                            text-indent: 40px;
+                        }
+                </style>
+                <table width="100%" cellpadding="0" cellspacing="0" class="pims_report_header">
+
+                    <tr>
+                        <br />
+                        <br />
+                        <td width="100%" align="center">
+                            <b>
+                                <span style="white-space:nowrap;">Акт прийняття товара на експертизу № 
+                                    <span t-field="doc.code" />
+                                </span>
+                                <br />
+                                від 
+                                <span t-field="doc.create_date" t-options="{'format': 'dd MMMM YYYY'}" />                
+                                року
+                                <br />
+                                <br />
+                            </b>
+                        </td>
+                    </tr>
+                </table>
+
+                <table width="100%" cellpadding="0" cellspacing="0" class="pims_report_content">
+                    <tr>
+                        <td width="100%" align="left" valign="top" style="padding-right: 15px;">
+                            <br />
+                            <t t-if="doc.company_id">
+                                <span style="white-space:nowrap;">Телефон: (044)-229-94-94, +38(067)-441-62-40	
+                                                                                                                                                                                                                                                        <!-- <span t-field="doc.phone" /> -->
+                                </span>
+                            </t>
+                            <br />
+                            <t t-if="doc.company_id">
+                                <span style="white-space:nowrap;">e-mаil: <ins>servicegroup@attrade.kiev.ua</ins> 
+                                                                                                                                                                                                                                                        <!-- <span t-field="doc.emаil_from" /> -->
+                                </span>
+                            </t>
+                            <br />
+                            <t t-if="doc.company_id">
+                                <span style="white-space:nowrap;">Клиент:
+                                    <span t-field="doc.contact_name" />
+                                </span>
+                            </t>
+                            <br />
+                            <t t-if="doc.company_id">
+                                <span style="white-space:nowrap;">Тел.:
+                                    <span t-field="doc.mobile" />                                                                                                                                                                                                                    <!-- <span t-field="doc.phone" /> -->
+                                </span>
+                            </t>
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                </table>
+
+
+                <table width="100%" rules="all" cellspacing="0" cellpadding="2"  class="pims_report_line">
+                    <!--style="border: 1px solid black; font-size: 14px; padding:10px;" -->
+
+                    <colgroup valign="top">
+                        <col width="30%" />
+                    </colgroup>
+                    <tr>
+                        <td 
+                            name="th_description" 
+                            class="text-center" 
+                            style="border: 1px solid black; padding: 5px;">
+                            Найменування
+                        </td>
+                        <td name="th_value" class="text-left" style="border: 1px solid black; padding: 5px;">                                                
+                            <span t-field="doc.product_name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td name="th_description" class="text-center" style="border: 1px solid black; padding: 5px;">                                                
+                                                                                Серійний номер                                                
+                        </td>
+                        <td name="th_value" class="text-left" style="border: 1px solid black; padding: 5px;">                                                
+                            <span t-field="doc.product_serial" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td name="th_description" class="text-center" style="border: 1px solid black; padding: 5px;">                                                
+                                                        Вид ремонту                                                
+                        </td>
+                        <td name="th_value" class="text-left" style="border: 1px solid black; padding: 5px;">                                                
+                            <span t-field="doc.garanty_type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td name="th_description" class="text-center" style="border: 1px solid black; padding: 5px;">                                                    
+                                    Комплектність (комплектуючі, що були здані разом з пристроєм)                                                    
+                        </td>
+                        <td name="th_value" class="text-left" style="border: 1px solid black; padding: 5px;">                                                    
+                            <span t-field="doc.complexity" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td name="th_description" class="text-center" style="border: 1px solid black; padding: 5px;">                                                    
+                                                        Несправність (суть проблеми, якомога детальніше)                                                    
+                        </td>
+                        <td name="th_value" class="text-left" style="border: 1px solid black; padding: 5px;">                                                    
+                            <span t-field="doc.malfunction" />
+                        </td>
+                    </tr>
+
+
+                </table>
+
+                <br />
+
+                <div class="pims_report_content2" >
+                    <!-- style="font-size: 13px;text-indent: 40px" -->
+                    <b>У випадку негарантійного ремонту діагностика обладнання виконується на платній основі. Вартість діагностики залежить від виду інструменту і буде повідомлена додатково (не більше, ніж 650 грн., залежно від складності виконання діагностики). За умови, якщо ремонт пристрою виконується сервісним цетром компанії АТ-МТ Трейд, його діагностика безкоштовна.</b>
+                </div>
+                <br />
+                <div class="pims_report_content2">
+                    <b>Термін виконання робіт по гарантійному ремонту складає 14 календарних днів.      </b> По узгодженню сторін, у випадку відсутності окремих запчастин, конструктивних елементів, термін виконання робіт по гарантійному ремонту може бути продовжено до їх отримання від виробника.
+                </div>
+                <br />
+                <div class="pims_report_content2">
+                    <b>Споживач зобов’язаний отримати відремонтований товар в термін до 5 робочих днів після завершення ремонту.</b> Подальше зберігання товару може проводитись виконавцем на платній основі.
+                </div>
+                <br />
+                <br />
+                <table width="100%" cellpadding="0" cellspacing="0" class="pims_report_content">
+                    <tr>
+                        <td width="100%" align="left" valign="top">
+                Прийняв(ла):
+                            <span t-field="doc.company_id.partner_id.chief.function" />
+                            <br />
+                            <span t-esc="doc.company_id.partner_id.legal_short_name or doc.company_id.partner_id.legal_name" />
+                            <br />
+                Підпис співробітника:_______________
+                            <br />
+                            <t t-if="doc.user_id">
+                                <span t-field="doc.company_id.partner_id.chief.name" />
+                            </t>
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </t>
+    </template>
+
+
+    <template id="biko_akt_na_ekspertizu_container">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="biko_service_add_fields.biko_akt_na_ekspertizu_template" t-lang="doc.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
