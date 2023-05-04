@@ -18,5 +18,5 @@ class Lead(models.Model):
     )
     TTN = fields.Char(string="TTN")
     np_info = fields.Char(string="NP Info")
-    comment = fields.Text(string="Comment")
-    dealer_info = fields.Text(string="Date an Order Info")
+    dealer_info_date = fields.Date(string="Order Date")
+    dealer_info_order = fields.Char(string="Order Number")
