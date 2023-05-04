@@ -175,7 +175,7 @@
     <template id="biko_akt_na_ekspertizu_container">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="biko_service_add_fields.biko_akt_na_ekspertizu_template" t-lang="doc.partner_id.lang"/>
+                <t t-call="biko_service_add_fields.biko_akt_na_ekspertizu_template" t-lang="uk_UA"/>
             </t>
         </t>
     </template>
