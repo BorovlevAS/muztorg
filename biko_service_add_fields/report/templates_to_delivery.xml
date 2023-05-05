@@ -45,7 +45,7 @@
                             <t t-if="doc.company_id">
                                 <span style="white-space:nowrap;">
                                     <b>Виконавець:</b>
-                                    <span t-field="doc.contact_name" />
+                                    <span t-field="doc.user_id" />
                                 </span>
                             </t>
                             <br />
