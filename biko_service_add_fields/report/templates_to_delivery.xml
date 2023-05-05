@@ -95,10 +95,10 @@
                     </tr>
                     <tr>
                         <td name="th_value" class="tab_report_line">
-                            <span t-field="doc.garanty_type" />
+                            <span t-field="doc.complexity" />
                         </td>
                         <td name="th_value" class="tab_report_line">
-                            <span t-field="doc.complexity" />
+                            <span t-field="doc.garanty_type" />
                         </td>
                     </tr>
                     <tr>

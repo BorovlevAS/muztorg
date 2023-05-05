@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="biko_akt_to_service_template">
+    <template id="biko_moving_after_the_service_template">
         <t t-call="web.basic_layout">
+        
             <div class="page">
                 <style>
                 .report_content{
@@ -11,7 +12,8 @@
                 .tab_report_header{
                     text-align: center !important;
                     font-size: 14px;
-                    font-weight:bold;                                        
+                    font-weight:bold;
+                    height:20px;                    
                     border: 1px solid black;
                     font-family: 'Calibri';
                     padding:10px;
@@ -19,21 +21,30 @@
                 .tab_report_line{
                     text-align: center !important;
                     font-size: 14px;            
-                    height:15px;                    
+                    height:30px;                    
                     border: 1px solid black;
                     font-family: 'Calibri';
                     padding:10px;
                 }
                 </style>
+
+                <!-- 
+                <div align="left">
+                    <img class="oe_screenshot" title="Example" src="Moving.png" height = "100" width = "200"/>
+                </div>
+                -->
+
                 <table width="100%" cellpadding="0" cellspacing="0">
-                    <tr>                        
+                    
+                    <tr>
                         <td width="100%" align="center">
                             <b>
-                                <h4 class="title">Акт прийняття-передачі на</h4>
-                                <h4 class="title">сервісне обслуговування № 
+                                <h4 class="title">Переміщення товару на видачу після сервісу</h4>
+                                <h4 class="title">№ 
                                     <span t-field="doc.code" /> від 
                                     <span t-field="doc.create_date" t-options="{'format': 'dd MMMM YYYY'}" /> року
                                 </h4>
+                                <br />
                             </b>
                         </td>
                     </tr>
@@ -51,13 +62,13 @@
                             </t>
                             <br />
                             <t t-if="doc.company_id">
-                                <span style="white-space:nowrap;">Клиент:
+                                <span style="white-space:nowrap;"><b>Клієнт:</b>
                                     <span t-field="doc.contact_name" />
                                 </span>
                             </t>
                             <br />
                             <t t-if="doc.company_id">
-                                <span style="white-space:nowrap;">Тел.:
+                                <span style="white-space:nowrap;"><b>Тел.:</b>
                                     <span t-field="doc.mobile" />
                                     <!-- <span t-field="doc.phone" /> -->
                                 </span>
@@ -68,85 +79,60 @@
                     </tr>
                 </table>
 
-
-                <table width="100%" rules="all" cellspacing="0" cellpadding="2" class="tab_report_line">
-                    
-                    <tr>
-                        <td name="th_description" class="tab_report_header">
-                    Назва пристрою
-                        </td>
-                        <td name="th_description" class="tab_report_header">
-                    Серійний номер
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_value" class="tab_report_line">
-                            <span t-field="doc.product_name" /> 
-                        </td>
-                        <td name="th_value" class="tab_report_line">
-                            <span t-field="doc.product_serial" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_description" class="tab_report_header">
-                    Комплектність
-                        </td>
-                        <td name="th_description" class="tab_report_header">
-                    Вид ремонту
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_value" class="tab_report_line">
-                            <span t-field="doc.complexity" />
-                        </td>
-                        <td name="th_value" class="tab_report_line">
-                            <span t-field="doc.garanty_type" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_description" colspan="2" class="tab_report_header">
-                    Несправність
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_description" colspan="2" class="tab_report_line">
-                            <span t-field="doc.malfunction" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_description" colspan="2" class="tab_report_header">
-                    Пункт отримання товару на обслуговування
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_description" colspan="2" class="tab_report_line">
-                            <span t-field="doc.pick_up_point" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_description" colspan="2" class="tab_report_header">
-                    Ремонтний майданчик
-                        </td>
-                    </tr>
-                    <tr>
-                        <td name="th_description" colspan="2" class="tab_report_line">
-                            <span t-field="doc.maintenance_point" />
-                        </td>
-                    </tr>
-                </table>
-
+                <div class="report_content">
+                    <span style="white-space:nowrap;">
+                        <b>Найменування товару - </b>
+                        <span t-field="doc.product_name" />
+                    </span>             
+                </div>
                 <br />
+                <div class="report_content">
+                    <span style="white-space:nowrap;">
+                        <b>Ремонтний майданчик - </b>
+                        <span t-field="doc.maintenance_point" />
+                    </span>             
+                </div>
+                <br />
+                <div>
+                    <span style="white-space:nowrap;">
+                        <b>Комплектність  - </b>
+                        <span t-field="doc.complexity" />
+                    </span>             
+                </div>
+                <br />
+                <div>
+                    <span style="white-space:nowrap;">
+                        <b>Серійний номер - </b>
+                        <span t-field="doc.product_serial" />
+                    </span>             
+                </div>
+                <br />
+                <div>
+                    <span style="white-space:nowrap;">
+                        <b>Пункт видачі - </b>
+                        <span t-field="doc.pick_out_point" />
+                    </span>             
+                </div>  
+                <br />
+                <div>
+                    <span style="white-space:nowrap;">
+                        <b>Інформація про отримувача - </b>
+                        <!-- не знаю, что за поле
+                            <span t-field="doc.maintenance_point" /> -->
+                    </span>             
+                </div>   
+                <br />     
                 <br />
                 <br />
 
                 <table width="100%" cellpadding="0" cellspacing="0" class="report_content">
                     <tr>
                         <td width="100%" align="left" valign="top">
-                    Прийняв (працівник сервісного відділу) _________________________________
+                    Прийняв (працівник транспортного  відділу) _________________________________
                     
                             <br />
                             <br />
-                    Передав (працівник транспортного відділу)______________________________
+                    Передав (працівник сервісного  відділу)______________________________
                             <br />
                             <br />
 
@@ -167,14 +153,35 @@
                     <tr>
                         <td width="100%" align="center">
                             <b>
-                                <p style="white-space:nowrap;">Квитанція про передачу товару на сервіс</p>
-                                <span style="white-space:nowrap;">через транспортний відділ № 
+                                <span style="white-space:nowrap;">Квитанція переміщення товару на видачу після сервісу № 
                                     <span t-field="doc.code" />
                                 </span>
                                 <span t-field="doc.create_date" t-options="{'format': 'dd MMMM YYYY'}" />
                                 <br />
                                 <br />
                             </b>
+                        </td>
+                    </tr>
+                </table>
+
+                <table width="100%" cellpadding="0" cellspacing="0" class="report_content">
+                    <tr>
+                        <td width="100%" align="left" valign="top" style="padding-right: 15px;">
+                            <br />
+                            <t t-if="doc.company_id">
+                                <span style="white-space:nowrap;"><b>Клієнт:</b>
+                                    <span t-field="doc.contact_name" />
+                                </span>
+                            </t>
+                            <br />
+                            <t t-if="doc.company_id">
+                                <span style="white-space:nowrap;"><b>Тел.:</b>
+                                    <span t-field="doc.mobile" />
+                                    <!-- <span t-field="doc.phone" /> -->
+                                </span>
+                            </t>
+                            <br />
+                            <br />
                         </td>
                     </tr>
                 </table>
@@ -188,7 +195,7 @@
                     №
                         </td>
                         <td name="th_description" class="tab_report_header">
-                    Назва пристрою
+                    Найменування товару
                         </td>
                         <td name="th_description" class="tab_report_header">
                     Серійний номер
@@ -200,7 +207,9 @@
                         </td>
                         <td name="th_value" class="tab_report_line">
                             <span t-field="doc.product_name" />
+
                         </td>
+
                         <td name="th_value" class="tab_report_line">
                             <span t-field="doc.product_serial" />
                         </td>
@@ -213,23 +222,22 @@
                         <td width="100%" align="left" valign="top">
                             <p>
                                 <b>Ремонтний майданчик:</b>
-                                <span t-field="doc.maintenance_point" />
+                                <span t-field="doc.pick_up_point" />
                             </p>
-                            <p>Прийняв (працівник сервісного відділу) _________________________________</p>
-                            <p>Передав (працівник транспортного відділу)______________________________</p>
+                            <p>Передав (працівник транспортного відділу) _________________________________</p>
+                            <p>Прийняв (працівник сервісного відділу)______________________________</p>
                         </td>
                     </tr>
                 </table>
             </div>
-
         </t>
     </template>
 
 
-    <template id="biko_akt_to_service_container">
+    <template id="biko_moving_after_the_service_container">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="doc">
-                <t t-call="biko_service_add_fields.biko_akt_to_service_template" t-lang="uk_UA"/>
+                <t t-call="biko_service_add_fields.biko_moving_after_the_service_template" t-lang="uk_UA"/>
             </t>
         </t>
     </template>
