@@ -93,21 +93,21 @@
                     </span>             
                 </div>
                 <br />
-                <div>
+                <div class="report_content">
                     <span style="white-space:nowrap;">
                         <b>Комплектність  - </b>
                         <span t-field="doc.complexity" />
                     </span>             
                 </div>
                 <br />
-                <div>
+                <div class="report_content">
                     <span style="white-space:nowrap;">
                         <b>Серійний номер - </b>
                         <span t-field="doc.product_serial" />
                     </span>             
                 </div>
                 <br />
-                <div>
+                <div class="report_content">
                     <span style="white-space:nowrap;">
                         <b>Пункт видачі - </b>
                         <span t-field="doc.pick_out_point" />
