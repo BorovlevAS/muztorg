@@ -6,19 +6,13 @@ from odoo import _
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    biko_product_class = fields.Many2one(
-        string="Product class", comodel_name="biko.product.class"
-    )
+    biko_product_class = fields.Many2one(string="Product class", comodel_name="biko.product.class")
 
-    biko_product_model = fields.Char(
-        string="Product model", comodel_name="biko.product.model"
-    )
+    biko_product_model = fields.Char(string="Product model", comodel_name="biko.product.model")
 
     biko_country = fields.Many2one(string="Country", comodel_name="res.country")
 
-    biko_country_customs = fields.Many2one(
-        string="Country for custom", comodel_name="res.country"
-    )
+    biko_country_customs = fields.Many2one(string="Country for custom", comodel_name="res.country")
 
     biko_character_ukr = fields.Text(
         string="Characteristics (ukr)",
@@ -40,29 +34,41 @@ class ProductTemplate(models.Model):
 
     biko_control_code = fields.Char(string="Control code")
 
+    biko_length = fields.Integer(
+        string="Length (cm)",
+        help="The cargo length (cm)",
+    )
+    biko_width = fields.Integer(
+        string="Width (cm)",
+        help="The cargo width (cm)",
+    )
+    biko_height = fields.Integer(
+        string="Height (cm)",
+        help="The cargo height (cm)",
+    )
+
+    @api.depends("biko_length", "biko_width", "biko_height")
+    def _compute_volume(self):
+        for rec in self:
+            rec.volume = rec.biko_length * rec.biko_width * rec.biko_height
+
     @api.model
     def create(self, vals):
 
         if not vals.get("biko_control_code", False):
-            vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
-                "biko.product.control.code"
-            )
+            vals["biko_control_code"] = self.env["ir.sequence"].next_by_code("biko.product.control.code")
 
         return super().create(vals)
 
     def write(self, vals):
         for rec in self:
             if (not "biko_control_code" in vals) and (not rec.biko_control_code):
-                vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
-                    "biko.product.control.code"
-                )
+                vals["biko_control_code"] = self.env["ir.sequence"].next_by_code("biko.product.control.code")
 
         return super().write(vals)
 
     @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
+    def _name_search(self, name, args=None, operator="ilike", limit=100, name_get_uid=None):
         if not args:
             args = []
         if name:
