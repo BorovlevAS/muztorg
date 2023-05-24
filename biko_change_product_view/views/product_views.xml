@@ -263,6 +263,20 @@
                                                         name="weight_uom_name" />
                                                 </span>
                                             </div>
+                                            <!-- <label for="biko_length"
+                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}" /> -->
+                                            <label for="biko_length"
+                                                string="Dimensions" />
+                                            <div class="o_row"
+                                                name="biko_dimensions"
+                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+                                                <field name="biko_length" />
+                                                <span class="text-muted"> x </span>
+                                                <field name="biko_width" />
+                                                <span class="text-muted"> x </span>
+                                                <field name="biko_height" />
+                                                <span class="text-muted"> cm </span>
+                                            </div>
                                             <label for="volume"
                                                 attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}" />
                                             <div class="o_row" name="volume"
