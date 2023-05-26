@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-21 19:02+0000\n"
-"PO-Revision-Date: 2023-02-21 21:04+0200\n"
+"POT-Creation-Date: 2023-05-26 12:42+0000\n"
+"PO-Revision-Date: 2023-05-26 15:43+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. module: biko_add_product_prefix
 #: model:ir.module.category,name:biko_add_product_prefix.category_biko_product_prefix
@@ -30,7 +30,7 @@ msgstr "Адміністратор"
 #. module: biko_add_product_prefix
 #: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__color
 msgid "Color Index"
-msgstr "Color Index"
+msgstr "Колір"
 
 #. module: biko_add_product_prefix
 #: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__create_uid
@@ -77,6 +77,11 @@ msgstr "Last Updated on"
 #: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__name
 msgid "Name"
 msgstr "Назва"
+
+#. module: biko_add_product_prefix
+#: model:ir.model.fields,field_description:biko_add_product_prefix.field_biko_product_prefix__name_rus
+msgid "Name (RUS)"
+msgstr "Назва (рос.)"
 
 #. module: biko_add_product_prefix
 #: model:ir.model.fields,field_description:biko_add_product_prefix.field_product_category__biko_product_prefix_ids
