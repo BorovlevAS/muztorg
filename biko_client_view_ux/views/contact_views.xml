@@ -3,17 +3,18 @@
     <record id="biko_view_partner_form_" model="ir.ui.view">
         <field name="name">res.partner.form</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="sms.res_partner_view_form"/>
+        <field name="inherit_id" ref="sms.res_partner_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//label[@for='phone']" position="replace">
-                <label for="phone" string="Additional Phone" class="oe_inline"/>
+                <label for="phone" string="Additional Phone" class="oe_inline" />
             </xpath>
             <xpath expr="//field[@name='mobile']//.." position="after">
-                <xpath expr="//label[@for='phone']" position="move"/>
-                <xpath expr="//field[@name='phone']//.." position="move"/>
+                <xpath expr="//label[@for='phone']" position="move" />
+                <xpath expr="//field[@name='phone']//.." position="move" />
             </xpath>
             <xpath expr="//field[@name='mobile']" position="attributes">
-                <attribute name="attrs">{'required': [('company_type', '=', 'person')]}</attribute>
+                <attribute name="attrs">{'required': [('company_type', '=',
+                    'person')]}</attribute>
             </xpath>
         </field>
     </record>
@@ -21,11 +22,26 @@
     <record id="biko_view_partner_tree_MT_D02_11_inherited" model="ir.ui.view">
         <field name="name">BIKO: add mobile to the tree (MT-D02-11)</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="inherit_id" ref="base.view_partner_tree" />
         <field name="arch" type="xml">
             <field name="phone" position="before">
-                <field name="mobile" class="o_force_ltr" optional="show"/>
+                <field name="mobile" class="o_force_ltr" optional="show" />
             </field>
         </field>
     </record>
+
+    <record id="biko_view_res_partner_filter_tree_inherited" model="ir.ui.view">
+        <field name="name">BIKO: add pratner hierarchy</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <search>
+                <searchpanel>
+                    <field name="parent_id" icon="fa-filter" limit="0"
+                        enable_counters="1" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
 </odoo>
