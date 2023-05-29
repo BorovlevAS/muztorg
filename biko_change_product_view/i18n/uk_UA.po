@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-23 19:49+0000\n"
-"PO-Revision-Date: 2023-03-23 23:53+0200\n"
+"POT-Creation-Date: 2023-05-29 09:06+0000\n"
+"PO-Revision-Date: 2023-05-29 12:07+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -15,17 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid ""
 "<span attrs=\"{'invisible': [('pricelist_item_count', '=', 1)]}\">\n"
-"                                          Extra Prices\n"
+"                                                Extra Prices\n"
 "                                            </span>\n"
 "                                            <span attrs=\"{'invisible': "
 "[('pricelist_item_count', '!=', 1)]}\">\n"
-"                                          Extra Price\n"
+"                                                Extra Price\n"
 "                                            </span>"
 msgstr ""
 "<span attrs=\"{'invisible': [('pricelist_item_count', '=', 1)]}\">\n"
@@ -67,16 +67,25 @@ msgstr "<span class=\"o_stat_text\">Продано</span>"
 
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "<span class=\"text-muted\"> cm </span>"
+msgstr "<span class=\"text-muted\"> cm </span>"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid ""
-"<strong>Warning</strong>: adding or deleting attributes\n"
-"                        will delete and recreate existing variants and "
-"lead\n"
-"                        to the loss of their possible customizations."
+"<strong>Warning</strong>: adding or deleting\n"
+"                                attributes will delete and recreate "
+"existing\n"
+"                                variants and lead to the loss of their "
+"possible\n"
+"                                customizations."
 msgstr ""
-"<strong>Попередження</strong>: додавання або видалення атрибутів\n"
-"                        видалить і перестворить існуючі варіанти і "
-"призведе\n"
-"                        до втрати їхніх можливих налаштувань."
+"<strong>Warning</strong>: adding or deleting\n"
+"                                attributes will delete and recreate "
+"existing\n"
+"                                variants and lead to the loss of their "
+"possible\n"
+"                                customizations."
 
 #. module: biko_change_product_view
 #: model:ir.model.fields,help:biko_change_product_view.field_product_product__type
@@ -96,6 +105,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid "Accounting"
 msgstr "Бухоблік"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Amount in package"
+msgstr "Мастер-картон"
 
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
@@ -174,6 +188,11 @@ msgid "Dialog Content"
 msgstr "Вміст діалогу"
 
 #. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Dimensions"
+msgstr "Dimensions"
+
+#. module: biko_change_product_view
 #: model:ir.model.fields,field_description:biko_change_product_view.field_product_template__display_name
 msgid "Display Name"
 msgstr "Відображувана назва"
@@ -192,6 +211,16 @@ msgstr "FontAwesome"
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid "General Information"
 msgstr "Загальна інформація"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Generate Barcode (Using Barcode Rule)"
+msgstr "Generate Barcode (Using Barcode Rule)"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Generate Base (Using Sequence)"
+msgstr "Generate Base (Using Sequence)"
 
 #. module: biko_change_product_view
 #: model:ir.model.fields,field_description:biko_change_product_view.field_product_template__id
@@ -439,8 +468,12 @@ msgstr "Попередження при продажу цього продукт
 
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
-msgid "You can find icon at"
-msgstr "Ви можете знайти піктограму за адресою"
+msgid ""
+"You can\n"
+"                                    find icon at"
+msgstr ""
+"You can\n"
+"                                    find icon at"
 
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
