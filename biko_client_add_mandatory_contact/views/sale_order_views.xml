@@ -1,0 +1,16 @@
+<odoo>
+    <record id="biko_view_order_form_inheritde" model="ir.ui.view">
+        <field name="name">BIKO: add fields about client</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="biko_dealer_id" />
+            </field>
+            <field name="partner_id" position="after">
+                <field name="biko_contact_person_id" />
+                <field name="biko_recipient_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
