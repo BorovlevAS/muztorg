@@ -5,7 +5,13 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <field name="partner_id" position="before">
+                <field name="partner_id_domain" invisible="1" />
+                <field name="filter_biko_contact_person_ids" invisible="1"/>
+                <field name="filter_biko_recipient_ids" invisible="1" />
                 <field name="biko_dealer_id" />
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="domain">partner_id_domain</attribute>
             </field>
             <field name="partner_id" position="after">
                 <field name="biko_contact_person_id" />
