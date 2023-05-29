@@ -248,6 +248,8 @@
                                         <field name="uom_po_id"
                                             groups="uom.group_uom"
                                             options="{'no_create': True}" />
+                                        <field name="biko_master_karton"
+                                            string="Amount in package"/>
                                     </group>
                                     <group name="inventory">
                                         <group name="group_lots_and_weight"
