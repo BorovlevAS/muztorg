@@ -47,6 +47,8 @@ class ProductTemplate(models.Model):
         help="The cargo height (cm)",
     )
 
+    biko_master_karton = fields.Integer(string="Amount in package")
+
     @api.depends("biko_length", "biko_width", "biko_height")
     def _compute_volume(self):
         for rec in self:
