@@ -18,7 +18,12 @@
 
             <div attrs="{'invisible': [('same_vat_partner_id', '=', False)]}" position="after">
                 <div class="alert alert-danger" role="alert"
-                    attrs="{'invisible': ['|', ('is_filled_contact_person', '!=', False), ('is_group','=', True)]}">
+                    attrs="{'invisible': 
+                    ['|', '|', 
+                    ('is_filled_contact_person', '!=', False),
+                    ('is_group','=', True),
+                    ('type', '!=', 'contact')
+                    ]}">
                     Field <b>Contact person</b> is not filled
                 </div>
             </div>
@@ -33,8 +38,6 @@
                             <field name="biko_recipient_ids"
                                 domain="[('parent_id', '=',id), ('type', '=', 'contact')]"
                                 widget="many2many_tags" />
-                            <field name="biko_buyer_id"
-                                domain="[('parent_id', '=',id), ('type', '=', 'contact')]" />
                             <field name="biko_payer_id"
                                 domain="[('parent_id', '=',id), ('type', '=', 'contact')]" />
                         </group>
