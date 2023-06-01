@@ -26,11 +26,6 @@ class Partner(models.Model):
         string="Recipient person",
     )
 
-    biko_buyer_id = fields.Many2one(
-        comodel_name="res.partner",
-        string="Buyer person",
-    )
-
     biko_payer_id = fields.Many2one(
         comodel_name="res.partner",
         string="Payer person",
