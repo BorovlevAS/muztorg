@@ -14,7 +14,7 @@
             </xpath>
             <xpath expr="//field[@name='mobile']" position="attributes">
                 <attribute name="attrs">{'required': [('company_type', '=',
-                    'person')]}</attribute>
+                    'person'), ('type', '=', 'contact')]}</attribute>
             </xpath>
         </field>
     </record>
