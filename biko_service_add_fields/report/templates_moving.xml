@@ -117,8 +117,7 @@
                 <div>
                     <span style="white-space:nowrap;">
                         <b>Інформація про отримувача - </b>
-                        <!-- не знаю, что за поле
-                            <span t-field="doc.maintenance_point" /> -->
+                        <span t-field="doc.np_info" />
                     </span>             
                 </div>   
                 <br />     
