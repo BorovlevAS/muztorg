@@ -48,6 +48,8 @@ class Partner(models.Model):
 
     biko_carrier_id = fields.Many2one("delivery.carrier", string="Delivery carrier")
 
+    biko_mobile_compact = fields.Char(compute="_compute_biko_mobile_compact", store=True)
+
     def _compute_is_filled_contact_person(self):
         for rec in self:
             rec.is_filled_contact_person = bool(rec.biko_contact_person_ids)
@@ -108,3 +110,11 @@ class Partner(models.Model):
                 message += name + "\n"
 
             raise ValidationError(message)
+
+    @api.depends("mobile")
+    def _compute_biko_mobile_compact(self):
+        for rec in self:
+            if rec.mobile:
+                rec.biko_mobile_compact = rec.mobile.replace(" ", "")
+            else:
+                rec.biko_mobile_compact = False
