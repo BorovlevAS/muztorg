@@ -7,22 +7,14 @@ from odoo.osv import expression
 class ProductCategory(models.Model):
     _inherit = "product.category"
 
-    biko_product_prefix_ids = fields.Many2many(
-        string="Prefix", comodel_name="biko.product.prefix"
-    )
+    biko_product_prefix_ids = fields.Many2many(string="Prefix", comodel_name="biko.product.prefix")
 
     @api.model
-    def _name_search(
-        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
-    ):
+    def _name_search(self, name, args=None, operator="ilike", limit=100, name_get_uid=None):
         if not args:
             args = []
         if name:
-            _prefixes_ids = (
-                self.env["biko.product.prefix"]
-                .search([("name", operator, name)])
-                .read(["id"])
-            )
+            _prefixes_ids = self.env["biko.product.prefix"].search([("name", operator, name)]).read(["id"])
             _ids_link = [x["id"] for x in _prefixes_ids]
             positive_operators = ["=", "ilike", "=ilike", "like", "=like"]
             category_ids = []
@@ -57,8 +49,7 @@ class ProductCategory(models.Model):
                     # we may underrun the limit because of dupes in the results, that's fine
                     limit2 = (limit - len(category_ids)) if limit else False
                     category2_ids = self._search(
-                        args
-                        + [("name", operator, name), ("id", "not in", category_ids)],
+                        args + [("name", operator, name), ("id", "not in", category_ids)],
                         limit=limit2,
                         access_rights_uid=name_get_uid,
                     )
@@ -79,17 +70,13 @@ class ProductCategory(models.Model):
                     ]
                 )
                 domain = expression.AND([args, domain])
-                category_ids = list(
-                    self._search(domain, limit=limit, access_rights_uid=name_get_uid)
-                )
+                category_ids = list(self._search(domain, limit=limit, access_rights_uid=name_get_uid))
             if not category_ids and operator in positive_operators:
                 ptrn = re.compile("(\[(.*?)\])")
                 res = ptrn.search(name)
                 if res:
                     _prefixes_ids = (
-                        self.env["biko.product.prefix"]
-                        .search([("name", operator, res.group(2))])
-                        .read(["id"])
+                        self.env["biko.product.prefix"].search([("name", operator, res.group(2))]).read(["id"])
                     )
                     _ids_link = [x["id"] for x in _prefixes_ids]
                     category_ids = list(
@@ -100,9 +87,7 @@ class ProductCategory(models.Model):
                         )
                     )
         else:
-            category_ids = self._search(
-                args, limit=limit, access_rights_uid=name_get_uid
-            )
+            category_ids = self._search(args, limit=limit, access_rights_uid=name_get_uid)
         return category_ids
 
 
@@ -120,3 +105,14 @@ class ProductTemplate(models.Model):
     def _onchange_biko_product_prefix(self):
         if self.biko_product_prefix:
             self.uktzed_id = self.biko_product_prefix.uktzed_id
+
+    @api.model
+    def create(self, vals):
+        if "categ_id" not in vals and "biko_product_prefix" in vals:
+            categories = self.env["product.category"].search(
+                [("biko_product_prefix_ids.id", "=", vals["biko_product_prefix"])]
+            )
+            if categories:
+                vals["categ_id"] = categories[0].id
+
+        return super().create(vals)
