@@ -1,0 +1,54 @@
+<odoo>
+    <record id="biko_view_order_form_inheritde" model="ir.ui.view">
+        <field name="name">BIKO: add fields about client</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="context">
+                    {'form_view_ref':
+                    'biko_client_add_mandatory_contact.biko_partner_compact_form',
+                    'default_type':'contact'}
+                </attribute>
+                <attribute name='options'>{'create_name_field': 'mobile'}</attribute>
+            </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="groups" />
+            </field>
+            <field name="partner_id" position="before">
+                <field name="partner_id_domain" invisible="1" />
+                <field name="filter_biko_contact_person_ids" invisible="1" />
+                <field name="filter_biko_recipient_ids" invisible="1"
+                    widget="many2many_tags" />
+                <field name="biko_dealer_id" />
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="domain">partner_id_domain</attribute>
+            </field>
+            <field name="partner_id" position="after">
+
+                <field name="biko_contact_person_type" widget="radio"
+                    options="{'horizontal': true}" />
+                <field name="biko_contact_domain" invisible="1" />
+                <field name="biko_contact_person_id"
+                    domain="biko_contact_domain"
+                    context="{'form_view_ref':
+                    'biko_client_add_mandatory_contact.biko_partner_compact_form',
+                    'default_type':'contact',
+                    'default_parent_id': partner_id if biko_contact_person_type=='dealer' else False}"
+                    options="{'create_name_field':'mobile'}" />
+
+                <field name="biko_recipient_type" widget="radio"
+                    options="{'horizontal': true}" />
+                <field name="biko_recepient_domain" invisible="1" />
+                <field name="biko_recipient_id" domain="biko_recepient_domain"
+                    context="{'form_view_ref':
+                    'biko_client_add_mandatory_contact.biko_partner_compact_form',
+                    'default_type':'contact',
+                    'default_parent_id': partner_id if biko_recipient_type=='dealer' else False}"
+                    options="{'create_name_field':'mobile'}" />
+
+            </field>
+        </field>
+    </record>
+</odoo>

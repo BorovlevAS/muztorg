@@ -1,31 +1,36 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class Partner(models.Model):
     _inherit = "res.partner"
 
-    biko_contact_person_id = fields.Many2one(
+    # служебное поле для связки m2m записей
+    biko_parent_id = fields.Many2one("res.partner")
+
+    biko_contact_person_ids = fields.Many2many(
         comodel_name="res.partner",
+        relation="res_partner_contact_person_rel",
+        column1="biko_parent_id",
+        column2="biko_contact_person_id",
         string="Contact person",
     )
 
-    biko_recipient_id = fields.Many2one(
-        comodel_name="res.partner",
-        string="Recipient person",
-    )
+    is_filled_contact_person = fields.Boolean(compute="_compute_is_filled_contact_person")
 
-    biko_buyer_id = fields.Many2one(
+    biko_recipient_ids = fields.Many2many(
         comodel_name="res.partner",
-        string="Buyer person",
+        relation="res_partner_recepient_rel",
+        column1="biko_parent_id",
+        column2="biko_recipient_ids",
+        string="Recipient person",
     )
 
     biko_payer_id = fields.Many2one(
         comodel_name="res.partner",
         string="Payer person",
     )
-
-    biko_parent_id = fields.Many2one("res.partner")
 
     biko_delivery_address_ids = fields.Many2many(
         comodel_name="res.partner",
@@ -40,6 +45,14 @@ class Partner(models.Model):
     enterprise_code = fields.Char(
         copy=False,
     )
+
+    biko_carrier_id = fields.Many2one("delivery.carrier", string="Delivery carrier")
+
+    biko_mobile_compact = fields.Char(compute="_compute_biko_mobile_compact", store=True)
+
+    def _compute_is_filled_contact_person(self):
+        for rec in self:
+            rec.is_filled_contact_person = bool(rec.biko_contact_person_ids)
 
     @api.depends("vat", "company_id", "enterprise_code")
     def _compute_same_vat_partner_id(self):
@@ -60,9 +73,7 @@ class Partner(models.Model):
                     ("id", "child_of", partner_id),
                 ]
             partner.same_vat_partner_id = (
-                bool(partner.enterprise_code)
-                and not partner.parent_id
-                and Partner.search(domain, limit=1)
+                bool(partner.enterprise_code) and not partner.parent_id and Partner.search(domain, limit=1)
             )
 
     @api.constrains("enterprise_code")
@@ -93,11 +104,17 @@ class Partner(models.Model):
             if not companies:
                 continue
 
-            message = _("Clients with EDRPOU {} is already exists\n").format(
-                record.enterprise_code
-            )
+            message = _("Clients with EDRPOU {} is already exists\n").format(record.enterprise_code)
 
             for name in companies:
                 message += name + "\n"
 
             raise ValidationError(message)
+
+    @api.depends("mobile")
+    def _compute_biko_mobile_compact(self):
+        for rec in self:
+            if rec.mobile:
+                rec.biko_mobile_compact = rec.mobile.replace(" ", "")
+            else:
+                rec.biko_mobile_compact = False

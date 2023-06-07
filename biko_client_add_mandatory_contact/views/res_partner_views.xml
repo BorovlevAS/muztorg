@@ -4,36 +4,51 @@
     <record id="biko_view_partner_form_mt_d02_3_inherit" model="ir.ui.view">
         <field name="name">BIKO: add contacts (MT-D02-3)</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
+            <form position="inside">
+                <field name="is_filled_contact_person" invisible="1" />
+            </form>
             <field name="company_type" position="after">
                 <div>
-                    <label for="is_group"/>
-                    <field name="is_group" attrs="{'invisible': [('is_company', '=', False)]}"/>
+                    <label for="is_group" />
+                    <field name="is_group"
+                        attrs="{'invisible': [('is_company', '=', False)]}" />
                 </div>
             </field>
 
-            <div attrs="{'invisible': [('same_vat_partner_id', '=', False)]}" position="after">
-                <div class="alert alert-danger" role="alert" attrs="{'invisible': ['|', ('biko_contact_person_id', '!=', False), ('is_group','=', True)]}">
-                    Field <b>Contact person</b> is not filled
-                </div>
+            <div attrs="{'invisible': [('same_vat_partner_id', '=', False)]}"
+                position="after">
+                <div class="alert alert-danger" role="alert"
+                    attrs="{'invisible': 
+                    ['|', '|', 
+                    ('is_filled_contact_person', '!=', False),
+                    ('is_group','=', True),
+                    ('type', '!=', 'contact')
+                    ]}">
+                    Field <b>Contact person</b> is not filled </div>
             </div>
 
             <page name="contact_addresses" position="after">
-                <page name="biko_client_contacts" string="Client contacts" attrs="{'invisible': [('is_group', '=', True)]}">
+                <page name="biko_client_contacts" string="Client contacts"
+                    attrs="{'invisible': [('is_group', '=', True)]}">
                     <group name="biko_clc_container_row_2" modifiers="{}">
                         <group name="biko_clc_lef" string="Contacts">
-                            <field name="biko_contact_person_id" domain="[('parent_id', '=',id)]"/>
-                            <field name="biko_recipient_id" domain="[('parent_id', '=',id)]"/>
-                            <field name="biko_buyer_id" domain="[('parent_id', '=',id)]"/>
-                            <field name="biko_payer_id" domain="[('parent_id', '=',id)]"/>
+                            <field name="biko_contact_person_ids"
+                                domain="[('parent_id', '=',id), ('type', '=', 'contact')]"
+                                widget="many2many_tags" />
+                            <field name="biko_recipient_ids"
+                                domain="[('parent_id', '=',id), ('type', '=', 'contact')]"
+                                widget="many2many_tags" />
+                            <field name="biko_payer_id"
+                                domain="[('parent_id', '=',id), ('type', '=', 'contact')]" />
                         </group>
-                        <group name="biko_clc_right" string="Delivery addresses">
-                            <field name="biko_delivery_address_ids" nolabel="1" domain="[('parent_id', '=',id)]">
-                                <tree editable="bottom">
-                                    <field name="name"/>
-                                </tree>
-                            </field>
+                        <group name="biko_clc_right"
+                            string="Delivery information">
+                            <field name="biko_delivery_address_ids"
+                                domain="[('parent_id', '=',id), ('type', '!=', 'contact')]"
+                                widget="many2many_tags" />
+                            <field name="biko_carrier_id" />
                         </group>
                     </group>
                 </page>
@@ -41,14 +56,36 @@
         </field>
     </record>
 
-    <record id="biko_kw_account_partner_requisites_view_res_partner_form_inherit" model="ir.ui.view">
+    <record
+        id="biko_kw_account_partner_requisites_view_res_partner_form_inherit"
+        model="ir.ui.view">
         <field name="name">BIKO: adding EDRPOU mandatory</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id" ref="kw_account_partner_requisites_view.kw_account_partner_requisites_view_res_partner_form"/>
+        <field name="inherit_id"
+            ref="kw_account_partner_requisites_view.kw_account_partner_requisites_view_res_partner_form" />
         <field name="arch" type="xml">
             <field name="enterprise_code" position="attributes">
-                <attribute name="attrs">{'required': [('is_company', '=', True), ('is_group', '=', False)]}</attribute>
+                <attribute name="attrs">{'required': [('is_company', '=', True),
+                    ('is_group', '=', False)]}</attribute>
             </field>
+        </field>
+    </record>
+
+    <record id="biko_partner_compact_form" model="ir.ui.view">
+        <field name="name">BIKO: compact contact form</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Compact contact form">
+                <sheet>
+                    <group>
+                        <field name="parent_id" readonly="1" />
+                        <field name="name" required="1" />
+                        <field name="mobile" required="1" />
+                        <field name="email" />
+                        <field name="comment" />
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 
