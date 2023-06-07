@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-24 00:11+0000\n"
-"PO-Revision-Date: 2023-02-24 02:17+0200\n"
+"POT-Creation-Date: 2023-06-06 23:43+0000\n"
+"PO-Revision-Date: 2023-06-07 02:58+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -15,7 +15,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields.selection,name:biko_client_add_mandatory_contact.selection__sale_order__biko_contact_person_type__person
+#: model:ir.model.fields.selection,name:biko_client_add_mandatory_contact.selection__sale_order__biko_recipient_type__person
+msgid "Any contact from list"
+msgstr "Будь-який контакт зі списку"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__biko_contact_domain
+msgid "Biko Contact Domain"
+msgstr "Biko Contact Domain"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_mobile_compact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__biko_mobile_compact
+msgid "Biko Mobile Compact"
+msgstr "Biko Mobile Compact"
 
 #. module: biko_client_add_mandatory_contact
 #: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_parent_id
@@ -24,10 +41,9 @@ msgid "Biko Parent"
 msgstr "Biko Parent"
 
 #. module: biko_client_add_mandatory_contact
-#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_buyer_id
-#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__biko_buyer_id
-msgid "Buyer person"
-msgstr "Покупець"
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__biko_recepient_domain
+msgid "Biko Recepient Domain"
+msgstr "Biko Recepient Domain"
 
 #. module: biko_client_add_mandatory_contact
 #: model_terms:ir.ui.view,arch_db:biko_client_add_mandatory_contact.biko_view_partner_form_mt_d02_3_inherit
@@ -35,8 +51,26 @@ msgid "Client contacts"
 msgstr "Контакти для доставки"
 
 #. module: biko_client_add_mandatory_contact
-#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_contact_person_id
-#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__biko_contact_person_id
+#: code:addons/biko_client_add_mandatory_contact/models/res_partner.py:0
+#, python-format
+msgid "Clients with EDRPOU {} is already exists\n"
+msgstr "Клієнти з кодом ЄДРПОУ {} вже є в базі\n"
+
+#. module: biko_client_add_mandatory_contact
+#: model_terms:ir.ui.view,arch_db:biko_client_add_mandatory_contact.biko_partner_compact_form
+msgid "Compact contact form"
+msgstr "Compact contact form"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__biko_contact_person_type
+msgid "Contact filter"
+msgstr "Фільтр контакта"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_contact_person_ids
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__biko_contact_person_ids
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__biko_contact_person_id
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__filter_biko_contact_person_ids
 msgid "Contact person"
 msgstr "Контактна особа"
 
@@ -46,16 +80,38 @@ msgid "Contacts"
 msgstr "Контакти"
 
 #. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__biko_dealer_id
+msgid "Dealer"
+msgstr "Ділер"
+
+#. module: biko_client_add_mandatory_contact
 #: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_delivery_address_ids
 #: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__biko_delivery_address_ids
-#: model_terms:ir.ui.view,arch_db:biko_client_add_mandatory_contact.biko_view_partner_form_mt_d02_3_inherit
 msgid "Delivery addresses"
 msgstr "Адреси доставки"
 
 #. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_carrier_id
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__biko_carrier_id
+msgid "Delivery carrier"
+msgstr "Delivery carrier"
+
+#. module: biko_client_add_mandatory_contact
+#: model_terms:ir.ui.view,arch_db:biko_client_add_mandatory_contact.biko_view_partner_form_mt_d02_3_inherit
+msgid "Delivery information"
+msgstr "Delivery information"
+
+#. module: biko_client_add_mandatory_contact
 #: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__display_name
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Відображувана назва"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__enterprise_code
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__enterprise_code
+msgid "Enterprise Code"
+msgstr "Код ЄДРПОУ"
 
 #. module: biko_client_add_mandatory_contact
 #: model_terms:ir.ui.view,arch_db:biko_client_add_mandatory_contact.biko_view_partner_form_mt_d02_3_inherit
@@ -63,14 +119,39 @@ msgid "Field <b>Contact person</b> is not filled"
 msgstr "Поле <b>Контактна особа</b> на заповнено"
 
 #. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__is_group
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__is_group
+msgid "Group of companies"
+msgstr "Group of companies"
+
+#. module: biko_client_add_mandatory_contact
 #: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__id
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__id
 msgid "ID"
 msgstr "ID"
 
 #. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__is_filled_contact_person
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__is_filled_contact_person
+msgid "Is Filled Contact Person"
+msgstr "Is Filled Contact Person"
+
+#. module: biko_client_add_mandatory_contact
 #: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner____last_update
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr "Останні зміни на"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields.selection,name:biko_client_add_mandatory_contact.selection__sale_order__biko_contact_person_type__dealer
+#: model:ir.model.fields.selection,name:biko_client_add_mandatory_contact.selection__sale_order__biko_recipient_type__dealer
+msgid "Linked to the partner"
+msgstr "Прив'язаний до партнера"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__partner_id_domain
+msgid "Partner Id Domain"
+msgstr "Partner Id Domain"
 
 #. module: biko_client_add_mandatory_contact
 #: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_payer_id
@@ -79,8 +160,15 @@ msgid "Payer person"
 msgstr "Платник"
 
 #. module: biko_client_add_mandatory_contact
-#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_recipient_id
-#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__biko_recipient_id
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__biko_recipient_type
+msgid "Recipient filter"
+msgstr "Фільтр отримувачів"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_partner__biko_recipient_ids
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_res_users__biko_recipient_ids
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__biko_recipient_id
+#: model:ir.model.fields,field_description:biko_client_add_mandatory_contact.field_sale_order__filter_biko_recipient_ids
 msgid "Recipient person"
 msgstr "Отримувач"
 
@@ -88,3 +176,8 @@ msgstr "Отримувач"
 #: model:ir.model,name:biko_client_add_mandatory_contact.model_res_partner
 msgid "Res partner Sequences"
 msgstr "Послідовності клієнта"
+
+#. module: biko_client_add_mandatory_contact
+#: model:ir.model,name:biko_client_add_mandatory_contact.model_sale_order
+msgid "Sales Order"
+msgstr "Замовлення на продаж"
