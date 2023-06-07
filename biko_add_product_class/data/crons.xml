@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="check_product_confidential" model="ir.cron">
+        <field name="name">MT: confidential product check</field>
+        <field name="active" eval="True" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">day</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="model_product_template" />
+        <field name="state">code</field>
+        <field name="code">model.update_values()</field>
+    </record>
+
+</odoo>
