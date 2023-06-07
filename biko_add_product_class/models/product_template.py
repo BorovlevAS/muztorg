@@ -102,4 +102,5 @@ class ProductTemplate(models.Model):
         return product_ids
 
     def _cron_check_product_confidential(self):
-        pass
+        items = self.search([("biko_confidential", "=", True), ("biko_conf_date", "<=", fields.Date.today())])
+        [item.write({"biko_confidential": False}) for item in items]
