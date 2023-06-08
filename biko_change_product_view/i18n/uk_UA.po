@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-29 09:06+0000\n"
-"PO-Revision-Date: 2023-05-29 12:07+0300\n"
+"POT-Creation-Date: 2023-06-08 00:06+0000\n"
+"PO-Revision-Date: 2023-06-08 03:08+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -68,7 +68,12 @@ msgstr "<span class=\"o_stat_text\">Продано</span>"
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid "<span class=\"text-muted\"> cm </span>"
-msgstr "<span class=\"text-muted\"> cm </span>"
+msgstr "<span class=\"text-muted\"> см </span>"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "<span> up to </span>"
+msgstr "<span> до </span>"
 
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
@@ -149,6 +154,11 @@ msgstr "Характеристика (укр.)"
 
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
+msgid "Confidentiality"
+msgstr "Конфіденційно"
+
+#. module: biko_change_product_view
+#: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid "Configure Variants"
 msgstr "Налаштувати Варіанти"
 
@@ -190,7 +200,7 @@ msgstr "Вміст діалогу"
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid "Dimensions"
-msgstr "Dimensions"
+msgstr "Габарити"
 
 #. module: biko_change_product_view
 #: model:ir.model.fields,field_description:biko_change_product_view.field_product_template__display_name
@@ -215,12 +225,12 @@ msgstr "Загальна інформація"
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid "Generate Barcode (Using Barcode Rule)"
-msgstr "Generate Barcode (Using Barcode Rule)"
+msgstr "Згенерувати штрих-код (використовуючи правило штрих-коду)"
 
 #. module: biko_change_product_view
 #: model_terms:ir.ui.view,arch_db:biko_change_product_view.biko_product_template_view
 msgid "Generate Base (Using Sequence)"
-msgstr "Generate Base (Using Sequence)"
+msgstr "Згенерувати основу (за допомогою послідовності)"
 
 #. module: biko_change_product_view
 #: model:ir.model.fields,field_description:biko_change_product_view.field_product_template__id
