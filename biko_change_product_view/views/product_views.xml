@@ -249,7 +249,7 @@
                                             groups="uom.group_uom"
                                             options="{'no_create': True}" />
                                         <field name="biko_master_karton"
-                                            string="Amount in package"/>
+                                            string="Amount in package" />
                                     </group>
                                     <group name="inventory">
                                         <group name="group_lots_and_weight"
@@ -266,7 +266,8 @@
                                                 </span>
                                             </div>
                                             <!-- <label for="biko_length"
-                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}" /> -->
+                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant',
+                                            '=', False)]}" /> -->
                                             <label for="biko_length"
                                                 string="Dimensions" />
                                             <div class="o_row"
@@ -396,6 +397,15 @@
                                     <field name="biko_control_code" readonly="1" />
                                     <field name="default_code"
                                         attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" />
+                                    <label for="biko_confidential"
+                                        string="Confidentiality" />
+                                    <div class="o_row"
+                                        name="biko_confidentiality_row">
+                                        <field name="biko_confidential" />
+                                        <span> up to </span>
+                                        <field name="biko_conf_date"
+                                            attrs="{'readonly': [('biko_confidential', '=', False)]}" />
+                                    </div>
                                     <field name="company_id"
                                         groups="base.group_multi_company"
                                         options="{'no_create': True}" />
