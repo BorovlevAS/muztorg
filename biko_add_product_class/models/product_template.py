@@ -48,6 +48,8 @@ class ProductTemplate(models.Model):
     )
 
     biko_master_karton = fields.Integer(string="Amount in package")
+    biko_confidential = fields.Boolean(string="Confidential")
+    biko_conf_date = fields.Date(string="Confidential date")
 
     @api.depends("biko_length", "biko_width", "biko_height")
     def _compute_volume(self):
@@ -98,3 +100,8 @@ class ProductTemplate(models.Model):
             )
 
         return product_ids
+
+    def _cron_check_product_confidential(self):
+        items = self.search([("biko_confidential", "=", True), ("biko_conf_date", "<=", fields.Date.today())])
+        for item in items:
+            item.write({"biko_confidential": False})
