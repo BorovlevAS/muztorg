@@ -49,6 +49,8 @@ class SaleOrder(models.Model):
         store=False,
     )
 
+    comment = fields.Text(string="Comment")
+
     @api.depends("biko_dealer_id")
     def _compute_partner_id_domain(self):
         for rec in self:
@@ -94,3 +96,6 @@ class SaleOrder(models.Model):
                 rec.carrier_id = rec.partner_id.biko_carrier_id
             rec.biko_recipient_type = "dealer" if rec.partner_id.is_company else "person"
             rec.biko_contact_person_type = "dealer" if rec.partner_id.is_company else "person"
+            if not rec.partner_id.is_company:
+                rec.biko_recipient_id = rec.partner_id
+                rec.biko_contact_person_id = rec.partner_id
