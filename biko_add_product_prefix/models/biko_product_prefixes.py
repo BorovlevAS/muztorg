@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields, api
-
 from random import randint
+
+from odoo import fields, models
 
 
 class BikoProductClass(models.Model):
@@ -12,7 +11,7 @@ class BikoProductClass(models.Model):
     name_rus = fields.Char(string="Name (RUS)")
 
     def _get_default_color(self):
-        return randint(1, 11)
+        return randint(1, 11)  # nosec
 
     color = fields.Integer(string="Color Index", default=_get_default_color)
     uktzed_id = fields.Many2one(

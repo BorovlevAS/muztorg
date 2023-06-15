@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!--1.1 Sub menu-->
-    <menuitem id="biko_product_class_menu"
-              name="Product Classes"
-              parent="biko_base_module.biko_additional_menu"
-              sequence="40"
-              action="action_biko_product_class_tree"/>
-
+    <menuitem
+        id="biko_product_class_menu"
+        name="Product Classes"
+        parent="biko_base_module.biko_additional_menu"
+        sequence="40"
+        action="action_biko_product_class_tree"
+    />
 </odoo>
