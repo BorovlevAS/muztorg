@@ -1,0 +1,20 @@
+[settings]
+; see https://github.com/psf/black
+multi_line_output=3
+include_trailing_comma=True
+force_grid_wrap=0
+combine_as_imports=True
+use_parentheses=True
+line_length=119
+known_odoo=odoo
+known_odoo_addons=odoo.addons
+sections=FUTURE,STDLIB,THIRDPARTY,ODOO,ODOO_ADDONS,FIRSTPARTY,LOCALFOLDER
+default_section=THIRDPARTY
+ensure_newline_before_comments = True
+import_heading_future=Future:
+import_heading_stdlib=Stdlib:
+import_heading_odoo=Odoo:
+import_heading_thirdparty=Thirdparty:
+import_heading_firstparty=Firstparty:
+import_heading_localfolder=Localfolder:
+skip=.git
