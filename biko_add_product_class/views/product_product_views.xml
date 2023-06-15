@@ -6,27 +6,31 @@
         <field name="inherit_id" ref="product.product_product_tree_view" />
         <field name="arch" type="xml">
             <field name="name" position="before">
-                <field name="biko_control_code" optional="show"/>
+                <field name="biko_control_code" optional="show" />
             </field>
         </field>
     </record>
 
     <!-- 1. наследовать вид product.product_search_form_view
-    2. заменить domain в поле filter name="name" 
+    2. заменить domain в поле filter name="name"
     3. в этот новый домен добавить поиск по biko_control_code-->
     <record id="biko_product_search_form_view_mtd_1_17_inherited" model="ir.ui.view">
         <field name="name">BIKO: add search by control code</field>
         <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="inherit_id" ref="product.product_search_form_view" />
         <field name="arch" type="xml">
             <field name="name" position="replace">
-                <field name="name" string="Product" filter_domain="[
+                <field
+                    name="name"
+                    string="Product"
+                    filter_domain="[
                     '|', '|', '|',
-                    ('default_code', 'ilike', self), 
-                    ('name', 'ilike', self), 
+                    ('default_code', 'ilike', self),
+                    ('name', 'ilike', self),
                     ('barcode', 'ilike', self),
                     ('biko_control_code', 'ilike', self)
-                ]"/>
+                ]"
+                />
             </field>
         </field>
     </record>
