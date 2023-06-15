@@ -49,6 +49,16 @@
                     options="{'create_name_field':'mobile'}" />
 
             </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="context"> {'form_view_ref':
+                    'partner_org_chart.view_res_partner_child_form',
+                    'default_parent_id': partner_id,
+                    'default_type': 'delivery'}
+                </attribute>
+                <attribute name="domain">
+                    [('parent_id', '=', partner_id), ('type', '=', 'delivery')]
+                </attribute>
+            </field>
             <xpath expr="//group[@name='order_details']" position="inside">
                 <field name="warehouse_id" />
             </xpath>
