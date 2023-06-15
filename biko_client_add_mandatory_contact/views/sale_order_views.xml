@@ -49,6 +49,9 @@
                     options="{'create_name_field':'mobile'}" />
 
             </field>
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="warehouse_id" />
+            </xpath>
         </field>
     </record>
 </odoo>
