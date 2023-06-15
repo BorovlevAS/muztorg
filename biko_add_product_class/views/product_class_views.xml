@@ -10,9 +10,8 @@
         <field name="model">biko.product.class</field>
         <field name="arch" type="xml">
             <tree string="Product Class" editable="bottom">
-                <field name="name"/>
+                <field name="name" />
             </tree>
         </field>
     </record>
-
 </odoo>

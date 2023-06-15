@@ -1,54 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- форма справочника product.templates
     тут мы добавляем свои собственные поля на форму -->
     <record id="biko_product_template_product_class" model="ir.ui.view">
         <field name="name">BIKO: add product class</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
             <field name="categ_id" position="after">
-                <field name="biko_product_class" readonly="1"/>
-                <field name="biko_product_model" attrs="{'required': [('type', '=', 'product')]}"/>
-                <field name="biko_country" options="{'no_create': True}" attrs="{'required': [('type', '=', 'product')]}"/>
-                <field name="biko_country_customs" options="{'no_create': True}"/>
-                <field name="biko_control_code" readonly="1"/>
+                <field name="biko_product_class" readonly="1" />
+                <field name="biko_product_model" attrs="{'required': [('type', '=', 'product')]}" />
+                <field
+                    name="biko_country"
+                    options="{'no_create': True}"
+                    attrs="{'required': [('type', '=', 'product')]}"
+                />
+                <field name="biko_country_customs" options="{'no_create': True}" />
+                <field name="biko_control_code" readonly="1" />
             </field>
             <xpath expr="//*/page[@name='general_information']/group[2]" position="after">
                 <group>
                     <group string="Characteristics (ukr)">
-                        <field name="biko_character_ukr" nolabel="1" attrs="{'required': [('type', '=', 'product')]}"/>
+                        <field
+                            name="biko_character_ukr"
+                            nolabel="1"
+                            attrs="{'required': [('type', '=', 'product')]}"
+                        />
                     </group>
                     <group string="Characteristics (rus)">
-                        <field name="biko_character_rus" nolabel="1" attrs="{'required': [('type', '=', 'product')]}"/>
+                        <field
+                            name="biko_character_rus"
+                            nolabel="1"
+                            attrs="{'required': [('type', '=', 'product')]}"
+                        />
                     </group>
                 </group>
             </xpath>
             <field name="type" position="before">
-                <field name="biko_vendor_code" attrs="{'required': [('type', '=', 'product')]}"/>
+                <field name="biko_vendor_code" attrs="{'required': [('type', '=', 'product')]}" />
             </field>
         </field>
     </record>
 
     <!-- наследовать форму product_template_search_view
     в нее добавить поиск по полю biko_control_code
-    расширить возможность поиска name. т.е добавить при поиске по полю name еще и поиск по biko_control_code
+    расширить возможность поиска name. т.е добавить при поиске по полю name еще и
+    поиск по biko_control_code
     существующий домен оставить без изменений, добавить дополнительное поле поиска -->
     <record id="biko_product_template_search_iMTD_1_17_nherit" model="ir.ui.view">
         <field name="name">BIKO: product template search</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="inherit_id" ref="product.product_template_search_view" />
         <field name="arch" type="xml">
             <field name="name" position="attributes">
                 <attribute name="filter_domain">
-                    ['|', '|', '|', '|', '|', 
-                        ('default_code', 'ilike', self), 
-                        ('product_variant_ids.default_code', 'ilike', self),
-                        ('name', 'ilike', self), 
-                        ('barcode', 'ilike', self),
-                        ('biko_control_code', 'ilike', self),
-                        ('product_variant_ids.biko_control_code', 'ilike', self)]
+                    ['|', '|', '|', '|', '|',
+                    ('default_code', 'ilike', self),
+                    ('product_variant_ids.default_code', 'ilike', self),
+                    ('name', 'ilike', self),
+                    ('barcode', 'ilike', self),
+                    ('biko_control_code', 'ilike', self),
+                    ('product_variant_ids.biko_control_code', 'ilike', self)]
                 </attribute>
             </field>
         </field>
@@ -61,21 +73,21 @@
         <field name="inherit_id" ref="pim.pim_product_template_tree_view" />
         <field name="arch" type="xml">
             <field name="default_code" position="after">
-                <field name="biko_control_code" optional="show"/>
+                <field name="biko_control_code" optional="show" />
             </field>
         </field>
     </record>
 
-    <!-- в табличное представление в модуле Product добавляем поле biko_control_code -->
+    <!-- в табличное представление в модуле Product добавляем поле
+    biko_control_code -->
     <record id="biko_product_template_tree_view_mtd_1_17_inherit" model="ir.ui.view">
         <field name="name">BIKO: Add control code to tree view</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_tree_view" />
         <field name="arch" type="xml">
             <field name="name" position="before">
-                <field name="biko_control_code" optional="show"/>
+                <field name="biko_control_code" optional="show" />
             </field>
         </field>
     </record>
-
 </odoo>

@@ -1,18 +1,22 @@
-# -*- coding: utf-8 -*-
-from odoo import models, fields, api
-from odoo import _
+from odoo import _, api, fields, models
 
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    biko_product_class = fields.Many2one(string="Product class", comodel_name="biko.product.class")
+    biko_product_class = fields.Many2one(
+        string="Product class", comodel_name="biko.product.class"
+    )
 
-    biko_product_model = fields.Char(string="Product model", comodel_name="biko.product.model")
+    biko_product_model = fields.Char(
+        string="Product model", comodel_name="biko.product.model"
+    )
 
     biko_country = fields.Many2one(string="Country", comodel_name="res.country")
 
-    biko_country_customs = fields.Many2one(string="Country for custom", comodel_name="res.country")
+    biko_country_customs = fields.Many2one(
+        string="Country for custom", comodel_name="res.country"
+    )
 
     biko_character_ukr = fields.Text(
         string="Characteristics (ukr)",
@@ -58,21 +62,26 @@ class ProductTemplate(models.Model):
 
     @api.model
     def create(self, vals):
-
         if not vals.get("biko_control_code", False):
-            vals["biko_control_code"] = self.env["ir.sequence"].next_by_code("biko.product.control.code")
+            vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
+                "biko.product.control.code"
+            )
 
         return super().create(vals)
 
     def write(self, vals):
         for rec in self:
-            if (not "biko_control_code" in vals) and (not rec.biko_control_code):
-                vals["biko_control_code"] = self.env["ir.sequence"].next_by_code("biko.product.control.code")
+            if ("biko_control_code" not in vals) and (not rec.biko_control_code):
+                vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
+                    "biko.product.control.code"
+                )
 
         return super().write(vals)
 
     @api.model
-    def _name_search(self, name, args=None, operator="ilike", limit=100, name_get_uid=None):
+    def _name_search(
+        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
         if not args:
             args = []
         if name:
@@ -85,7 +94,7 @@ class ProductTemplate(models.Model):
             )
 
             if not product_ids:
-                return super(ProductTemplate, self)._name_search(
+                return super()._name_search(
                     name,
                     args,
                     operator=operator,
@@ -94,14 +103,18 @@ class ProductTemplate(models.Model):
                 )
 
         else:
-
-            return super(ProductTemplate, self)._name_search(
+            return super()._name_search(
                 name, args, operator=operator, limit=limit, name_get_uid=name_get_uid
             )
 
         return product_ids
 
     def _cron_check_product_confidential(self):
-        items = self.search([("biko_confidential", "=", True), ("biko_conf_date", "<=", fields.Date.today())])
+        items = self.search(
+            [
+                ("biko_confidential", "=", True),
+                ("biko_conf_date", "<=", fields.Date.today()),
+            ]
+        )
         for item in items:
             item.write({"biko_confidential": False})

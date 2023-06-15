@@ -1,7 +1,5 @@
-# наследовать модель product.product
-# добавить зависимое поле biko_control_code
-# добавить поиск по biko_control_code
 from odoo import api, fields, models
+
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
@@ -28,7 +26,7 @@ class ProductProduct(models.Model):
             )
 
             if not product_ids:
-                return super(ProductProduct, self)._name_search(
+                return super()._name_search(
                     name,
                     args,
                     operator=operator,
@@ -37,7 +35,6 @@ class ProductProduct(models.Model):
                 )
 
         else:
-
-            return super(ProductProduct, self)._name_search(
+            return super()._name_search(
                 name, args, operator=operator, limit=limit, name_get_uid=name_get_uid
             )
