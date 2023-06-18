@@ -1,4 +1,6 @@
-from odoo import models
+from odoo import _, models
+from odoo.addons.delivery_novaposhta.models.utils import APIRequest
+from odoo.exceptions import ValidationError
 
 
 class NovaPoshtaTTN(models.Model):
@@ -54,3 +56,70 @@ class NovaPoshtaTTN(models.Model):
                 record.recipient_name = record.order_to_deliver.partner_id
             # salesperson
             record.salesperson = record.order_to_deliver.user_id
+
+    def add_organization(self):
+        """То же самое но для организаций.
+        Каждая организация это контрагент(не одушный, нпшный)
+        и у них должны быть контактные лица. Все, что является
+        компанией в оду, должны быть организациями у нп и все сотрудники
+        этой компании должны стать ее контактными лицами.
+        """
+
+        key = self.get_api_key()
+
+        data = {
+            "apiKey": key.key,
+            "modelName": "Counterparty",
+            "calledMethod": "save",
+            "methodProperties": {
+                "CityRef": self.recipient_name_organization.np_city.ref,
+                "FirstName": self.recipient_name_organization.np_name,
+                "MiddleName": "",
+                "LastName": "",
+                "Phone": "",
+                "Email": "",
+                "EDRPOU": self.recipient_name_organization.enterprise_code,
+                "CounterpartyType": "Organization",
+                "CounterpartyProperty": "Recipient",
+                "OwnershipForm": self.recipient_name_organization.np_ownership.ref,
+            },
+        }
+
+        try:
+            response = APIRequest.get_data(data)
+        except ConnectionError as conn_error:
+            raise ValidationError(_("Connection Error")) from conn_error
+        if isinstance(response, dict):
+            raise ValidationError(
+                _("Data was faulty!\nData: {data}\nResponse: {response}").format(
+                    data=data, response=response
+                )
+            )
+        self.recipient_name_organization.ref = response[0]["Ref"]
+
+        first_name, last_name, middle_name = self.split_name()
+
+        data = {
+            "apiKey": key.key,
+            "modelName": "ContactPerson",
+            "calledMethod": "save",
+            "methodProperties": {
+                "CounterpartyRef": self.recipient_name_organization.ref,
+                "FirstName": first_name,
+                "LastName": last_name,
+                "MiddleName": middle_name,
+                "Phone": self.recipient_phone,
+            },
+        }
+
+        try:
+            response = APIRequest.get_data(data)
+        except ConnectionError as conn_error:
+            raise ValidationError(_("Connection Error")) from conn_error
+        if isinstance(response, dict):
+            raise ValidationError(
+                _("Data was faulty:\n {response}").format(response=response)
+            )
+        self.recipient_name.np_ref = response[0]["Ref"]
+
+        return self.recipient_name_organization.ref, response[0]["Ref"]
