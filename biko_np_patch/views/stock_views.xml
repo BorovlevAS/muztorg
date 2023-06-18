@@ -1,0 +1,20 @@
+<odoo>
+    <record id="biko_view_picking_inherit_form_np" model="ir.ui.view">
+        <field name="name">BIKO: add news fields to NP page</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery_novaposhta.view_picking_inherit_form_np" />
+        <field name="arch" type="xml">
+            <field name="seats_amount" position="after">
+                <field name="np_shipping_weight" />
+                <field name="np_shipping_volume" />
+                <field name="cost" />
+            </field>
+            <field name="payer_type" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+            <field name="backward_money_costs" position="after">
+                <field name="comment" />
+            </field>
+        </field>
+    </record>
+</odoo>
