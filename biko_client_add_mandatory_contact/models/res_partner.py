@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -17,7 +16,9 @@ class Partner(models.Model):
         string="Contact person",
     )
 
-    is_filled_contact_person = fields.Boolean(compute="_compute_is_filled_contact_person")
+    is_filled_contact_person = fields.Boolean(
+        compute="_compute_is_filled_contact_person"
+    )
 
     biko_recipient_ids = fields.Many2many(
         comodel_name="res.partner",
@@ -46,9 +47,14 @@ class Partner(models.Model):
         copy=False,
     )
 
+    # обязателен ли код ЕДРПОУ к заполнению
+    is_edrpou_mandatory = fields.Boolean(compute="_compute_is_edrpou_mandatory")
+
     biko_carrier_id = fields.Many2one("delivery.carrier", string="Delivery carrier")
 
-    biko_mobile_compact = fields.Char(compute="_compute_biko_mobile_compact", store=True)
+    biko_mobile_compact = fields.Char(
+        compute="_compute_biko_mobile_compact", store=True
+    )
 
     def _compute_is_filled_contact_person(self):
         for rec in self:
@@ -73,16 +79,27 @@ class Partner(models.Model):
                     ("id", "child_of", partner_id),
                 ]
             partner.same_vat_partner_id = (
-                bool(partner.enterprise_code) and not partner.parent_id and Partner.search(domain, limit=1)
+                bool(partner.enterprise_code)
+                and not partner.parent_id
+                and Partner.search(domain, limit=1)
             )
 
+    @api.depends("company_type", "country_id")
+    def _compute_is_edrpou_mandatory(self):
+        for rec in self:
+            if rec.company_type == "person":
+                rec.is_edrpou_mandatory = False
+            else:
+                rec.is_edrpou_mandatory = rec.country_id and rec.country_id.code == "UA"
+
+    # проверяем уникальность клиента по коду ЕДРПОУ
     @api.constrains("enterprise_code")
     def _check_enterprise_code(self):
         for record in self:
             if record.company_type == "person":
                 # skip for contact
                 continue
-            if not record.country_id or record.country_id.code != "UA":
+            if not record.country_id:
                 # skip for foreign company
                 continue
             if not record.enterprise_code:
@@ -104,7 +121,9 @@ class Partner(models.Model):
             if not companies:
                 continue
 
-            message = _("Clients with EDRPOU {} is already exists\n").format(record.enterprise_code)
+            message = _("Clients with EDRPOU {} is already exists\n").format(
+                record.enterprise_code
+            )
 
             for name in companies:
                 message += name + "\n"
@@ -118,3 +137,14 @@ class Partner(models.Model):
                 rec.biko_mobile_compact = rec.mobile.replace(" ", "")
             else:
                 rec.biko_mobile_compact = False
+
+    def _get_name(self):
+        name = super()._get_name()
+        partner = self
+
+        if self._context.get("show_mobile"):
+            name = _("{name} - mob. {mobile}").format(
+                name=name, mobile=partner.mobile or ""
+            )
+
+        return name

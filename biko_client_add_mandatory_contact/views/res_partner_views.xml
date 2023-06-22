@@ -1,6 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record id="biko_view_partner_form_mt_d02_3_inherit" model="ir.ui.view">
         <field name="name">BIKO: add contacts (MT-D02-3)</field>
         <field name="model">res.partner</field>
@@ -12,42 +11,53 @@
             <field name="company_type" position="after">
                 <div>
                     <label for="is_group" />
-                    <field name="is_group"
-                        attrs="{'invisible': [('is_company', '=', False)]}" />
+                    <field name="is_group" attrs="{'invisible': [('is_company', '=', False)]}" />
                 </div>
             </field>
 
-            <div attrs="{'invisible': [('same_vat_partner_id', '=', False)]}"
-                position="after">
-                <div class="alert alert-danger" role="alert"
-                    attrs="{'invisible': 
-                    ['|', '|', 
+            <div attrs="{'invisible': [('same_vat_partner_id', '=', False)]}" position="after">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    attrs="{'invisible':
+                    ['|', '|',
                     ('is_filled_contact_person', '!=', False),
                     ('is_group','=', True),
                     ('type', '!=', 'contact')
-                    ]}">
-                    Field <b>Contact person</b> is not filled </div>
+                    ]}"
+                >
+                    Field
+                    <b>Contact person</b>
+                    is not filled
+                </div>
             </div>
 
             <page name="contact_addresses" position="after">
-                <page name="biko_client_contacts" string="Client contacts"
-                    attrs="{'invisible': [('is_group', '=', True)]}">
+                <page
+                    name="biko_client_contacts"
+                    string="Client contacts"
+                    attrs="{'invisible': [('is_group', '=', True)]}"
+                >
                     <group name="biko_clc_container_row_2" modifiers="{}">
                         <group name="biko_clc_lef" string="Contacts">
-                            <field name="biko_contact_person_ids"
+                            <field
+                                name="biko_contact_person_ids"
                                 domain="[('parent_id', '=',id), ('type', '=', 'contact')]"
-                                widget="many2many_tags" />
-                            <field name="biko_recipient_ids"
+                                widget="many2many_tags"
+                            />
+                            <field
+                                name="biko_recipient_ids"
                                 domain="[('parent_id', '=',id), ('type', '=', 'contact')]"
-                                widget="many2many_tags" />
-                            <field name="biko_payer_id"
-                                domain="[('parent_id', '=',id), ('type', '=', 'contact')]" />
+                                widget="many2many_tags"
+                            />
+                            <field name="biko_payer_id" domain="[('parent_id', '=',id), ('type', '=', 'contact')]" />
                         </group>
-                        <group name="biko_clc_right"
-                            string="Delivery information">
-                            <field name="biko_delivery_address_ids"
+                        <group name="biko_clc_right" string="Delivery information">
+                            <field
+                                name="biko_delivery_address_ids"
                                 domain="[('parent_id', '=',id), ('type', '!=', 'contact')]"
-                                widget="many2many_tags" />
+                                widget="many2many_tags"
+                            />
                             <field name="biko_carrier_id" />
                         </group>
                     </group>
@@ -56,17 +66,23 @@
         </field>
     </record>
 
-    <record
-        id="biko_kw_account_partner_requisites_view_res_partner_form_inherit"
-        model="ir.ui.view">
+    <record id="biko_kw_account_partner_requisites_view_res_partner_form_inherit" model="ir.ui.view">
         <field name="name">BIKO: adding EDRPOU mandatory</field>
         <field name="model">res.partner</field>
-        <field name="inherit_id"
-            ref="kw_account_partner_requisites_view.kw_account_partner_requisites_view_res_partner_form" />
+        <field
+            name="inherit_id"
+            ref="kw_account_partner_requisites_view.kw_account_partner_requisites_view_res_partner_form"
+        />
         <field name="arch" type="xml">
+            <field name="enterprise_code" position="before">
+                <field name="is_edrpou_mandatory" invisible="1" />
+            </field>
             <field name="enterprise_code" position="attributes">
-                <attribute name="attrs">{'required': [('is_company', '=', True),
-                    ('is_group', '=', False)]}</attribute>
+                <attribute name="attrs">
+                    {'required': [('is_company', '=', True),
+                    ('is_group', '=', False), ('is_edrpou_mandatory', '=',
+                    True)]}
+                </attribute>
             </field>
         </field>
     </record>
@@ -89,4 +105,22 @@
         </field>
     </record>
 
+    <!-- добавляю в фильтр по телефону неформатированный мобильный -->
+    <record id="biko_view_res_partner_filter_inherit" model="ir.ui.view">
+        <field name="name">BIKO: add search by non-formatted mobile</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="filter_domain">
+                    [
+                    '|', '|',
+                    ('phone', 'ilike', self),
+                    ('mobile', 'ilike', self),
+                    ('biko_mobile_compact', 'ilike', self),
+                    ]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
