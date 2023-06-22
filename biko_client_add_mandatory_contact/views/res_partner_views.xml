@@ -104,4 +104,23 @@
             </form>
         </field>
     </record>
+
+    <!-- добавляю в фильтр по телефону неформатированный мобильный -->
+    <record id="biko_view_res_partner_filter_inherit" model="ir.ui.view">
+        <field name="name">BIKO: add search by non-formatted mobile</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="filter_domain">
+                    [
+                    '|', '|',
+                    ('phone', 'ilike', self),
+                    ('mobile', 'ilike', self),
+                    ('biko_mobile_compact', 'ilike', self),
+                    ]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
