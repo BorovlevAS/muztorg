@@ -1,14 +1,16 @@
 # monkeypatch - search partner by mobile
 import re
 
-from odoo import api, fields, models, _
+from odoo import api
 from odoo.addons.base.models.res_partner import Partner
 from odoo.osv.expression import get_unaccent_wrapper
 
 
 class BIKOPartner(Partner):
     @api.model
-    def _name_search(self, name, args=None, operator="ilike", limit=100, name_get_uid=None):
+    def _name_search(
+        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
         self = self.with_user(name_get_uid) if name_get_uid else self
         # as the implementation is in SQL, we force the recompute of fields if necessary
         self.recompute(["display_name"])
@@ -16,7 +18,13 @@ class BIKOPartner(Partner):
         if args is None:
             args = []
         order_by_rank = self.env.context.get("res_partner_search_mode")
-        if (name or order_by_rank) and operator in ("=", "ilike", "=ilike", "like", "=like"):
+        if (name or order_by_rank) and operator in (
+            "=",
+            "ilike",
+            "=ilike",
+            "like",
+            "=like",
+        ):
             self.check_access_rights("read")
             where_query = self._where_calc(args)
             self._apply_ir_rules(where_query, "read")
@@ -35,31 +43,39 @@ class BIKOPartner(Partner):
 
             fields = self._get_name_search_order_by_fields()
 
-            query = """SELECT res_partner.id
-                         FROM {from_str}
-                      {where} ({email} {operator} {percent}
-                           OR {display_name} {operator} {percent}
-                           OR {reference} {operator} {percent}
-                           OR {mobile} {operator} {percent}
-                           OR {vat} {operator} {percent})
-                           -- don't panic, trust postgres bitmap
-                     ORDER BY {fields} {display_name} {operator} {percent} desc,
-                              {display_name}
-                    """.format(
-                from_str=from_str,
-                fields=fields,
-                where=where_str,
-                operator=operator,
-                email=unaccent("res_partner.email"),
-                display_name=unaccent("res_partner.display_name"),
-                reference=unaccent("res_partner.ref"),
-                percent=unaccent("%s"),
-                vat=unaccent("res_partner.vat"),
-                mobile=unaccent("res_partner.biko_mobile_compact"),
+            # fmt: off
+            query = (  # nosec
+                """SELECT res_partner.id
+                    FROM {from_str}
+                {where} ({email} {operator} {percent}
+                    OR {display_name} {operator} {percent}
+                    OR {reference} {operator} {percent}
+                    OR {mobile} {operator} {percent}
+                    OR {vat} {operator} {percent})
+                    -- don't panic, trust postgres bitmap
+                ORDER BY {fields} {display_name} {operator} {percent} desc,
+                        {display_name}
+                """.format(
+                    from_str=from_str,
+                    fields=fields,
+                    where=where_str,
+                    operator=operator,
+                    email=unaccent("res_partner.email"),
+                    display_name=unaccent("res_partner.display_name"),
+                    reference=unaccent("res_partner.ref"),
+                    percent=unaccent("%s"),
+                    vat=unaccent("res_partner.vat"),
+                    mobile=unaccent("res_partner.biko_mobile_compact"),
+                )
             )
+            # fmt: on
 
-            where_clause_params += [search_name] * 4  # for email / display_name, reference, mobile
-            where_clause_params += [re.sub("[^a-zA-Z0-9\-\.]+", "", search_name) or None]  # for vat
+            where_clause_params += [
+                search_name
+            ] * 4  # for email / display_name, reference, mobile
+            where_clause_params += [
+                re.sub(r"[^a-zA-Z0-9\-\.]+", "", search_name) or None
+            ]  # for vat
             where_clause_params += [search_name]  # for order by
             if limit:
                 query += " limit %s"
@@ -67,7 +83,9 @@ class BIKOPartner(Partner):
             self.env.cr.execute(query, where_clause_params)
             return [row[0] for row in self.env.cr.fetchall()]
 
-        return super(Partner, self)._name_search(name, args, operator=operator, limit=limit, name_get_uid=name_get_uid)
+        return super(Partner, self)._name_search(
+            name, args, operator=operator, limit=limit, name_get_uid=name_get_uid
+        )
 
 
 Partner._name_search = BIKOPartner._name_search

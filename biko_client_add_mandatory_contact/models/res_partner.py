@@ -137,3 +137,14 @@ class Partner(models.Model):
                 rec.biko_mobile_compact = rec.mobile.replace(" ", "")
             else:
                 rec.biko_mobile_compact = False
+
+    def _get_name(self):
+        name = super()._get_name()
+        partner = self
+
+        if self._context.get("show_mobile"):
+            name = _("{name} - mob. {mobile}").format(
+                name=name, mobile=partner.mobile or ""
+            )
+
+        return name
