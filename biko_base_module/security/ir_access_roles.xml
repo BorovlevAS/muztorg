@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="category_biko_addon_main" model="ir.module.category">
         <field name="name">BIKO additional roles</field>
         <field name="sequence">100</field>
@@ -9,7 +8,11 @@
     <record id="category_biko_addon_roles" model="ir.module.category">
         <field name="name">BIKO Roles</field>
         <field name="sequence">300</field>
-        <field name="parent_id" ref="biko_base_module.category_biko_addon_main"/>
+        <field name="parent_id" ref="biko_base_module.category_biko_addon_main" />
     </record>
 
+    <record id="biko_group_show_special_fields" model="res.groups">
+        <field name="name">Show special fields</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
 </odoo>
