@@ -8,6 +8,7 @@
         "kw_account_partner_requisites",
         "sale",
         "sale_stock",
+        "biko_base_module",
     ],
     "data": [
         "views/res_partner_views.xml",

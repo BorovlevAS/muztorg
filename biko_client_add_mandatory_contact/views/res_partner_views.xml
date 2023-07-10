@@ -63,6 +63,10 @@
                     </group>
                 </page>
             </page>
+
+            <field name="category_id" position="after">
+                <field name="biko_1c_phone" group="biko_base_module.biko_group_show_special_fields" />
+            </field>
         </field>
     </record>
 

@@ -56,6 +56,8 @@ class Partner(models.Model):
         compute="_compute_biko_mobile_compact", store=True
     )
 
+    biko_1c_phone = fields.Char(string="1C phone")
+
     def _compute_is_filled_contact_person(self):
         for rec in self:
             rec.is_filled_contact_person = bool(rec.biko_contact_person_ids)
