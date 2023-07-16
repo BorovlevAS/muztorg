@@ -12,11 +12,11 @@
                         kg
                     </span>
                 </div>
-                <label for="np_shipping_volume" string="Weight for shipping" />
+                <label for="np_shipping_volume" string="General volume for shipping" />
                 <div>
                     <field name="np_shipping_volume" class="oe_inline" />
                     <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
-                        cm³
+                        m³
                     </span>
                 </div>
                 <field name="cost" />

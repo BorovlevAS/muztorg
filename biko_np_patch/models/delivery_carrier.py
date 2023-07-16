@@ -24,6 +24,8 @@ class ProviderNP(models.Model):
                 "recipient_city": picking.recipient_city.id
                 or picking.sale_id.partner_shipping_id.np_city.id,
                 "cost": picking.cost,
+                "weight": picking.np_shipping_weight,
+                "general_volume": picking.np_shipping_volume,
             }
             if picking.backward_money:
                 data.update(
