@@ -5,8 +5,20 @@
         <field name="inherit_id" ref="delivery_novaposhta.view_picking_inherit_form_np" />
         <field name="arch" type="xml">
             <field name="seats_amount" position="after">
-                <field name="np_shipping_weight" />
-                <field name="np_shipping_volume" />
+                <label for="np_shipping_weight" string="Weight for shipping" />
+                <div>
+                    <field name="np_shipping_weight" class="oe_inline" />
+                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
+                        kg
+                    </span>
+                </div>
+                <label for="np_shipping_volume" string="General volume for shipping" />
+                <div>
+                    <field name="np_shipping_volume" class="oe_inline" />
+                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
+                        m³
+                    </span>
+                </div>
                 <field name="cost" />
             </field>
             <field name="payer_type" position="attributes">
