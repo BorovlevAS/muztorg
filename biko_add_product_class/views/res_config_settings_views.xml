@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_vendor_code_uniue_config_settings_view" model="ir.ui.view">
+        <field name="name">BIKO: add settings for checking uniqueness of the vendor code</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='stock']" position="inside">
+                <h2 id="biko_settings">BIKO settings</h2>
+                <div class="row mt16 o_settings_container" name="vendor_code_uniq_setting">
+                    <div
+                        class="col-lg-6 o_setting_box"
+                        id="check_vendor_code_uniqueness"
+                        title="Enable checking vendor code uniqueness"
+                    >
+                        <div class="o_setting_left_pane">
+                            <field name="enable_vendor_code_uniq" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_vendor_code_uniq" />
+                            <div class="text-muted">Enable checking vendor code uniqueness</div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
