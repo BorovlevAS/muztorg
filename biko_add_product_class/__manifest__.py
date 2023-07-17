@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 {
     "name": "BIKO: Добавить класс товара",
-    "version": "14.0.1.1.5",
+    "version": "14.0.1.1.6",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": ["biko_base_module", "pim", "product"],
@@ -12,6 +11,7 @@
         "views/product_product_views.xml",
         "security/ir_access_roles.xml",
         "security/ir.model.access.csv",
+        "views/res_config_settings_views.xml",
         "data/crons.xml",
     ],
     "license": "LGPL-3",

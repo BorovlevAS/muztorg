@@ -1,4 +1,5 @@
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class ProductTemplate(models.Model):
@@ -26,17 +27,17 @@ class ProductTemplate(models.Model):
         string="Characteristics (rus)",
     )
 
-    biko_vendor_code = fields.Char(string="Vendor Code")
+    biko_vendor_code = fields.Char(string="Vendor Code", copy=False)
 
     _sql_constraints = [
         (
             "vendor_code_unique",
-            "unique(biko_vendor_code)",
+            "check(1=1)",
             _("Vendor code must be unique"),
         )
     ]
 
-    biko_control_code = fields.Char(string="Control code")
+    biko_control_code = fields.Char(string="Control code", copy=False)
 
     biko_length = fields.Integer(
         string="Length (cm)",
@@ -60,23 +61,36 @@ class ProductTemplate(models.Model):
         for rec in self:
             rec.volume = rec.biko_length * rec.biko_width * rec.biko_height
 
-    @api.model
-    def create(self, vals):
-        if not vals.get("biko_control_code", False):
-            vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
-                "biko.product.control.code"
-            )
+    @api.constrains("biko_vendor_code")
+    def check_vendor_code_uniq(self):
+        need_check = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("enable_vendor_code_uniq", default=False)
+        )
 
-        return super().create(vals)
+        if need_check:
+            for record in self:
+                Product = self.with_context(active_test=False).sudo()
+                domain = [("biko_vendor_code", "=", record.biko_vendor_code)]
+                product_id = record._origin.id
 
-    def write(self, vals):
-        for rec in self:
-            if ("biko_control_code" not in vals) and (not rec.biko_control_code):
-                vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
-                    "biko.product.control.code"
+                if product_id:
+                    domain += [("id", "!=", product_id)]
+
+                products_names = Product.search(domain).mapped("name")
+
+                if not products_names:
+                    continue
+
+                message = _("Products with Vendor Code {} is already exists\n").format(
+                    record.biko_vendor_code
                 )
 
-        return super().write(vals)
+                for name in products_names:
+                    message += name + "\n"
+
+                raise ValidationError(message)
 
     @api.model
     def _name_search(
@@ -108,6 +122,24 @@ class ProductTemplate(models.Model):
             )
 
         return product_ids
+
+    @api.model
+    def create(self, vals):
+        if not vals.get("biko_control_code", False):
+            vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
+                "biko.product.control.code"
+            )
+
+        return super().create(vals)
+
+    def write(self, vals):
+        for rec in self:
+            if ("biko_control_code" not in vals) and (not rec.biko_control_code):
+                vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
+                    "biko.product.control.code"
+                )
+
+        return super().write(vals)
 
     def _cron_check_product_confidential(self):
         items = self.search(
