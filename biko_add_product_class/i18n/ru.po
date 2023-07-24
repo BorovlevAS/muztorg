@@ -6,14 +6,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-30 21:30+0000\n"
-"PO-Revision-Date: 2023-01-30 21:30+0000\n"
+"POT-Creation-Date: 2023-07-17 16:39+0000\n"
+"PO-Revision-Date: 2023-07-17 19:47+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. module: biko_add_product_class
 #: model:ir.module.category,name:biko_add_product_class.category_biko_product_class
@@ -26,11 +29,46 @@ msgid "Administrator"
 msgstr "Администратор"
 
 #. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_master_karton
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_master_karton
+msgid "Amount in package"
+msgstr "Количество в упаковке"
+
+#. module: biko_add_product_class
+#: model_terms:ir.ui.view,arch_db:biko_add_product_class.product_vendor_code_uniue_config_settings_view
+msgid "BIKO settings"
+msgstr "BIKO: дополнительные настройки"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_character_rus
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_character_rus
+#: model_terms:ir.ui.view,arch_db:biko_add_product_class.biko_product_template_product_class
+msgid "Characteristics (rus)"
+msgstr "Характеристика (рус.)"
+
+#. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_character_ukr
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_character_ukr
 #: model_terms:ir.ui.view,arch_db:biko_add_product_class.biko_product_template_product_class
 msgid "Characteristics (ukr)"
 msgstr "Характеристика (укр)"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_confidential
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_confidential
+msgid "Confidential"
+msgstr "Конфиденциально"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_conf_date
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_conf_date
+msgid "Confidential date"
+msgstr "Дата снятия конфиденциальности"
+
+#. module: biko_add_product_class
+#: model:ir.model,name:biko_add_product_class.model_res_config_settings
+msgid "Config Settings"
+msgstr "Конфигурационные настройки"
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_control_code
@@ -62,19 +100,41 @@ msgstr "Created on"
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__display_name
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__display_name
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__display_name
+#: model:ir.model.fields,field_description:biko_add_product_class.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Display Name"
 
 #. module: biko_add_product_class
+#: model_terms:ir.ui.view,arch_db:biko_add_product_class.product_vendor_code_uniue_config_settings_view
+msgid "Enable checking vendor code uniqueness"
+msgstr "Включает проверку уникальности товара по артикулу поставщика"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_res_config_settings__enable_vendor_code_uniq
+msgid "Enable the uniqueness of Vendor Code field"
+msgstr "Включает проверку уникальности товара по артикулу поставщика"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_height
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_height
+msgid "Height (cm)"
+msgstr "Высота (см)"
+
+#. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__id
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__id
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__id
+#: model:ir.model.fields,field_description:biko_add_product_class.field_res_config_settings__id
 msgid "ID"
 msgstr "ID"
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class____last_update
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product____last_update
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template____last_update
+#: model:ir.model.fields,field_description:biko_add_product_class.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Last Modified on"
 
@@ -89,9 +149,28 @@ msgid "Last Updated on"
 msgstr "Last Updated on"
 
 #. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_length
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_length
+msgid "Length (cm)"
+msgstr "Длина (см)"
+
+#. module: biko_add_product_class
+#: model:ir.actions.server,name:biko_add_product_class.check_product_confidential_ir_actions_server
+#: model:ir.cron,cron_name:biko_add_product_class.check_product_confidential
+#: model:ir.cron,name:biko_add_product_class.check_product_confidential
+msgid "MT: confidential product check"
+msgstr "MT: проверка сроков снятия конфиденциальности товара"
+
+#. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__name
 msgid "Name"
 msgstr "Название"
+
+#. module: biko_add_product_class
+#: model:ir.model,name:biko_add_product_class.model_product_product
+#: model_terms:ir.ui.view,arch_db:biko_add_product_class.biko_product_search_form_view_mtd_1_17_inherited
+msgid "Product"
+msgstr "Продукт"
 
 #. module: biko_add_product_class
 #: model:ir.actions.act_window,name:biko_add_product_class.action_biko_product_class_tree
@@ -122,9 +201,33 @@ msgid "Product model"
 msgstr "Модель товара"
 
 #. module: biko_add_product_class
+#: code:addons/biko_add_product_class/models/product_template.py:0
+#, python-format
+msgid "Products with Vendor Code {} is already exists\n"
+msgstr "Товар с артикулом поставщика {} уже есть в базе\n"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,help:biko_add_product_class.field_product_product__biko_height
+#: model:ir.model.fields,help:biko_add_product_class.field_product_template__biko_height
+msgid "The cargo height (cm)"
+msgstr "Высота (см)"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,help:biko_add_product_class.field_product_product__biko_length
+#: model:ir.model.fields,help:biko_add_product_class.field_product_template__biko_length
+msgid "The cargo length (cm)"
+msgstr "Длина (см)"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,help:biko_add_product_class.field_product_product__biko_width
+#: model:ir.model.fields,help:biko_add_product_class.field_product_template__biko_width
+msgid "The cargo width (cm)"
+msgstr "Ширина (см)"
+
+#. module: biko_add_product_class
 #: model:res.groups,name:biko_add_product_class.biko_group_product_class_user
 msgid "User"
-msgstr "User"
+msgstr "Пользователь"
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_vendor_code
@@ -137,6 +240,21 @@ msgstr "Артикул поставщика"
 #, python-format
 msgid "Vendor code must be unique"
 msgstr "Товар с таким артикулом поставщика уже есть в базе"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,help:biko_add_product_class.field_res_config_settings__enable_vendor_code_uniq
+msgid ""
+"When this setting is set, when a user creates new product the system will "
+"check the uniqueness of the vendor code"
+msgstr ""
+"При установке этого параметра, когда пользователь создает новый товар, "
+"система будет проверять уникальность артикула поставщика"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_width
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_width
+msgid "Width (cm)"
+msgstr "Ширина (см)"
 
 #. module: biko_add_product_class
 #: model:ir.model,name:biko_add_product_class.model_biko_product_class

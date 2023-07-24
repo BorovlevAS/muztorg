@@ -1,0 +1,152 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* biko_np_patch
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-16 10:17+0000\n"
+"PO-Revision-Date: 2023-07-16 13:37+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#. module: biko_np_patch
+#: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
+msgid ""
+"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
+"                        kg\n"
+"                    </span>"
+msgstr ""
+"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
+"                        кг\n"
+"                    </span>"
+
+#. module: biko_np_patch
+#: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
+msgid ""
+"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
+"                        m³\n"
+"                    </span>"
+msgstr ""
+"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
+"                        м³\n"
+"                    </span>"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__comment
+msgid "Comment"
+msgstr "Коментар"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/TTN.py:0
+#, python-format
+msgid "Connection Error"
+msgstr "Помилка при з'єднанні з сервером"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__cost
+msgid "Cost"
+msgstr "Оголошена вартість"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
+#, python-format
+msgid "Cost not specified"
+msgstr "Не вказана вартість вантажу"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/TTN.py:0
+#, python-format
+msgid ""
+"Data was faulty!\n"
+"Data: {data}\n"
+"Response: {response}"
+msgstr ""
+"Помилка в даних!\n"
+"Дані: {data}\n"
+"Відповідь сервера НП: {response}"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/TTN.py:0
+#, python-format
+msgid ""
+"Data was faulty:\n"
+" {response}"
+msgstr ""
+"Помилка в даних:\n"
+" {response}"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier__display_name
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__display_name
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: biko_np_patch
+#: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
+msgid "General volume for shipping"
+msgstr "Об'єм вантажу"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier__id
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__id
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__id
+msgid "ID"
+msgstr "ID"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier____last_update
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn____last_update
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: biko_np_patch
+#: model:ir.model,name:biko_np_patch.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Методи доставки"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__np_shipping_volume
+msgid "Shipping Volume"
+msgstr "Об'єм"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__np_shipping_weight
+msgid "Shipping Weight"
+msgstr "Вага"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
+#, python-format
+msgid "Shipping volume not specified"
+msgstr "На вказан об'єм вантажу"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
+#, python-format
+msgid "Shipping weight not specified"
+msgstr "Не вказана вага вантажу"
+
+#. module: biko_np_patch
+#: model:ir.model,name:biko_np_patch.model_stock_picking
+msgid "Transfer"
+msgstr "Переміщення"
+
+#. module: biko_np_patch
+#: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
+msgid "Weight for shipping"
+msgstr "Вага вантажу"
+
+#. module: biko_np_patch
+#: model:ir.model,name:biko_np_patch.model_delivery_novaposhta_ttn
+msgid "delivery_novaposhta.ttn"
+msgstr "delivery_novaposhta.ttn"

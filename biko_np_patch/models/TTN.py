@@ -28,32 +28,36 @@ class NovaPoshtaTTN(models.Model):
                 if currency_uah != order_currency:
                     cost = currency_uah.compute(cost, order_currency)
                 record.cost = cost
-            if record.seats_amount > 0:
-                record.weight = (
-                    sum(
-                        [
-                            (line.product_id.weight * line.product_uom_qty)
-                            for line in order_line
-                        ]
-                    )
-                    or 0.0
-                )
-                record.general_volume = (
-                    sum(
-                        [
-                            (line.product_id.volume * line.product_uom_qty)
-                            for line in order_line
-                        ]
-                    )
-                    or 0.0
-                )
+            # removing caluculdating
+            # all fields we will fill from picking
+            # if record.seats_amount > 0:
+            #     if record.weight == 0:
+            #         record.weight = (
+            #             sum(
+            #                 [
+            #                     (line.product_id.weight * line.product_uom_qty)
+            #                     for line in order_line
+            #                 ]
+            #             )
+            #             or 0.0
+            #         )
+            #     if record.general_volume == 0:
+            #         record.general_volume = (
+            #             sum(
+            #                 [
+            #                     (line.product_id.volume * line.product_uom_qty)
+            #                     for line in order_line
+            #                 ]
+            #             )
+            #             or 0.0
+            #         )
             # recipient data
             record.recipient_type = record.order_to_deliver.partner_id.np_type
             if record.order_to_deliver.partner_id.np_type.ref == "Organization":
                 record.recipient_name_organization = record.order_to_deliver.partner_id
                 record.recipient_name = record.order_to_deliver.biko_recipient_id
             else:
-                record.recipient_name = record.order_to_deliver.partner_id
+                record.recipient_name = record.order_to_deliver.biko_recipient_id
             # salesperson
             record.salesperson = record.order_to_deliver.user_id
 

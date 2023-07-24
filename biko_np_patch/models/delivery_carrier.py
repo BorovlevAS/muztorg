@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class ProviderNP(models.Model):
@@ -6,6 +7,24 @@ class ProviderNP(models.Model):
 
     def np_send_shipping(self, pickings):
         for picking in pickings:
+            error_messages = []
+            error = False
+
+            if picking.cost == 0:
+                error_messages.append(_("Cost not specified"))
+                error = True
+
+            if picking.np_shipping_weight == 0:
+                error_messages.append(_("Shipping weight not specified"))
+                error = True
+
+            if picking.np_shipping_volume == 0:
+                error_messages.append(_("Shipping volume not specified"))
+                error = True
+
+            if error:
+                raise UserError("\n".join(error_messages))
+
             data = {
                 "name": picking.sale_id.name,
                 "order_to_deliver": picking.sale_id.id,
@@ -24,6 +43,8 @@ class ProviderNP(models.Model):
                 "recipient_city": picking.recipient_city.id
                 or picking.sale_id.partner_shipping_id.np_city.id,
                 "cost": picking.cost,
+                "weight": picking.np_shipping_weight,
+                "general_volume": picking.np_shipping_volume,
             }
             if picking.backward_money:
                 data.update(
