@@ -1,0 +1,55 @@
+<odoo>
+    <record id="custom_np_res_partner_main_form" model="ir.ui.view">
+        <field name="name">Custom Partner NP</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="delivery_novaposhta.custom_np_res_partner_main_form" />
+        <field name="arch" type="xml">
+            <field name="np_name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="np_ref" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="np_type" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="np_ownership" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <group name="main" position="inside">
+                <group>
+                    <field name="np_name" />
+                    <field name="np_ref" groups="base.group_no_one" />
+                    <field name="np_type" />
+                    <field name="np_ownership" attrs="{'invisible': [('is_company', '!=', True)]}" />
+                    <field name="np_delivery_address" />
+                    <field name="type" />
+                </group>
+                <newline />
+                <group attrs="{'invisible': ['|', ('np_delivery_address','=', False), ('type','!=','delivery')]}">
+                    <field name="np_service_type" attrs="{'required': [('np_delivery_address','=',True)]}" />
+                    <field
+                        name="np_city"
+                        attrs="{'required': [('np_delivery_address','=',True)]}"
+                        options="{'no_create_edit': True, 'no_open': True, 'no_create': True}"
+                    />
+                    <field
+                        name="np_warehouse"
+                        attrs="{'invisible': [('np_service_type','!=','Warehouse')], 'required': ['&amp;',('np_delivery_address','=',True),('np_service_type','=','Warehouse')]}"
+                        options="{'no_create_edit': True, 'no_open': True, 'no_create': True}"
+                    />
+                    <field
+                        name="np_street"
+                        attrs="{'invisible': [('np_service_type','!=','Doors')], 'required': ['&amp;',('np_delivery_address','=',True),('np_service_type','=','Doors')]}"
+                        options="{'no_create_edit': True, 'no_open': True, 'no_create': True}"
+                    />
+                    <field
+                        name="house"
+                        attrs="{'invisible': [('np_service_type','!=','Doors')], 'required': ['&amp;',('np_delivery_address','=',True),('np_service_type','=','Doors')]}"
+                    />
+                    <field name="flat" attrs="{'invisible': [('np_service_type','!=','Doors')]}" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
