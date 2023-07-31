@@ -150,3 +150,30 @@ msgstr "Вага вантажу"
 #: model:ir.model,name:biko_np_patch.model_delivery_novaposhta_ttn
 msgid "delivery_novaposhta.ttn"
 msgstr "delivery_novaposhta.ttn"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_id
+msgid "Recipient person"
+msgstr "Особа-одержувач"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_mobile
+msgid "Mobile"
+msgstr "Мобільний"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_1c_phone
+msgid "1C phone"
+msgstr "1C phone"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
+#, python-format
+msgid "Recipient person not specified"
+msgstr "На вказана особа-одержувач"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
+#, python-format
+msgid "Recipient person mobile not specified"
+msgstr "Мобільний телефон одержувача не вказано"

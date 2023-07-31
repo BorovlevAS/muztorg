@@ -22,6 +22,13 @@ class ProviderNP(models.Model):
                 error_messages.append(_("Shipping volume not specified"))
                 error = True
 
+            if not picking.biko_recipient_id:
+                error_messages.append(_("Recipient person not specified"))
+                error = True
+            elif not picking.biko_recipient_id.mobile:
+                error_messages.append(_("Recipient person mobile not specified"))
+                error = True
+
             if error:
                 raise UserError("\n".join(error_messages))
 
@@ -45,6 +52,7 @@ class ProviderNP(models.Model):
                 "cost": picking.cost,
                 "weight": picking.np_shipping_weight,
                 "general_volume": picking.np_shipping_volume,
+                "recipient_id": picking.biko_recipient_id.id,
             }
             if picking.backward_money:
                 data.update(

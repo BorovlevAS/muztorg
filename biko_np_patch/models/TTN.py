@@ -55,9 +55,10 @@ class NovaPoshtaTTN(models.Model):
             record.recipient_type = record.order_to_deliver.partner_id.np_type
             if record.order_to_deliver.partner_id.np_type.ref == "Organization":
                 record.recipient_name_organization = record.order_to_deliver.partner_id
-                record.recipient_name = record.order_to_deliver.biko_recipient_id
-            else:
-                record.recipient_name = record.order_to_deliver.biko_recipient_id
+                # record.recipient_name = record.order_to_deliver.biko_recipient_id
+            # else:
+            # record.recipient_name = record.order_to_deliver.biko_recipient_id
+            record.recipient_name = record.recipient_id
             # salesperson
             record.salesperson = record.order_to_deliver.user_id
 
