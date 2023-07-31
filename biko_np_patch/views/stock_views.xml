@@ -27,6 +27,11 @@
             <field name="backward_money_costs" position="after">
                 <field name="comment" />
             </field>
+            <field name="recipient_city" position="before">
+                <field name="biko_recipient_id" />
+                <field name="biko_recipient_mobile" />
+                <field name="biko_1c_phone" />
+            </field>
         </field>
     </record>
 </odoo>
