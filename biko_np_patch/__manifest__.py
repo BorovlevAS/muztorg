@@ -10,6 +10,7 @@
     "data": [
         "views/stock_views.xml",
         "views/res_partner_views.xml",
+        "views/ttn.xml",
     ],
     "license": "LGPL-3",
     "installable": True,
