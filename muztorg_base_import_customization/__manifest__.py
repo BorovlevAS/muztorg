@@ -4,6 +4,7 @@
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
+        "product",
         "base_import",
     ],
     "data": [],
