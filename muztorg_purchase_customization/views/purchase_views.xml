@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="muztorg_purchase_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">muztorg.purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase_stock.purchase_order_view_form_inherit" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="before">
+                <field
+                    name="picking_type_id"
+                    domain="[('code','=','incoming'), '|', ('warehouse_id', '=', False), ('warehouse_id.company_id', '=', company_id)]"
+                    options="{'no_create': True}"
+                    groups="stock.group_stock_multi_locations"
+                    position="move"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
