@@ -16,3 +16,19 @@ class CitiesList(models.Model):
             limit=limit,
             name_get_uid=name_get_uid,
         )
+
+    @api.model
+    def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
+        for record in domain:
+            if isinstance(record, list) and ("ilike" in record):
+                search_name = record[2] + ("%" if not record[2].endswith("%") else "")
+                record[2] = search_name
+                record[1] = "=ilike"
+
+        return super().search_read(
+            domain=domain,
+            fields=fields,
+            offset=offset,
+            limit=limit,
+            order=order,
+        )
