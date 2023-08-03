@@ -1,1 +1,1 @@
-from . import TTN, delivery_carrier, stock_picking
+from . import TTN, cities_list, delivery_carrier, stock_picking
