@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <record id="biko_TTN_tree" model="ir.ui.view">
+            <field name="name">BIKO:TTN tree</field>
+            <field name="model">delivery_novaposhta.ttn</field>
+            <field name="inherit_id" ref="delivery_novaposhta.TTN_tree" />
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="datetime" optional="hide" />
+                    <field name="recipient_name" optional="hide" />
+                    <field name="recipient_phone" optional="hide" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="biko_view_TTN_search" model="ir.ui.view">
+            <field name="name">BIKO:delivery_novaposhta.ttn.search</field>
+            <field name="model">delivery_novaposhta.ttn</field>
+            <field name="arch" type="xml">
+                <search string="TTNs">
+                    <field name="recipient_name" />
+                    <field name="recipient_phone" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>
