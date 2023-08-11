@@ -1,0 +1,189 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_base_import_customization
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-10 18:29+0000\n"
+"PO-Revision-Date: 2023-08-10 18:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_base_import_customization
+#: model:ir.model,name:muztorg_base_import_customization.model_base
+msgid "Base"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: model:ir.model,name:muztorg_base_import_customization.model_base_import_import
+msgid "Base Import"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid ""
+"Cannot create new '%s' records from their name alone. Please create those "
+"records manually and try importing again."
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_import.py:0
+#, python-format
+msgid "Control Code"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_import.py:0
+#: code:addons/muztorg_base_import_customization/models/base_import.py:0
+#, python-format
+msgid "Database ID"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: model:ir.model.fields,field_description:muztorg_base_import_customization.field_base_import_import__display_name
+#: model:ir.model.fields,field_description:muztorg_base_import_customization.field_ir_fields_converter__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_import.py:0
+#: code:addons/muztorg_base_import_customization/models/base_import.py:0
+#, python-format
+msgid "External ID"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: model:ir.model,name:muztorg_base_import_customization.model_ir_fields_converter
+msgid "Fields Converter"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_model.py:0
+#, python-format
+msgid ""
+"Found more than 10 errors and more than one error per 10 records, "
+"interrupted to avoid showing too many errors."
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_model.py:0
+#, python-format
+msgid "Found multiple matches for control code '%s' (%d matches)"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid "Found multiple matches for field '%%(field)s' (%d matches)"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: model:ir.model.fields,field_description:muztorg_base_import_customization.field_base_import_import__id
+#: model:ir.model.fields,field_description:muztorg_base_import_customization.field_ir_fields_converter__id
+msgid "ID"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid "Invalid database id '%s' for the field '%%(field)s'"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: model:ir.model.fields,field_description:muztorg_base_import_customization.field_base_import_import____last_update
+#: model:ir.model.fields,field_description:muztorg_base_import_customization.field_ir_fields_converter____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid ""
+"No matching record found for %(field_type)s '%(value)s' in field "
+"'%%(field)s'"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid ""
+"No matching record found for %(field_type)s '%(value)s' in field "
+"'%%(field)s' and the following error was encountered when we attempted to "
+"create one: %(error_message)s"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid ""
+"Product with control code '%s' was not found. Please create those records "
+"manually and try importing again."
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_model.py:0
+#, python-format
+msgid "Resolve other errors first"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid "See all possible values"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_model.py:0
+#, python-format
+msgid "Unknown database error: '%s'"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_model.py:0
+#, python-format
+msgid "Unknown database identifier '%s'"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/base_model.py:0
+#, python-format
+msgid "Unknown error during import:"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid "Unknown sub-field '%s'"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid "control code"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid "database id"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid "external id"
+msgstr ""
+
+#. module: muztorg_base_import_customization
+#: code:addons/muztorg_base_import_customization/models/ir_fields.py:0
+#, python-format
+msgid "name"
+msgstr ""

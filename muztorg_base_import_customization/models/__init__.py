@@ -1,1 +1,1 @@
-from . import base_import, product_template
+from . import base_import, base_model, ir_fields

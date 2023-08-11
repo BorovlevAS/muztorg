@@ -20,6 +20,7 @@ class Import(models.TransientModel):
                 "type": "id",
             }
         ]
+
         if not depth:
             return importable_fields
 
@@ -61,8 +62,8 @@ class Import(models.TransientModel):
                 if field["relation"] in ["product.template", "product.product"]:
                     field_value["fields"].append(
                         {
-                            "id": "control_code",
-                            "name": ".control_code",
+                            "id": ".biko_control_code",
+                            "name": ".biko_control_code",
                             "string": _("Control Code"),
                             "required": False,
                             "fields": [],
