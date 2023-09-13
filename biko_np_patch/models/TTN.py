@@ -1,10 +1,12 @@
-from odoo import _, models
+from odoo import _, fields, models
 from odoo.addons.delivery_novaposhta.models.utils import APIRequest
 from odoo.exceptions import ValidationError
 
 
 class NovaPoshtaTTN(models.Model):
     _inherit = "delivery_novaposhta.ttn"
+
+    recipient_id = fields.Many2one(comodel_name="res.partner")
 
     def _data_from_sale_order(self):
         """Получение данных с заказа продаж, что б ручкамине заполнять"""
