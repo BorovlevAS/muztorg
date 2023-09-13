@@ -10,12 +10,6 @@
                 <strong>Remainder</strong>
             </th>
         </xpath>
-        <!-- <xpath expr="//table[1]//tbody[1]//tr[1]//td[1]" position="before">
-            <span t-field="ml.product_id.biko_control_code"/>
-        </xpath>
-        <xpath expr="//table[1]//tbody[1]//tr[1]//td[3]" position="before">
-            <span t-field="ml.product_id.biko_control_code"/>
-        </xpath> -->
         <xpath expr="//t[@t-as='ml']//td[1]" position="before">
             <td>
                 <span t-field="ml.product_id.biko_control_code" />
