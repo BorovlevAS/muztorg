@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-16 10:40+0000\n"
-"PO-Revision-Date: 2023-07-16 10:40+0000\n"
+"POT-Creation-Date: 2023-09-14 10:56+0000\n"
+"PO-Revision-Date: 2023-09-14 10:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_1c_phone
+msgid "1C phone"
+msgstr ""
 
 #. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
@@ -29,6 +34,12 @@ msgid ""
 "<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
 "                        m³\n"
 "                    </span>"
+msgstr ""
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__afterpayment_check
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__afterpayment_check
+msgid "Afterpayment check"
 msgstr ""
 
 #. module: biko_np_patch
@@ -73,9 +84,16 @@ msgstr ""
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier__display_name
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_cities_list__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/TTN.py:0
+#, python-format
+msgid "Field phone is empty"
 msgstr ""
 
 #. module: biko_np_patch
@@ -85,6 +103,7 @@ msgstr ""
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier__id
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_cities_list__id
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__id
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__id
 msgid "ID"
@@ -92,9 +111,43 @@ msgstr ""
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier____last_update
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_cities_list____last_update
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn____last_update
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking____last_update
 msgid "Last Modified on"
+msgstr ""
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_mobile
+msgid "Mobile"
+msgstr ""
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/TTN.py:0
+#, python-format
+msgid "Pallets are bugged and not working"
+msgstr ""
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__recipient_id
+msgid "Recipient"
+msgstr ""
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_id
+msgid "Recipient person"
+msgstr ""
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
+#, python-format
+msgid "Recipient person mobile not specified"
+msgstr ""
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
+#, python-format
+msgid "Recipient person not specified"
 msgstr ""
 
 #. module: biko_np_patch
@@ -125,6 +178,11 @@ msgid "Shipping weight not specified"
 msgstr ""
 
 #. module: biko_np_patch
+#: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_TTN_search
+msgid "TTNs"
+msgstr ""
+
+#. module: biko_np_patch
 #: model:ir.model,name:biko_np_patch.model_stock_picking
 msgid "Transfer"
 msgstr ""
@@ -135,33 +193,11 @@ msgid "Weight for shipping"
 msgstr ""
 
 #. module: biko_np_patch
+#: model:ir.model,name:biko_np_patch.model_delivery_novaposhta_cities_list
+msgid "delivery_novaposhta.cities_list"
+msgstr ""
+
+#. module: biko_np_patch
 #: model:ir.model,name:biko_np_patch.model_delivery_novaposhta_ttn
 msgid "delivery_novaposhta.ttn"
-msgstr ""
-
-#. module: biko_np_patch
-#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_id
-msgid "Recipient person"
-msgstr ""
-
-#. module: biko_np_patch
-#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_mobile
-msgid "Mobile"
-msgstr ""
-
-#. module: biko_np_patch
-#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_1c_phone
-msgid "1C phone"
-msgstr ""
-
-#. module: biko_np_patch
-#: code:addons/biko_np_patch/models/delivery_carrier.py:0
-#, python-format
-msgid "Recipient person not specified"
-msgstr ""
-
-#. module: biko_np_patch
-#: code:addons/biko_np_patch/models/delivery_carrier.py:0
-#, python-format
-msgid "Recipient person mobile not specified"
 msgstr ""
