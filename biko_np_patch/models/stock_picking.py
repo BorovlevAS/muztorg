@@ -8,6 +8,7 @@ class StockPicking(models.Model):
     np_shipping_weight = fields.Float(string="Shipping Weight")
     np_shipping_volume = fields.Float(string="Shipping Volume", digits=(10, 4))
     comment = fields.Text(related="sale_id.note", string="Comment")
+    afterpayment_check = fields.Boolean(string="Afterpayment check", default=False)
 
     biko_recipient_id = fields.Many2one(
         "res.partner",

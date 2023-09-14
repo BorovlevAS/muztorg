@@ -25,6 +25,7 @@
                 <attribute name="invisible">0</attribute>
             </field>
             <field name="backward_money_costs" position="after">
+                <field name="afterpayment_check" attrs="{'invisible':[('backward_money', '=', False)]}" />
                 <field name="comment" />
             </field>
             <field name="recipient_city" position="before">
