@@ -24,9 +24,16 @@
             <field name="payer_type" position="attributes">
                 <attribute name="invisible">0</attribute>
             </field>
+            <field name="backward_money_costs" position="before">
+                <field name="afterpayment_check" />
+            </field>
             <field name="backward_money_costs" position="after">
-                <field name="afterpayment_check" attrs="{'invisible':[('backward_money', '=', False)]}" />
                 <field name="comment" />
+            </field>
+            <field name="backward_money_costs" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('backward_money', '=', False), ('afterpayment_check', '=', False)]}
+                </attribute>
             </field>
             <field name="recipient_city" position="before">
                 <field name="biko_recipient_id" />
