@@ -66,6 +66,7 @@ class ProviderNP(models.Model):
                 data.update(
                     {
                         "afterpayment_check": picking.afterpayment_check,
+                        "backward_money_costs": picking.backward_money_costs,
                     }
                 )
             if self.env["delivery_novaposhta.service_types"].browse(
