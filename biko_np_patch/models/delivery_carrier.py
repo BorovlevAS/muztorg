@@ -51,6 +51,9 @@ class ProviderNP(models.Model):
                 or picking.sale_id.partner_shipping_id.np_city.id,
                 "cost": picking.cost,
                 "weight": picking.np_shipping_weight,
+                "np_length": picking.np_length,
+                "np_width": picking.np_width,
+                "np_height": picking.np_height,
                 "general_volume": picking.np_shipping_volume,
                 "recipient_id": picking.biko_recipient_id.id,
             }
@@ -69,9 +72,13 @@ class ProviderNP(models.Model):
                         "backward_money_costs": picking.backward_money_costs,
                     }
                 )
-            if self.env["delivery_novaposhta.service_types"].browse(
-                data["service_type"]
-            ).ref in [
+
+            service_type = (
+                self.env["delivery_novaposhta.service_types"]
+                .browse(data["service_type"])
+                .ref
+            )
+            if service_type in [
                 "DoorsDoors",
                 "WarehouseDoors",
             ]:

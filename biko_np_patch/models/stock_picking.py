@@ -3,11 +3,24 @@ from odoo.exceptions import ValidationError
 
 
 class StockPicking(models.Model):
-    _inherit = "stock.picking"
+    _name = "stock.picking"
+    _inherit = ["stock.picking", "phone.validation.mixin"]
 
     cost = fields.Float(string="Cost")
     np_shipping_weight = fields.Float(string="Shipping Weight")
     np_shipping_volume = fields.Float(string="Shipping Volume", digits=(10, 4))
+    np_length = fields.Integer(
+        string="Length (cm)",
+        help="The cargo length (cm)",
+    )
+    np_width = fields.Integer(
+        string="Width (cm)",
+        help="The cargo width (cm)",
+    )
+    np_height = fields.Integer(
+        string="Height (cm)",
+        help="The cargo height (cm)",
+    )
     comment = fields.Text(related="sale_id.note", string="Comment")
     afterpayment_check = fields.Boolean(string="Afterpayment check", default=False)
 
@@ -34,6 +47,11 @@ class StockPicking(models.Model):
             if stock.sale_id:
                 sale_order = stock.sale_id
                 sale_order.update({"biko_recipient_id": stock.biko_recipient_id})
+
+    @api.onchange("biko_recipient_mobile")
+    def _onchange_phone_validation(self):
+        if self.biko_recipient_mobile:
+            self.biko_recipient_mobile = self.phone_format(self.biko_recipient_mobile)
 
     @api.depends("sale_id")
     def _compute_biko_recipient_id(self):
