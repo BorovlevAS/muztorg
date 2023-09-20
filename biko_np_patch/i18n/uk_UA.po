@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-14 10:57+0000\n"
-"PO-Revision-Date: 2023-09-14 13:58+0300\n"
+"POT-Creation-Date: 2023-09-20 21:47+0000\n"
+"PO-Revision-Date: 2023-09-21 00:54+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.3.2\n"
 
 #. module: biko_np_patch
@@ -24,25 +25,26 @@ msgstr "Телефон 1С"
 
 #. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
-msgid ""
-"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
-"                        kg\n"
-"                    </span>"
-msgstr ""
-"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
-"                        кг\n"
-"                    </span>"
+msgid "<span class=\"text-muted\">cm</span>"
+msgstr "<span class=\"text-muted\">см</span>"
 
 #. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
 msgid ""
-"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
-"                        m³\n"
-"                    </span>"
+"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" "
+"style=\"margin-left:5px\">kg</span>"
 msgstr ""
-"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" style=\"margin-left:5px\">\n"
-"                        м³\n"
-"                    </span>"
+"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" "
+"style=\"margin-left:5px\">кг</span>"
+
+#. module: biko_np_patch
+#: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
+msgid ""
+"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" "
+"style=\"margin-left:5px\">m³</span>"
+msgstr ""
+"<span name=\"shipping_volume_uom_name\" nolabel=\"1\" class=\"oe_inline\" "
+"style=\"margin-left:5px\">м³</span>"
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__afterpayment_check
@@ -95,6 +97,11 @@ msgstr ""
 " {response}"
 
 #. module: biko_np_patch
+#: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
+msgid "Dimensions"
+msgstr "Габарити"
+
+#. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_cities_list__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__display_name
@@ -106,12 +113,18 @@ msgstr "Відображувана назва"
 #: code:addons/biko_np_patch/models/TTN.py:0
 #, python-format
 msgid "Field phone is empty"
-msgstr "Field phone is empty"
+msgstr "Поле \"Телефон\" не заповнено"
 
 #. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
 msgid "General volume for shipping"
 msgstr "Об'єм вантажу"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__np_height
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__np_height
+msgid "Height (cm)"
+msgstr "Height (cm)"
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier__id
@@ -128,6 +141,12 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr "Останні зміни на"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__np_length
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__np_length
+msgid "Length (cm)"
+msgstr "Length (cm)"
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_mobile
@@ -195,6 +214,24 @@ msgid "TTNs"
 msgstr "TTNs"
 
 #. module: biko_np_patch
+#: model:ir.model.fields,help:biko_np_patch.field_delivery_novaposhta_ttn__np_height
+#: model:ir.model.fields,help:biko_np_patch.field_stock_picking__np_height
+msgid "The cargo height (cm)"
+msgstr "The cargo height (cm)"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,help:biko_np_patch.field_delivery_novaposhta_ttn__np_length
+#: model:ir.model.fields,help:biko_np_patch.field_stock_picking__np_length
+msgid "The cargo length (cm)"
+msgstr "The cargo length (cm)"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,help:biko_np_patch.field_delivery_novaposhta_ttn__np_width
+#: model:ir.model.fields,help:biko_np_patch.field_stock_picking__np_width
+msgid "The cargo width (cm)"
+msgstr "The cargo width (cm)"
+
+#. module: biko_np_patch
 #: model:ir.model,name:biko_np_patch.model_stock_picking
 msgid "Transfer"
 msgstr "Переміщення"
@@ -203,6 +240,18 @@ msgstr "Переміщення"
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
 msgid "Weight for shipping"
 msgstr "Вага вантажу"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__np_width
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__np_width
+msgid "Width (cm)"
+msgstr "Width (cm)"
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/stock_picking.py:0
+#, python-format
+msgid "You can choose only single option, \"Backward\" or \"After payment\"."
+msgstr "Можна обрати або \"Накладений платіж\", або \"Контроль оплати\""
 
 #. module: biko_np_patch
 #: model:ir.model,name:biko_np_patch.model_delivery_novaposhta_cities_list
