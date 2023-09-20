@@ -9,6 +9,18 @@ class NovaPoshtaTTN(models.Model):
 
     recipient_id = fields.Many2one(comodel_name="res.partner")
     afterpayment_check = fields.Boolean(string="Afterpayment check", default=False)
+    np_length = fields.Integer(
+        string="Length (cm)",
+        help="The cargo length (cm)",
+    )
+    np_width = fields.Integer(
+        string="Width (cm)",
+        help="The cargo width (cm)",
+    )
+    np_height = fields.Integer(
+        string="Height (cm)",
+        help="The cargo height (cm)",
+    )
 
     def _data_from_sale_order(self):
         """Получение данных с заказа продаж, что б ручкамине заполнять"""
@@ -285,5 +297,21 @@ class NovaPoshtaTTN(models.Model):
                         "RecipientCityName": record.recipient_city.name,
                     }
                 )
+
+        if record.service_type.ref == "WarehousePostomat":
+            data["methodProperties"].update(
+                {
+                    "NewAddress": "0",
+                    "OptionsSeat": [
+                        {
+                            "volumetricVolume": record.general_volume,
+                            "volumetricWidth": record.np_width,
+                            "volumetricLength": record.np_length,
+                            "volumetricHeight": record.np_height,
+                            "weight": record.weight,
+                        }
+                    ],
+                }
+            )
 
         return record.send_ttn(data)

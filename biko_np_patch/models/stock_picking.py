@@ -9,6 +9,18 @@ class StockPicking(models.Model):
     cost = fields.Float(string="Cost")
     np_shipping_weight = fields.Float(string="Shipping Weight")
     np_shipping_volume = fields.Float(string="Shipping Volume", digits=(10, 4))
+    np_length = fields.Integer(
+        string="Length (cm)",
+        help="The cargo length (cm)",
+    )
+    np_width = fields.Integer(
+        string="Width (cm)",
+        help="The cargo width (cm)",
+    )
+    np_height = fields.Integer(
+        string="Height (cm)",
+        help="The cargo height (cm)",
+    )
     comment = fields.Text(related="sale_id.note", string="Comment")
     afterpayment_check = fields.Boolean(string="Afterpayment check", default=False)
 

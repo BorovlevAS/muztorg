@@ -8,16 +8,21 @@
                 <label for="np_shipping_weight" string="Weight for shipping" />
                 <div>
                     <field name="np_shipping_weight" class="oe_inline" />
-                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
-                        kg
-                    </span>
+                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">kg</span>
+                </div>
+                <label for="np_length" string="Dimensions" />
+                <div class="o_row" name="np_dimensions">
+                    <field name="np_length" />
+                    <span class="text-muted">x</span>
+                    <field name="np_width" />
+                    <span class="text-muted">x</span>
+                    <field name="np_height" />
+                    <span class="text-muted">cm</span>
                 </div>
                 <label for="np_shipping_volume" string="General volume for shipping" />
                 <div>
                     <field name="np_shipping_volume" class="oe_inline" />
-                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
-                        m³
-                    </span>
+                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">m³</span>
                 </div>
                 <field name="cost" />
             </field>
@@ -31,14 +36,33 @@
                 <field name="comment" />
             </field>
             <field name="backward_money_costs" position="attributes">
-                <attribute name="attrs">
-                    {'invisible': [('backward_money', '=', False), ('afterpayment_check', '=', False)]}
-                </attribute>
+                <attribute name="attrs">{'invisible': [('backward_money', '=', False), ('afterpayment_check', '=', False)]}</attribute>
             </field>
             <field name="recipient_city" position="before">
                 <field name="biko_recipient_id" />
                 <field name="biko_recipient_mobile" />
                 <field name="biko_1c_phone" />
+            </field>
+            <field name="recipient_house" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('service_type_ref', 'in', ('DoorsWarehouse', 'WarehouseWarehouse', 'WarehousePostomat'))]}
+                </attribute>
+            </field>
+
+            <field name="recipient_flat" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('service_type_ref', 'in', ('DoorsWarehouse', 'WarehouseWarehouse', 'WarehousePostomat'))]}
+                </attribute>
+            </field>
+            <field name="streets" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('service_type_ref', 'in', ('DoorsWarehouse', 'WarehouseWarehouse', 'WarehousePostomat'))]}
+                </attribute>
+            </field>
+            <field name="recipient_warehouse" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': [('service_type_ref', 'not in', ('DoorsWarehouse', 'WarehouseWarehouse', 'WarehousePostomat'))]}
+                </attribute>
             </field>
         </field>
     </record>
