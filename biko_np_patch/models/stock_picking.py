@@ -1,4 +1,5 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class StockPicking(models.Model):
@@ -8,6 +9,7 @@ class StockPicking(models.Model):
     np_shipping_weight = fields.Float(string="Shipping Weight")
     np_shipping_volume = fields.Float(string="Shipping Volume", digits=(10, 4))
     comment = fields.Text(related="sale_id.note", string="Comment")
+    afterpayment_check = fields.Boolean(string="Afterpayment check", default=False)
 
     biko_recipient_id = fields.Many2one(
         "res.partner",
@@ -37,3 +39,14 @@ class StockPicking(models.Model):
     def _compute_biko_recipient_id(self):
         for stock in self:
             stock.update({"biko_recipient_id": stock.sale_id.biko_recipient_id})
+
+    @api.constrains("afterpayment_check", "backward_money")
+    def _check_backward(self):
+        for data in self:
+            if data.backward_money and data.afterpayment_check:
+                raise ValidationError(
+                    _(
+                        "You can choose only single option, "
+                        '"Backward" or "After payment".'
+                    )
+                )
