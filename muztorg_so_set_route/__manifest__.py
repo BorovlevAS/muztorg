@@ -6,6 +6,7 @@
     "depends": [
         "stock",
         "sale",
+        "delivery",
     ],
     "data": [
         "views/stock_views.xml",
