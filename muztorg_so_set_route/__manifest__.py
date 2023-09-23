@@ -6,10 +6,11 @@
     "depends": [
         "stock",
         "sale",
+        "delivery",
     ],
     "data": [
         "views/stock_views.xml",
-        ],
+    ],
     "license": "LGPL-3",
     "installable": True,
     "application": True,
