@@ -56,6 +56,7 @@ class ProviderNP(models.Model):
                 "np_height": picking.np_height,
                 "general_volume": picking.np_shipping_volume,
                 "recipient_id": picking.biko_recipient_id.id,
+                "biko_dropshipping": picking.biko_dropshipping,
             }
             if picking.backward_money:
                 data.update(

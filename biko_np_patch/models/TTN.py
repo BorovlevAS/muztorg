@@ -22,6 +22,8 @@ class NovaPoshtaTTN(models.Model):
         help="The cargo height (cm)",
     )
 
+    biko_dropshipping = fields.Boolean(string="Dropshipping")
+
     def _data_from_sale_order(self):
         """Получение данных с заказа продаж, что б ручкамине заполнять"""
 
@@ -233,7 +235,7 @@ class NovaPoshtaTTN(models.Model):
         elif record.cargo_type.ref == "Pallet":
             raise ValidationError(_("Pallets are bugged and not working"))
 
-        if record.recipient_type.ref == "Organization":
+        if record.recipient_type.ref == "Organization" and not record.biko_dropshipping:
             # "Отправка организации и ее контакному лицу"
 
             organization_ref, contact_person_ref = record.add_organization()
