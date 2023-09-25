@@ -42,6 +42,8 @@ class StockPicking(models.Model):
         related="biko_recipient_id.biko_1c_phone",
     )
 
+    biko_dropshipping = fields.Boolean(string="Dropshipping")
+
     def _inverse_biko_recipient_id(self):
         for stock in self:
             if stock.sale_id:
