@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 21:47+0000\n"
-"PO-Revision-Date: 2023-09-21 00:49+0300\n"
+"POT-Creation-Date: 2023-09-25 12:12+0000\n"
+"PO-Revision-Date: 2023-09-25 15:13+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -21,7 +21,7 @@ msgstr ""
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_1c_phone
 msgid "1C phone"
-msgstr "1C phone"
+msgstr "Телефон 1С"
 
 #. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
@@ -110,10 +110,16 @@ msgid "Display Name"
 msgstr "Отображаемое название"
 
 #. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__biko_dropshipping
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_dropshipping
+msgid "Dropshipping"
+msgstr "Дропшиппинг"
+
+#. module: biko_np_patch
 #: code:addons/biko_np_patch/models/TTN.py:0
 #, python-format
 msgid "Field phone is empty"
-msgstr "Field phone is empty"
+msgstr "Поле \"Телефон\" не заполнено"
 
 #. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
