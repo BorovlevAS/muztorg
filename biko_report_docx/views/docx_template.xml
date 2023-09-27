@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2019 Ecosoft Co., Ltd.
+  License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).-->
+<odoo>
+    <record id="view_biko_docx_template_tree" model="ir.ui.view">
+        <field name="model">biko.docx.template</field>
+        <field name="arch" type="xml">
+            <tree string="Docx Template">
+                <field name="name" />
+                <field name="is_report_action" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="biko_docx_template_view" model="ir.ui.view">
+        <field name="name">biko.docx.template</field>
+        <field name="model">biko.docx.template</field>
+        <field name="arch" type="xml">
+            <form string="Get Template" create='false'>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="add_report_menu"
+                            string="Add Report Menu"
+                            type="object"
+                            icon="fa-plus-square"
+                            help="Add new report menu at root level"
+                            class="oe_stat_button"
+                            attrs="{'invisible': [('is_report_action','=', True)]}"
+                        />
+                        <button
+                            name="remove_report_menu"
+                            string="Remove Report Menu"
+                            type="object"
+                            icon="fa-minus-square"
+                            class="oe_stat_button"
+                            attrs="{'invisible': [('is_report_action','=', False)]}"
+                        />
+                    </div>
+                    <h1>
+                        <field name="name" colspan="3" />
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="fname" invisible="1" />
+                            <field name="datas" filename="fname" />
+                        </group>
+                        <!-- <group>
+                            <field name="fname_stamp" invisible="1" />
+                            <field name="datas_stamp" filename="fname_stamp" />
+                        </group> -->
+                        <group>
+                            <field name="is_report_action" invisible="1" />
+                            <field name="report_name" />
+                            <field name="res_model" />
+                        </group>
+                    </group>
+                </sheet>
+
+                <!-- <group>
+                    <group>
+                        <field name="file" widget="selection" />
+                        <field name="report_model" />
+                    </group>
+                </group>
+                <div class="form-group">
+                    <label
+                        class="col-md-3 col-sm-4 control-label"
+                        for="file"
+                    >Add Attachments</label>
+                    <div class="col-md-7 col-sm-8">
+                        <div class="btn btn-default btn-file col-md-12">
+                            <input
+                                class="form-control o_website_form_input"
+                                name="file"
+                                id="file"
+                                type="file"
+                                multiple="multiple"
+                            />
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div states="get">
+                    <h2>Complete Prepare File (.xlsx)</h2>
+                    <p>Here is the exported file: <field
+                            name="data"
+                            readonly="1"
+                            filename="name"
+                        /></p>
+                </div> -->
+                <!-- <footer states="choose">
+                  <button
+                        name="action_export"
+                        string="Export"
+                        type="object"
+                        class="oe_highlight"
+                    /> or
+                  <button
+                        special="cancel"
+                        string="Cancel"
+                        type="object"
+                        class="oe_link"
+                    />
+              </footer> -->
+                <!-- <footer states="get">
+                    <button special="cancel" string="Close" type="object" />
+                </footer> -->
+            </form>
+        </field>
+    </record>
+
+    <record id="biko_docx_template_action_view_tree" model="ir.actions.act_window">
+        <field name="name">Templates for Docx</field>
+        <field name="res_model">biko.docx.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="biko_menu_settings_template_docx"
+        name="Templates  for Docx"
+        parent="base.menu_custom"
+        sequence="1"
+    />
+    <menuitem
+        id="biko_menu_docx_template"
+        name="Templates"
+        parent="biko_menu_settings_template_docx"
+        action="biko_docx_template_action_view_tree"
+        sequence="100"
+    />
+</odoo>
