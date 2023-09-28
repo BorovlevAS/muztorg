@@ -55,3 +55,11 @@ class DocxTemplate(models.Model):
             self.report_action_id.unlink()
 
         self.is_report_action = False
+
+    # Обработчик, который будет вызываться при удалении записи
+    # @api.ondelete(at="cascade")
+    # def _on_delete(self):
+    #     # Ваша логика перед удалением записи
+    #     self.env["ir.actions.report"].search(
+    #         [("id", "=", self.report_action_id)]
+    #     ).unlink()

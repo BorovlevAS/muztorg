@@ -6,8 +6,10 @@ import os
 import tempfile
 from io import BytesIO
 
+import babel
 from docxtpl import DocxTemplate
-from odoo import api, models
+from odoo import _, api, models, tools
+from odoo.exceptions import UserError
 
 
 def format_date(env, date, pattern=False, lang_code=False):
@@ -73,7 +75,11 @@ class ReportDocxAbstract(models.AbstractModel):
         else:
             # template_path= f"{path}/static/template/{report_template.fname}"
             # dic['is_template'] = False
-            raise UserError(_("%s template was not found") % report_template.name)
+            raise UserError(
+                _("{report_name} template was not found").format(
+                    report_name=report_template.name
+                )
+            )
 
         # context_leads = self.generate_docx_report(data, objs)
         context_leads = {
