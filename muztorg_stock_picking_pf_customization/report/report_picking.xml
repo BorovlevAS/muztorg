@@ -10,6 +10,7 @@
                 <strong>Remainder</strong>
             </th>
         </xpath>
+
         <xpath expr="//t[@t-as='ml']//td[1]" position="before">
             <td>
                 <span t-field="ml.product_id.biko_control_code" />
@@ -26,18 +27,14 @@
             </td>
         </xpath>
 
-        <!-- <xpath>
+        <xpath expr="//th[@name='th_from']" position="replace" />
+        <xpath expr="//th[@name='th_to']" position="replace" />
+        <xpath expr="//th[@name='th_serial_number']" position="replace" />
+        <xpath expr="//th[@name='th_barcode']" position="replace" />
 
-            <div t-if="o.picking_type_id.code == 'outgoing' and o.carrier_id" class="col-auto">
-                <strong>Carrier:</strong>
-                <p t-field="o.carrier_id"/>
-            </div>
-            <div t-if="o.weight" class="col-auto">
-                <strong>Weight:</strong>
-                <br/>
-                <span t-field="o.weight"/>
-                <span t-field="o.weight_uom_name"/>
-            </div>
-        </xpath> -->
+        <xpath expr="//t[@t-as='ml']//td[8]" position="replace" />
+        <xpath expr="//t[@t-as='ml']//td[7]" position="replace" />
+        <xpath expr="//t[@t-as='ml']//td[6]" position="replace" />
+        <xpath expr="//t[@t-as='ml']//td[5]" position="replace" />
     </template>
 </odoo>
