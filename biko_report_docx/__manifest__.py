@@ -17,5 +17,6 @@
     "external_dependencies": {
         "python": ["docxtpl"],
     },
+    "uninstall_hook": "remove_ir_actions_report",
     "installable": True,
 }

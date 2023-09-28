@@ -14,16 +14,13 @@ class DocxTemplate(models.Model):
     fname = fields.Char(string="File Name")
     datas = fields.Binary(string="File Content")
 
-    # file = fields.Binary(string="File")
     report_action_id = fields.Many2one(
         comodel_name="ir.actions.report",
         string="Report Action",
-        # ondelete="cascade"
     )
     is_report_action = fields.Boolean()
 
     report_name = fields.Char()
-    # with_stamp = fields.Boolean()
 
     def add_report_menu(self):
         self.ensure_one()
@@ -55,11 +52,3 @@ class DocxTemplate(models.Model):
             self.report_action_id.unlink()
 
         self.is_report_action = False
-
-    # Обработчик, который будет вызываться при удалении записи
-    # @api.ondelete(at="cascade")
-    # def _on_delete(self):
-    #     # Ваша логика перед удалением записи
-    #     self.env["ir.actions.report"].search(
-    #         [("id", "=", self.report_action_id)]
-    #     ).unlink()

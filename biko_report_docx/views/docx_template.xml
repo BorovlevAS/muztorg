@@ -46,10 +46,6 @@
                             <field name="fname" invisible="1" />
                             <field name="datas" filename="fname" />
                         </group>
-                        <!-- <group>
-                            <field name="fname_stamp" invisible="1" />
-                            <field name="datas_stamp" filename="fname_stamp" />
-                        </group> -->
                         <group>
                             <field name="is_report_action" invisible="1" />
                             <field name="report_name" />
@@ -57,55 +53,6 @@
                         </group>
                     </group>
                 </sheet>
-
-                <!-- <group>
-                    <group>
-                        <field name="file" widget="selection" />
-                        <field name="report_model" />
-                    </group>
-                </group>
-                <div class="form-group">
-                    <label
-                        class="col-md-3 col-sm-4 control-label"
-                        for="file"
-                    >Add Attachments</label>
-                    <div class="col-md-7 col-sm-8">
-                        <div class="btn btn-default btn-file col-md-12">
-                            <input
-                                class="form-control o_website_form_input"
-                                name="file"
-                                id="file"
-                                type="file"
-                                multiple="multiple"
-                            />
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div states="get">
-                    <h2>Complete Prepare File (.xlsx)</h2>
-                    <p>Here is the exported file: <field
-                            name="data"
-                            readonly="1"
-                            filename="name"
-                        /></p>
-                </div> -->
-                <!-- <footer states="choose">
-                  <button
-                        name="action_export"
-                        string="Export"
-                        type="object"
-                        class="oe_highlight"
-                    /> or
-                  <button
-                        special="cancel"
-                        string="Cancel"
-                        type="object"
-                        class="oe_link"
-                    />
-              </footer> -->
-                <!-- <footer states="get">
-                    <button special="cancel" string="Close" type="object" />
-                </footer> -->
             </form>
         </field>
     </record>

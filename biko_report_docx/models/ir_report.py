@@ -13,19 +13,10 @@ class ReportAction(models.Model):
 
     @api.model
     def _render_docx(self, docids, data):
-        # report_model_name = "report.%s" % self.report_name
-        # report_model = self.env.get(report_model_name)
         report_model = self.env.get("report.report_docx.abstract")
         report_template = self.env["biko.docx.template"].search(
             [("report_action_id", "=", self.id)]
         )
-        # if report_model is None:
-        #     raise UserError(_("%s model was not found") % report_model_name)
-        # return (
-        #     report_model.with_context(active_model=self.model)
-        #     .sudo(False)
-        #     .create_docx_report(docids, data)  # noqa
-        # )
         return (
             report_model.with_context(active_model=self.model)
             .sudo(False)
@@ -44,4 +35,4 @@ class ReportAction(models.Model):
             ("report_name", "=", report_name),
         ]
         context = self.env["res.users"].context_get()
-        return report_obj.with_context(context).search(conditions, limit=1)
+        return report_obj.with_context(**context).search(conditions, limit=1)

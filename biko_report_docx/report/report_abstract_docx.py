@@ -8,7 +8,7 @@ from io import BytesIO
 
 import babel
 from docxtpl import DocxTemplate
-from odoo import _, api, models, tools
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import UserError
 
 
@@ -58,30 +58,21 @@ class ReportDocxAbstract(models.AbstractModel):
     def create_docx_report(self, docids, data, report_template):
         objs = self._get_objs_for_report(docids, data)
 
-        # path = os.path.dirname(__file__).split("/")[0:-1]
-        # path = "/".join(path)
         if report_template.datas:
             template_path = os.path.join(
                 tempfile.gettempdir(), report_template.report_name + ".docx"
             )
-            # fdata = decoded_data = base64.b64decode(report_template.datas)
             fdata = base64.b64decode(report_template.datas)
             with open(template_path, "wb") as f:
                 f.write(fdata)
                 f.close()
-            # dic['path'] = template_path
-            # dic['is_template'] = True
-
         else:
-            # template_path= f"{path}/static/template/{report_template.fname}"
-            # dic['is_template'] = False
             raise UserError(
                 _("{report_name} template was not found").format(
                     report_name=report_template.name
                 )
             )
 
-        # context_leads = self.generate_docx_report(data, objs)
         context_leads = {
             "format_date": lambda date, date_format=False, lang_code=False: format_date(
                 self.env, date, date_format, lang_code
@@ -97,6 +88,22 @@ class ReportDocxAbstract(models.AbstractModel):
             "ctx": self._context,
         }
         context_leads["object"] = objs
+        context_leads["current_date"] = context_leads["format_date"](
+            fields.Date.context_today(objs)
+        )
+
+        # nom = 0
+        # products = []
+        # for str in objs.lead_product_ids:
+        #     nom += 1
+        #     products.append({
+        #         'nom': nom,
+        #         'product_id': str.product_id.with_context(lang='uk_UA').name,
+        #         'qty': str.qty,
+        #         'product_uom': str.product_uom.with_context(lang='uk_UA').name,
+        #         'price_unit': str.price_unit,
+        #         # 'biko_price_subtotal': str.biko_price_total,
+        #     })
 
         # template_path = context_leads["path"]
 
@@ -105,7 +112,6 @@ class ReportDocxAbstract(models.AbstractModel):
         doc.render(context_leads)
 
         # Удаление временных файлов
-        # if context_leads['is_template']:
         os.remove(template_path)
 
         doc_buffer = BytesIO()

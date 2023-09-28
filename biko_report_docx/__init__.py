@@ -3,3 +3,4 @@
 from . import controllers
 from . import models
 from . import report
+from .hooks import remove_ir_actions_report
