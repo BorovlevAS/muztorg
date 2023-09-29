@@ -44,6 +44,14 @@ class StockPicking(models.Model):
 
     biko_dropshipping = fields.Boolean(string="Dropshipping")
 
+    biko_carrier_id = fields.Many2one(
+        "delivery.carrier",
+        string="Delivery carrier",
+        # store=True,
+        readonly=True,
+        related="sale_id.carrier_id",
+    )
+
     def _inverse_biko_recipient_id(self):
         for stock in self:
             if stock.sale_id:

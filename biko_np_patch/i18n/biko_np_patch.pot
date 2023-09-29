@@ -257,3 +257,8 @@ msgstr ""
 #: model:ir.model,name:biko_np_patch.model_delivery_novaposhta_ttn
 msgid "delivery_novaposhta.ttn"
 msgstr ""
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_carrier_id
+msgid "Delivery carrier"
+msgstr ""

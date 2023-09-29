@@ -8,7 +8,9 @@
                 <label for="np_shipping_weight" string="Weight for shipping" />
                 <div>
                     <field name="np_shipping_weight" class="oe_inline" />
-                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">kg</span>
+                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
+                        kg
+                    </span>
                 </div>
                 <label for="np_length" string="Dimensions" />
                 <div class="o_row" name="np_dimensions">
@@ -22,7 +24,9 @@
                 <label for="np_shipping_volume" string="General volume for shipping" />
                 <div>
                     <field name="np_shipping_volume" class="oe_inline" />
-                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">m³</span>
+                    <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
+                        m³
+                    </span>
                 </div>
                 <field name="cost" />
             </field>
@@ -36,7 +40,9 @@
                 <field name="comment" />
             </field>
             <field name="backward_money_costs" position="attributes">
-                <attribute name="attrs">{'invisible': [('backward_money', '=', False), ('afterpayment_check', '=', False)]}</attribute>
+                <attribute name="attrs">
+                    {'invisible': [('backward_money', '=', False), ('afterpayment_check', '=', False)]}
+                </attribute>
             </field>
             <field name="recipient_city" position="before">
                 <field name="biko_dropshipping" />
@@ -62,9 +68,21 @@
             </field>
             <field name="recipient_warehouse" position="attributes">
                 <attribute name="attrs">
-                    {'invisible': [('service_type_ref', 'not in', ('DoorsWarehouse', 'WarehouseWarehouse', 'WarehousePostomat'))]}
+                    {'invisible':
+                        [('service_type_ref', 'not in', ('DoorsWarehouse', 'WarehouseWarehouse', 'WarehousePostomat'))]
+                    }
                 </attribute>
             </field>
+        </field>
+    </record>
+
+    <record id="biko_view_picking_inherit_tree_np" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='carrier_tracking_ref']" position="after">
+                <field name="biko_carrier_id" optional="hide" />
+            </xpath>
         </field>
     </record>
 </odoo>
