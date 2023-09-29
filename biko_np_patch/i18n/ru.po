@@ -272,4 +272,4 @@ msgstr "delivery_novaposhta.ttn"
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_carrier_id
 msgid "Delivery carrier"
-msgstr "Перевозчик"
+msgstr "Способ доставки"
