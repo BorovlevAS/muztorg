@@ -6,7 +6,7 @@ class StockPicking(models.Model):
     _name = "stock.picking"
     _inherit = ["stock.picking", "phone.validation.mixin"]
 
-    cost = fields.Float(string="Cost")
+    cost = fields.Float(string="Cost", default=1000)
     np_shipping_weight = fields.Float(string="Shipping Weight")
     np_shipping_volume = fields.Float(string="Shipping Volume", digits=(10, 4))
     np_length = fields.Integer(
