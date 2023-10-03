@@ -5,15 +5,34 @@
         <field name="inherit_id" ref="delivery_novaposhta.view_picking_inherit_form_np" />
         <field name="arch" type="xml">
             <field name="seats_amount" position="after">
-                <label for="np_shipping_weight" string="Weight for shipping" />
-                <div>
+                <!-- <button
+                    name="%(action_stock_seats_wizard)d"
+                    type="action"
+                    string="Set seats weight"
+                    context="{'default_stock_picking_id': active_id}"
+                /> -->
+                <field name="picking_seats_ids" mode="tree" attrs="{'invisible': [('seats_amount', '&lt;', 2)]}">
+                    <tree create="0" delete="0" editable="bottom">
+                        <field name="np_shipping_weight" />
+                        <field name="np_length" />
+                        <field name="np_width" />
+                        <field name="np_height" />
+                        <field name="np_shipping_volume" />
+                    </tree>
+                </field>
+                <label
+                    for="np_shipping_weight"
+                    string="Weight for shipping"
+                    attrs="{'invisible': [('seats_amount', '&gt;', 1)]}"
+                />
+                <div attrs="{'invisible': [('seats_amount', '&gt;', 1)]}">
                     <field name="np_shipping_weight" class="oe_inline" />
                     <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
                         kg
                     </span>
                 </div>
-                <label for="np_length" string="Dimensions" />
-                <div class="o_row" name="np_dimensions">
+                <label for="np_length" string="Dimensions" attrs="{'invisible': [('seats_amount', '&gt;', 1)]}" />
+                <div class="o_row" name="np_dimensions" attrs="{'invisible': [('seats_amount', '&gt;', 1)]}">
                     <field name="np_length" />
                     <span class="text-muted">x</span>
                     <field name="np_width" />
@@ -21,8 +40,12 @@
                     <field name="np_height" />
                     <span class="text-muted">cm</span>
                 </div>
-                <label for="np_shipping_volume" string="General volume for shipping" />
-                <div>
+                <label
+                    for="np_shipping_volume"
+                    string="General volume for shipping"
+                    attrs="{'invisible': [('seats_amount', '&gt;', 1)]}"
+                />
+                <div attrs="{'invisible': [('seats_amount', '&gt;', 1)]}">
                     <field name="np_shipping_volume" class="oe_inline" />
                     <span name="shipping_volume_uom_name" nolabel="1" class="oe_inline" style="margin-left:5px">
                         m³

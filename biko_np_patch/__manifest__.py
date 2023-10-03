@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Патч модуля Новой Почты под требования МУЗТОРГ",
-    "version": "14.0.1.1.15",
+    "version": "14.0.1.1.16",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
@@ -8,9 +8,11 @@
         "delivery_novaposhta",
     ],
     "data": [
+        "wizards/stock_seats_fill_wizard_views.xml",
         "views/stock_views.xml",
         "views/res_partner_views.xml",
         "views/ttn.xml",
+        "security/ir.model.access.csv",
     ],
     "license": "LGPL-3",
     "installable": True,
