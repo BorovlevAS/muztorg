@@ -14,13 +14,23 @@ class ProviderNP(models.Model):
                 error_messages.append(_("Cost not specified"))
                 error = True
 
-            if picking.np_shipping_weight == 0:
-                error_messages.append(_("Shipping weight not specified"))
+            if picking.seats_amount == 0:
+                error_messages.append(_("Seats amount doesn't specified"))
                 error = True
+            elif picking.seats_amount == 1:
+                if picking.np_shipping_weight == 0:
+                    error_messages.append(_("Shipping weight not specified"))
+                    error = True
 
-            if picking.np_shipping_volume == 0:
-                error_messages.append(_("Shipping volume not specified"))
-                error = True
+                if picking.np_shipping_volume == 0:
+                    error_messages.append(_("Shipping volume not specified"))
+                    error = True
+            else:
+                for rec in picking.picking_seats_ids:
+                    if rec.np_shipping_weight == 0 or rec.np_shipping_volume == 0:
+                        error_messages.append(_("Seats data is not specified"))
+                        error = True
+                        break
 
             if not picking.biko_recipient_id:
                 error_messages.append(_("Recipient person not specified"))
@@ -57,6 +67,7 @@ class ProviderNP(models.Model):
                 "general_volume": picking.np_shipping_volume,
                 "recipient_id": picking.biko_recipient_id.id,
                 "biko_dropshipping": picking.biko_dropshipping,
+                "picking_id": picking.id,
             }
             if picking.backward_money:
                 data.update(

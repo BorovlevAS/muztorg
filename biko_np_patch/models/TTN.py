@@ -7,6 +7,7 @@ from odoo.exceptions import ValidationError
 class NovaPoshtaTTN(models.Model):
     _inherit = "delivery_novaposhta.ttn"
 
+    picking_id = fields.Many2one(comodel_name="stock.picking")
     recipient_id = fields.Many2one(comodel_name="res.partner")
     afterpayment_check = fields.Boolean(string="Afterpayment check", default=False)
     np_length = fields.Integer(
@@ -46,30 +47,7 @@ class NovaPoshtaTTN(models.Model):
                 if currency_uah != order_currency:
                     cost = currency_uah.compute(cost, order_currency)
                 record.cost = cost
-            # removing caluculdating
-            # all fields we will fill from picking
-            # if record.seats_amount > 0:
-            #     if record.weight == 0:
-            #         record.weight = (
-            #             sum(
-            #                 [
-            #                     (line.product_id.weight * line.product_uom_qty)
-            #                     for line in order_line
-            #                 ]
-            #             )
-            #             or 0.0
-            #         )
-            #     if record.general_volume == 0:
-            #         record.general_volume = (
-            #             sum(
-            #                 [
-            #                     (line.product_id.volume * line.product_uom_qty)
-            #                     for line in order_line
-            #                 ]
-            #             )
-            #             or 0.0
-            #         )
-            # recipient data
+
             record.recipient_type = record.order_to_deliver.partner_id.np_type
             if record.order_to_deliver.partner_id.np_type.ref == "Organization":
                 record.recipient_name_organization = record.order_to_deliver.partner_id
@@ -182,12 +160,33 @@ class NovaPoshtaTTN(models.Model):
                 "SenderAddress": record.sender_warehouse.ref,
                 "ContactSender": record.contact_sender.ref,
                 "SendersPhone": record.contact_sender.phones,
-                "Weight": record.weight,
                 "SeatsAmount": record.seats_amount,
                 "Cost": cost,
                 "VolumeGeneral": record.general_volume,
+                "Weight": record.weight,
             },
         }
+
+        if record.seats_amount > 1:
+            optional_seats = []
+            for rec in record.picking_id.picking_seats_ids:
+                optional_seats.append(
+                    {
+                        "volumetricVolume": rec.np_shipping_volume,
+                        "volumetricWidth": rec.np_width,
+                        "volumetricLength": rec.np_length,
+                        "volumetricHeight": rec.np_height,
+                        "weight": rec.np_shipping_weight,
+                    }
+                )
+            data["methodProperties"].update(
+                {
+                    "OptionsSeat": optional_seats,
+                    "Weight": sum(
+                        record.picking_id.picking_seats_ids.mapped("np_shipping_weight")
+                    ),
+                }
+            )
 
         # Костыль, при безналичном расчете платильщик может быть только отправитель
         # if data['methodProperties']['PayerType'] == 'Recipient':
