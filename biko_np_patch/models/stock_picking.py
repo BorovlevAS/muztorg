@@ -52,6 +52,11 @@ class StockPicking(models.Model):
         related="sale_id.carrier_id",
     )
 
+    picking_seats_ids = fields.One2many(
+        comodel_name="novaposhta.seats",
+        inverse_name="stock_picking_id",
+    )
+
     def _inverse_biko_recipient_id(self):
         for stock in self:
             if stock.sale_id:
@@ -78,3 +83,19 @@ class StockPicking(models.Model):
                         '"Backward" or "After payment".'
                     )
                 )
+
+    @api.onchange("seats_amount")
+    def seats_amount_onchange(self):
+        for rec in self:
+            rec.picking_seats_ids = [(5, 0, 0)]
+            vals = []
+            for _i in range(rec.seats_amount):
+                vals.append((0, 0, {"stock_picking_id": rec.id}))
+            rec.picking_seats_ids = vals
+
+    @api.onchange("np_length", "np_width", "np_height")
+    def _on_change_dimensions(self):
+        for rec in self:
+            rec.np_shipping_volume = (
+                rec.np_length * rec.np_width * rec.np_height
+            ) / 1_000_000
