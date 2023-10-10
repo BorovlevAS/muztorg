@@ -59,7 +59,9 @@ class ProductTemplate(models.Model):
     @api.depends("biko_length", "biko_width", "biko_height")
     def _compute_volume(self):
         for rec in self:
-            rec.volume = rec.biko_length * rec.biko_width * rec.biko_height
+            rec.volume = (
+                rec.biko_length * rec.biko_width * rec.biko_height
+            ) / 1_000_000
 
     @api.constrains("biko_vendor_code")
     def check_vendor_code_uniq(self):
