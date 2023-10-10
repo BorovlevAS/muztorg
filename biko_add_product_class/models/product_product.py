@@ -25,14 +25,16 @@ class ProductProduct(models.Model):
                 )
             )
 
-            if not product_ids:
-                return super()._name_search(
-                    name,
-                    args,
-                    operator=operator,
-                    limit=limit,
-                    name_get_uid=name_get_uid,
-                )
+            if product_ids:
+                return product_ids
+
+            return super()._name_search(
+                name,
+                args,
+                operator=operator,
+                limit=limit,
+                name_get_uid=name_get_uid,
+            )
 
         else:
             return super()._name_search(
