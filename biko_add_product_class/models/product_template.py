@@ -125,6 +125,23 @@ class ProductTemplate(models.Model):
                 name, args, operator=operator, limit=limit, name_get_uid=name_get_uid
             )
 
+    def name_get(self):
+        # Prefetch the fields used by the `name_get`, so `browse` doesn't fetch other fields
+        self.browse(self.ids).read(["name", "biko_control_code"])
+        return [
+            (
+                template.id,
+                "%s%s"
+                % (
+                    template.biko_control_code
+                    and "[%s] " % template.biko_control_code
+                    or "",
+                    template.name,
+                ),
+            )
+            for template in self
+        ]
+
     @api.model
     def create(self, vals):
         if not vals.get("biko_control_code", False):
