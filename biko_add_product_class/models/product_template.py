@@ -59,7 +59,9 @@ class ProductTemplate(models.Model):
     @api.depends("biko_length", "biko_width", "biko_height")
     def _compute_volume(self):
         for rec in self:
-            rec.volume = rec.biko_length * rec.biko_width * rec.biko_height
+            rec.volume = (
+                rec.biko_length * rec.biko_width * rec.biko_height
+            ) / 1_000_000
 
     @api.constrains("biko_vendor_code")
     def check_vendor_code_uniq(self):
@@ -107,21 +109,38 @@ class ProductTemplate(models.Model):
                 )
             )
 
-            if not product_ids:
-                return super()._name_search(
-                    name,
-                    args,
-                    operator=operator,
-                    limit=limit,
-                    name_get_uid=name_get_uid,
-                )
+            if product_ids:
+                return product_ids
+
+            return super()._name_search(
+                name,
+                args,
+                operator=operator,
+                limit=limit,
+                name_get_uid=name_get_uid,
+            )
 
         else:
             return super()._name_search(
                 name, args, operator=operator, limit=limit, name_get_uid=name_get_uid
             )
 
-        return product_ids
+    def name_get(self):
+        # Prefetch the fields used by the `name_get`, so `browse` doesn't fetch other fields
+        self.browse(self.ids).read(["name", "biko_control_code"])
+        return [
+            (
+                template.id,
+                "%s%s"
+                % (
+                    template.biko_control_code
+                    and "[%s] " % template.biko_control_code
+                    or "",
+                    template.name,
+                ),
+            )
+            for template in self
+        ]
 
     @api.model
     def create(self, vals):
