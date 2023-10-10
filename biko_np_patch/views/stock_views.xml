@@ -95,6 +95,7 @@
                         [('service_type_ref', 'not in', ('DoorsWarehouse', 'WarehouseWarehouse', 'WarehousePostomat'))]
                     }
                 </attribute>
+                <attribute name="options">{'no_create': True, 'no_open': True}</attribute>
             </field>
         </field>
     </record>
