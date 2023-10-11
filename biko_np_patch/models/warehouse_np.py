@@ -8,7 +8,7 @@ class NovaPoshtaWarehouse(models.Model):
     def _name_search(
         self, name, args=None, operator="ilike", limit=100, name_get_uid=None
     ):
-        if name:
+        if name and name.isnumeric():
             args = args + [("number", "=", name)]
         return super()._name_search(
             name=name,
