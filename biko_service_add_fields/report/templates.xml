@@ -167,7 +167,7 @@
                             Підпис співробітника:_______________
                             <br />
                             <t t-if="doc.user_id">
-                                <span t-field="doc.user_id" />
+                                <span t-field="doc.user_id.name" />
                             </t>
                         </td>
                     </tr>
