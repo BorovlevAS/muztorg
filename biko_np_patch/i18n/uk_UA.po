@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-03 09:45+0000\n"
-"PO-Revision-Date: 2023-10-03 12:55+0300\n"
+"POT-Creation-Date: 2023-10-18 14:16+0000\n"
+"PO-Revision-Date: 2023-10-18 17:18+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: uk_UA\n"
@@ -135,6 +135,7 @@ msgstr "Габарити"
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_cities_list__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__display_name
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_warehouse__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking_fill_wizard__display_name
@@ -154,11 +155,6 @@ msgid "Field phone is empty"
 msgstr "Field phone is empty"
 
 #. module: biko_np_patch
-#: model:ir.model.fields,help:biko_np_patch.field_stock_picking__biko_carrier_id
-msgid "Fill this field if you plan to invoice the shipping based on picking."
-msgstr "Fill this field if you plan to invoice the shipping based on picking."
-
-#. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
 msgid "General volume for shipping"
 msgstr "Об'єм вантажу"
@@ -168,12 +164,13 @@ msgstr "Об'єм вантажу"
 #: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats__np_height
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__np_height
 msgid "Height (cm)"
-msgstr "Висота (см)"
+msgstr "Height (cm)"
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_cities_list__id
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__id
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_warehouse__id
 #: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats__id
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__id
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking_fill_wizard__id
@@ -184,6 +181,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_cities_list____last_update
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn____last_update
+#: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_warehouse____last_update
 #: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats____last_update
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking_fill_wizard____last_update
@@ -207,7 +205,7 @@ msgstr "Last Updated on"
 #: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats__np_length
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__np_length
 msgid "Length (cm)"
-msgstr "Довжина (см)"
+msgstr "Length (cm)"
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_mobile
@@ -337,6 +335,12 @@ msgid "Transfer"
 msgstr "Переміщення"
 
 #. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats__biko_volume_weight
+#: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_volume_weight
+msgid "Volume Weight"
+msgstr "Об'ємна вага"
+
+#. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
 msgid "Weight for shipping"
 msgstr "Вага вантажу"
@@ -346,7 +350,7 @@ msgstr "Вага вантажу"
 #: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats__np_width
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__np_width
 msgid "Width (cm)"
-msgstr "Ширина (см)"
+msgstr "Width (cm)"
 
 #. module: biko_np_patch
 #: code:addons/biko_np_patch/models/stock_picking.py:0
@@ -368,6 +372,11 @@ msgstr "delivery_novaposhta.cities_list"
 #: model:ir.model,name:biko_np_patch.model_delivery_novaposhta_ttn
 msgid "delivery_novaposhta.ttn"
 msgstr "delivery_novaposhta.ttn"
+
+#. module: biko_np_patch
+#: model:ir.model,name:biko_np_patch.model_delivery_novaposhta_warehouse
+msgid "delivery_novaposhta.warehouse"
+msgstr "delivery_novaposhta.warehouse"
 
 #. module: biko_np_patch
 #: model:ir.model,name:biko_np_patch.model_stock_picking_fill_wizard
