@@ -47,9 +47,10 @@ class StockPicking(models.Model):
     biko_carrier_id = fields.Many2one(
         "delivery.carrier",
         string="Delivery carrier",
-        # store=True,
+        compute="_compute_biko_carrier_id",
+        store=True,
         readonly=True,
-        related="sale_id.carrier_id",
+        index=True,
     )
 
     picking_seats_ids = fields.One2many(
@@ -72,6 +73,11 @@ class StockPicking(models.Model):
     def _compute_biko_recipient_id(self):
         for stock in self:
             stock.update({"biko_recipient_id": stock.sale_id.biko_recipient_id})
+
+    @api.depends("sale_id")
+    def _compute_biko_carrier_id(self):
+        for stock in self:
+            stock.update({"biko_carrier_id": stock.sale_id.carrier_id})
 
     @api.constrains("afterpayment_check", "backward_money")
     def _check_backward(self):
