@@ -63,6 +63,10 @@
                     {'invisible': [('backward_money', '=', False), ('afterpayment_check', '=', False)]}
                 </attribute>
             </field>
+            <field name="backward_money" position="attributes">
+                <attribute name="attrs" />
+                <attribute name="invisible">1</attribute>
+            </field>
             <field name="recipient_city" position="before">
                 <field name="biko_dropshipping" />
                 <field name="biko_recipient_id" />
