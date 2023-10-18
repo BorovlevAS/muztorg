@@ -1,15 +1,12 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <odoo>
-
     <record id="biko_product_template_form_brand_reorder" model="ir.ui.view">
         <field name="name">BIKO: make brand required (MTD-1-21)</field>
         <field name="model">product.template</field>
-        <field name="inherit_id"
-            ref="product_brand.product_template_form_brand_add" />
+        <field name="inherit_id" ref="product_brand.product_template_form_brand_add" />
         <field name="arch" type="xml">
             <field name="product_brand_id" position="replace">
-                <field name="product_brand_id" placeholder="Brand"
-                    attrs="{'required': [('type', '=', 'product')]}" />
+                <field name="product_brand_id" placeholder="Brand" attrs="{'required': [('type', '=', 'product')]}" />
                 <div />
             </field>
         </field>
@@ -29,11 +26,8 @@
             </xpath>
 
             <xpath expr="//field[@name='name']" position="attributes">
-                <attribute name="attrs">
-                    {'readonly': [('type', '=', 'product')]}
-                </attribute>
+                <attribute name="attrs">{'readonly': [('type', '=', 'product')]}</attribute>
             </xpath>
-
         </field>
     </record>
 
@@ -44,73 +38,96 @@
         <field name="arch" type="xml">
             <form string="Product" name="Product Template">
                 <header>
-                    <button string="Configure Variants" type="action"
+                    <button
+                        string="Configure Variants"
+                        type="action"
                         name="%(product.product_attribute_value_action)d"
                         attrs="{'invisible': ['|', ('attribute_line_ids', '&lt;=', 0), ('is_product_variant', '=', True)]}"
-                        groups="product.group_product_variant" />
-                    <button string="Update Quantity" type="object"
+                        groups="product.group_product_variant"
+                    />
+                    <button
+                        string="Update Quantity"
+                        type="object"
                         groups="stock.group_stock_manager"
                         name="action_update_quantity_on_hand"
-                        attrs="{'invisible': [('type', '!=', 'product')]}" />
-                    <button string="Replenish" type="action"
+                        attrs="{'invisible': [('type', '!=', 'product')]}"
+                    />
+                    <button
+                        string="Replenish"
+                        type="action"
                         name="%(stock.action_product_replenish)d"
                         context="{'default_product_tmpl_id': id}"
                         groups="stock.group_stock_user"
-                        attrs="{'invisible': [('type', '!=', 'product')]}" />
+                        attrs="{'invisible': [('type', '!=', 'product')]}"
+                    />
                 </header>
                 <sheet>
                     <field name="product_variant_count" invisible="1" />
                     <field name="is_product_variant" invisible="1" />
                     <field name="attribute_line_ids" invisible="1" />
                     <div class="oe_button_box" name="button_box">
-                        <field name="is_published"
+                        <field
+                            name="is_published"
                             widget="website_redirect_button"
-                            attrs="{'invisible': [('sale_ok','=',False)]}" />
-                        <button name="%(product.product_variant_action)d"
+                            attrs="{'invisible': [('sale_ok','=',False)]}"
+                        />
+                        <button
+                            name="%(product.product_variant_action)d"
                             type="action"
-                            icon="fa-sitemap" class="oe_stat_button"
+                            icon="fa-sitemap"
+                            class="oe_stat_button"
                             attrs="{'invisible': [('product_variant_count', '&lt;=', 1)]}"
-                            groups="product.group_product_variant">
-                            <field string="Variants"
-                                name="product_variant_count"
-                                widget="statinfo" />
+                            groups="product.group_product_variant"
+                        >
+                            <field string="Variants" name="product_variant_count" widget="statinfo" />
                         </button>
-                        <button type="object" name="action_open_quants"
+                        <button
+                            type="object"
+                            name="action_open_quants"
                             attrs="{'invisible':[('type', '!=', 'product')]}"
-                            class="oe_stat_button" icon="fa-cubes">
+                            class="oe_stat_button"
+                            icon="fa-cubes"
+                        >
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value" widget="statinfo">
-                                    <field name="qty_available"
-                                        widget="statinfo"
-                                        nolabel="1" class="mr4" />
+                                    <field name="qty_available" widget="statinfo" nolabel="1" class="mr4" />
                                     <field name="uom_name" />
                                 </span>
                                 <span class="o_stat_text">On Hand</span>
                             </div>
                         </button>
-                        <button type="object"
+                        <button
+                            type="object"
                             name="action_product_tmpl_forecast_report"
                             attrs="{'invisible':[('type', '!=', 'product')]}"
                             context="{'default_product_tmpl_id': id}"
-                            class="oe_stat_button" icon="fa-cubes">
+                            class="oe_stat_button"
+                            icon="fa-cubes"
+                        >
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value">
-                                    <field name="virtual_available"
-                                        widget="statinfo"
-                                        nolabel="1" class="mr4" />
+                                    <field name="virtual_available" widget="statinfo" nolabel="1" class="mr4" />
                                     <field name="uom_name" />
                                 </span>
                                 <span class="o_stat_text">Forecasted</span>
                             </div>
                         </button>
-                        <button string="Product Moves" type="object"
+                        <button
+                            string="Product Moves"
+                            type="object"
                             name="action_view_stock_move_lines"
                             attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
-                            class="oe_stat_button" icon="fa-exchange"
-                            groups="stock.group_stock_user" />
-                        <button type="object" name="action_view_orderpoints"
+                            class="oe_stat_button"
+                            icon="fa-exchange"
+                            groups="stock.group_stock_user"
+                        />
+                        <button
+                            type="object"
+                            name="action_view_orderpoints"
                             attrs="{'invisible':['|',('type', '!=', 'product'),('nbr_reordering_rules', '!=', 1)]}"
-                            class="oe_stat_button" icon="fa-refresh">
+                            class="oe_stat_button"
+                            icon="fa-refresh"
+                        >
                             <div class="o_field_widget o_stat_info mr4">
                                 <span class="o_stat_text">Min:</span>
                                 <span class="o_stat_text">Max:</span>
@@ -124,90 +141,122 @@
                                 </span>
                             </div>
                         </button>
-                        <button class="oe_stat_button" name="action_view_sales"
-                            type="object" icon="fa-signal"
+                        <button
+                            class="oe_stat_button"
+                            name="action_view_sales"
+                            type="object"
+                            icon="fa-signal"
                             groups="sales_team.group_sale_salesman"
                             help="Sold in the last 365 days"
-                            attrs="{'invisible': [('sale_ok', '=', False)]}">
+                            attrs="{'invisible': [('sale_ok', '=', False)]}"
+                        >
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value">
-                                    <field name="sales_count" widget="statinfo"
-                                        nolabel="1" class="mr4" />
+                                    <field name="sales_count" widget="statinfo" nolabel="1" class="mr4" />
                                     <field name="uom_name" />
                                 </span>
                                 <span class="o_stat_text">Sold</span>
                             </div>
                         </button>
-                        <button type="object" name="action_view_orderpoints"
+                        <button
+                            type="object"
+                            name="action_view_orderpoints"
                             attrs="{'invisible':['|',('type', '!=', 'product'),('nbr_reordering_rules', '==', 1)]}"
-                            class="oe_stat_button" icon="fa-refresh">
+                            class="oe_stat_button"
+                            icon="fa-refresh"
+                        >
                             <field name="nbr_reordering_rules" widget="statinfo" />
                         </button>
-                        <button string="Lot/Serial Numbers" type="object"
+                        <button
+                            string="Lot/Serial Numbers"
+                            type="object"
                             name="action_open_product_lot"
                             attrs="{'invisible': [('tracking', '=', 'none')]}"
-                            class="oe_stat_button" icon="fa-bars"
-                            groups="stock.group_production_lot" />
-                        <button string="Putaway Rules" type="object"
+                            class="oe_stat_button"
+                            icon="fa-bars"
+                            groups="stock.group_production_lot"
+                        />
+                        <button
+                            string="Putaway Rules"
+                            type="object"
                             name="action_view_related_putaway_rules"
-                            class="oe_stat_button" icon="fa-random"
+                            class="oe_stat_button"
+                            icon="fa-random"
                             groups="stock.group_stock_multi_locations"
                             attrs="{'invisible': [('type', '=', 'service')]}"
                             context="{
                                 'invisible_handle': True,
                                 'single_product': product_variant_count == 1,
-                            }" />
-                        <button class="oe_stat_button" name="action_view_po"
-                            type="object" icon="fa-shopping-cart"
+                            }"
+                        />
+                        <button
+                            class="oe_stat_button"
+                            name="action_view_po"
+                            type="object"
+                            icon="fa-shopping-cart"
                             attrs="{'invisible': [('purchase_ok', '=', False)]}"
-                            help="Purchased in the last 365 days">
+                            help="Purchased in the last 365 days"
+                        >
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value">
-                                    <field name="purchased_product_qty"
-                                        widget="statinfo" nolabel="1"
-                                        class="mr4" />
+                                    <field name="purchased_product_qty" widget="statinfo" nolabel="1" class="mr4" />
                                     <field name="uom_name" />
                                 </span>
                                 <span class="o_stat_text">Purchased</span>
                             </div>
                         </button>
                     </div>
-                    <widget name="web_ribbon" title="Archived"
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}" />
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <field name="id" invisible="True" />
-                    <field name="image_1920" widget="image" class="oe_avatar"
-                        options="{'preview_image': 'image_128'}" />
+                    <field
+                        name="image_1920"
+                        widget="image"
+                        class="oe_avatar"
+                        options="{'preview_image': 'image_128'}"
+                    />
                     <div class="oe_title">
                         <group name="biko_group_product_type">
                             <field name="type" required="True" id="type" />
                         </group>
-                        <label class="oe_edit_only" for="name"
-                            string="Product Name" />
+                        <label class="oe_edit_only" for="name" string="Product Name" />
                         <h1>
-                            <field name="name" placeholder="Product Name"
+                            <field
+                                name="name"
+                                placeholder="Product Name"
                                 attrs="{'readonly': [('type', '=', 'product')]}"
-                                required="True" />
+                                required="True"
+                            />
                         </h1>
                         <div>
                             <label for="attribute_set_id" class="oe_edit_only" />
-                            <field name="attribute_set_id" nolabel="1"
+                            <field
+                                name="attribute_set_id"
+                                nolabel="1"
                                 context="{'default_model_id': %(product.model_product_template)d}"
-                                domain="[('model_id.model', '=', 'product.template')]" />
-                            <field widget="label_selection"
+                                domain="[('model_id.model', '=', 'product.template')]"
+                            />
+                            <field
+                                widget="label_selection"
                                 name="attribute_set_completion_state"
                                 options="{'classes': {'complete': 'success', 'not_complete': 'danger'}}"
-                                attrs="{'invisible': [('attribute_set_id', '=', False)]}" />
-                            <field name="attribute_set_completion_rate"
+                                attrs="{'invisible': [('attribute_set_id', '=', False)]}"
+                            />
+                            <field
+                                name="attribute_set_completion_rate"
                                 attrs="{
                                 'invisible': [
                                     '|',
                                     ('attribute_set_id', '=', False),
                                     ('attribute_set_completion_state', '=', 'complete'),
                                 ],
-                            }" />
-                            <field name="attribute_set_completeness_ids"
-                                invisible="1" />
+                            }"
+                            />
+                            <field name="attribute_set_completeness_ids" invisible="1" />
                             <separator />
                         </div>
                         <div name="options" groups="base.group_user">
@@ -222,123 +271,147 @@
                         </div>
                     </div>
                     <notebook>
-                        <page string="General Information"
-                            name="general_information">
+                        <page string="General Information" name="general_information">
                             <group>
                                 <group name="group_general">
                                     <group name="gr_top_left">
                                         <field name="active" invisible="1" />
-                                        <field name="product_brand_id"
+                                        <field
+                                            name="product_brand_id"
                                             placeholder="Brand"
-                                            attrs="{'required': [('type', '=', 'product')]}" />
-                                        <field name="biko_product_model"
-                                            attrs="{'required': [('type', '=', 'product')]}" />
-                                        <field name="categ_id"
-                                            string="Product Category" />
-                                        <field name="biko_avail_prefixes"
-                                            invisible="1" />
-                                        <field name="biko_product_prefix"
                                             attrs="{'required': [('type', '=', 'product')]}"
-                                            options="{'no_create': True}" />
-                                        <field name="biko_vendor_code"
-                                            attrs="{'required': [('type', '=', 'product')]}" />
-                                        <field name="uom_id"
-                                            groups="uom.group_uom"
-                                            options="{'no_create': True}" />
-                                        <field name="uom_po_id"
-                                            groups="uom.group_uom"
-                                            options="{'no_create': True}" />
-                                        <field name="biko_master_karton"
-                                            string="Amount in package" />
+                                        />
+                                        <field
+                                            name="biko_product_model"
+                                            attrs="{'required': [('type', '=', 'product')]}"
+                                        />
+                                        <field name="categ_id" string="Product Category" />
+                                        <field name="biko_avail_prefixes" invisible="1" />
+                                        <field
+                                            name="biko_product_prefix"
+                                            attrs="{'required': [('type', '=', 'product')]}"
+                                            options="{'no_create': True}"
+                                        />
+                                        <field
+                                            name="biko_vendor_code"
+                                            attrs="{'required': [('type', '=', 'product')]}"
+                                        />
+                                        <field name="uom_id" groups="uom.group_uom" options="{'no_create': True}" />
+                                        <field name="uom_po_id" groups="uom.group_uom" options="{'no_create': True}" />
+                                        <field name="biko_master_karton" string="Amount in package" />
                                     </group>
                                     <group name="inventory">
-                                        <group name="group_lots_and_weight"
+                                        <group
+                                            name="group_lots_and_weight"
                                             string="Logistics"
-                                            attrs="{'invisible': [('type', 'not in', ['product', 'consu'])]}">
-                                            <label for="weight"
-                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}" />
-                                            <div class="o_row" name="weight"
-                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+                                            attrs="{'invisible': [('type', 'not in', ['product', 'consu'])]}"
+                                        >
+                                            <label
+                                                for="weight"
+                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"
+                                            />
+                                            <div
+                                                class="o_row"
+                                                name="weight"
+                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"
+                                            >
                                                 <field name="weight" />
                                                 <span>
-                                                    <field
-                                                        name="weight_uom_name" />
+                                                    <field name="weight_uom_name" />
                                                 </span>
                                             </div>
                                             <!-- <label for="biko_length"
                                                 attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant',
                                             '=', False)]}" /> -->
-                                            <label for="biko_length"
-                                                string="Dimensions" />
-                                            <div class="o_row"
+                                            <label for="biko_length" string="Dimensions" />
+                                            <div
+                                                class="o_row"
                                                 name="biko_dimensions"
-                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
+                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"
+                                            >
                                                 <field name="biko_length" />
-                                                <span class="text-muted"> x </span>
+                                                <span class="text-muted">x</span>
                                                 <field name="biko_width" />
-                                                <span class="text-muted"> x </span>
+                                                <span class="text-muted">x</span>
                                                 <field name="biko_height" />
-                                                <span class="text-muted"> cm </span>
+                                                <span class="text-muted">cm</span>
                                             </div>
-                                            <label for="volume"
-                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}" />
-                                            <div class="o_row" name="volume"
-                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}">
-                                                <field name="volume"
-                                                    string="Volume" />
+                                            <label
+                                                for="volume"
+                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"
+                                            />
+                                            <div
+                                                class="o_row"
+                                                name="volume"
+                                                attrs="{'invisible':[('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"
+                                            >
+                                                <field name="volume" string="Volume" />
                                                 <span>
-                                                    <field
-                                                        name="volume_uom_name" />
+                                                    <field name="volume_uom_name" />
                                                 </span>
                                             </div>
                                         </group>
                                     </group>
                                     <group>
-                                        <field name="biko_country"
+                                        <field
+                                            name="biko_country"
                                             options="{'no_create': True}"
-                                            attrs="{'required': [('type', '=', 'product')]}" />
+                                            attrs="{'required': [('type', '=', 'product')]}"
+                                        />
                                     </group>
                                 </group>
                                 <group name="group_standard_price">
-
                                     <label for="list_price" />
                                     <div name="pricing">
-                                        <field name="list_price"
-                                            class="oe_inline" widget='monetary'
-                                            options="{'currency_field': 'currency_id', 'field_digits': True}" />
-                                        <button name="open_pricelist_rules"
+                                        <field
+                                            name="list_price"
+                                            class="oe_inline"
+                                            widget='monetary'
+                                            options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                        />
+                                        <button
+                                            name="open_pricelist_rules"
                                             icon="fa-arrow-right"
                                             type="object"
                                             groups="product.group_product_pricelist"
-                                            class="oe_inline">
-                                            <field name="pricelist_item_count"
-                                                attrs="{'invisible': [('pricelist_item_count', '=', 0)]}" />
-                                            <span
-                                                attrs="{'invisible': [('pricelist_item_count', '=', 1)]}">
+                                            class="oe_inline"
+                                        >
+                                            <field
+                                                name="pricelist_item_count"
+                                                attrs="{'invisible': [('pricelist_item_count', '=', 0)]}"
+                                            />
+                                            <span attrs="{'invisible': [('pricelist_item_count', '=', 1)]}">
                                                 Extra Prices
                                             </span>
-                                            <span
-                                                attrs="{'invisible': [('pricelist_item_count', '!=', 1)]}">
+                                            <span attrs="{'invisible': [('pricelist_item_count', '!=', 1)]}">
                                                 Extra Price
                                             </span>
                                         </button>
                                     </div>
-                                    <field name="taxes_id"
+                                    <field
+                                        name="taxes_id"
                                         widget="many2many_tags"
-                                        context="{'default_type_tax_use':'sale', 'search_default_sale': 1, 'search_default_service': type == 'service', 'search_default_goods': type == 'consu'}" />
-                                    <label for="standard_price"
-                                        groups="base.group_user"
-                                        attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" />
-                                    <div name="standard_price_uom"
+                                        context="{'default_type_tax_use':'sale', 'search_default_sale': 1, 'search_default_service': type == 'service', 'search_default_goods': type == 'consu'}"
+                                    />
+                                    <label
+                                        for="standard_price"
                                         groups="base.group_user"
                                         attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
-                                        class="o_row">
-                                        <field name="standard_price"
+                                    />
+                                    <div
+                                        name="standard_price_uom"
+                                        groups="base.group_user"
+                                        attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
+                                        class="o_row"
+                                    >
+                                        <field
+                                            name="standard_price"
                                             widget='monetary'
-                                            options="{'currency_field': 'cost_currency_id', 'field_digits': True}" />
-                                        <span groups="uom.group_uom"
-                                            class="oe_read_only">per <field
-                                                name="uom_name" />
+                                            options="{'currency_field': 'cost_currency_id', 'field_digits': True}"
+                                        />
+                                        <span groups="uom.group_uom" class="oe_read_only">
+                                            per
+                                            <field name="uom_name" />
                                         </span>
                                     </div>
                                     <field
@@ -373,9 +446,32 @@
                                         groups="barcodes_generator_abstract.generate_barcode"
                                         colspan="2"
                                     />
-                                    <field name="barcode"
-                                        attrs="{'readonly': [('generate_type', '=', 'sequence')], 
-                                            'invisible': [('product_variant_count', '&gt;', 1)]}" />
+                                    <label
+                                        for="barcode"
+                                        attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"
+                                    />
+                                    <div attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}">
+                                        <field name="barcode" string="" class="oe_inline" />
+                                        <button
+                                            string="Update Barcode"
+                                            type="action"
+                                            name="%(product_multiple_barcodes.action_multiply_barcode_wizard)d"
+                                            class="oe_inline"
+                                            icon="fa-arrow-right"
+                                            attrs="{'invisible': [('product_variant_count', '!=', 1)]}"
+                                        />
+                                    </div>
+                                    <field
+                                        name="barcode_ids"
+                                        attrs="{'invisible': [('product_variant_count', '!=', 1)]}"
+                                    >
+                                        <tree editable="bottom">
+                                            <field name="name" />
+                                        </tree>
+                                    </field>
+                                    <!-- <field name="barcode"
+                                        attrs="{'readonly': [('generate_type', '=', 'sequence')],
+                                            'invisible': [('product_variant_count', '&gt;', 1)]}" /> -->
                                     <button
                                         name="generate_barcode"
                                         type="object"
@@ -388,163 +484,192 @@
                                         groups="barcodes_generator_abstract.generate_barcode"
                                         colspan="2"
                                     />
-                                    <field name="biko_product_class"
-                                        readonly="1" />
-                                    <field name="biko_country_customs"
-                                        options="{'no_create': True}" />
-                                    <field name="uktzed_id"
-                                        domain="[('not_select', '=', False)]" />
+                                    <field name="biko_product_class" readonly="1" />
+                                    <field name="biko_country_customs" options="{'no_create': True}" />
+                                    <field name="uktzed_id" domain="[('not_select', '=', False)]" />
                                     <field name="biko_control_code" readonly="1" />
-                                    <field name="default_code"
-                                        attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}" />
-                                    <label for="biko_confidential"
-                                        string="Confidentiality" />
-                                    <div class="o_row"
-                                        name="biko_confidentiality_row">
+                                    <field
+                                        name="default_code"
+                                        attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"
+                                    />
+                                    <label for="biko_confidential" string="Confidentiality" />
+                                    <div class="o_row" name="biko_confidentiality_row">
                                         <field name="biko_confidential" />
-                                        <span> up to </span>
-                                        <field name="biko_conf_date"
-                                            attrs="{'readonly': [('biko_confidential', '=', False)]}" />
+                                        <span>up to</span>
+                                        <field
+                                            name="biko_conf_date"
+                                            attrs="{'readonly': [('biko_confidential', '=', False)]}"
+                                        />
                                     </div>
-                                    <field name="company_id"
+                                    <field
+                                        name="company_id"
                                         groups="base.group_multi_company"
-                                        options="{'no_create': True}" />
+                                        options="{'no_create': True}"
+                                    />
                                     <field name="currency_id" invisible="1" />
                                     <field name="cost_currency_id" invisible="1" />
-                                    <field name="product_variant_id"
-                                        invisible="1" />
+                                    <field name="product_variant_id" invisible="1" />
                                 </group>
                             </group>
                             <group>
                                 <group string="Characteristics (ukr)">
-                                    <field name="biko_character_ukr" nolabel="1"
+                                    <field
+                                        name="biko_character_ukr"
+                                        nolabel="1"
                                         attrs="{'required': [('type', '=', 'product')]}"
                                         modifiers="{'required':[['type','=','product']]}"
-                                        id="biko_character_ukr" />
+                                        id="biko_character_ukr"
+                                    />
                                 </group>
                                 <group string="Characteristics (rus)">
-                                    <field name="biko_character_rus" nolabel="1"
+                                    <field
+                                        name="biko_character_rus"
+                                        nolabel="1"
                                         attrs="{'required': [('type', '=', 'product')]}"
                                         modifiers="{'required':[['type','=','product']]}"
-                                        id="biko_character_rus" />
+                                        id="biko_character_rus"
+                                    />
                                 </group>
                             </group>
                             <group string="Internal Notes">
-                                <field name="description" nolabel="1"
+                                <field
+                                    name="description"
+                                    nolabel="1"
                                     placeholder="This note is only for internal purposes."
-                                    id="description" />
+                                    id="description"
+                                />
                             </group>
                         </page>
-                        <page name="product_attributes" string="Attributes"
-                            attrs="{'invisible' : [('attribute_set_id', '=', False)]}">
+                        <page
+                            name="product_attributes"
+                            string="Attributes"
+                            attrs="{'invisible' : [('attribute_set_id', '=', False)]}"
+                        >
                             <separator name="attributes_placeholder" />
                         </page>
-                        <page name="variants" string="Variants"
-                            groups="product.group_product_variant">
-                            <field name="attribute_line_ids" widget="one2many"
-                                context="{'show_attribute': False}">
+                        <page name="variants" string="Variants" groups="product.group_product_variant">
+                            <field name="attribute_line_ids" widget="one2many" context="{'show_attribute': False}">
                                 <tree string="Variants" editable="bottom">
-                                    <field name="attribute_id"
-                                        attrs="{'readonly': [('id', '!=', False)]}" />
-                                    <field name="value_ids"
+                                    <field name="attribute_id" attrs="{'readonly': [('id', '!=', False)]}" />
+                                    <field
+                                        name="value_ids"
                                         widget="many2many_tags"
                                         options="{'no_create_edit': True}"
-                                        context="{'default_attribute_id': attribute_id, 'show_attribute': False}" />
+                                        context="{'default_attribute_id': attribute_id, 'show_attribute': False}"
+                                    />
                                 </tree>
                             </field>
                             <p class="oe_grey oe_edit_only">
-                                <strong>Warning</strong>: adding or deleting
+                                <strong>Warning</strong>
+                                : adding or deleting
                                 attributes will delete and recreate existing
                                 variants and lead to the loss of their possible
-                                customizations. </p>
+                                customizations.
+                            </p>
                         </page>
                         <page name="custom_info" string="Custom Information">
                             <group name="group_custom_info_template">
                                 <group>
-                                    <field name="custom_info_template_id"
-                                        options='{"no_quick_create": True}' />
+                                    <field name="custom_info_template_id" options='{"no_quick_create": True}' />
                                 </group>
-                                <field name="custom_info_ids" colspan="4"
-                                    nolabel="1"
-                                    mode="custom_info" />
+                                <field name="custom_info_ids" colspan="4" nolabel="1" mode="custom_info" />
                             </group>
                         </page>
-                        <page string="Sales"
-                            attrs="{'invisible':[('sale_ok','=',False)]}"
-                            name="sales">
+                        <page string="Sales" attrs="{'invisible':[('sale_ok','=',False)]}" name="sales">
                             <group name="sale">
                                 <group string="Invoicing">
                                     <field name="invoice_policy" widget="radio" />
-                                    <field name="service_type" widget="radio"
-                                        invisible="True" />
-                                    <field name="service_policy" widget="radio"
-                                        attrs="{'invisible': [('type','!=','service')]}" />
-                                    <field name="visible_expense_policy"
-                                        invisible="1" />
-                                    <field name="expense_policy" widget="radio"
-                                        attrs="{'invisible': [('visible_expense_policy', '=', False)]}" />
+                                    <field name="service_type" widget="radio" invisible="True" />
+                                    <field
+                                        name="service_policy"
+                                        widget="radio"
+                                        attrs="{'invisible': [('type','!=','service')]}"
+                                    />
+                                    <field name="visible_expense_policy" invisible="1" />
+                                    <field
+                                        name="expense_policy"
+                                        widget="radio"
+                                        attrs="{'invisible': [('visible_expense_policy', '=', False)]}"
+                                    />
                                 </group>
                             </group>
-                            <group name="options"
-                                groups="product.group_product_variant">
+                            <group name="options" groups="product.group_product_variant">
                                 <group string="Options">
-                                    <field name="optional_product_ids"
+                                    <field
+                                        name="optional_product_ids"
                                         widget="many2many_tags"
                                         options="{'color_field': 'color'}"
-                                        domain="[('id', '!=', active_id), '|', ('company_id', '=', company_id), ('company_id', '=', False)]" />
+                                        domain="[('id', '!=', active_id), '|', ('company_id', '=', company_id), ('company_id', '=', False)]"
+                                    />
                                 </group>
                             </group>
                             <group string="Sales Description" name="description">
-                                <field name="description_sale" nolabel="1"
-                                    placeholder="This note is added to sales orders and invoices." />
-                            </group>
-                            <group string="Warning when Selling this Product"
-                                groups="sale.group_warning_sale">
-                                <field name="sale_line_warn" nolabel="1" />
-                                <field name="sale_line_warn_msg" colspan="3"
+                                <field
+                                    name="description_sale"
                                     nolabel="1"
-                                    attrs="{'required':[('sale_line_warn','!=','no-message')],'readonly':[('sale_line_warn','=','no-message')]}" />
+                                    placeholder="This note is added to sales orders and invoices."
+                                />
+                            </group>
+                            <group string="Warning when Selling this Product" groups="sale.group_warning_sale">
+                                <field name="sale_line_warn" nolabel="1" />
+                                <field
+                                    name="sale_line_warn_msg"
+                                    colspan="3"
+                                    nolabel="1"
+                                    attrs="{'required':[('sale_line_warn','!=','no-message')],'readonly':[('sale_line_warn','=','no-message')]}"
+                                />
                             </group>
                         </page>
-                        <page name="shop" string="eCommerce"
-                            attrs="{'invisible': [('sale_ok','=',False)]}">
+                        <page name="shop" string="eCommerce" attrs="{'invisible': [('sale_ok','=',False)]}">
                             <group name="shop">
                                 <group string="Shop">
                                     <field name="website_url" invisible="1" />
-                                    <field name="website_id"
+                                    <field
+                                        name="website_id"
                                         options="{'no_create': True}"
-                                        groups="website.group_multi_website" />
-                                    <field name="website_sequence"
-                                        groups="base.group_no_one" />
-                                    <field name="public_categ_ids"
-                                        widget="many2many_tags"
-                                        string="Categories" />
-                                    <field name="inventory_availability"
+                                        groups="website.group_multi_website"
+                                    />
+                                    <field name="website_sequence" groups="base.group_no_one" />
+                                    <field name="public_categ_ids" widget="many2many_tags" string="Categories" />
+                                    <field
+                                        name="inventory_availability"
                                         string="Availability"
                                         widget="selection"
-                                        attrs="{'invisible': [('type', 'in', ['service', 'consu'])]}" />
-                                    <field name="available_threshold"
-                                        attrs="{'invisible': ['|', ('type', 'in', ['service', 'consu']), ('inventory_availability', '!=', 'threshold')], 'required': [('inventory_availability', '=', 'threshold'), ('type', '=', 'product')]}" />
-                                    <field name="custom_message"
-                                        attrs="{'invisible': ['|', ('type', 'in', ['service', 'consu']), ('inventory_availability', '!=', 'custom')]}" />
-                                    <field name="alternative_product_ids"
+                                        attrs="{'invisible': [('type', 'in', ['service', 'consu'])]}"
+                                    />
+                                    <field
+                                        name="available_threshold"
+                                        attrs="{'invisible': ['|', ('type', 'in', ['service', 'consu']), ('inventory_availability', '!=', 'threshold')], 'required': [('inventory_availability', '=', 'threshold'), ('type', '=', 'product')]}"
+                                    />
+                                    <field
+                                        name="custom_message"
+                                        attrs="{'invisible': ['|', ('type', 'in', ['service', 'consu']), ('inventory_availability', '!=', 'custom')]}"
+                                    />
+                                    <field
+                                        name="alternative_product_ids"
                                         widget="many2many_tags"
-                                        domain="[('id', '!=', active_id), '|', ('company_id', '=', company_id), ('company_id', '=', False)]" />
-                                    <field name="accessory_product_ids"
-                                        widget="many2many_tags" />
-                                    <field name="website_ribbon_id"
+                                        domain="[('id', '!=', active_id), '|', ('company_id', '=', company_id), ('company_id', '=', False)]"
+                                    />
+                                    <field name="accessory_product_ids" widget="many2many_tags" />
+                                    <field
+                                        name="website_ribbon_id"
                                         groups="base.group_no_one"
-                                        options="{'no_quick_create': True'}" />
+                                        options="{'no_quick_create': True'}"
+                                    />
                                 </group>
                                 <group string="Theme Prime Configuration">
-                                    <field name="dr_brand_id"
+                                    <field
+                                        name="dr_brand_id"
                                         context="{'default_website_id': website_id}"
-                                        domain="[('website_id', 'in', (False, website_id))]" />
+                                        domain="[('website_id', 'in', (False, website_id))]"
+                                    />
                                     <field name="dr_label_id" />
-                                    <field name="dr_tag_ids"
+                                    <field
+                                        name="dr_tag_ids"
                                         widget="many2many_tags"
                                         context="{'default_website_id': website_id}"
-                                        domain="[('website_id', 'in', (False, website_id))]" />
+                                        domain="[('website_id', 'in', (False, website_id))]"
+                                    />
                                 </group>
                             </group>
                             <group string="Theme Prime Tabs and Offers">
@@ -568,8 +693,7 @@
                                                 </group>
                                             </group>
                                             <notebook>
-                                                <page name="content"
-                                                    string="Content">
+                                                <page name="content" string="Content">
                                                     <field name="content" />
                                                 </page>
                                             </notebook>
@@ -598,8 +722,7 @@
                                                 </group>
                                             </group>
                                             <notebook>
-                                                <page name="dialog_content"
-                                                    string="Dialog Content">
+                                                <page name="dialog_content" string="Dialog Content">
                                                     <field name="dialog_content" />
                                                 </page>
                                             </notebook>
@@ -607,162 +730,211 @@
                                     </form>
                                 </field>
 
-                                <div colspan="2" class="text-center">You can
-                                    find icon at <a
-                                        href="https://fontawesome.com/v4.7.0/icons/"
-                                        target="_blank">FontAwesome</a>. </div>
+                                <div colspan="2" class="text-center">
+                                    You can
+                                    find icon at
+                                    <a href="https://fontawesome.com/v4.7.0/icons/" target="_blank">FontAwesome</a>
+                                    .
+                                </div>
                             </group>
-                            <group name="product_template_images"
-                                string="Extra Product Media">
-                                <field name="product_template_image_ids"
+                            <group name="product_template_images" string="Extra Product Media">
+                                <field
+                                    name="product_template_image_ids"
                                     class="o_website_sale_image_list"
                                     context="{'default_name': name}"
                                     mode="kanban"
                                     options="{'create_text':'Add a Media'}"
-                                    nolabel="1" />
+                                    nolabel="1"
+                                />
                             </group>
                         </page>
-                        <page string="Purchase" name="purchase"
-                            attrs="{'invisible': [('purchase_ok','=',False)]}">
-                            <field name="seller_ids"
+                        <page string="Purchase" name="purchase" attrs="{'invisible': [('purchase_ok','=',False)]}">
+                            <field
+                                name="seller_ids"
                                 context="{'default_product_tmpl_id':context.get('product_tmpl_id',active_id), 'product_template_invisible_variant': True, 'tree_view_ref':'purchase.product_supplierinfo_tree_view2'}"
                                 nolabel="1"
-                                attrs="{'invisible': [('product_variant_count','&gt;',1)], 'readonly': [('product_variant_count','&gt;',1)]}" />
-                            <field name="variant_seller_ids"
+                                attrs="{'invisible': [('product_variant_count','&gt;',1)], 'readonly': [('product_variant_count','&gt;',1)]}"
+                            />
+                            <field
+                                name="variant_seller_ids"
                                 context="{'default_product_tmpl_id': context.get('product_tmpl_id', active_id), 'tree_view_ref':'purchase.product_supplierinfo_tree_view2'}"
                                 nolabel="1"
-                                attrs="{'invisible': [('product_variant_count','&lt;=',1)], 'readonly': [('product_variant_count','&lt;=',1)]}" />
+                                attrs="{'invisible': [('product_variant_count','&lt;=',1)], 'readonly': [('product_variant_count','&lt;=',1)]}"
+                            />
                             <group name="purchase">
-                                <group string="Reordering"
-                                    attrs="{'invisible': [('type','!=','service')]}">
+                                <group string="Reordering" attrs="{'invisible': [('type','!=','service')]}">
                                     <field name="service_to_purchase" />
                                 </group>
                                 <group string="Vendor Bills" name="bill">
-                                    <field name="supplier_taxes_id" colspan="2"
+                                    <field
+                                        name="supplier_taxes_id"
+                                        colspan="2"
                                         widget="many2many_tags"
                                         attrs="{'readonly':[('purchase_ok','=',0)]}"
-                                        context="{'default_type_tax_use':'purchase'}" />
+                                        context="{'default_type_tax_use':'purchase'}"
+                                    />
                                     <field name="purchase_method" widget="radio" />
                                 </group>
-                                <div
-                                    attrs="{'invisible':[('type', '!=', 'service')]}">
-                                    <group string="Landed Costs"
-                                        name="landedcosts">
+                                <div attrs="{'invisible':[('type', '!=', 'service')]}">
+                                    <group string="Landed Costs" name="landedcosts">
                                         <field name="landed_cost_ok" />
-                                        <field name="split_method_landed_cost"
+                                        <field
+                                            name="split_method_landed_cost"
                                             attrs="{'invisible': [('landed_cost_ok', '=', False)]}"
-                                            class="col-4" />
+                                            class="col-4"
+                                        />
                                     </group>
                                 </div>
                             </group>
                             <group string="Purchase Description">
-                                <field name="description_purchase" nolabel="1"
-                                    placeholder="This note is added to purchase orders." />
-                            </group>
-                            <group string="Warning when Purchasing this Product"
-                                groups="purchase.group_warning_purchase">
-                                <field name="purchase_line_warn" nolabel="1" />
-                                <field name="purchase_line_warn_msg" colspan="3"
+                                <field
+                                    name="description_purchase"
                                     nolabel="1"
-                                    attrs="{'required':[('purchase_line_warn','!=','no-message')],'readonly':[('purchase_line_warn','=','no-message')], 'invisible':[('purchase_line_warn','=','no-message')]}" />
+                                    placeholder="This note is added to purchase orders."
+                                />
+                            </group>
+                            <group
+                                string="Warning when Purchasing this Product"
+                                groups="purchase.group_warning_purchase"
+                            >
+                                <field name="purchase_line_warn" nolabel="1" />
+                                <field
+                                    name="purchase_line_warn_msg"
+                                    colspan="3"
+                                    nolabel="1"
+                                    attrs="{'required':[('purchase_line_warn','!=','no-message')],'readonly':[('purchase_line_warn','=','no-message')], 'invisible':[('purchase_line_warn','=','no-message')]}"
+                                />
                             </group>
                         </page>
-                        <page string="Inventory" name="inventory"
+                        <page
+                            string="Inventory"
+                            name="inventory"
                             groups="product.group_stock_packaging"
-                            attrs="{'invisible':[('type', '=', 'service')]}">
+                            attrs="{'invisible':[('type', '=', 'service')]}"
+                        >
                             <group name="inventory">
-                                <field name="has_available_route_ids"
-                                    invisible="1" />
+                                <field name="has_available_route_ids" invisible="1" />
                                 <group string="Operations" name="operations">
-                                    <label for="route_ids"
-                                        attrs="{'invisible': [('type', 'in', ['service', 'digital'])]}" />
+                                    <label
+                                        for="route_ids"
+                                        attrs="{'invisible': [('type', 'in', ['service', 'digital'])]}"
+                                    />
                                     <div>
-                                        <field name="route_ids" class="mb-0"
+                                        <field
+                                            name="route_ids"
+                                            class="mb-0"
                                             widget="many2many_checkboxes"
-                                            attrs="{'invisible': ['|', ('has_available_route_ids', '=', False), ('type', 'in', ['service', 'digital'])]}" />
-                                        <button id="stock.view_diagram_button"
-                                            string="View Diagram" type="action"
+                                            attrs="{'invisible': ['|', ('has_available_route_ids', '=', False), ('type', 'in', ['service', 'digital'])]}"
+                                        />
+                                        <button
+                                            id="stock.view_diagram_button"
+                                            string="View Diagram"
+                                            type="action"
                                             name="%(stock.action_open_routes)d"
                                             icon="fa-arrow-right"
                                             attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
                                             class="btn btn-link pt-0"
-                                            context="{'default_product_tmpl_id': id}" />
+                                            context="{'default_product_tmpl_id': id}"
+                                        />
                                     </div>
-                                    <field name="route_from_categ_ids"
+                                    <field
+                                        name="route_from_categ_ids"
                                         widget="many2many_tags"
                                         readonly="1"
-                                        attrs="{'invisible': [('route_from_categ_ids', '=', [])]}" />
+                                        attrs="{'invisible': [('route_from_categ_ids', '=', [])]}"
+                                    />
                                 </group>
-                                <group name="group_lots_and_weight"
+                                <group
+                                    name="group_lots_and_weight"
                                     string="Logistics"
-                                    attrs="{'invisible': [('type', 'not in', ['product', 'consu'])]}">
-                                    <field name="responsible_id"
-                                        domain="[('share', '=', False)]" />
-                                    <label for="sale_delay"
-                                        attrs="{'invisible': [('sale_ok', '=', False)]}" />
-                                    <div
-                                        attrs="{'invisible': [('sale_ok', '=', False)]}">
-                                        <field name="sale_delay"
-                                            class="oe_inline"
-                                            style="vertical-align:baseline" />
-                                        days </div>
+                                    attrs="{'invisible': [('type', 'not in', ['product', 'consu'])]}"
+                                >
+                                    <field name="responsible_id" domain="[('share', '=', False)]" />
+                                    <label for="sale_delay" attrs="{'invisible': [('sale_ok', '=', False)]}" />
+                                    <div attrs="{'invisible': [('sale_ok', '=', False)]}">
+                                        <field name="sale_delay" class="oe_inline" style="vertical-align:baseline" />
+                                        days
+                                    </div>
                                     <field name="hs_code" />
                                 </group>
-                                <group string="Traceability" name="traceability"
+                                <group
+                                    string="Traceability"
+                                    name="traceability"
                                     groups="stock.group_production_lot"
-                                    attrs="{'invisible': [('type', '=', 'consu')]}">
-                                    <field name="tracking" widget="radio"
-                                        attrs="{'invisible': [('type', 'in', ['service', 'digital'])]}" />
+                                    attrs="{'invisible': [('type', '=', 'consu')]}"
+                                >
+                                    <field
+                                        name="tracking"
+                                        widget="radio"
+                                        attrs="{'invisible': [('type', 'in', ['service', 'digital'])]}"
+                                    />
                                 </group>
-                                <group string="Counterpart Locations"
-                                    name="stock_property"
-                                    groups="base.group_no_one">
+                                <group string="Counterpart Locations" name="stock_property" groups="base.group_no_one">
                                     <field name="property_stock_production" />
                                     <field name="property_stock_inventory" />
                                 </group>
                             </group>
-                            <group name="packaging" string="Packaging"
+                            <group
+                                name="packaging"
+                                string="Packaging"
                                 colspan="4"
                                 attrs="{'invisible':['|', ('type', 'not in', ['product', 'consu']), ('product_variant_count', '>', 1), ('is_product_variant', '=', False)]}"
-                                groups="product.group_stock_packaging">
-                                <field name="packaging_ids" nolabel="1"
-                                    context="{'tree_view_ref':'product.product_packaging_tree_view2', 'form_view_ref':'product.product_packaging_form_view2', 'default_company_id': company_id}" />
+                                groups="product.group_stock_packaging"
+                            >
+                                <field
+                                    name="packaging_ids"
+                                    nolabel="1"
+                                    context="{'tree_view_ref':'product.product_packaging_tree_view2', 'form_view_ref':'product.product_packaging_form_view2', 'default_company_id': company_id}"
+                                />
                             </group>
                             <group string="Description for Delivery Orders">
-                                <field name="description_pickingout" nolabel="1"
-                                    placeholder="This note is added to delivery orders." />
+                                <field
+                                    name="description_pickingout"
+                                    nolabel="1"
+                                    placeholder="This note is added to delivery orders."
+                                />
                             </group>
                             <group string="Description for Receipts">
-                                <field name="description_pickingin" nolabel="1"
-                                    placeholder="This note is added to receipt orders (e.g. where to store the product in the warehouse)." />
+                                <field
+                                    name="description_pickingin"
+                                    nolabel="1"
+                                    placeholder="This note is added to receipt orders (e.g. where to store the product in the warehouse)."
+                                />
                             </group>
-                            <group string="Description for Internal Transfers"
-                                groups="stock.group_stock_multi_locations">
-                                <field name="description_picking"
+                            <group
+                                string="Description for Internal Transfers"
+                                groups="stock.group_stock_multi_locations"
+                            >
+                                <field
+                                    name="description_picking"
                                     placeholder="This note is added to internal transfer orders (e.g. where to pick the product in the warehouse)."
-                                    nolabel="1" />
+                                    nolabel="1"
+                                />
                             </group>
                         </page>
-                        <page string="Accounting" name="invoicing"
-                            groups="account.group_account_readonly">
+                        <page string="Accounting" name="invoicing" groups="account.group_account_readonly">
                             <group name="properties">
                                 <group string="Receivables">
-                                    <field name="property_account_income_id"
-                                        groups="account.group_account_readonly" />
+                                    <field name="property_account_income_id" groups="account.group_account_readonly" />
                                 </group>
                                 <group string="Payables" name="payables">
-                                    <field name="property_account_expense_id"
+                                    <field
+                                        name="property_account_expense_id"
                                         attrs="{'readonly': [('purchase_ok', '=', 0)]}"
-                                        groups="account.group_account_readonly" />
-                                    <field name="asset_category_id"
+                                        groups="account.group_account_readonly"
+                                    />
+                                    <field
+                                        name="asset_category_id"
                                         domain="[('type', '=', 'purchase')]"
                                         context="{'default_type': 'purchase'}"
-                                        groups="account.group_account_user" />
+                                        groups="account.group_account_user"
+                                    />
                                     <field
                                         name="property_account_creditor_price_difference"
                                         domain="[('deprecated','=',False)]"
                                         attrs="{'readonly':[('purchase_ok', '=', 0)]}"
-                                        groups="account.group_account_readonly" />
+                                        groups="account.group_account_readonly"
+                                    />
                                 </group>
                             </group>
                             <group name="accounting" />
@@ -777,5 +949,4 @@
             </form>
         </field>
     </record>
-
 </odoo>
