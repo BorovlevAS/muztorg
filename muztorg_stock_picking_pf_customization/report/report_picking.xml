@@ -37,4 +37,13 @@
         <xpath expr="//t[@t-as='ml']//td[6]" position="replace" />
         <xpath expr="//t[@t-as='ml']//td[5]" position="replace" />
     </template>
+
+    <template id="report_picking2_inherited" inherit_id="delivery.report_shipping2">
+        <xpath expr="//p[@t-field='o.carrier_id']/.." position="replace">
+            <div class="col-auto">
+                <strong>Carrier:</strong>
+                <p t-field="o.biko_carrier_id" />
+            </div>
+        </xpath>
+    </template>
 </odoo>
