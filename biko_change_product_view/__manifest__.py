@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 {
     "name": "BIKO: Модуль изменяет форму товара для удобства внесения информации",
-    "version": "14.0.1.1.1",
+    "version": "14.0.1.1.2",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
@@ -26,6 +25,7 @@
         "account",
         "base_accounting_kit",
         "pim",
+        "product_multiple_barcodes",
     ],
     "data": [
         "views/product_views.xml",
