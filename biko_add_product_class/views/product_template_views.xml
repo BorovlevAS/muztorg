@@ -42,30 +42,6 @@
         </field>
     </record>
 
-    <!-- наследовать форму product_template_search_view
-    в нее добавить поиск по полю biko_control_code
-    расширить возможность поиска name. т.е добавить при поиске по полю name еще и
-    поиск по biko_control_code
-    существующий домен оставить без изменений, добавить дополнительное поле поиска -->
-    <record id="biko_product_template_search_iMTD_1_17_nherit" model="ir.ui.view">
-        <field name="name">BIKO: product template search</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_search_view" />
-        <field name="arch" type="xml">
-            <field name="name" position="attributes">
-                <attribute name="filter_domain">
-                    ['|', '|', '|', '|', '|',
-                    ('default_code', 'ilike', self),
-                    ('product_variant_ids.default_code', 'ilike', self),
-                    ('name', 'ilike', self),
-                    ('barcode', 'ilike', self),
-                    ('biko_control_code', 'ilike', self),
-                    ('product_variant_ids.biko_control_code', 'ilike', self)]
-                </attribute>
-            </field>
-        </field>
-    </record>
-
     <!-- в табличное представление в модуле PIM добавляем поле biko_control_code -->
     <record id="biko_pim_product_template_tree_view_mtd_1_17_inherit" model="ir.ui.view">
         <field name="name">BIKO: Add control code to tree view</field>
