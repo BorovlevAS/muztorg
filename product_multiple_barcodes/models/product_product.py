@@ -1,58 +1,65 @@
 # Copyright 2021 VentorTech OU
 # Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
-from odoo import models, fields, api, _
-from odoo.osv import expression
+from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+
+# from odoo.osv import expression
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     barcode_ids = fields.One2many(
-        'product.barcode.multi',
-        'product_id',
-        string='Additional Barcodes',
+        "product.barcode.multi",
+        "product_id",
+        string="Additional Barcodes",
     )
 
     # THIS IS OVERRIDE SQL CONSTRAINTS.
-    _sql_constraints = [
-        ('barcode_uniq', 'check(1=1)', 'No error')
-    ]
+    _sql_constraints = [("barcode_uniq", "check(1=1)", "No error")]
 
-    @api.model
-    def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
-        args = args or []
-        domain = []
-        if name:
-            domain = ['|', '|', ('name', operator, name), ('default_code', operator, name),
-                      '|', ('barcode', operator, name), ('barcode_ids', operator, name)]
-        return self._search(expression.AND([domain, args]),
-                                  limit=limit, access_rights_uid=name_get_uid)
+    # @api.model
+    # def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
+    #     args = args or []
+    #     domain = []
+    #     if name:
+    #         domain = ['|', '|', ('name', operator, name), ('default_code', operator, name),
+    #                   '|', ('barcode', operator, name), ('barcode_ids', operator, name)]
+    #     return self._search(expression.AND([domain, args]),
+    #                               limit=limit, access_rights_uid=name_get_uid)
 
-    @api.constrains('barcode', 'barcode_ids', 'active')
+    @api.constrains("barcode", "barcode_ids", "active")
     def _check_unique_barcode(self):
         barcodes_duplicate = []
         for product in self:
             barcode_names = []
             if product.barcode_ids:
-                barcode_names = product.mapped('barcode_ids.name')
+                barcode_names = product.mapped("barcode_ids.name")
             if product.barcode:
                 barcode_names.append(product.barcode)
             if not barcode_names:
                 continue
-            products = self.env['product.product'].search([
-                ('barcode', 'in', barcode_names),
-                ('id', '!=', product.id),
-                ('active', '=', True),
-            ])
-            barcode_ids = self.env['product.barcode.multi'].search([
-                ('name', 'in', barcode_names),
-                ('product_id', '!=', product.id),
-                ('product_id.active', '=', True),
-            ])
+            products = self.env["product.product"].search(
+                [
+                    ("barcode", "in", barcode_names),
+                    ("id", "!=", product.id),
+                    ("active", "=", True),
+                ]
+            )
+            barcode_ids = self.env["product.barcode.multi"].search(
+                [
+                    ("name", "in", barcode_names),
+                    ("product_id", "!=", product.id),
+                    ("product_id.active", "=", True),
+                ]
+            )
             if len(barcode_names) != len(set(barcode_names)):
-                barcodes_multi = set([barcode for barcode in barcode_names if barcode_names.count(barcode) > 1])
+                barcodes_multi = {
+                    barcode
+                    for barcode in barcode_names
+                    if barcode_names.count(barcode) > 1
+                }
                 for barcode in barcodes_multi:
                     barcodes_duplicate.append(barcode)
             if barcode_ids:
