@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Добавляет контроль заполнения поля 'Контакт клиента', контроль дублей по ЕДРПОУ",
-    "version": "14.0.1.1.5",
+    "version": "14.0.1.1.6",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
