@@ -40,22 +40,20 @@
                 >
                     <group name="biko_clc_container_row_2" modifiers="{}">
                         <group name="biko_clc_lef" string="Contacts">
+                            <field name="biko_contact_domain" invisible="1" />
                             <field
                                 name="biko_contact_person_ids"
-                                domain="[('parent_id', '=',id), ('type', '=', 'contact')]"
+                                domain="biko_contact_domain"
                                 widget="many2many_tags"
                             />
-                            <field
-                                name="biko_recipient_ids"
-                                domain="[('parent_id', '=',id), ('type', '=', 'contact')]"
-                                widget="many2many_tags"
-                            />
-                            <field name="biko_payer_id" domain="[('parent_id', '=',id), ('type', '=', 'contact')]" />
+                            <field name="biko_recipient_ids" domain="biko_contact_domain" widget="many2many_tags" />
+                            <field name="biko_payer_id" domain="biko_contact_domain" />
                         </group>
                         <group name="biko_clc_right" string="Delivery information">
+                            <field name="biko_delivery_address_domain" invisible="1" />
                             <field
                                 name="biko_delivery_address_ids"
-                                domain="[('parent_id', '=',id), ('type', '!=', 'contact')]"
+                                domain="biko_delivery_address_domain"
                                 widget="many2many_tags"
                             />
                             <field name="biko_carrier_id" />

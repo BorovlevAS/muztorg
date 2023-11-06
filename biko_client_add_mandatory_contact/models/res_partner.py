@@ -1,3 +1,5 @@
+import json
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -7,7 +9,11 @@ class Partner(models.Model):
 
     # служебное поле для связки m2m записей
     biko_parent_id = fields.Many2one("res.partner")
-
+    biko_contact_domain = fields.Char(
+        compute="_compute_biko_contact_domain",
+        readonly=True,
+        store=False,
+    )
     biko_contact_person_ids = fields.Many2many(
         comodel_name="res.partner",
         relation="res_partner_contact_person_rel",
@@ -31,6 +37,12 @@ class Partner(models.Model):
     biko_payer_id = fields.Many2one(
         comodel_name="res.partner",
         string="Payer person",
+    )
+
+    biko_delivery_address_domain = fields.Char(
+        compute="_compute_biko_delivery_address_domain",
+        readonly=True,
+        store=False,
     )
 
     biko_delivery_address_ids = fields.Many2many(
@@ -57,6 +69,26 @@ class Partner(models.Model):
     )
 
     biko_1c_phone = fields.Char(string="1C phone")
+
+    def _get_parents(self, parent_ids):
+        if not self.parent_id:
+            return parent_ids
+        parent_ids.append(self.parent_id.id)
+        return self.parent_id._get_parents(parent_ids)
+
+    def _compute_biko_contact_domain(self):
+        for rec in self:
+            parent_ids = rec._get_parents(parent_ids=[rec.id])
+            rec.biko_contact_domain = json.dumps(
+                [("id", "child_of", parent_ids), ("type", "=", "contact")]
+            )
+
+    def _compute_biko_delivery_address_domain(self):
+        for rec in self:
+            parent_ids = rec._get_parents(parent_ids=[rec.id])
+            rec.biko_delivery_address_domain = json.dumps(
+                [("id", "child_of", parent_ids), ("type", "!=", "contact")]
+            )
 
     def _compute_is_filled_contact_person(self):
         for rec in self:
