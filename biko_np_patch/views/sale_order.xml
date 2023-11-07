@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="biko_view_order_form_inherit_sale_stock_inherit_np" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="delivery_novaposhta.view_order_form_inherit_sale_stock_inherit_np" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='backward_money']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='seats_amount']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="afterpayment_check" attrs="{'invisible': [('delivery_type', '!=', 'np')]}" />
+                <field name="backward_money_costs" attrs="{'invisible': [('delivery_type', '!=', 'np')]}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

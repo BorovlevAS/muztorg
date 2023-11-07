@@ -23,7 +23,13 @@ class StockPicking(models.Model):
     )
     biko_volume_weight = fields.Float(string="Volume Weight", digits=(10, 4))
     comment = fields.Text(related="sale_id.note", string="Comment")
-    afterpayment_check = fields.Boolean(string="Afterpayment check", default=False)
+    afterpayment_check = fields.Boolean(
+        string="Afterpayment check", related="sale_id.afterpayment_check", default=False
+    )
+    backward_money_costs = fields.Float(
+        "Costs",
+        related="sale_id.backward_money_costs",
+    )
 
     biko_recipient_id = fields.Many2one(
         "res.partner",
