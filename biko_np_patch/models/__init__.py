@@ -5,4 +5,5 @@ from . import (
     stock_picking,
     stock_picking_seats,
     warehouse_np,
+    sale_order,
 )
