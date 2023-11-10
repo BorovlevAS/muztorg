@@ -1,0 +1,38 @@
+<odoo>
+    <record id="biko_group_picking_paperformat_a4" model="report.paperformat">
+        <field name="name">Group picking A4</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">15</field>
+        <field name="margin_right">15</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="biko_group_picking_container">
+        <t t-call="web.html_container">
+            <!-- <t t-foreach="docs" t-as="doc">
+                <t t-call="muztorg_group_picking_report.kw_stock_ttn_stock_picking_ttn_report" t-lang="doc.partner_id.lang"/>
+            </t> -->
+            <t t-call="muztorg_group_picking_report.biko_group_picking_report_template" />
+        </t>
+    </template>
+
+    <record id="biko_group_picking_report" model="ir.actions.report">
+        <field name="name">Group picking</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">muztorg_group_picking_report.biko_group_picking_container</field>
+        <field name="report_file">muztorg_group_picking_report.biko_group_picking_container</field>
+        <field name="print_report_name">'Group picking'</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="muztorg_group_picking_report.biko_group_picking_paperformat_a4" />
+    </record>
+</odoo>
