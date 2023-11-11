@@ -20,16 +20,17 @@ class SaleOrder(models.Model):
 
     @api.depends("amount_total")
     def _compute_backward_money_costs(self):
-        cost = self.amount_total
-        date = self.date_order or fields.Date.today()
-        company = self.company_id.id or self.env.company.id
-        currency_uah = self.env.ref("base.UAH").with_context(
-            date=date, company_id=company
-        )
-        order_currency = self.currency_id
-        if currency_uah != order_currency:
-            cost = currency_uah.compute(cost, order_currency)
-        self.backward_money_costs = cost
+        for order in self:
+            cost = order.amount_total
+            date = order.date_order or fields.Date.today()
+            company = order.company_id.id or order.env.company.id
+            currency_uah = order.env.ref("base.UAH").with_context(
+                date=date, company_id=company
+            )
+            order_currency = order.currency_id
+            if currency_uah != order_currency:
+                cost = currency_uah.compute(cost, order_currency)
+            order.backward_money_costs = cost
 
     def _inverse_afterpayment_check(self):
         for order in self:
