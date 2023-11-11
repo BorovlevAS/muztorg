@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="biko_group_picking_report_template">
+            <t t-set="lines" t-value="docs.get_move_ids_without_package()" />
+
+            <div class="page">
+                <h3>Group picking</h3>
+
+                <table
+                    style="width: 100%; border-collapse: collapse !important; margin: 0 auto; border: 1px solid black;"
+                    t-if="len(lines) != 0"
+                >
+                    <thead>
+                        <tr>
+                            <th
+                                style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center; padding: 5px;"
+                                name="th_biko_control_code"
+                            >
+                                <strong>Control code</strong>
+                            </th>
+                            <th
+                                style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center; padding: 5px;"
+                                name="th_product"
+                            >
+                                <strong>Product</strong>
+                            </th>
+                            <th
+                                style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center; padding: 5px;"
+                                name="th_qty"
+                            >
+                                <strong>Quantity</strong>
+                            </th>
+                            <th
+                                style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center; padding: 5px;"
+                                name="th_qty_available"
+                            >
+                                <strong>Remainder</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="lines" t-as="ml">
+                            <tr>
+                                <td
+                                    style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center; padding: 5px;"
+                                >
+                                    <span t-field="ml['product_id'].biko_control_code" />
+                                </td>
+                                <td
+                                    style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: left; padding: 5px;"
+                                >
+                                    <span t-field="ml['product_id'].display_name" />
+                                    <br />
+                                    <span t-field="ml['product_id'].description_picking" />
+                                </td>
+                                <td
+                                    style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center; padding: 5px;"
+                                >
+                                    <span t-if="ml['state'] != 'done'" t-esc="ml['product_uom_qty']" />
+                                    <span t-if="ml['state'] == 'done'" t-esc="ml['qty_done']" />
+                                    <span t-esc="ml['product_uom_id']" groups="uom.group_uom" />
+                                </td>
+                                <td
+                                    style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center; padding: 5px;"
+                                >
+                                    <span t-esc="ml['qty_available']" />
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+    </data>
+</odoo>
