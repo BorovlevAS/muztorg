@@ -10,22 +10,14 @@
             <field name="categ_id" position="after">
                 <field name="biko_product_class" readonly="1" />
                 <field name="biko_product_model" attrs="{'required': [('type', '=', 'product')]}" />
-                <field
-                    name="biko_country"
-                    options="{'no_create': True}"
-                    attrs="{'required': [('type', '=', 'product')]}"
-                />
+                <field name="biko_country" options="{'no_create': True}" />
                 <field name="biko_country_customs" options="{'no_create': True}" />
                 <field name="biko_control_code" readonly="1" />
             </field>
             <xpath expr="//*/page[@name='general_information']/group[2]" position="after">
                 <group>
                     <group string="Characteristics (ukr)">
-                        <field
-                            name="biko_character_ukr"
-                            nolabel="1"
-                            attrs="{'required': [('type', '=', 'product')]}"
-                        />
+                        <field name="biko_character_ukr" nolabel="1" />
                     </group>
                     <group string="Characteristics (rus)">
                         <field

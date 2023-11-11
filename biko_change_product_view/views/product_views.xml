@@ -353,11 +353,7 @@
                                         </group>
                                     </group>
                                     <group>
-                                        <field
-                                            name="biko_country"
-                                            options="{'no_create': True}"
-                                            attrs="{'required': [('type', '=', 'product')]}"
-                                        />
+                                        <field name="biko_country" options="{'no_create': True}" />
                                     </group>
                                 </group>
                                 <group name="group_standard_price">
@@ -513,13 +509,7 @@
                             </group>
                             <group>
                                 <group string="Characteristics (ukr)">
-                                    <field
-                                        name="biko_character_ukr"
-                                        nolabel="1"
-                                        attrs="{'required': [('type', '=', 'product')]}"
-                                        modifiers="{'required':[['type','=','product']]}"
-                                        id="biko_character_ukr"
-                                    />
+                                    <field name="biko_character_ukr" nolabel="1" id="biko_character_ukr" />
                                 </group>
                                 <group string="Characteristics (rus)">
                                     <field
