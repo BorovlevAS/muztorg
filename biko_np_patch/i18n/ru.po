@@ -51,6 +51,7 @@ msgstr ""
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_delivery_novaposhta_ttn__afterpayment_check
+#: model:ir.model.fields,field_description:biko_np_patch.field_sale_order__afterpayment_check
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__afterpayment_check
 msgid "Afterpayment check"
 msgstr "Контроль оплаты"
@@ -382,3 +383,8 @@ msgstr "delivery_novaposhta.warehouse"
 #: model:ir.model,name:biko_np_patch.model_stock_picking_fill_wizard
 msgid "stock.picking.fill.wizard"
 msgstr "stock.picking.fill.wizard"
+
+#. module: biko_np_patch
+#: model:ir.model.fields,field_description:biko_np_patch.field_sale_order__backward_money_costs
+msgid "Amount to control payment (UAH)"
+msgstr "Сумма для контроля платежа (грн)"

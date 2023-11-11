@@ -23,7 +23,21 @@ class StockPicking(models.Model):
     )
     biko_volume_weight = fields.Float(string="Volume Weight", digits=(10, 4))
     comment = fields.Text(related="sale_id.note", string="Comment")
-    afterpayment_check = fields.Boolean(string="Afterpayment check", default=False)
+    afterpayment_check = fields.Boolean(
+        string="Afterpayment check",
+        # related="sale_id.afterpayment_check",
+        store=True,
+        compute="_compute_afterpayment_check",
+        inverse="_inverse_afterpayment_check",
+        default=False,
+    )
+    backward_money_costs = fields.Float(
+        "Costs",
+        # related="sale_id.backward_money_costs",
+        store=True,
+        compute="_compute_backward_money_costs",
+        inverse="_inverse_backward_money_costs",
+    )
 
     biko_recipient_id = fields.Many2one(
         "res.partner",
@@ -109,3 +123,25 @@ class StockPicking(models.Model):
             rec.biko_volume_weight = (
                 rec.np_length * rec.np_width * rec.np_height
             ) / 4_000
+
+    def _inverse_backward_money_costs(self):
+        for stock in self:
+            if stock.sale_id:
+                sale_order = stock.sale_id
+                sale_order.update({"backward_money_costs": stock.backward_money_costs})
+
+    @api.depends("sale_id")
+    def _compute_backward_money_costs(self):
+        for stock in self:
+            stock.update({"backward_money_costs": stock.sale_id.backward_money_costs})
+
+    def _inverse_afterpayment_check(self):
+        for stock in self:
+            if stock.sale_id:
+                sale_order = stock.sale_id
+                sale_order.update({"afterpayment_check": stock.afterpayment_check})
+
+    @api.depends("sale_id")
+    def _compute_afterpayment_check(self):
+        for stock in self:
+            stock.update({"afterpayment_check": stock.sale_id.afterpayment_check})
