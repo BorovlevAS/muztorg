@@ -1,8 +1,8 @@
 name: Automatic preprod deploy
 on:
-    # push:
-    #     branches: [test_deploy]
-    workflow_dispatch:
+    push:
+        branches: [dev]
+
 env:
     SSH_KEY: ${{secrets.PREPROD_SSH_KEY}}
     SERVER_ADDR: ${{vars.PREPROD_SERV_ADDR}}
