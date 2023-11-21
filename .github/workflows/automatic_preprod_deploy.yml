@@ -53,6 +53,5 @@ jobs:
                   cd $MAIN_PATH/_ci_scripts
                   python3 odoo_update_addons.py "$ODOO_USER" "$ODOO_PASSWORD" "$ODOO_URI" "$ODOO_DB"
                   EOF
-                  cat ~/update_script.sh
             - name: Run script
               run: ssh -o ServerAliveInterval=600 $SERVER_USER@$SERVER_ADDR bash < ~/update_script.sh
