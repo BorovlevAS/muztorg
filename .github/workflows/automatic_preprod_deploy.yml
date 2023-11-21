@@ -1,7 +1,8 @@
 name: Automatic preprod deploy
 on:
-    push:
-        branches: [dev]
+    # push:
+    #     branches: [test_deploy]
+    workflow_dispatch:
 env:
     SSH_KEY: ${{secrets.PREPROD_SSH_KEY}}
     SERVER_ADDR: ${{vars.PREPROD_SERV_ADDR}}
@@ -46,9 +47,12 @@ jobs:
                     git pull
                   done
                   echo "=== UPDATING ODOO ==="
-                  sudo systemctl restart $ODOO_SERVICE
+                  sudo systemctl stop $ODOO_SERVICE
+                  sudo systemctl start $ODOO_SERVICE
+                  sudo systemctl status $ODOO_SERVICE
                   cd $MAIN_PATH/_ci_scripts
                   python3 odoo_update_addons.py "$ODOO_USER" "$ODOO_PASSWORD" "$ODOO_URI" "$ODOO_DB"
                   EOF
-            - name: Run script
-              run: ssh $SERVER_USER@$SERVER_ADDR bash < ~/update_script.sh
+                  cat ~/update_script.sh
+            # - name: Run script
+            #   run: ssh $SERVER_USER@$SERVER_ADDR bash < ~/update_script.sh
