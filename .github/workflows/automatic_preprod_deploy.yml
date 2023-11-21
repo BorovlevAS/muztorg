@@ -1,0 +1,54 @@
+name: Preprod
+on:
+    push:
+        branches: [dev]
+env:
+    SSH_KEY: ${{secrets.PREPROD_SSH_KEY}}
+    SERVER_ADDR: ${{vars.PREPROD_SERV_ADDR}}
+    SERVER_USER: ${{vars.PREPROD_SERV_USER}}
+    MAIN_PATH: ${{vars.PREPROD_MAIN_PATH}}
+    CUSTOM_PATH: ${{vars.PREPROD_CUSTOM_PATH}}
+    ODOO_SERVICE: ${{vars.PREPROD_ODOO_SERVICE}}
+    ODOO_USER: ${{vars.PREPROD_ODOO_USER}}
+    ODOO_PASSWORD: ${{secrets.PREPROD_ODOO_ADMIN_PWD}}
+    ODOO_URI: ${{vars.PREPROD_ODOO_ADDR}}
+    ODOO_DB: ${{vars.PREPROD_DB_NAME}}
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Prepare Script
+              env:
+                  PTH_STRING: ${{'$PTH'}}
+              run: |
+                  install -m 600 -D /dev/null ~/.ssh/id_rsa
+                  echo "$SSH_KEY" > ~/.ssh/id_rsa
+                  ssh-keyscan -H $SERVER_ADDR > ~/.ssh/known_hosts 2> /dev/null
+                  cat <<EOF > ~/update_script.sh
+                  echo "#!/bin/bash"
+                  echo "=== UPDATING SIMBIOZ REPOs ==="
+                  cd $MAIN_PATH
+                  git submodule foreach --recursive git config --local --replace-all safe.directory '*'
+                  git submodule foreach --recursive git checkout main
+                  git submodule foreach --recursive 'git add . && git diff-index --quiet HEAD || (git stash && git stash drop)'
+                  git submodule foreach --recursive git reset --hard
+                  git submodule foreach --recursive git pull
+                  sh odoo_set_icons.sh || true
+                  echo "=== UPDATING BIKO REPOs ==="
+                  for PTH in {$CUSTOM_PATH}
+                  do
+                    cd $PTH_STRING
+                    pwd
+                    git checkout dev || git checkout main
+                    git add . && git diff-index --quiet HEAD || (git stash && git stash drop)
+                    git reset --hard
+                    git pull
+                  done
+                  echo "=== UPDATING ODOO ==="
+                  sudo systemctl restart $ODOO_SERVICE
+                  cd $MAIN_PATH/_ci_scripts
+                  python3 odoo_update_addons.py "$ODOO_USER" "$ODOO_PASSWORD" "$ODOO_URI" "$ODOO_DB"
+                  EOF
+            - name: Run script
+              run: ssh $SERVER_USER@$SERVER_ADDR bash < ~/update_script.sh
