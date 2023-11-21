@@ -1,0 +1,31 @@
+<data noupdate="1">
+    <record id="np_comp_rule_key" model="ir.rule">
+        <field name="name">Nova poshta multi-company</field>
+        <field name="model_id" ref="model_delivery_novaposhta_api_key" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+        </field>
+        <field name="active" eval="False" />
+    </record>
+
+    <record id="np_comp_rule_ttn" model="ir.rule">
+        <field name="name">Nova poshta multi-company</field>
+        <field name="model_id" ref="model_delivery_novaposhta_ttn" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+        </field>
+        <field name="active" eval="False" />
+    </record>
+
+    <record id="np_comp_rule_sender" model="ir.rule">
+        <field name="name">Nova poshta multi-company</field>
+        <field name="model_id" ref="model_delivery_novaposhta_sender_contact" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            ['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]
+        </field>
+        <field name="active" eval="False" />
+    </record>
+</data>

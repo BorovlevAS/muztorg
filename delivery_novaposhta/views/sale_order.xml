@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_sale_stock_inherit_np" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="delivery_type" invisible="1" />
+                <field name="carrier_id" />
+                <field name="backward_money" attrs="{'invisible': [('delivery_type', '!=', 'np')]}" />
+                <field
+                    name="bm_payer_type"
+                    attrs="{'required': [('backward_money', '!=', False)], 'invisible': [('backward_money', '=', False)]}"
+                />
+                <field name="seats_amount" attrs="{'invisible': [('delivery_type', '!=', 'np')]}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

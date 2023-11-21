@@ -1,0 +1,256 @@
+<odoo>
+    <data noupdate="1">
+        <!--CRON UPDATE ALL LISTS FROM SERVER-->
+        <record id="list_from_server" model="ir.cron">
+            <field name="name">NP ALL LISTS update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <!--set to -1-->
+            <field name="numbercall">0</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_synchronize" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST warehouses FROM SERVER-->
+        <record id="warehouses_list_from_server" model="ir.cron">
+            <field name="name">NP warehouses update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_warehouse" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST cargo_types FROM SERVER-->
+        <record id="cargo_types_list_from_server" model="ir.cron">
+            <field name="name">NP cargo types update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_cargo_types" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST backward_delivery_cargo_type FROM SERVER-->
+        <record id="backward_delivery_cargo_types_list_from_server" model="ir.cron">
+            <field name="name">NP backward delivery cargo type update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_backward_delivery_cargo_type" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE pallets_list FROM SERVER-->
+        <record id="pallets_list_from_server" model="ir.cron">
+            <field name="name">NP pallets_list update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_pallets_list" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST types_of_payers FROM SERVER-->
+        <record id="types_of_payers_list_from_server" model="ir.cron">
+            <field name="name">NP types of payers update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_types_of_payers" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST types_of_payers_for_redelivery FROM SERVER-->
+        <record id="types_of_payers_for_redelivery_list_from_server" model="ir.cron">
+            <field name="name">NP types of payers for redelivery update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_types_of_payers_for_redelivery" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE pack_list FROM SERVER-->
+        <record id="pack_list_from_server" model="ir.cron">
+            <field name="name">NP pack list update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_pack_list" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE tires_wheels_list FROM SERVER-->
+        <record id="tires_wheels_list_from_server" model="ir.cron">
+            <field name="name">NP tires wheels list update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_tires_wheels_list" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST cargo_descritpion_list FROM SERVER-->
+        <record id="cargo_descritpion_list_from_server" model="ir.cron">
+            <field name="name">NP cargo descritpion list update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_cargo_descritpion_list" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST service_types FROM SERVER-->
+        <record id="service_types_list_from_server" model="ir.cron">
+            <field name="name">NP service types update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_service_types" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST types_of_counterparties FROM SERVER-->
+        <record id="types_of_counterparties_list_from_server" model="ir.cron">
+            <field name="name">NP types of counterparties update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_types_of_counterparties" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST payments_forms FROM SERVER-->
+        <record id="payments_forms_list_from_server" model="ir.cron">
+            <field name="name">NP payments forms update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_payments_forms" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE ownership_forms_lists FROM SERVER-->
+        <record id="ownership_forms_list_from_server" model="ir.cron">
+            <field name="name">NP ownership forms list update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_ownership_forms_list" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE cities_list FROM SERVER-->
+        <record id="cities_list_from_server" model="ir.cron">
+            <field name="name">NP cities list update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_cities_list" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON UPDATE LIST streets_list SERVER-->
+        <record id="streets_list_from_server" model="ir.cron">
+            <field name="name">NP streets update</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">0</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_streets_list" />
+            <field name="state">code</field>
+            <field name="code">model.update_values()</field>
+        </record>
+
+        <!--CRON TO UPDATE TTN STATUSES-->
+        <record id="update_statuses_server" model="ir.cron">
+            <field name="name">NP Update TTN Statuses</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_ttn" />
+            <field name="state">code</field>
+            <field name="code">model._update_statuses()</field>
+        </record>
+
+        <!--CRON TO DOWNLOAD TTN STATUSES-->
+        <record id="update_statuses_server" model="ir.cron">
+            <field name="name">NP Download new TTN</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root" />
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <!--            <field name="doal">1</field>-->
+            <field name="model_id" ref="model_delivery_novaposhta_sync_ttn" />
+            <field name="state">code</field>
+            <field name="code">model.synchronize()</field>
+        </record>
+    </data>
+</odoo>

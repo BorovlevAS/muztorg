@@ -1,0 +1,93 @@
+<odoo>
+    <record id="view_picking_inherit_form_np" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    name="open_ttn"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    type="object"
+                    string="TTN"
+                    attrs="{'invisible': [('ttn', '=', False)]}"
+                />
+                <button
+                    name="open_invoice"
+                    class="oe_stat_button"
+                    icon="fa-book"
+                    type="object"
+                    string="Invoice"
+                    attrs="{'invisible': [('invoice_id', '=', False)]}"
+                />
+                <button
+                    name="print_document_pdf"
+                    class="oe_stat_button"
+                    icon="fa-suitcase"
+                    type="object"
+                    string="Print TTN"
+                    attrs="{'invisible': [('ttn', '=', False)]}"
+                />
+                <button
+                    name="print_barcode_pdf"
+                    class="oe_stat_button"
+                    icon="fa-barcode"
+                    type="object"
+                    string="Print Barcode"
+                    attrs="{'invisible': [('ttn', '=', False)]}"
+                />
+            </div>
+            <xpath expr="//page[@name='extra']" position="before">
+                <page name="delivery_novaposhta" string="Nova poshta shipping">
+                    <group>
+                        <group string="Delivery settings">
+                            <field name="service_type" />
+                            <field name="sender_city" />
+                            <field name="sender_warehouse" />
+                            <field name="seats_amount" />
+                            <field name="cargo_type" />
+                            <field name="payment_method" />
+                            <field name="payer_type" invisible="1" />
+                            <field name="send_city_ref" invisible="1" />
+                            <field name="service_type_ref" invisible="1" />
+                            <field name="ttn" invisible="1" />
+                            <field name="invoice_id" invisible="1" />
+                        </group>
+                        <group string="C.O.D">
+                            <field name="backward_money" />
+                            <field
+                                name="bm_payer_type"
+                                attrs="{'required': [('backward_money', '!=', False)], 'invisible': [('backward_money', '=', False)]}"
+                            />
+                            <field
+                                name="backward_money_costs"
+                                attrs="{'invisible': [('backward_money', '=', False)]}"
+                            />
+                        </group>
+                        <group string="Recipient settings">
+                            <field name="recipient_city" />
+                            <field
+                                name="recipient_house"
+                                attrs="{'invisible': [('service_type_ref', 'in', ('DoorsWarehouse', 'WarehouseWarehouse'))]}"
+                            />
+                            <field
+                                name="recipient_flat"
+                                attrs="{'invisible': [('service_type_ref', 'in', ('DoorsWarehouse', 'WarehouseWarehouse'))]}"
+                            />
+                            <field
+                                name="streets"
+                                attrs="{'invisible': [('service_type_ref', 'in', ('DoorsWarehouse', 'WarehouseWarehouse'))]}"
+                            />
+                            <field
+                                name="recipient_warehouse"
+                                attrs="{'invisible': [('service_type_ref', 'not in', ('DoorsWarehouse', 'WarehouseWarehouse'))]}"
+                            />
+                            <field name="rec_city_ref" invisible="True" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
