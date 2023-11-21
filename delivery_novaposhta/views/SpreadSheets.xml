@@ -1,0 +1,616 @@
+<odoo>
+    <data>
+        <!--API KEY VIEWS AND ACT WINDOW-->
+        <record id="APIKey_form" model="ir.ui.view">
+            <field name="name">APIKey form</field>
+            <field name="model">delivery_novaposhta.api_key</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="main">
+                            <field name="key" />
+                            <field name="active" />
+                            <field name="senderref" />
+                            <field name="company_id" />
+                            <field name="sendertype" />
+                            <field name="contacts">
+                                <tree create="false" edit="false" delete="false">
+                                    <field name="name" />
+                                    <field name="phones" />
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="APIKey_tree" model="ir.ui.view">
+            <field name="name">APIKey tree</field>
+            <field name="model">delivery_novaposhta.api_key</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="key" />
+                    <field name="active" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="api_key_action_window">
+            <field name="name">Nova Poshta API Key</field>
+            <field name="res_model">delivery_novaposhta.api_key</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--SENDER CONTACT VIEWS AND ACT WINDOW-->
+        <record id="Sender_Contact_form" model="ir.ui.view">
+            <field name="name">Sender Contact form</field>
+            <field name="model">delivery_novaposhta.sender_contact</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                            <field name="phones" />
+                            <field name="related_key" />
+                            <field name="company_id" groups="base.group_multi_company" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="Sender_Contact_tree" model="ir.ui.view">
+            <field name="name">Sender Contact tree</field>
+            <field name="model">delivery_novaposhta.sender_contact</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false">
+                    <field name="name" />
+                    <field name="ref" />
+                    <field name="related_key" />
+                    <field name="company_id" groups="base.group_multi_company" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="sender_contact_action_window">
+            <field name="name">Sender Contact API Key</field>
+            <field name="res_model">delivery_novaposhta.sender_contact</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--CARGO TYPES VIEWS AND ACT WINDOW-->
+        <record id="CargoTypes_form" model="ir.ui.view">
+            <field name="name">Cargo Types form</field>
+            <field name="model">delivery_novaposhta.cargo_types</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="CargoTypes_tree" model="ir.ui.view">
+            <field name="name">Cargo Types tree</field>
+            <field name="model">delivery_novaposhta.cargo_types</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cargo_types_action_window">
+            <field name="name">Nova Poshta Cargo Types</field>
+            <field name="res_model">delivery_novaposhta.cargo_types</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--BACKWARD DELIVERY CARGO TYPES VIEWS AND ACT WINDOW-->
+        <record id="BackwardDeliveryCargoTypes_form" model="ir.ui.view">
+            <field name="name">Backward Delivery Cargo Types form</field>
+            <field name="model">delivery_novaposhta.backward_delivery_cargo_type</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="BackwardDeliveryCargoTypes_tree" model="ir.ui.view">
+            <field name="name">Backward Delivery Cargo Types tree</field>
+            <field name="model">delivery_novaposhta.backward_delivery_cargo_type</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="backward_delivery_cargo_type_action_window">
+            <field name="name">Nova Poshta Backward Delivery Cargo Types</field>
+            <field name="res_model">delivery_novaposhta.backward_delivery_cargo_type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--PALLETS LIST VIEWS AND ACT WINDOW-->
+        <record id="pallets_list_form" model="ir.ui.view">
+            <field name="name">Pallets List form</field>
+            <field name="model">delivery_novaposhta.pallets_list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                            <field name="weight" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="pallets_list_tree" model="ir.ui.view">
+            <field name="name">Pallets List tree</field>
+            <field name="model">delivery_novaposhta.pallets_list</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="pallets_list_action_window">
+            <field name="name">Nova Poshta Pallets List</field>
+            <field name="res_model">delivery_novaposhta.pallets_list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--TYPES OF PAYERS VIEWS AND ACT WINDOW-->
+        <record id="types_of_payers_form" model="ir.ui.view">
+            <field name="name">Types Of Payers form</field>
+            <field name="model">delivery_novaposhta.types_of_payers</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="types_of_payers_tree" model="ir.ui.view">
+            <field name="name">Types Of Payers tree</field>
+            <field name="model">delivery_novaposhta.types_of_payers</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="types_of_payers_action_window">
+            <field name="name">Nova Poshta Types Of Payers</field>
+            <field name="res_model">delivery_novaposhta.types_of_payers</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--TYPES OF PAYERS FOR REDELIVERY VIEWS AND ACT WINDOW-->
+        <record id="types_of_payers_for_redelivery_form" model="ir.ui.view">
+            <field name="name">Types Of Payers For Redelivery form</field>
+            <field name="model">delivery_novaposhta.types_of_payers_for_redelivery</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="types_of_payers_for_redelivery_tree" model="ir.ui.view">
+            <field name="name">Types Of Payers For Redelivery tree</field>
+            <field name="model">delivery_novaposhta.types_of_payers_for_redelivery</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="types_of_payers_for_redelivery_action_window">
+            <field name="name">Nova Poshta Types Of Payers For Redelivery</field>
+            <field name="res_model">delivery_novaposhta.types_of_payers_for_redelivery</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--PACKS LIST VIEWS AND ACT WINDOW-->
+        <record id="pack_list_form" model="ir.ui.view">
+            <field name="name">Pack List form</field>
+            <field name="model">delivery_novaposhta.pack_list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                            <field name="length" />
+                            <field name="width" />
+                            <field name="height" />
+                            <field name="TypeOfPacking" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="pack_list_tree" model="ir.ui.view">
+            <field name="name">Pack List tree</field>
+            <field name="model">delivery_novaposhta.pack_list</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="pack_list_action_window">
+            <field name="name">Nova Poshta Pack List</field>
+            <field name="res_model">delivery_novaposhta.pack_list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--TIRES WHEELS LIST VIEWS AND ACT WINDOW-->
+        <record id="tires_wheels_list_form" model="ir.ui.view">
+            <field name="name">Tires Wheels List form</field>
+            <field name="model">delivery_novaposhta.tires_wheels_list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                            <field name="weight" />
+                            <field name="DescriptionType" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tires_wheels_list_tree" model="ir.ui.view">
+            <field name="name">Tires Wheels List tree</field>
+            <field name="model">delivery_novaposhta.tires_wheels_list</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="tires_wheels_list_action_window">
+            <field name="name">Nova Poshta Tires Wheels List</field>
+            <field name="res_model">delivery_novaposhta.tires_wheels_list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--CARGO DESCRIPTION LIST VIEWS AND ACT WINDOW-->
+        <record id="cargo_descritpion_list_form" model="ir.ui.view">
+            <field name="name">Cargo Description List form</field>
+            <field name="model">delivery_novaposhta.cargo_descritpion_list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cargo_descritpion_list_tree" model="ir.ui.view">
+            <field name="name">Cargo Description List tree</field>
+            <field name="model">delivery_novaposhta.cargo_descritpion_list</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cargo_descritpion_list_action_window">
+            <field name="name">Nova Poshta Cargo Description List</field>
+            <field name="res_model">delivery_novaposhta.cargo_descritpion_list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--SERVICE TYPES VIEWS AND ACT WINDOW-->
+        <record id="service_types_form" model="ir.ui.view">
+            <field name="name">Service Types form</field>
+            <field name="model">delivery_novaposhta.service_types</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="service_types_tree" model="ir.ui.view">
+            <field name="name">Service Types tree</field>
+            <field name="model">delivery_novaposhta.service_types</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="service_types_action_window">
+            <field name="name">Nova Poshta Service Types</field>
+            <field name="res_model">delivery_novaposhta.service_types</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--TYPES OF COUNTERPARTIES VIEWS AND ACT WINDOW-->
+        <record id="types_of_counterparties_form" model="ir.ui.view">
+            <field name="name">Types Of Counterparties form</field>
+            <field name="model">delivery_novaposhta.types_of_counterparties</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="types_of_counterparties_tree" model="ir.ui.view">
+            <field name="name">Types Of Counterparties tree</field>
+            <field name="model">delivery_novaposhta.types_of_counterparties</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="types_of_counterparties_action_window">
+            <field name="name">Nova Poshta Types Of Counterparties</field>
+            <field name="res_model">delivery_novaposhta.types_of_counterparties</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--PAYMENTS FORMS VIEWS AND ACT WINDOW-->
+        <record id="payments_forms_form" model="ir.ui.view">
+            <field name="name">Payments Forms form</field>
+            <field name="model">delivery_novaposhta.payments_forms</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="payments_forms_tree" model="ir.ui.view">
+            <field name="name">Payments Forms tree</field>
+            <field name="model">delivery_novaposhta.payments_forms</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="payments_forms_action_window">
+            <field name="name">Nova Poshta Payments Forms</field>
+            <field name="res_model">delivery_novaposhta.payments_forms</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--OWNERSHIP FORMS LIST VIEWS AND ACT WINDOW-->
+        <record id="ownership_forms_list_form" model="ir.ui.view">
+            <field name="name">Ownership Forms List form</field>
+            <field name="model">delivery_novaposhta.ownership_forms_list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                            <field name="full_name" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="ownership_forms_list_tree" model="ir.ui.view">
+            <field name="name">Ownership Forms List tree</field>
+            <field name="model">delivery_novaposhta.ownership_forms_list</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ownership_forms_list_action_window">
+            <field name="name">Nova Poshta Ownership Forms List</field>
+            <field name="res_model">delivery_novaposhta.ownership_forms_list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--CITIES LIST VIEWS AND ACT WINDOW-->
+        <record id="cities_list_form" model="ir.ui.view">
+            <field name="name">Cities List form</field>
+            <field name="model">delivery_novaposhta.cities_list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <button
+                        string="Update Warehouses"
+                        name="action_update_warhouses"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                            <field name="warehouse_ids">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="address" />
+                                </tree>
+                            </field>
+                            <field name="streets_ids">
+                                <tree>
+                                    <!--                                    <field name="type"/>-->
+                                    <field name="name" />
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cities_list_tree" model="ir.ui.view">
+            <field name="name">Cities List tree</field>
+            <field name="model">delivery_novaposhta.cities_list</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <header>
+                        <button
+                            string="Update Warehouses"
+                            name="action_update_warhouses"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                    </header>
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="cities_list_action_window">
+            <field name="name">Nova Poshta Cities List</field>
+            <field name="res_model">delivery_novaposhta.cities_list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--STREETS LIST VIEWS AND ACT WINDOW-->
+        <record id="streets_list_form" model="ir.ui.view">
+            <field name="name">Streets List form</field>
+            <field name="model">delivery_novaposhta.streets_list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="street_type" />
+                            <field name="name" />
+                            <field name="city_id" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="streets_list_tree" model="ir.ui.view">
+            <field name="name">Streets List tree</field>
+            <field name="model">delivery_novaposhta.streets_list</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" delete="false">
+                    <field name="street_type" />
+                    <field name="name" />
+                    <field name="city_name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="streets_list_action_window">
+            <field name="name">Nova Poshta Streets List</field>
+            <field name="res_model">delivery_novaposhta.streets_list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--AREAS LIST VIEWS AND ACT WINDOW-->
+        <record id="areas_list_form" model="ir.ui.view">
+            <field name="name">Areas List form</field>
+            <field name="model">delivery_novaposhta.areas_list</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false" delete="false">
+                    <sheet>
+                        <group name="main">
+                            <field name="name" />
+                            <field name="ref" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="areas_list_tree" model="ir.ui.view">
+            <field name="name">Streets List tree</field>
+            <field name="model">delivery_novaposhta.areas_list</field>
+            <field name="arch" type="xml">
+                <tree create="true" edit="false" delete="false">
+                    <field name="name" />
+                    <field name="ref" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="areas_list_action_window">
+            <field name="name">Nova Poshta Streets List</field>
+            <field name="res_model">delivery_novaposhta.areas_list</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

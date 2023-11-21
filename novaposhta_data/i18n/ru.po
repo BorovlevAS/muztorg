@@ -1,0 +1,28 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* novaposhta_data
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-14 09:52+0000\n"
+"PO-Revision-Date: 2023-02-14 09:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: novaposhta_data
+#: model:product.product,name:novaposhta_data.product_product_delivery_np
+#: model:product.template,name:novaposhta_data.product_product_delivery_np_product_template
+msgid "Nova poshta"
+msgstr "Новая почта"
+
+#. module: novaposhta_data
+#: model:product.product,uom_name:novaposhta_data.product_product_delivery_np
+#: model:product.template,uom_name:novaposhta_data.product_product_delivery_np_product_template
+msgid "Units"
+msgstr "Шт."
