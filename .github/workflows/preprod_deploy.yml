@@ -7,10 +7,12 @@ on:
         inputs:
             update_simbioz:
                 description: "Update SIMBIOZ sources"
+                default: false
                 required: true
                 type: boolean
             base_update:
                 description: "Full update (BASE module)"
+                default: false
                 required: false
                 type: boolean
 env:
