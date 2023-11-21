@@ -1,0 +1,181 @@
+<odoo>
+    <data>
+        <!-- Top menu item -->
+        <menuitem
+            name="Nova Poshta"
+            id="delivery_novaposhta.menu_root"
+            web_icon="delivery_novaposhta,static/description/icon.png"
+        />
+
+        <!-- Menu categories -->
+        <menuitem
+            name="TTN"
+            id="delivery_novaposhta.TTN"
+            parent="delivery_novaposhta.menu_root"
+            action="ttn_action_window"
+            sequence="1"
+        />
+
+        <menuitem
+            name="Sync TTN"
+            id="delivery_novaposhta.syncTTN"
+            parent="delivery_novaposhta.menu_root"
+            action="sync_ttn_action"
+            sequence="2"
+        />
+
+        <menuitem
+            name="Delivery"
+            id="delivery_novaposhta.Delivery"
+            parent="delivery_novaposhta.menu_root"
+            sequence="3"
+        />
+
+        <menuitem
+            name="Sync the street catalog"
+            id="delivery_novaposhta.sync_the_street_catalog"
+            parent="delivery_novaposhta.menu_root"
+            action="sync_street_list_action"
+            sequence="9"
+            groups="base.group_no_one"
+        />
+
+        <menuitem
+            name="Spreadsheets"
+            id="delivery_novaposhta.Spreadsheets"
+            parent="delivery_novaposhta.menu_root"
+            sequence="5"
+            groups="base.group_no_one"
+        />
+
+        <menuitem
+            name="Settings"
+            id="delivery_novaposhta.APIKey"
+            parent="delivery_novaposhta.menu_root"
+            sequence="2"
+            groups="base.group_no_one"
+        />
+
+        <!--Settings menus-->
+        <menuitem
+            name="APIKey"
+            id="delivery_novaposhta.APIKey_key"
+            parent="delivery_novaposhta.APIKey"
+            action="api_key_action_window"
+        />
+
+        <menuitem
+            name="Sender Contact"
+            id="delivery_novaposhta.sender_contact"
+            parent="delivery_novaposhta.APIKey"
+            action="sender_contact_action_window"
+        />
+
+        <!--Spreadsheets menus-->
+        <menuitem
+            name="Warehouses"
+            id="delivery_novaposhta.Warehouses"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="warehousenp_action_window"
+            sequence="4"
+        />
+
+        <menuitem
+            name="Cargo Types"
+            id="delivery_novaposhta.Spreadsheets_Cargo_types"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="cargo_types_action_window"
+        />
+
+        <menuitem
+            name="Backward Delivery Cargo Types"
+            id="delivery_novaposhta.Spreadsheets_BackwardDeliveryCargoTypes"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="backward_delivery_cargo_type_action_window"
+        />
+
+        <menuitem
+            name="Pallets List"
+            id="delivery_novaposhta.Spreadsheets_PalletsList"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="pallets_list_action_window"
+        />
+
+        <menuitem
+            name="Types Of Payers"
+            id="delivery_novaposhta.Spreadsheets_types_of_payers"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="types_of_payers_action_window"
+        />
+
+        <menuitem
+            name="Types Of Payers For Redelivery"
+            id="delivery_novaposhta.Spreadsheets_types_of_payers_for_redelivery"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="types_of_payers_for_redelivery_action_window"
+        />
+
+        <menuitem
+            name="Pack List"
+            id="delivery_novaposhta.Spreadsheets_pack_list"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="pack_list_action_window"
+        />
+
+        <menuitem
+            name="Tires Wheels List"
+            id="delivery_novaposhta.Spreadsheets_tires_wheels_list"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="tires_wheels_list_action_window"
+        />
+
+        <menuitem
+            name="Cargo Description List"
+            id="delivery_novaposhta.Spreadsheets_cargo_descritpion_list"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="cargo_descritpion_list_action_window"
+        />
+
+        <menuitem
+            name="Service Types"
+            id="delivery_novaposhta.Spreadsheets_service_types"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="service_types_action_window"
+        />
+
+        <menuitem
+            name="Types Of Counterparties"
+            id="delivery_novaposhta.Spreadsheets_types_of_counterparties"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="types_of_counterparties_action_window"
+        />
+
+        <menuitem
+            name="Payments Forms"
+            id="delivery_novaposhta.Spreadsheets_payments_forms"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="payments_forms_action_window"
+        />
+
+        <menuitem
+            name="Ownership Forms List"
+            id="delivery_novaposhta.Spreadsheets_ownership_forms_list"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="ownership_forms_list_action_window"
+        />
+
+        <menuitem
+            name="Cities List"
+            id="delivery_novaposhta.Spreadsheets_cities_list"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="cities_list_action_window"
+        />
+
+        <menuitem
+            name="Streets List"
+            id="delivery_novaposhta.Spreadsheets_streets_list"
+            parent="delivery_novaposhta.Spreadsheets"
+            action="streets_list_action_window"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sync_ttn_wizard" model="ir.ui.view">
+        <field name="name">delivery_novaposhta.sync_ttn.wizard</field>
+        <field name="model">delivery_novaposhta.sync_ttn</field>
+        <field name="arch" type="xml">
+            <form string="Sync TTN">
+                <group>
+                    <group>
+                        <field name="date_from" />
+                        <field name="date_to" />
+                    </group>
+                </group>
+                <footer>
+                    <button string='Sync' name="synchronize" type="object" class="btn-primary" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sync_ttn_action" model="ir.actions.act_window">
+        <field name="name">Download TTN</field>
+        <field name="res_model">delivery_novaposhta.sync_ttn</field>
+        <!--        <field name="view_type">form</field>-->
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

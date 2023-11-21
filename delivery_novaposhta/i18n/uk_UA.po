@@ -1,0 +1,1555 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_novaposhta
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-14 09:52+0000\n"
+"PO-Revision-Date: 2023-02-14 09:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.APIKey_key
+msgid "APIKey"
+msgstr "APIKey"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_base_spreadsheet__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__active
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__active
+msgid "Active"
+msgstr "Активно"
+
+#. module: delivery_novaposhta
+#: code:addons/delivery_novaposhta/models/res_partner.py:0
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__address
+#, python-format
+msgid "Address"
+msgstr "Адреса"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_delivery_address
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_delivery_address
+msgid "Address for Nova Poshta"
+msgstr "Адреса для Нової Пошти"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__amount
+msgid "Amount"
+msgstr "Сума"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__areas_center
+msgid "Areas Center"
+msgstr "Райони Центр"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_BackwardDeliveryCargoTypes
+msgid "Backward Delivery Cargo Types"
+msgstr "Види вантажів зворотної доставки"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__barcode
+msgid "Barcode"
+msgstr "Штрих-код"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__backward_money
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_sale_order__backward_money
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__backward_money
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_picking_inherit_form_np
+msgid "C.O.D"
+msgstr "Накладений платіж"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.sync_street_list_wizard
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.sync_ttn_wizard
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_cargo_descritpion_list
+msgid "Cargo Description List"
+msgstr "Перелік опису вантажу"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_cargo_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__cargo_type
+msgid "Cargo Type"
+msgstr "Тип вантажу"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__cargo_type_ref
+msgid "Cargo Type Ref"
+msgstr "Посилання типу вантажу"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__cargo_type
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_Cargo_types
+msgid "Cargo Types"
+msgstr "Типи вантажу"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_cities_list
+msgid "Cities List"
+msgstr "Список міст"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__city
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__city_id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_street_list__city_id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__city_id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_city
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_city
+msgid "City"
+msgstr "Місто"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__city_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__cityname
+msgid "City Name"
+msgstr "Назва міста"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__city_ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__city_ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__city_ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__cityref
+msgid "City Ref"
+msgstr "Посилання міста"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__company_id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__company_id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__company_id
+msgid "Company"
+msgstr "Компанія"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_res_config_settings
+msgid "Config Settings"
+msgstr "Налаштування"
+
+#. module: delivery_novaposhta
+#: code:addons/delivery_novaposhta/models/SpreadSheets.py:0
+#: code:addons/delivery_novaposhta/models/WarehouseNP.py:0
+#, python-format
+msgid "Connection error"
+msgstr "Connection error"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_res_partner
+msgid "Contact"
+msgstr "Контакт"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__contact_sender
+msgid "Contact Person"
+msgstr "Контактна особа"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__contacts
+msgid "Contacts"
+msgstr "Контакти"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__backward_money_costs
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__backward_money_costs
+msgid "Costs"
+msgstr "Витрати"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_street_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_synchronize__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__create_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__create_uid
+msgid "Created by"
+msgstr "Створено"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_street_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_synchronize__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__create_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__create_date
+msgid "Created on"
+msgstr "Створено в"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__datetime
+msgid "Date"
+msgstr "Дата"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn__date_from
+msgid "Date from"
+msgstr "Дата з"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn__date_to
+msgid "Date to"
+msgstr "Дата до"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_default_packaging_id
+msgid "Default Package Type"
+msgstr "Тип пакета за замовчуванням"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Delete"
+msgstr "Видалити"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Delivery
+msgid "Delivery"
+msgstr "Доставка"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_sale_order__delivery_type
+msgid "Delivery Type"
+msgstr "Тип доставки"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_picking_inherit_form_np
+msgid "Delivery settings"
+msgstr "Налаштування доставки"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_base_spreadsheet__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__name
+msgid "Description"
+msgstr "Опис"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__DescriptionType
+msgid "Descriptiontype"
+msgstr "Тип опису"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_base_spreadsheet__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_street_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_synchronize__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_sale_order__display_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__doc_number
+msgid "Document Number"
+msgstr "Номер документу"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.sync_ttn_action
+msgid "Download TTN"
+msgstr "Завантажити ТТН"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_delivery_carrier_form_with_provider_novaposhta
+msgid "Download ttn"
+msgstr "Завантажити ТТН"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__estimated_costs
+msgid "Estimated Costs"
+msgstr "Орієнтовні витрати"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__estimated_delivery_date
+msgid "Estimated delivery date"
+msgstr "Передбачувана дата поставки"
+
+#. module: delivery_novaposhta
+#: code:addons/delivery_novaposhta/models/TTN.py:0
+#, python-format
+msgid "Field phone is empty"
+msgstr "Поле телефону порожнє"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__flat
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__flat
+msgid "Flat"
+msgstr "Flat"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__full_name
+msgid "Full Name"
+msgstr "Повне ім'я"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__description_street
+msgid "Full address"
+msgstr "Повна адреса"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__general_volume
+msgid "General Volume"
+msgstr "Загальний об'єм"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "General info"
+msgstr "Загальна інф."
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__height
+msgid "Height"
+msgstr "Висота"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__house
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__house
+msgid "House number"
+msgstr "Номер дому"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_base_spreadsheet__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_street_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_synchronize__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_config_settings__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_sale_order__id
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__id
+msgid "ID"
+msgstr "ID"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__invoice_id
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_picking_inherit_form_np
+msgid "Invoice"
+msgstr "Рахунок"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__cost
+msgid "Items Cost"
+msgstr "Вартість елементу"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_key
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__key
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__key
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_delivery_carrier_form_with_provider_novaposhta
+msgid "Key"
+msgstr "Ключ"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_base_spreadsheet____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_street_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_synchronize____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_sale_order____last_update
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_street_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_synchronize__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__write_uid
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__write_uid
+msgid "Last Updated by"
+msgstr "Останнє оновлення"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_street_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sync_ttn__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_synchronize__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__write_date
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__write_date
+msgid "Last Updated on"
+msgstr "Останнє оновлення в"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__length
+msgid "Length"
+msgstr "Довжина"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.list_from_server
+#: model:ir.cron,name:delivery_novaposhta.list_from_server
+msgid "NP ALL LISTS update"
+msgstr "Оновити ВСІ СПИСКИ НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.update_statuses_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.update_statuses_server
+#: model:ir.cron,name:delivery_novaposhta.update_statuses_server
+msgid "NP Download new TTN"
+msgstr "НП Завантажити новий ТТН"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.res_config_settings_view_form
+msgid "NP Key"
+msgstr "Ключ НП"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_ownership
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_ownership
+msgid "NP Ownership"
+msgstr "Власник НП"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.res_config_settings_view_form
+msgid "NP Senders"
+msgstr "Відправники НП"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.res_config_settings_view_form
+msgid "NP TTN"
+msgstr "ТТН НП"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_type
+msgid "NP Type"
+msgstr "Тип НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.backward_delivery_cargo_types_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.backward_delivery_cargo_types_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.backward_delivery_cargo_types_list_from_server
+msgid "NP backward delivery cargo type update"
+msgstr "Оновлення типу вантажу зворотної доставки НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.cargo_descritpion_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.cargo_descritpion_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.cargo_descritpion_list_from_server
+msgid "NP cargo descritpion list update"
+msgstr "Оновлення списку опису вантажів НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.cargo_types_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.cargo_types_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.cargo_types_list_from_server
+msgid "NP cargo types update"
+msgstr "Оновлення типів вантажів НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.cities_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.cities_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.cities_list_from_server
+msgid "NP cities list update"
+msgstr "Оновлення списку міст НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.ownership_forms_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.ownership_forms_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.ownership_forms_list_from_server
+msgid "NP ownership forms list update"
+msgstr "Оновлення списку форм власності НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.pack_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.pack_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.pack_list_from_server
+msgid "NP pack list update"
+msgstr "Оновлення списку пакетів НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.pallets_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.pallets_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.pallets_list_from_server
+msgid "NP pallets_list update"
+msgstr "Оновлення pallets_list НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.payments_forms_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.payments_forms_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.payments_forms_list_from_server
+msgid "NP payments forms update"
+msgstr "Оновлення платіжних форм НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.service_types_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.service_types_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.service_types_list_from_server
+msgid "NP service types update"
+msgstr "Оновлення типів послуг НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.streets_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.streets_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.streets_list_from_server
+msgid "NP streets update"
+msgstr "Оновлення вулиць НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.tires_wheels_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.tires_wheels_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.tires_wheels_list_from_server
+msgid "NP tires wheels list update"
+msgstr "Оновлення списку дисків та шин НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.types_of_counterparties_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.types_of_counterparties_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.types_of_counterparties_list_from_server
+msgid "NP types of counterparties update"
+msgstr "Оновлення типів контрагентів НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.types_of_payers_for_redelivery_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.types_of_payers_for_redelivery_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.types_of_payers_for_redelivery_list_from_server
+msgid "NP types of payers for redelivery update"
+msgstr "Типи платників НП для оновлення повторної доставки"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.types_of_payers_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.types_of_payers_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.types_of_payers_list_from_server
+msgid "NP types of payers update"
+msgstr "Оновлення типів платників НП"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_warehouse
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_warehouse
+msgid "NP warehouse"
+msgstr "Склад НП"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.server,name:delivery_novaposhta.warehouses_list_from_server_ir_actions_server
+#: model:ir.cron,cron_name:delivery_novaposhta.warehouses_list_from_server
+#: model:ir.cron,name:delivery_novaposhta.warehouses_list_from_server
+msgid "NP warehouses update"
+msgstr "Оновлення складів НП"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_name
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_name
+msgid "Name"
+msgstr "Назва"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__name_ru
+msgid "Name ru"
+msgstr "Назва ru"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification__notification
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_notification__text
+msgid "Notification"
+msgstr "Сповіщення"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.menu_root
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.custom_np_res_partner
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.res_config_settings_view_form
+msgid "Nova Poshta"
+msgstr "Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.api_key_action_window
+msgid "Nova Poshta API Key"
+msgstr "Нова Пошта API Key"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.backward_delivery_cargo_type_action_window
+msgid "Nova Poshta Backward Delivery Cargo Types"
+msgstr "Нова Пошта Зворотна доставка Види вантажів"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.cargo_descritpion_list_action_window
+msgid "Nova Poshta Cargo Description List"
+msgstr "Перелік опису вантажу Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.cargo_types_action_window
+msgid "Nova Poshta Cargo Types"
+msgstr "Види вантажів Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.cities_list_action_window
+msgid "Nova Poshta Cities List"
+msgstr "Список міст Нової Пошти"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_delivery_carrier_form_with_provider_novaposhta
+msgid "Nova Poshta Configuration"
+msgstr "Нова Пошта Конфігурація"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.ownership_forms_list_action_window
+msgid "Nova Poshta Ownership Forms List"
+msgstr "Список форм власності на Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.pack_list_action_window
+msgid "Nova Poshta Pack List"
+msgstr "Список пакетів Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.pallets_list_action_window
+msgid "Nova Poshta Pallets List"
+msgstr "Список піддонів Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.payments_forms_action_window
+msgid "Nova Poshta Payments Forms"
+msgstr "Форми оплати Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.service_types_action_window
+msgid "Nova Poshta Service Types"
+msgstr "Види послуг Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.areas_list_action_window
+#: model:ir.actions.act_window,name:delivery_novaposhta.streets_list_action_window
+msgid "Nova Poshta Streets List"
+msgstr "Список вулиць Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.ttn_action_window
+msgid "Nova Poshta TTN"
+msgstr "Нова Пошта ТТН"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.tires_wheels_list_action_window
+msgid "Nova Poshta Tires Wheels List"
+msgstr "Нова Пошта Список Шини та Диски"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_delivery_carrier_form_with_provider_novaposhta
+msgid "Nova Poshta Tutorial"
+msgstr "Підручник Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.types_of_counterparties_action_window
+msgid "Nova Poshta Types Of Counterparties"
+msgstr "Нова Пошта Види Контрагентів"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.types_of_payers_action_window
+msgid "Nova Poshta Types Of Payers"
+msgstr "Нова Пошта Види Платників"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.types_of_payers_for_redelivery_action_window
+msgid "Nova Poshta Types Of Payers For Redelivery"
+msgstr "Нова Пошта Види Платників За Повторну Доставку"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.warehousenp_action_window
+msgid "Nova Poshta Warehouses"
+msgstr "Склади Нової Пошти"
+
+#. module: delivery_novaposhta
+#: code:addons/delivery_novaposhta/models/delivery_carrier.py:0
+#: code:addons/delivery_novaposhta/models/product_packaging.py:0
+#, python-format
+msgid "Nova poshta"
+msgstr "Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_picking_inherit_form_np
+msgid "Nova poshta shipping"
+msgstr "Відправка Новою Поштою"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__number
+msgid "Number"
+msgstr "Номер"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Open url"
+msgstr "Відкрити URL-адресу"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__order_to_deliver
+msgid "Order to deliver"
+msgstr "Замовлення на доставку"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_ownership_forms_list
+msgid "Ownership Forms List"
+msgstr "Перелік форм власності"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_pack_list
+msgid "Pack List"
+msgstr "Список упаковок"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_PalletsList
+msgid "Pallets List"
+msgstr "Список піддонів"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__partner_id
+msgid "Partner"
+msgstr "Клієнт"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_payer_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__bm_payer_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__payer_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_sale_order__bm_payer_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__bm_payer_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__payer_type
+msgid "Payer Type"
+msgstr "Тип платника"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_payment_method
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__payment_method
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__payment_method
+msgid "Payment Method"
+msgstr "Спосіб оплати"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_payments_forms
+msgid "Payments Forms"
+msgstr "Форми платежів"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__phone
+msgid "Phone"
+msgstr "Телефон"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__phones
+msgid "Phones"
+msgstr "Телефони"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_picking_inherit_form_np
+msgid "Print Barcode"
+msgstr "Роздрукувати штрих-код"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_picking_inherit_form_np
+msgid "Print TTN"
+msgstr "Роздрукувати ТТН"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Print barcode"
+msgstr "Роздрукувати штрих-код"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Print barcode PDF"
+msgstr "Роздрукувати штрих-код PDF"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Print document"
+msgstr "Роздрукувати документ"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Print document PDF"
+msgstr "Роздрукувати документ PDF"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Product info"
+msgstr "Інф. про продукт"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr "Провайдер"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__rec_city_ref
+msgid "Rec City Ref"
+msgstr "Rec City Ref"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_city
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__recipient_city
+msgid "Recipient City"
+msgstr "Місто одержувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__recipient_flat
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_flat
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__recipient_flat
+msgid "Recipient Flat"
+msgstr "Квартира отримувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__recipient_house
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_house
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__recipient_house
+msgid "Recipient House"
+msgstr "Будинок одержувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_name
+msgid "Recipient Name"
+msgstr "Ім'я одержувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_phone
+msgid "Recipient Phone"
+msgstr "Телефон одержувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_type
+msgid "Recipient Type"
+msgstr "Тип одержувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_type_ref
+msgid "Recipient Type Ref"
+msgstr "Посилання типу одержувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_warehouse
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__recipient_warehouse
+msgid "Recipient Warehouse"
+msgstr "Склад одержувача"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Recipient info"
+msgstr "Інф. про одержувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_name_organization
+msgid "Recipient organization"
+msgstr "Організація-одержувач"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_picking_inherit_form_np
+msgid "Recipient settings"
+msgstr "Налаштування одержувача"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_city_ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_areas_list__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_backward_delivery_cargo_type__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_base_spreadsheet__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_descritpion_list__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cargo_types__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ownership_forms_list__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_payments_forms__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_service_types__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_counterparties__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_types_of_payers_for_redelivery__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_warehouse__ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__rec_city_ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__send_city_ref
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__service_type_ref
+msgid "Ref"
+msgstr "Посилання"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__related_carrier
+msgid "Related Carrier"
+msgstr "Пов'язаний перевізник"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_sender_contact__related_key
+msgid "Related Key"
+msgstr "Пов'язаний ключ"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_sale_order
+msgid "Sales Order"
+msgstr "Замовлення на продаж"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__salesperson
+msgid "Salesperson"
+msgstr "Продавець"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_sale_order__seats_amount
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__seats_amount
+msgid "Seats Amount"
+msgstr "Кількість місць"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__seats_amount
+msgid "Seats amount"
+msgstr "Кількість місць"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_delivery_carrier_form_with_provider_novaposhta
+msgid "Sender"
+msgstr "Відправник"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_city_sender
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__sender_city
+msgid "Sender City"
+msgstr "Місто відправника"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_contact_sender
+#: model:ir.ui.menu,name:delivery_novaposhta.sender_contact
+msgid "Sender Contact"
+msgstr "Контакт відправника"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.sender_contact_action_window
+msgid "Sender Contact API Key"
+msgstr "Контакт відправника API Key"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_sender_warehouse
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__sender_warehouse
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__sender_warehouse
+msgid "Sender Warehouse"
+msgstr "Склад відправника"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__city_sender
+msgid "Sender city"
+msgstr "Місто відправника"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Sender info"
+msgstr "Інф. про відправника"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__senderref
+msgid "Senderref"
+msgstr "Посилання відправника"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_api_key__sendertype
+msgid "Sendertype"
+msgstr "Тип відправника"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_service_type
+msgid "Service Type"
+msgstr "Тип послуги"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__service_type_ref
+msgid "Service Type Ref"
+msgstr "Посилання типу послуги"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__service_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__service_type
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_service_types
+msgid "Service Types"
+msgstr "Типи послуги"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_service_type
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_service_type
+msgid "Service type"
+msgstr "Тип послуги"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.APIKey
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_delivery_carrier_form_with_provider_novaposhta
+msgid "Settings"
+msgstr "Налаштування"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_config_settings__company_share_np_ttn
+msgid "Share np TTN to all companies"
+msgstr "Поділитися НП ТТН для всіх компаній"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_config_settings__company_share_np_key
+msgid "Share np key to all companies"
+msgstr "Поділитися ключем НП для всіх компаній"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_config_settings__company_share_np_sender
+msgid "Share np sender to all companies"
+msgstr "Поділитися НП відправником з усіма компаніями"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,help:delivery_novaposhta.field_res_config_settings__company_share_np_ttn
+msgid ""
+"Share your np TTN to all companies defined in your instance.\n"
+" * Checked : TTN are visible for every company, even if a company is defined on the partner.\n"
+" * Unchecked : Each company can see only its TTN (TTN where company is defined).\n"
+" TTN not related to a company are visible for all companies."
+msgstr ""
+"Повідомте свій НП ТТН усім компаніям, визначеним у вашому екземплярі.\n"
+" * Позначено: ТТН видно для кожної компанії, навіть якщо компанія визначена на клієнті.\n"
+" * Не позначено: кожна компанія може бачити лише свій ТТН (ТТН, де визначено компанію).\n"
+"ТТН, не пов'язані з компанією, видимі для всіх компаній."
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,help:delivery_novaposhta.field_res_config_settings__company_share_np_key
+msgid ""
+"Share your np key to all companies defined in your instance.\n"
+" * Checked : Key are visible for every company, even if a company is defined on the partner.\n"
+" * Unchecked : Each company can see only its key (key where company is defined). \n"
+" Key not related to a company are visible for all companies."
+msgstr ""
+"Надайте свій ключ np усім компаніям, визначеним у вашому екземплярі.\n"
+" * Позначено: ключі видимі для кожної компанії, навіть якщо компанія визначена на клієнті.\n"
+" * Не позначено: кожна компанія може бачити лише свій ключ (ключ, де визначено компанію). \n"
+"Ключі, не пов’язані з компанією, видимі для всіх компаній."
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,help:delivery_novaposhta.field_res_config_settings__company_share_np_sender
+msgid ""
+"Share your np sender to all companies defined in your instance.\n"
+" * Checked : sender are visible for every company, even if a company is defined on the partner.\n"
+" * Unchecked : Each company can see only its sender (sender where company is defined).\n"
+" sender not related to a company are visible for all companies."
+msgstr ""
+"Надати доступ до відправника НП усім компаніям, визначеним у вашому екземплярі.\n"
+" * Позначено: відправник видимий для кожної компанії, навіть якщо компанія визначена на клієнті.\n"
+" * Не позначено: кожна компанія може бачити лише свого відправника (відправника, де визначено компанію).\n"
+"відправник, не пов'язаний з компанією, видимий для всіх компаній."
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Методи доставки"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets
+msgid "Spreadsheets"
+msgstr "Електронні таблиці"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__status
+msgid "Status"
+msgstr "Статус"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__status_code
+msgid "Status code"
+msgstr "Код статусу"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__streets
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__streets
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_partner__np_street
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_res_users__np_street
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__streets
+msgid "Street"
+msgstr "Вулиця"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__street_type
+msgid "Street Type"
+msgstr "Тип вулиці"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_streets_list__street_type_ref
+msgid "Street Type Ref"
+msgstr "Посилання типу вулиці"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__streets_ids
+msgid "Streets"
+msgstr "Вулиці"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_streets_list
+msgid "Streets List"
+msgstr "Список вулиць"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.sync_street_list_wizard
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.sync_ttn_wizard
+msgid "Sync"
+msgstr "Синхронізувати"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.syncTTN
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.sync_ttn_wizard
+msgid "Sync TTN"
+msgstr "Синхронізувати ТТН"
+
+#. module: delivery_novaposhta
+#: model:ir.actions.act_window,name:delivery_novaposhta.sync_street_list_action
+#: model:ir.ui.menu,name:delivery_novaposhta.sync_the_street_catalog
+msgid "Sync the street catalog"
+msgstr "Синхронізувати каталог вулиць"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.sync_street_list_wizard
+msgid "Sync the street catalog of a specific city"
+msgstr "Синхронізація каталогу вулиць певного міста"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_delivery_carrier_form_with_provider_novaposhta
+msgid "Synchronize"
+msgstr "Синхронізувати"
+
+#. module: delivery_novaposhta
+#: code:addons/delivery_novaposhta/models/TTN.py:0
+#: code:addons/delivery_novaposhta/models/TTN.py:0
+#: code:addons/delivery_novaposhta/models/TTN.py:0
+#: code:addons/delivery_novaposhta/models/TTN.py:0
+#: code:addons/delivery_novaposhta/models/TTN.py:0
+#: code:addons/delivery_novaposhta/models/stock.py:0
+#: code:addons/delivery_novaposhta/models/stock.py:0
+#: model:ir.ui.menu,name:delivery_novaposhta.TTN
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.view_picking_inherit_form_np
+#, python-format
+msgid "TTN"
+msgstr "ТТН"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,help:delivery_novaposhta.field_delivery_novaposhta_ttn__cargo_type_ref
+msgid "Technical Field"
+msgstr "Технічне поле"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,help:delivery_novaposhta.field_delivery_carrier__np_city_ref
+#: model:ir.model.fields,help:delivery_novaposhta.field_delivery_novaposhta_address__city_ref
+#: model:ir.model.fields,help:delivery_novaposhta.field_delivery_novaposhta_ttn__city_ref
+#: model:ir.model.fields,help:delivery_novaposhta.field_delivery_novaposhta_ttn__rec_city_ref
+#: model:ir.model.fields,help:delivery_novaposhta.field_delivery_novaposhta_ttn__recipient_type_ref
+#: model:ir.model.fields,help:delivery_novaposhta.field_delivery_novaposhta_ttn__service_type_ref
+#: model:ir.model.fields,help:delivery_novaposhta.field_delivery_novaposhta_ttn__status_code
+#: model:ir.model.fields,help:delivery_novaposhta.field_stock_picking__rec_city_ref
+#: model:ir.model.fields,help:delivery_novaposhta.field_stock_picking__send_city_ref
+#: model:ir.model.fields,help:delivery_novaposhta.field_stock_picking__service_type_ref
+msgid "Technical field"
+msgstr "Технічне поле"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_tires_wheels_list
+msgid "Tires Wheels List"
+msgstr "Список шин та дисків"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_stock_picking
+msgid "Transfer"
+msgstr "Переміщення"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_stock_picking__ttn
+msgid "Ttn"
+msgstr "ТТН"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__type
+msgid "Type"
+msgstr "Тип"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__type_ru
+msgid "Type ru"
+msgstr "Тип ru"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__TypeOfPacking
+msgid "Typeofpacking"
+msgstr "Тип упаковки"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_types_of_counterparties
+msgid "Types Of Counterparties"
+msgstr "Види контрагентів"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_types_of_payers
+msgid "Types Of Payers"
+msgstr "Види платників"
+
+#. module: delivery_novaposhta
+#: model:ir.ui.menu,name:delivery_novaposhta.Spreadsheets_types_of_payers_for_redelivery
+msgid "Types Of Payers For Redelivery"
+msgstr "Види платників за повторну доставку"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__wheels_type
+msgid "Types of wheels"
+msgstr "Типи коліс"
+
+#. module: delivery_novaposhta
+#: model_terms:ir.ui.view,arch_db:delivery_novaposhta.TTN_form
+msgid "Update status"
+msgstr "Оновити статус"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__np_default_vendor_delivery
+msgid "Vendor delivery"
+msgstr "Доставка від продавця"
+
+#. module: delivery_novaposhta
+#: code:addons/delivery_novaposhta/models/res_partner.py:0
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_address__warehouse
+#, python-format
+msgid "Warehouse"
+msgstr "Склад"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_cities_list__warehouse_ids
+#: model:ir.ui.menu,name:delivery_novaposhta.Warehouses
+msgid "Warehouses"
+msgstr "Склади"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__waybill
+msgid "Waybill"
+msgstr "Накладна"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pallets_list__weight
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_tires_wheels_list__weight
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_ttn__weight
+msgid "Weight"
+msgstr "Вага"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_novaposhta_pack_list__width
+msgid "Width"
+msgstr "Ширина"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_address
+msgid "delivery_novaposhta.address"
+msgstr "delivery_novaposhta.address"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_api_key
+msgid "delivery_novaposhta.api_key"
+msgstr "delivery_novaposhta.api_key"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_areas_list
+msgid "delivery_novaposhta.areas_list"
+msgstr "delivery_novaposhta.areas_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_backward_delivery_cargo_type
+msgid "delivery_novaposhta.backward_delivery_cargo_type"
+msgstr "delivery_novaposhta.backward_delivery_cargo_type"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_base_spreadsheet
+msgid "delivery_novaposhta.base_spreadsheet"
+msgstr "delivery_novaposhta.base_spreadsheet"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_cargo_descritpion_list
+msgid "delivery_novaposhta.cargo_descritpion_list"
+msgstr "delivery_novaposhta.cargo_descritpion_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_cargo_types
+msgid "delivery_novaposhta.cargo_types"
+msgstr "delivery_novaposhta.cargo_types"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_cities_list
+msgid "delivery_novaposhta.cities_list"
+msgstr "delivery_novaposhta.cities_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_notification
+msgid "delivery_novaposhta.notification"
+msgstr "delivery_novaposhta.notification"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_ownership_forms_list
+msgid "delivery_novaposhta.ownership_forms_list"
+msgstr "delivery_novaposhta.ownership_forms_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_pack_list
+msgid "delivery_novaposhta.pack_list"
+msgstr "delivery_novaposhta.pack_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_pallets_list
+msgid "delivery_novaposhta.pallets_list"
+msgstr "delivery_novaposhta.pallets_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_payments_forms
+msgid "delivery_novaposhta.payments_forms"
+msgstr "delivery_novaposhta.payments_forms"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_sender_contact
+msgid "delivery_novaposhta.sender_contact"
+msgstr "delivery_novaposhta.sender_contact"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_service_types
+msgid "delivery_novaposhta.service_types"
+msgstr "delivery_novaposhta.service_types"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_streets_list
+msgid "delivery_novaposhta.streets_list"
+msgstr "delivery_novaposhta.streets_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_sync_street_list
+msgid "delivery_novaposhta.sync_street_list"
+msgstr "delivery_novaposhta.sync_street_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_sync_ttn
+msgid "delivery_novaposhta.sync_ttn"
+msgstr "delivery_novaposhta.sync_ttn"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_synchronize
+msgid "delivery_novaposhta.synchronize"
+msgstr "delivery_novaposhta.synchronize"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_tires_wheels_list
+msgid "delivery_novaposhta.tires_wheels_list"
+msgstr "delivery_novaposhta.tires_wheels_list"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_ttn
+msgid "delivery_novaposhta.ttn"
+msgstr "delivery_novaposhta.ttn"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_types_of_counterparties
+msgid "delivery_novaposhta.types_of_counterparties"
+msgstr "delivery_novaposhta.types_of_counterparties"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_types_of_payers
+msgid "delivery_novaposhta.types_of_payers"
+msgstr "delivery_novaposhta.types_of_payers"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_types_of_payers_for_redelivery
+msgid "delivery_novaposhta.types_of_payers_for_redelivery"
+msgstr "delivery_novaposhta.types_of_payers_for_redelivery"
+
+#. module: delivery_novaposhta
+#: model:ir.model,name:delivery_novaposhta.model_delivery_novaposhta_warehouse
+msgid "delivery_novaposhta.warehouse"
+msgstr "delivery_novaposhta.warehouse"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields,field_description:delivery_novaposhta.field_delivery_carrier__notification
+msgid "notification"
+msgstr "повідомлення"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields.selection,name:delivery_novaposhta.selection__res_partner__np_service_type__doors
+msgid "Адреса"
+msgstr "Адреса"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields.selection,name:delivery_novaposhta.selection__delivery_carrier__delivery_type__np
+msgid "Нова Пошта"
+msgstr "Нова Пошта"
+
+#. module: delivery_novaposhta
+#: model:ir.model.fields.selection,name:delivery_novaposhta.selection__res_partner__np_service_type__warehouse
+msgid "Склад"
+msgstr "Склад"
