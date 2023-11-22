@@ -6,13 +6,17 @@ class SaleOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        for vals in vals_list:
-            if vals.get("company_id", False) and not vals.get(
-                "workflow_process_id", False
+        result = super().create(vals_list)
+
+        for order in result:
+            if (
+                not order.workflow_process_id
+                and order.company_id.biko_default_sale_workflow_id
             ):
-                company = self.env["res.company"].browse(vals.get("company_id"))
-                vals["workflow_process_id"] = (
-                    company.biko_default_sale_workflow_id.id or False
+                order.update(
+                    {
+                        "workflow_process_id": order.company_id.biko_default_sale_workflow_id.id,
+                    }
                 )
 
-        return super().create(vals_list)
+        return result
