@@ -86,4 +86,4 @@ jobs:
                   sudo systemctl status $ODOO_SERVICE
                   EOF
             - name: Run script
-              run: ssh $SERVER_USER@$SERVER_ADDR bash < ~/update_script.sh
+              run: ssh -o ServerAliveInterval=600 $SERVER_USER@$SERVER_ADDR bash < ~/update_script.sh
