@@ -1,0 +1,77 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_sale_automatic_workflow_default
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-22 00:33+0000\n"
+"PO-Revision-Date: 2023-11-22 00:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automatic_workflow_default.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Sale Automation</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" role=\"img\"/>"
+msgstr ""
+"<span class=\"o_form_label\">Автоматизація обробки замовлень</span>\n"
+"                            <span class=\"fa fa-lg fa-building-o\" title=\"Значення прив'язані до компанії.\" aria-label=\"Значення прив'язані до компанії.\" role=\"img\"/>"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automatic_workflow_default.res_config_settings_view_form
+msgid "BIKO: Additional Sale Order Settings"
+msgstr "BIKO: Додаткові налаштування"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model:ir.model,name:muztorg_sale_automatic_workflow_default.model_res_company
+msgid "Companies"
+msgstr "Компанії"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model:ir.model,name:muztorg_sale_automatic_workflow_default.model_res_config_settings
+msgid "Config Settings"
+msgstr "Налаштування"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automatic_workflow_default.res_config_settings_view_form
+msgid "Default Automatic Workflow"
+msgstr "Налаштування пост-обробки замовлень за замовчуванням"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_res_company__biko_default_sale_workflow_id
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_res_config_settings__biko_default_sale_workflow_id
+msgid "Default Automatic Workflow for Sale Order"
+msgstr "Налаштування пост-обробки замовлень за замовчуванням"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_res_company__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_res_company__id
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_res_config_settings__id
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_res_company____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automatic_workflow_default.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: muztorg_sale_automatic_workflow_default
+#: model:ir.model,name:muztorg_sale_automatic_workflow_default.model_sale_order
+msgid "Sales Order"
+msgstr "Замовлення на продаж"
