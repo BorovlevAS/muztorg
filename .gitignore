@@ -25,4 +25,3 @@ eggs/
 *.egg
 config_local/odoo.conf
 .run
-muztorg.code-workspace
