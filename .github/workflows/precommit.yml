@@ -1,4 +1,4 @@
-name: pre-commit
+name: Pre-commit
 
 on:
     pull_request:
@@ -9,34 +9,9 @@ on:
             - synchronize
         branches:
             - master
-            - dev
-    push:
-        branches:
-            - master
+            - main
             - dev
 
 jobs:
     pre-commit:
-        runs-on: ubuntu-20.04
-        name: PRE-COMMIT
-        steps:
-            - uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0 # OR "2" -> To retrieve the preceding commit.
-            - name: Get changed files
-              id: changed-files
-              uses: tj-actions/changed-files@v40
-            - name: Show changed files
-              run: |
-                  for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-                      echo "$file"
-                  done
-            - name: Install Python
-              uses: actions/setup-python@v3
-              with:
-                  python-version: "3.8.10"
-            - name: Pre-commit
-              uses: pre-commit/action@v3.0.0
-              with:
-                  extra_args:
-                      --files ${{ steps.changed-files.outputs.all_changed_files }} --config .pre-commit-config.yaml
+        uses: BorovlevAS/ci_cd_workflows/.github/workflows/precommit.yml@main
