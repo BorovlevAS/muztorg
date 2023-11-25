@@ -154,9 +154,10 @@ class ProductTemplate(models.Model):
     def write(self, vals):
         for rec in self:
             if ("biko_control_code" not in vals) and (not rec.biko_control_code):
-                vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
-                    "biko.product.control.code"
-                )
+                if not self._context.get("no_controlcode", False):
+                    vals["biko_control_code"] = self.env["ir.sequence"].next_by_code(
+                        "biko.product.control.code"
+                    )
 
         return super().write(vals)
 
