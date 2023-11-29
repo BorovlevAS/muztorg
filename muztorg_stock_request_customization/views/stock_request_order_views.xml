@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="biko_stock_request_order_form">
+        <field name="name">biko.stock.request.order.form</field>
+        <field name="model">stock.request.order</field>
+        <field name="inherit_id" ref="stock_request.stock_request_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='procurement_group_id']" position="after">
+                <field name="biko_route_id" options="{'no_create': True}" groups="stock.group_stock_multi_locations" />
+                <field name="biko_route_ids" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
