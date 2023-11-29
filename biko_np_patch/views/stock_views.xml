@@ -88,7 +88,9 @@
                 <attribute name="attrs">
                     {'invisible': [('service_type_ref', 'in', ('DoorsWarehouse', 'WarehouseWarehouse', 'WarehousePostomat'))]}
                 </attribute>
+                <attribute name="domain">[('city_id', '=', recipient_city)]</attribute>
             </field>
+
             <field name="recipient_warehouse" position="attributes">
                 <attribute name="attrs">
                     {'invisible':
