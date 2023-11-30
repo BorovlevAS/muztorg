@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_sale_order_customization
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-30 18:23+0000\n"
+"PO-Revision-Date: 2023-11-30 18:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_1c_ref
+msgid "1C Order #"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model,name:muztorg_sale_order_customization.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model,name:muztorg_sale_order_customization.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_website_ref
+msgid "Website Order #"
+msgstr ""
