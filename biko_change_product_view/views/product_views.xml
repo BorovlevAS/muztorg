@@ -480,7 +480,7 @@
                                         groups="barcodes_generator_abstract.generate_barcode"
                                         colspan="2"
                                     />
-                                    <field name="biko_product_class" readonly="1" />
+                                    <field name="biko_product_class" />
                                     <field name="biko_country_customs" options="{'no_create': True}" />
                                     <field name="uktzed_id" domain="[('not_select', '=', False)]" />
                                     <field name="biko_control_code" readonly="1" />
