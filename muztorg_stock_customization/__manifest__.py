@@ -8,6 +8,7 @@
     ],
     "data": [
         "views/stock_picking_views.xml",
+        "wizard/stock_picking_return_views.xml",
     ],
     "license": "LGPL-3",
     "installable": True,
