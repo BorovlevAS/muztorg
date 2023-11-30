@@ -1,20 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* stock_request
-# 	* muztorg_stock_request_customization
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-28 17:39+0000\n"
-"PO-Revision-Date: 2023-11-28 17:39+0000\n"
+"POT-Creation-Date: 2023-11-30 10:10+0000\n"
+"PO-Revision-Date: 2023-11-30 12:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4\n"
 
 #. module: stock_request
 #: code:addons/stock_request/models/stock_move_line.py:0
@@ -148,7 +149,7 @@ msgstr "Спочатку перевірте наявні запаси"
 #. module: stock_request
 #: model_terms:ir.actions.act_window,help:stock_request.action_stock_request_form
 msgid "Click to add a Stock Request."
-msgstr "Натисніть, щоб додати Заказ на переміщення"
+msgstr "Натисніть, щоб додати Замовлення на переміщення"
 
 #. module: stock_request
 #: model:ir.model,name:stock_request.model_res_company
@@ -172,7 +173,7 @@ msgstr "Компанія повинна відповідати замовлен�
 #. module: stock_request
 #: model:ir.model,name:stock_request.model_res_config_settings
 msgid "Config Settings"
-msgstr "Параметри конфігурації"
+msgstr "Налаштування"
 
 #. module: stock_request
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_form
@@ -447,7 +448,7 @@ msgstr "Канбан"
 #: model:ir.model.fields,field_description:stock_request.field_stock_rule____last_update
 #: model:ir.model.fields,field_description:stock_request.field_stock_warehouse____last_update
 msgid "Last Modified on"
-msgstr "Останні зміни на"
+msgstr "Востаннє змінено в"
 
 #. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__write_uid
@@ -461,7 +462,7 @@ msgstr "Востаннє оновлено"
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_allocation__write_date
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_order__write_date
 msgid "Last Updated on"
-msgstr "Останнє оновлення в"
+msgstr "Востаннє оновлено в"
 
 #. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__lead_days_date
@@ -481,7 +482,7 @@ msgstr "Місця зберігання"
 #: code:addons/stock_request/models/stock_request.py:0
 #, python-format
 msgid "Location must be equal to the order"
-msgstr "Розташування повинно бути рівним замовленням"
+msgstr "Розташування повинно відповідати замовленню"
 
 #. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__message_main_attachment_id
@@ -764,13 +765,13 @@ msgstr "Підтвердження отримання %s для вашого з�
 #: model:ir.model.fields.selection,name:stock_request.selection__stock_request__picking_policy__one
 #: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__picking_policy__one
 msgid "Receive all products at once"
-msgstr "Отримайте всі продукти відразу"
+msgstr "Коли усі продукти готові"
 
 #. module: stock_request
 #: model:ir.model.fields.selection,name:stock_request.selection__stock_request__picking_policy__direct
 #: model:ir.model.fields.selection,name:stock_request.selection__stock_request_order__picking_policy__direct
 msgid "Receive each product when available"
-msgstr "Отримайте кожен продукт, коли він доступний"
+msgstr "Якомога швидше"
 
 #. module: stock_request
 #: model:ir.actions.server,name:stock_request.action_template_generate_stock_request_orders
@@ -807,16 +808,14 @@ msgstr "Запит має відповідати замовленню"
 msgid "Responsible User"
 msgstr "Відповідальний користувач"
 
-#. modules: stock_request, muztorg_stock_request_customization
-#: model:ir.model.fields,field_description:muztorg_stock_request_customization.field_stock_request_order__biko_route_id
+#. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__route_id
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_abstract__route_id
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_search
 msgid "Route"
 msgstr "Маршрут"
 
-#. modules: stock_request, muztorg_stock_request_customization
-#: model:ir.model.fields,field_description:muztorg_stock_request_customization.field_stock_request_order__biko_route_ids
+#. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__route_ids
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_abstract__route_ids
 msgid "Routes"
@@ -850,14 +849,14 @@ msgstr "Налаштування"
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__picking_policy
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_order__picking_policy
 msgid "Shipping Policy"
-msgstr ""
+msgstr "Політика доставки"
 
 #. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__state
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_order__state
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_search
 msgid "Status"
-msgstr "Політика доставки"
+msgstr "Статус"
 
 #. module: stock_request
 #: model:ir.model.fields,help:stock_request.field_stock_request__activity_state
@@ -877,7 +876,7 @@ msgstr ""
 #. module: stock_request
 #: model:ir.model,name:stock_request.model_stock_location
 msgid "Stock Location"
-msgstr "Складське місце зберігання"
+msgstr "Місце знаходження"
 
 #. module: stock_request
 #: model:ir.model,name:stock_request.model_stock_move
@@ -928,7 +927,7 @@ msgstr "Менеджер Замовлення переміщення"
 #: model:ir.model,name:stock_request.model_stock_request_order
 #: model:res.groups,name:stock_request.group_stock_request_order
 msgid "Stock Request Order"
-msgstr "Замовлення на переміщення товара"
+msgstr "Замовлення на переміщення товару"
 
 #. module: stock_request
 #: model:ir.actions.act_window,name:stock_request.stock_request_order_action
@@ -1028,7 +1027,8 @@ msgstr "Стан відправлення в Замовлення на пере�
 #: code:addons/stock_request/models/stock_request_order.py:0
 #, python-format
 msgid "The company of the stock request must match with that of the location."
-msgstr "Компанія Замовлення на переміщення повинна відповідати положенню."
+msgstr ""
+"Компанія замовлення на на переміщення має відповідати місцезнаходженню."
 
 #. module: stock_request
 #: code:addons/stock_request/models/stock_request_order.py:0
