@@ -98,3 +98,6 @@ class ProductTemplate(models.Model):
                 product.name = product._generate_product_name(gen_vals)
 
         return result
+
+
+#
