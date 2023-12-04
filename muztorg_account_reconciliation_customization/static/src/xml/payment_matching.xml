@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="base_accounting_kit.reconciliation.line" t-inherit-mode="extension">
+        <xpath expr="//caption" position="inside">
+            <div>
+                <span class="font-weight-bold">Note:</span>
+                <t t-esc="state.st_line.payment_ref" />
+            </div>
+        </xpath>
+    </t>
+</templates>
