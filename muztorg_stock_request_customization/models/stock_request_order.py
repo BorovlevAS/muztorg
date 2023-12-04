@@ -1,5 +1,3 @@
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-
 from odoo import api, fields, models
 
 
@@ -51,3 +49,30 @@ class StockRequestOrder(models.Model):
             location = location.location_id
             result |= location
         return result
+
+    @api.onchange("biko_route_id")
+    def _onchange_biko_route_id(self):
+        self.change_childs()
+
+    def change_childs(self):
+        if not self._context.get("no_change_childs", False):
+            for line in self.stock_request_ids:
+                line.warehouse_id = self.warehouse_id
+                line.location_id = self.location_id
+                line.company_id = self.company_id
+                line.picking_policy = self.picking_policy
+                line.expected_date = self.expected_date
+                line.requested_by = self.requested_by
+                line.procurement_group_id = self.procurement_group_id
+                line.route_id = self.biko_route_id
+
+    def action_confirm(self):
+        for rec in self:
+            if not rec.procurement_group_id:
+                rec.with_context(no_change_childs=True).procurement_group_id = self.env[
+                    "procurement.group"
+                ].create({"name": rec.name, "move_type": rec.picking_policy})
+                for line in self.stock_request_ids:
+                    line.procurement_group_id = rec.procurement_group_id
+
+        return super().action_confirm()
