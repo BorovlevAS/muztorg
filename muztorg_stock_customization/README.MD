@@ -15,3 +15,7 @@ muztorg_stock_customization
 ### 14.0.2.1.0
 
 [IMX] - добавлены Причины возврата в stock.picking и stock.return.picking
+
+### 14.0.3.1.0
+
+[IMX] - очищаются реквизиты НП в возврате
