@@ -42,12 +42,6 @@ class StockRequestOrder(models.Model):
                 )
             )
 
-    @api.onchange("biko_route_id")
-    def _onchange_biko_route_id(self):
-        for rec in self:
-            for str in rec.stock_request_ids:
-                str.route_id = rec.biko_route_id
-
     def get_parents(self):
         location = self.location_id
         result = location
