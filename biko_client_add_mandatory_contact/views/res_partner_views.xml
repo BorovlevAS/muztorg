@@ -123,6 +123,18 @@
                     ]
                 </attribute>
             </xpath>
+            <field name="name" position="attributes">
+                <attribute name="filter_domain">
+                    ['|', '|', '|', '|', '|',
+                    ('display_name', 'ilike', self),
+                    ('ref', '=', self),
+                    ('email', 'ilike', self),
+                    ('legal_name', 'ilike', self),
+                    ('legal_short_name', 'ilike', self),
+                    ('enterprise_code', 'ilike', self)
+                    ]
+                </attribute>
+            </field>
         </field>
     </record>
 </odoo>
