@@ -1,6 +1,6 @@
 {
     "name": "Muztorg: Правки 'stock' под требования МУЗТОРГ",
-    "version": "14.0.1.1.0",
+    "version": "14.0.3.1.0",
     "author": "Zhmyhova T.N.",
     "company": "BIKO Solutions",
     "depends": [
