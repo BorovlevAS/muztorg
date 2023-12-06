@@ -2,8 +2,9 @@
 import re
 
 from odoo import api
-from odoo.addons.base.models.res_partner import Partner
 from odoo.osv.expression import get_unaccent_wrapper
+
+from odoo.addons.base.models.res_partner import Partner
 
 
 class BIKOPartner(Partner):
@@ -28,7 +29,11 @@ class BIKOPartner(Partner):
             self.check_access_rights("read")
             where_query = self._where_calc(args)
             self._apply_ir_rules(where_query, "read")
-            from_clause, where_clause, where_clause_params = where_query.get_sql()
+            (
+                from_clause,
+                where_clause,
+                where_clause_params,
+            ) = where_query.get_sql()
             from_str = from_clause if from_clause else "res_partner"
             where_str = where_clause and (" WHERE %s AND " % where_clause) or " WHERE "
 
@@ -44,18 +49,19 @@ class BIKOPartner(Partner):
             fields = self._get_name_search_order_by_fields()
 
             # fmt: off
-            query = (  # nosec
+            query = (
                 """SELECT res_partner.id
                     FROM {from_str}
                 {where} ({email} {operator} {percent}
                     OR {display_name} {operator} {percent}
                     OR {reference} {operator} {percent}
                     OR {mobile} {operator} {percent}
+                    OR {enterprise_code} {operator} {percent}
                     OR {vat} {operator} {percent})
                     -- don't panic, trust postgres bitmap
                 ORDER BY {fields} {display_name} {operator} {percent} desc,
                         {display_name}
-                """.format(
+                """.format(  # nosec
                     from_str=from_str,
                     fields=fields,
                     where=where_str,
@@ -66,13 +72,14 @@ class BIKOPartner(Partner):
                     percent=unaccent("%s"),
                     vat=unaccent("res_partner.vat"),
                     mobile=unaccent("res_partner.biko_mobile_compact"),
+                    enterprise_code=unaccent("res_partner.enterprise_code"),
                 )
             )
             # fmt: on
 
             where_clause_params += [
                 search_name
-            ] * 4  # for email / display_name, reference, mobile
+            ] * 5  # for email / display_name, reference, mobile
             where_clause_params += [
                 re.sub(r"[^a-zA-Z0-9\-\.]+", "", search_name) or None
             ]  # for vat
@@ -84,7 +91,11 @@ class BIKOPartner(Partner):
             return [row[0] for row in self.env.cr.fetchall()]
 
         return super(Partner, self)._name_search(
-            name, args, operator=operator, limit=limit, name_get_uid=name_get_uid
+            name,
+            args,
+            operator=operator,
+            limit=limit,
+            name_get_uid=name_get_uid,
         )
 
 
