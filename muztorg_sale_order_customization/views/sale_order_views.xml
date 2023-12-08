@@ -9,6 +9,12 @@
                 <field name="biko_website_ref" />
                 <field name="biko_1c_ref" />
             </xpath>
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="oe_inline">
+                    <label for="so_payment_type_id" />
+                    <field name="so_payment_type_id" options="{'no_create': True, 'no_open': True}" />
+                </div>
+            </xpath>
         </field>
     </record>
 </odoo>
