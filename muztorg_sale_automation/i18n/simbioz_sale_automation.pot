@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* simbioz_sale_automation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-12 10:40+0000\n"
+"PO-Revision-Date: 2023-09-12 10:40+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: simbioz_sale_automation
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_automation.view_order_inherit_form
+msgid "Before shipping"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_sale_order__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_stock_warehouse__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_automation.view_order_inherit_form
+msgid "Draft"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_sale_order__id
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_sale_order_line__id
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_stock_warehouse__id
+msgid "ID"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_automation.view_sales_order_filter
+msgid "In waiting"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_stock_warehouse__is_delivery_set_to_done
+msgid "Is Delivery Set to Done"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_sale_order____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_stock_warehouse____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields.selection,name:simbioz_sale_automation.selection__stock_warehouse__create_invoice__on_confirm
+msgid "On confirm sale order"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields.selection,name:simbioz_sale_automation.selection__stock_warehouse__create_invoice__on_waiting_for_payment
+msgid "On waiting for payment"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model,name:simbioz_sale_automation.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model,name:simbioz_sale_automation.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_sale_order__state
+msgid "Status"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_stock_warehouse__validate_invoice
+msgid "Validate invoice?"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields.selection,name:simbioz_sale_automation.selection__sale_order__state__waiting
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_automation.view_order_inherit_form
+msgid "Waiting for payment"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model,name:simbioz_sale_automation.model_stock_warehouse
+msgid "Warehouse"
+msgstr ""
+
+#. module: simbioz_sale_automation
+#: model:ir.model.fields,field_description:simbioz_sale_automation.field_stock_warehouse__create_invoice
+msgid "When to create an invoice?"
+msgstr ""
