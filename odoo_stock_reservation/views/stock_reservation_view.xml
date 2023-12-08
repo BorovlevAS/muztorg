@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_move_reserv_product_form" model="ir.ui.view">
+            <field name="name">stock.move.reservation.form</field>
+            <field name="model">stock.move.reservation</field>
+            <field name="arch" type="xml">
+                <form name="stock_reservation" string="Stock  Move Reservation" create="false" edit="false">
+                    <header name="stock_reservation_header">
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,assigned,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title" name="reserve_title">
+                            <h1>
+                                <field name="reserv_code"/>
+                            </h1>
+                        </div>
+                        <group name="main_grp" colspan="2">
+                            <group name="main_grp_col1">
+                                <field name="reference"/>
+                                <field name="location_id"/>
+                                <field name="location_dest_id"/>
+                            </group>
+                            <group name="main_grp_col2">
+                                <field name="custome_sale_order_id"/>
+                                <field name="custome_so_line_id"/>
+                                <field name="company_id" invisible="1"/>
+                                <field name="product_id"/>
+                                <label for="product_uom_qty"/>
+                                <div class="o_row">
+                                    <field name="product_uom_qty"/>
+<!--                                    <field name="product_uom" options="{'no_open': True, 'no_create': True}" groups="product.group_uom"/>-->
+                                </div>
+                                <field name="reserv_resquest_user_id"/>
+                                <field name="reserv_request_date"/>
+                                <field name="name" invisible="1"/>
+                                <!-- <field name="date_expected" invisible="1"/> -->
+                                <field name="date" attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                            </group>
+                        </group>
+                        <group name="origin_grp" string="Origin">
+                            <field name="origin"/>
+                            <field name="group_id"/>
+                            <field name="procure_method" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="stock.group_adv_location"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="stock_move_reserv_product_pivot" model="ir.ui.view">
+            <field name="name">stock.move.reservation.pivot</field>
+            <field name="model">stock.move.reservation</field>
+            <field name="arch" type="xml">
+                <pivot string="Stock Reservation Analysis">
+                    <field name="company_id" invisible="1"/>
+                    <field name="product_id" type="row"/>
+                    <field name="location_dest_id" groups="stock.group_stock_multi_locations" type="row"/>
+                    <field name="product_uom_qty" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="stock_move_reserv_product_tree" model="ir.ui.view">
+            <field name="name">stock.move.reservation.tree</field>
+            <field name="model">stock.move.reservation</field>
+            <field name="arch" type="xml">
+                <tree create="false" decoration-muted="state == 'cancel'" decoration-danger="(state not in ('cancel','done')) and date &gt; current_date">
+                    <field name="date" groups="base.group_no_one" invisible="1"/>
+                    <field name="reserv_code"/>
+                    <field name="custome_so_line_id"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="product_id"/>
+                    <field name="product_uom_qty"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_stock_move_reservation_graph" model="ir.ui.view">
+            <field name="name">stock.move.reservation.graph</field>
+            <field name="model">stock.move.reservation</field>
+            <field name="arch" type="xml">
+                 <graph string="Reservation" type="line">
+                     <field name="date" type="row" interval="day"/>
+                     <field name="product_uom_qty" type="measure"/>
+                 </graph>
+            </field>
+        </record>
+
+        <record id="action_stock_move_reserv_product" model="ir.actions.act_window">
+            <field name="name">Reserved Products</field>
+            <field name="res_model">stock.move.reservation</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form,pivot,graph</field>
+            <field name="help">Create New Stock Move Reservation</field>
+        </record>
+
+        <menuitem 
+            id="menu_stock_reserved_product" 
+            name="Reserved Products" 
+            parent="stock.menu_warehouse_report" 
+            action="action_stock_move_reserv_product"/>
+
+        <record id="view_location_form_inherit_is_location" model="ir.ui.view">
+            <field name="name">stock.location.inherit.is_reservlocation</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='removal_strategy_id']" position="after">
+                        <field name="is_stock_location_reservation"/>
+                </xpath>
+            </field>
+        </record>
+
+            
+    </data>
+</odoo>

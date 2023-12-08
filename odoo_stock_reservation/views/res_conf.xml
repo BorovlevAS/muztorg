@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        <record id="number_day_reservation_form" model="ir.ui.view">-->
+<!--            <field name="name">number.days.reservation.form</field>-->
+<!--            <field name="model">number.days.reservation</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Reservation Days">-->
+<!--                    <sheet>-->
+<!--                        <group>-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="nb_days"/>-->
+<!--                        </group>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_number_day_reservation_tree" model="ir.ui.view">-->
+<!--            <field name="name">number.days.reservation.tree</field>-->
+<!--            <field name="model">number.days.reservation</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Reservation Days" editable="bottom">-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="nb_days"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        <record id="action_number_day_reservation_tree" model="ir.actions.act_window">-->
+<!--            <field name="name">Reservation Days</field>-->
+<!--            <field name="res_model">number.days.reservation</field>-->
+<!--            <field name="view_id" ref="view_number_day_reservation_tree"/>-->
+<!--            <field name="help" type="html">-->
+<!--                <p class="o_view_nocontent_smiling_face">-->
+<!--                    Create a new Reservation Days-->
+<!--                </p>-->
+<!--                <p>-->
+<!--                    New Reservation Days.-->
+<!--                </p>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        <menuitem name="Reservation Days" id="menu_number_day_reservation" parent="sale.menu_sale_config"-->
+<!--                  action="action_number_day_reservation_tree" sequence="99"/>-->
+    </data>
+
+
+
+<!--    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">-->
+<!--        <field name="name">res.config.settings.view.form.inherit</field>-->
+<!--        <field name="model">res.config.settings</field>-->
+<!--        <field name="priority" eval="11"/>-->
+<!--        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//div[@id='connectors_setting_container']" position="after">-->
+<!--                <h2>Stock Reservation</h2>-->
+<!--                <div class="row mt16 o_settings_container">-->
+<!--                    <div class="col-xs-12 col-md-12 o_setting_box" groups="">-->
+<!--                        <div class="o_setting_left_pane"/>-->
+<!--                        <div class="o_setting_right_pane">-->
+<!--                            <label for="nb_days"/>-->
+<!--                            <div class="text-muted">-->
+<!--                                Set Default number of days for cancel reservation.-->
+<!--                            </div>-->
+<!--                            <div class="text-muted">-->
+<!--                                <field name="nb_days">-->
+<!--                                </field>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>
+
