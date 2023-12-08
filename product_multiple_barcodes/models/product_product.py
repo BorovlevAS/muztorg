@@ -3,8 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-
-# from odoo.osv import expression
+from odoo.osv import expression
 
 
 class ProductProduct(models.Model):
@@ -19,15 +18,27 @@ class ProductProduct(models.Model):
     # THIS IS OVERRIDE SQL CONSTRAINTS.
     _sql_constraints = [("barcode_uniq", "check(1=1)", "No error")]
 
-    # @api.model
-    # def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
-    #     args = args or []
-    #     domain = []
-    #     if name:
-    #         domain = ['|', '|', ('name', operator, name), ('default_code', operator, name),
-    #                   '|', ('barcode', operator, name), ('barcode_ids', operator, name)]
-    #     return self._search(expression.AND([domain, args]),
-    #                               limit=limit, access_rights_uid=name_get_uid)
+    @api.model
+    def _name_search(
+        self, name, args=None, operator="ilike", limit=100, name_get_uid=None
+    ):
+        args = args or []
+        domain = []
+        if name:
+            domain = [
+                "|",
+                "|",
+                ("name", operator, name),
+                ("default_code", operator, name),
+                "|",
+                ("barcode", operator, name),
+                ("barcode_ids", operator, name),
+            ]
+        return self._search(
+            expression.AND([domain, args]),
+            limit=limit,
+            access_rights_uid=name_get_uid,
+        )
 
     @api.constrains("barcode", "barcode_ids", "active")
     def _check_unique_barcode(self):
