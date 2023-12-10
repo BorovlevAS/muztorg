@@ -8,6 +8,7 @@
         "sale_stock",
         "biko_base_module",
         "account",
+        "product_stock_by_location_widget",
     ],
     "data": [
         "views/sale_order_views.xml",

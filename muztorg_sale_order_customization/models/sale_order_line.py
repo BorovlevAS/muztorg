@@ -1,8 +1,12 @@
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
+
+    json_remainings_popover = fields.Char(
+        related="product_id.json_remainings_popover", readonly=True
+    )
 
     def _calculate_customer_lead(self, vals):
         customer_lead = vals.get("customer_lead", 0)
