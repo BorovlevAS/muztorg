@@ -1,6 +1,6 @@
 {
-    "name": "Simbioz Sale Order Automation",
-    "summary": "Simbioz Sale Order Automation",
+    "name": "Sale Order Automation for Muztorg",
+    "summary": "Sale Order Automation for Muztorg",
     "version": "14.0.1.0.0",
     "license": "LGPL-3",
     "author": "Borovlev A.S.",
