@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-inherit="product_stock_by_location_widget.stock_by_location"
+        t-name="stock_by_location"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//a" position="attributes">
+            <attribute name="class">fa fa-cubes text-primary</attribute>
+        </xpath>
+    </t>
+</templates>
