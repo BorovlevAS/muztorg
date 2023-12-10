@@ -48,8 +48,8 @@ class SaleOrder(models.Model):
     def action_set_waiting(self):
         self.create_reservation()
         res = self.write({"state": "waiting"})
-        # for order in self:
-        #     self.process_invoices(order, "on_waiting_for_payment")
+        for order in self:
+            self.process_invoices(order, "on_waiting_for_payment")
         return res
 
     def action_draft(self):
@@ -104,29 +104,6 @@ class SaleOrder(models.Model):
         self.state = "draft"
         return result
 
-    # def process_invoices(self, order, state_to_check):
-    #     warehouse = order.warehouse_id
-
-    #     if (
-    #         warehouse.create_invoice == state_to_check
-    #         and not order.invoice_ids.filtered(lambda s: s.state == "posted")
-    #     ):
-    #         order._create_invoices()
-
-    #     if warehouse.validate_invoice and order.invoice_ids:
-    #         for invoice in order.invoice_ids.filtered(lambda s: s.state == "draft"):
-    #             invoice.action_post()
-
-    # def process_pickings(self, order):
-    #     warehouse = order.warehouse_id
-    #     if warehouse.is_delivery_set_to_done and order.picking_ids:
-    #         for picking in self.picking_ids:
-    #             picking.action_assign()
-    #             picking.action_confirm()
-    #             for mv in picking.move_ids_without_package:
-    #                 mv.quantity_done = mv.product_uom_qty
-    #             picking.button_validate()
-
     def action_confirm(self):
         for order in self:
             order_line = order.order_line
@@ -138,12 +115,13 @@ class SaleOrder(models.Model):
             )
             if stock_move_reservation_ids:
                 self.action_cancel_stock_reservation()
-        return super().action_confirm()
-        # for order in self:
-        #     self.process_pickings(order)
-        #     self.process_invoices(order, "on_confirm")
+        res = super().action_confirm()
 
-        # return res
+        for order in self:
+            self.process_pickings(order)
+            self.process_invoices(order, "on_confirm")
+
+        return res
 
     def action_cancel(self):
         self.ensure_one()
@@ -183,3 +161,26 @@ class SaleOrder(models.Model):
         )
         for reserve in reservations:
             reserve.custome_sale_order_id.action_cancel_stock_reservation()
+
+    def process_invoices(self, order, state_to_check):
+        warehouse = order.warehouse_id
+
+        if (
+            warehouse.create_invoice == state_to_check
+            and not order.invoice_ids.filtered(lambda s: s.state == "posted")
+        ):
+            order._create_invoices()
+
+        if warehouse.validate_invoice and order.invoice_ids:
+            for invoice in order.invoice_ids.filtered(lambda s: s.state == "draft"):
+                invoice.action_post()
+
+    def process_pickings(self, order):
+        warehouse = order.warehouse_id
+        if warehouse.is_delivery_set_to_done and order.picking_ids:
+            for picking in self.picking_ids:
+                picking.action_assign()
+                picking.action_confirm()
+                for mv in picking.move_ids_without_package:
+                    mv.quantity_done = mv.product_uom_qty
+                picking.button_validate()
