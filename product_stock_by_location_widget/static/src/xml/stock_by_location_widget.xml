@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="stock_by_location">
+        <div>
+            <a tabindex="0" class="fa fa-area-chart text-primary" data-toggle="popover" />
+        </div>
+    </t>
+
+    <div t-name="stock_by_location_popover">
+        <div class="popover o_stock_by_location_popup" role="tooltip">
+            <div class="arrow" />
+            <h3 class="popover-header" />
+            <div class="popover-body" />
+        </div>
+    </div>
+
+    <div t-name="stock_by_location_popover_title">
+        <div>
+            <b>Availability</b>
+        </div>
+    </div>
+
+    <div t-name="stock_by_location_popover_content">
+        <div class="table-responsive widget_table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Location</th>
+                        <th scope="col">On Hand</th>
+                        <th scope="col">Forecast</th>
+                        <th scope="col">Incoming</th>
+                        <th scope="col">Outgoing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="remainings" t-as="data_line">
+                        <tr>
+                            <td scope="row">
+                                <t t-esc="data_line.complete_name" />
+                            </td>
+                            <td scope="row">
+                                <t t-esc="data_line.qty_available" />
+                            </td>
+                            <td scope="row">
+                                <t t-esc="data_line.virtual_available" />
+                            </td>
+                            <td scope="row">
+                                <t t-esc="data_line.incoming_qty" />
+                            </td>
+                            <td scope="row">
+                                <t t-esc="data_line.outgoing_qty" />
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</templates>

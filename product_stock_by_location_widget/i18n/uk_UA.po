@@ -1,0 +1,128 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_stock_by_location_widget
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-29 11:46+0000\n"
+"PO-Revision-Date: 2023-08-29 15:12+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#. module: product_stock_by_location_widget
+#. openerp-web
+#: code:addons/product_stock_by_location_widget/static/src/xml/stock_by_location_widget.xml:0
+#, python-format
+msgid "Availability"
+msgstr "Доступність товарів"
+
+#. module: product_stock_by_location_widget
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_stock_location__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: product_stock_by_location_widget
+#. openerp-web
+#: code:addons/product_stock_by_location_widget/static/src/xml/stock_by_location_widget.xml:0
+#, python-format
+msgid "Forecast"
+msgstr "Прогноз"
+
+#. module: product_stock_by_location_widget
+#: model_terms:ir.ui.view,arch_db:product_stock_by_location_widget.product_template_kanban_stock_view
+msgid "Forecasted:"
+msgstr "Прогноз:"
+
+#. module: product_stock_by_location_widget
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_product_product__id
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_product_template__id
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_stock_location__id
+msgid "ID"
+msgstr ""
+
+#. module: product_stock_by_location_widget
+#: model:ir.model.fields,help:product_stock_by_location_widget.field_stock_location__show_stock_on_products
+msgid ""
+"If true, this location will be shown on the pop up window openedfrom "
+"products kanban and tree view"
+msgstr ""
+"Якщо значення true, це місцезнаходження буде показано у спливаючому вікні, "
+"відкритому з канбану продуктів і перегляду дерева"
+
+#. module: product_stock_by_location_widget
+#. openerp-web
+#: code:addons/product_stock_by_location_widget/static/src/xml/stock_by_location_widget.xml:0
+#, python-format
+msgid "Incoming"
+msgstr "Прихід"
+
+#. module: product_stock_by_location_widget
+#: model:ir.model,name:product_stock_by_location_widget.model_stock_location
+msgid "Inventory Locations"
+msgstr "Розташування запасів"
+
+#. module: product_stock_by_location_widget
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_product_product__json_remainings_popover
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_product_template__json_remainings_popover
+msgid "JSON data for the popover widget"
+msgstr ""
+
+#. module: product_stock_by_location_widget
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_product_product____last_update
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_product_template____last_update
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_stock_location____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: product_stock_by_location_widget
+#. openerp-web
+#: code:addons/product_stock_by_location_widget/static/src/xml/stock_by_location_widget.xml:0
+#, python-format
+msgid "Location"
+msgstr "Місце зберігання"
+
+#. module: product_stock_by_location_widget
+#. openerp-web
+#: code:addons/product_stock_by_location_widget/static/src/xml/stock_by_location_widget.xml:0
+#, python-format
+msgid "On Hand"
+msgstr "В наявності"
+
+#. module: product_stock_by_location_widget
+#. openerp-web
+#: code:addons/product_stock_by_location_widget/static/src/xml/stock_by_location_widget.xml:0
+#, python-format
+msgid "Outgoing"
+msgstr "Розхід"
+
+#. module: product_stock_by_location_widget
+#: model:ir.model,name:product_stock_by_location_widget.model_product_product
+msgid "Product"
+msgstr "Продукт"
+
+#. module: product_stock_by_location_widget
+#: model:ir.model,name:product_stock_by_location_widget.model_product_template
+msgid "Product Template"
+msgstr "Шаблон продукту"
+
+#. module: product_stock_by_location_widget
+#: model:ir.model.fields,field_description:product_stock_by_location_widget.field_stock_location__show_stock_on_products
+msgid "Show Stock On Products"
+msgstr "Показувати наявність продуктів"
+
+#. module: product_stock_by_location_widget
+#. openerp-web
+#: code:addons/product_stock_by_location_widget/static/src/js/stock_by_location_widget.js:0
+#, python-format
+msgid "Stock remainigs"
+msgstr "Залишки по складах"

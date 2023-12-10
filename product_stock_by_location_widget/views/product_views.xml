@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <!-- PRODUCT PRODUCT -->
+    <record id="view_stock_product_tree_inherited" model="ir.ui.view">
+        <field name="name">product.product.stock.tree.inherit1</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.view_stock_product_tree" />
+        <field name="arch" type="xml">
+            <field name="virtual_available" position="after">
+                <field
+                    name="json_remainings_popover"
+                    string=" "
+                    widget="stock_by_location_widget"
+                    attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <!-- PRODUCT TEMPLATE -->
+    <record id="view_stock_product_template_tree" model="ir.ui.view">
+        <field name="name">product.template.stock.tree.inherit1</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_stock_product_template_tree" />
+        <field name="arch" type="xml">
+            <field name="virtual_available" position="after">
+                <field
+                    name="json_remainings_popover"
+                    string=" "
+                    widget="stock_by_location_widget"
+                    attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_kanban_stock_view" model="ir.ui.view">
+        <field name="name">SIMBIOZ: add virtual available and stock widget</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.product_template_kanban_stock_view" />
+        <field name="arch" type="xml">
+            <div t-if="record.type.raw_value == 'product'" position="after">
+                <div name="div_forecast" t-if="record.type.raw_value == 'product'">
+                    Forecasted:
+                    <field name="virtual_available" />
+                    <field name="uom_id" />
+                </div>
+                <div name="stock_widget">
+                    <field
+                        name="json_remainings_popover"
+                        string=" "
+                        widget="stock_by_location_widget"
+                        options="{'container': 'element'}"
+                    />
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>
