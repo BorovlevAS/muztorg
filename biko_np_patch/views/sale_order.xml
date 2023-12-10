@@ -15,7 +15,7 @@
                 <field name="afterpayment_check" attrs="{'invisible': [('delivery_type', '!=', 'np')]}" />
                 <field
                     name="backward_money_costs"
-                    attrs="{'invisible': [('delivery_type', '!=', 'np'), ('afterpayment_check', '=', False)]}"
+                    attrs="{'invisible': ['|', ('delivery_type', '!=', 'np'), ('afterpayment_check', '=', False)]}"
                 />
             </xpath>
         </field>

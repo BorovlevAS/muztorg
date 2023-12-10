@@ -98,10 +98,13 @@ biko_np_patch
 
 ### 14.0.1.1.23
 
-[IMP] - скрыли  из sale.order поля: backward_money и seats_amount;
-добавили в sale.order afterpayment_check и backward_money_costs, переносятся в stock.picking
-backward_money_costs - в грн.экв. на дату оредра
+[IMP] - скрыли из sale.order поля: backward_money и seats_amount; добавили в sale.order afterpayment_check и
+backward_money_costs, переносятся в stock.picking backward_money_costs - в грн.экв. на дату оредра
 
 ### 14.0.1.1.24
 
 [IMP] - добавили в stock.picking для поля streets "domain"=('city_id', '=', recipient_city)
+
+### 14.0.1.1.24
+
+[FIX] - поправил домен в sale.order, чтобы правильно пряталась сумма контроля платежа
