@@ -845,7 +845,7 @@ class NovaPoshtaTTN(models.Model):
                     record["Number"]: [record["Status"], record["StatusCode"]]
                     for record in response
                 }
-                for ttn in ttns_to_check:
+                for ttn in ttns_to_check_part:
                     if ttn.doc_number and ttn.status_code != int(
                         response_transformed[ttn.doc_number][1]
                     ):
