@@ -18,6 +18,12 @@ class SaleOrder(models.Model):
         readonly=False,
     )
 
+    biko_ttn_ids = fields.One2many(
+        comodel_name="delivery_novaposhta.ttn",
+        inverse_name="order_to_deliver",
+        string="TTN",
+    )
+
     @api.depends("amount_total")
     def _compute_backward_money_costs(self):
         for order in self:
@@ -43,3 +49,9 @@ class SaleOrder(models.Model):
             for stock in order.picking_ids:
                 if stock.state != "done":
                     stock.update({"backward_money_costs": order.backward_money_costs})
+
+    # def _inverse_biko_ttn_ids(self):
+    #     for order in self:
+    #         for stock in order.picking_ids:
+    #             if stock.state != "done":
+    #                 stock.update({"backward_money_costs": order.backward_money_costs})
