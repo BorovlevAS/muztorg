@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_pos_config_kanban" model="ir.actions.act_window">
+        <field name="name">Point of Sale</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pos.config</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('is_use_with_sale_order','=',True)]</field>
+        <field name="search_view_id" ref="point_of_sale.view_pos_config_search" />
+    </record>
+
+    <menuitem
+        id="menu_pos_config_kanban"
+        name="Point of Sale"
+        action="action_pos_config_kanban"
+        parent="sale.sale_menu_root"
+        sequence="5"
+    />
+</odoo>

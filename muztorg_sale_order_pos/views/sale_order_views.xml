@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.muztorg</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <group name="order_details" position="attributes">
+                <attribute name="attrs">{'readonly': [('checkbox_receipt_id','!=',False)]}</attribute>
+            </group>
+            <group name="partner_details" position="attributes">
+                <attribute name="attrs">{'readonly': [('checkbox_receipt_id','!=',False)]}</attribute>
+            </group>
+            <field name="order_line" position="attributes">
+                <attribute name="attrs">{'readonly': [('checkbox_receipt_id','!=',False)]}</attribute>
+            </field>
+            <xpath expr="//div[@name='button_box']" position="after">
+                <widget
+                    name="web_ribbon"
+                    title="Fiscal Check"
+                    bg_color="bg-success"
+                    attrs="{'invisible': [('checkbox_receipt_id', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_checkbox_form" model="ir.ui.view">
+        <field name="name">view_sale_order_checkbox_form.muztorg</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="checkbox_integration_sale_order.view_sale_order_checkbox_form" />
+        <field name="arch" type="xml">
+            <button
+                name="%(checkbox_integration_sale_order.action_open_sale_order_checkbox_wizard)s"
+                position="attributes"
+            >
+                <attribute name="attrs">
+                    {'invisible':
+                    ['|',
+                    ('checkbox_receipt_id','!=',False),
+                    ('state', 'not in', ['sale', 'done'])
+                    ]}
+                </attribute>
+            </button>
+        </field>
+    </record>
+</odoo>
