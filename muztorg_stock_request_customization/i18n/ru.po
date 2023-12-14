@@ -98,6 +98,11 @@ msgstr "Аналитика"
 msgid "Analytic accounting in Stock Requests"
 msgstr "Аналитический бухучет в Заказах на перемещение"
 
+#. module: muztorg_stock_request_customization
+#: model:ir.model.fields,field_description:muztorg_stock_request_customization.field_stock_location_route__stock_request_selectable
+msgid "Applicable on Stock Request"
+msgstr "Применимо к Заказам на перемещение"
+
 #. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__message_attachment_count
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_abstract__message_attachment_count
@@ -891,11 +896,12 @@ msgstr "Складское перемещение"
 msgid "Stock Moves"
 msgstr "Перемещения запасов"
 
-#. module: stock_request
+#. modules: stock_request, muztorg_stock_request_customization
 #: model:ir.model,name:stock_request.model_stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_allocation__stock_request_id
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_order__stock_request_ids
 #: model:ir.module.category,name:stock_request.module_category_stock_request
+#: model_terms:ir.ui.view,arch_db:muztorg_stock_request_customization.biko_stock_location_route_view_form
 #: model_terms:ir.ui.view,arch_db:stock_request.view_stock_request_form
 msgid "Stock Request"
 msgstr "Заказ на перемещение товара"
@@ -1137,7 +1143,7 @@ msgstr "Использование покупки с Заказами на пе�
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_search
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_search
 msgid "Warehouse"
-msgstr "Склад"
+msgstr "Склад-получатель"
 
 #. module: stock_request
 #: code:addons/stock_request/models/stock_request.py:0
@@ -1158,6 +1164,13 @@ msgstr "Сообщения с сайта"
 #: model:ir.model.fields,help:stock_request.field_stock_request_order__website_message_ids
 msgid "Website communication history"
 msgstr "История общения с сайтом"
+
+#. module: muztorg_stock_request_customization
+#: model:ir.model.fields,help:muztorg_stock_request_customization.field_stock_location_route__stock_request_selectable
+msgid "When checked, the route will be selectable in the Stock Request form."
+msgstr ""
+"Если этот флажок установлен, маршрут можно будет выбрать форме Заказа на "
+"перемещение"
 
 #. module: stock_request
 #: code:addons/stock_request/models/stock_location.py:0

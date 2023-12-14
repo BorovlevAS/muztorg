@@ -7,7 +7,7 @@ class StockRequestOrder(models.Model):
     biko_route_id = fields.Many2one(
         "stock.location.route",
         string="Route",
-        domain="[('id', 'in', biko_route_ids)]",
+        domain="[('id', 'in', biko_route_ids), ('stock_request_selectable', '=', True)]",
         ondelete="restrict",
     )
 
