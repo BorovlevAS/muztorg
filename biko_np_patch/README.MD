@@ -105,3 +105,8 @@ backward_money_costs - в грн.экв. на дату оредра
 ### 14.0.1.1.24
 
 [IMP] - добавили в stock.picking для поля streets "domain"=('city_id', '=', recipient_city)
+
+### 14.0.1.1.25
+
+[IMP] - добавили в sale.order вывод привязанных к нему ТТН
+
