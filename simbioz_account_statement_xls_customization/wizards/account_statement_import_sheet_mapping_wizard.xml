@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_statement_import_sheet_mapping_wizard_form_hotkey" model="ir.ui.view">
+        <field name="name">account.statement.import.sheet.mapping.wizard.form.hotkey</field>
+        <field name="model">account.statement.import.sheet.mapping.wizard</field>
+        <field name="mode">primary</field>
+        <field
+            name="inherit_id"
+            ref="account_statement_import_txt_xlsx.account_statement_import_sheet_mapping_wizard_form"
+        />
+        <field name="arch" type="xml">
+            <field name="partner_name_column" position="after">
+                <field
+                    name="partner_ref_column"
+                    widget="dynamic_dropdown"
+                    values="statement_columns"
+                    context="{'header': header}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
