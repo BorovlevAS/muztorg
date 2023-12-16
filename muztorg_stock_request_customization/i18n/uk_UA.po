@@ -1,21 +1,20 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+# 	* muztorg_stock_request_customization
 # 	* stock_request
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-30 10:10+0000\n"
-"PO-Revision-Date: 2023-11-30 12:20+0200\n"
+"POT-Creation-Date: 2023-12-14 04:34+0000\n"
+"PO-Revision-Date: 2023-12-14 04:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: stock_request
 #: code:addons/stock_request/models/stock_move_line.py:0
@@ -98,6 +97,11 @@ msgstr "Аналітика"
 #: model_terms:ir.ui.view,arch_db:stock_request.res_config_settings_view_form
 msgid "Analytic accounting in Stock Requests"
 msgstr "Аналітичний бухоблік в Замовленнях на переміщення"
+
+#. module: muztorg_stock_request_customization
+#: model:ir.model.fields,field_description:muztorg_stock_request_customization.field_stock_location_route__stock_request_selectable
+msgid "Applicable on Stock Request"
+msgstr "Можна застосувати для Замовлень на переміщення"
 
 #. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__message_attachment_count
@@ -482,7 +486,7 @@ msgstr "Місця зберігання"
 #: code:addons/stock_request/models/stock_request.py:0
 #, python-format
 msgid "Location must be equal to the order"
-msgstr "Розташування повинно відповідати замовленню"
+msgstr "Розташування повинно бути рівним замовленням"
 
 #. module: stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__message_main_attachment_id
@@ -808,14 +812,16 @@ msgstr "Запит має відповідати замовленню"
 msgid "Responsible User"
 msgstr "Відповідальний користувач"
 
-#. module: stock_request
+#. modules: muztorg_stock_request_customization, stock_request
+#: model:ir.model.fields,field_description:muztorg_stock_request_customization.field_stock_request_order__biko_route_id
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__route_id
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_abstract__route_id
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_search
 msgid "Route"
 msgstr "Маршрут"
 
-#. module: stock_request
+#. modules: muztorg_stock_request_customization, stock_request
+#: model:ir.model.fields,field_description:muztorg_stock_request_customization.field_stock_request_order__biko_route_ids
 #: model:ir.model.fields,field_description:stock_request.field_stock_request__route_ids
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_abstract__route_ids
 msgid "Routes"
@@ -876,7 +882,7 @@ msgstr ""
 #. module: stock_request
 #: model:ir.model,name:stock_request.model_stock_location
 msgid "Stock Location"
-msgstr "Місце знаходження"
+msgstr ""
 
 #. module: stock_request
 #: model:ir.model,name:stock_request.model_stock_move
@@ -890,11 +896,12 @@ msgstr "Складське переміщення"
 msgid "Stock Moves"
 msgstr "Складські переміщення"
 
-#. module: stock_request
+#. modules: stock_request, muztorg_stock_request_customization
 #: model:ir.model,name:stock_request.model_stock_request
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_allocation__stock_request_id
 #: model:ir.model.fields,field_description:stock_request.field_stock_request_order__stock_request_ids
 #: model:ir.module.category,name:stock_request.module_category_stock_request
+#: model_terms:ir.ui.view,arch_db:muztorg_stock_request_customization.biko_stock_location_route_view_form
 #: model_terms:ir.ui.view,arch_db:stock_request.view_stock_request_form
 msgid "Stock Request"
 msgstr "Замовлення на переміщення"
@@ -1028,7 +1035,6 @@ msgstr "Стан відправлення в Замовлення на пере�
 #, python-format
 msgid "The company of the stock request must match with that of the location."
 msgstr ""
-"Компанія замовлення на на переміщення має відповідати місцезнаходженню."
 
 #. module: stock_request
 #: code:addons/stock_request/models/stock_request_order.py:0
@@ -1136,7 +1142,7 @@ msgstr "Використовуйте покупки із Замовленням�
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_order_search
 #: model_terms:ir.ui.view,arch_db:stock_request.stock_request_search
 msgid "Warehouse"
-msgstr "Склад"
+msgstr "Склад-отримувач"
 
 #. module: stock_request
 #: code:addons/stock_request/models/stock_request.py:0
@@ -1158,6 +1164,12 @@ msgstr "Повідомлення веб-сайту"
 msgid "Website communication history"
 msgstr "Історія спілкування на сайті"
 
+#. module: muztorg_stock_request_customization
+#: model:ir.model.fields,help:muztorg_stock_request_customization.field_stock_location_route__stock_request_selectable
+msgid "When checked, the route will be selectable in the Stock Request form."
+msgstr ""
+"Коли буде позначено, маршрут буде обрано у формі Замовлення на переміщення"
+
 #. module: stock_request
 #: code:addons/stock_request/models/stock_location.py:0
 #, python-format
@@ -1165,8 +1177,8 @@ msgid ""
 "You cannot change the company of the location, as it is already assigned to "
 "stock request orders that belong to another company."
 msgstr ""
-"Змінити компанію локації неможливо, оскільки вона вже закріплена "
-"заЗамовленнями на переміщення товарів, що належать іншій компанії."
+"Змінити компанію локації неможливо, оскільки вона вже закріплена за "
+"Замовленнями на переміщення товарів, що належать іншій компанії."
 
 #. module: stock_request
 #: code:addons/stock_request/models/stock_location.py:0
