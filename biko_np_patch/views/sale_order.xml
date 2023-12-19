@@ -18,6 +18,22 @@
                     attrs="{'invisible': ['|', ('delivery_type', '!=', 'np'), ('afterpayment_check', '=', False)]}"
                 />
             </xpath>
+            <xpath expr="//page[@name='other_information']" position='after'>
+                <page string="TTN" name="biko_TTN_info">
+                    <field name="biko_ttn_ids" widget="section_and_note_one2many" mode="tree" attrs="{'readonly': 1}">
+                        <tree string="TTN Lines" editable="bottom">
+                            <field name="doc_number" />
+                            <field name="status" />
+                            <button
+                                name="get_url_ttn"
+                                type="object"
+                                string="Open url"
+                                class="btn-primary oe_highlight"
+                            />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>

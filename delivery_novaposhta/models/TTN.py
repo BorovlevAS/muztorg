@@ -1,13 +1,17 @@
 import logging
 from datetime import datetime
 
+from requests import ConnectionError
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from requests import ConnectionError
 
 from .utils import APIRequest
 
 _logger = logging.getLogger(__name__)
+
+TTN_IGNORE_STATUS = [2, 9, 10, 11, 102, 103, 108, 105, 106]
+TTN_NOTIFY_STATUS = [9, 11, 102, 103, 108, 105, 106, 107]
 
 
 def date_to_str(date):
@@ -145,7 +149,9 @@ class NovaPoshtaTTN(models.Model):
 
     # if organization
     recipient_name_organization = fields.Many2one(
-        "res.partner", string="Recipient organization", domain="[('is_company','=',1)]"
+        "res.partner",
+        string="Recipient organization",
+        domain="[('is_company','=',1)]",
     )
     # recipient info
     recipient_name = fields.Many2one(
@@ -384,7 +390,11 @@ class NovaPoshtaTTN(models.Model):
                 self.recipient_name.np_name
                 and len(self.recipient_name.np_name.split()) > 2
             ):
-                last_name, first_name, middle_name = self.recipient_name.np_name.split()
+                (
+                    last_name,
+                    first_name,
+                    middle_name,
+                ) = self.recipient_name.np_name.split()
             elif (
                 self.recipient_name.np_name
                 and len(self.recipient_name.np_name.split()) > 1
@@ -392,7 +402,11 @@ class NovaPoshtaTTN(models.Model):
                 last_name, first_name = self.recipient_name.np_name.split()
                 middle_name = ""
             elif len(self.recipient_name.name.split()) > 2:
-                last_name, first_name, middle_name = self.recipient_name.name.split()
+                (
+                    last_name,
+                    first_name,
+                    middle_name,
+                ) = self.recipient_name.name.split()
             elif len(self.recipient_name.name.split()) > 1:
                 last_name, first_name = self.recipient_name.name.split()
                 middle_name = ""
@@ -797,74 +811,72 @@ class NovaPoshtaTTN(models.Model):
 
         ttns_to_check = [
             record
-            for record in self.search([])
-            if record.status_code not in [2, 9, 10, 11, 102, 103, 108, 105, 106]
+            for record in self.search([("status_code", "not in", TTN_IGNORE_STATUS)])
         ]
-        # """ тут спрятан компрехеншн :3 """
-        data = {
-            "apiKey": key.key,
-            "modelName": "TrackingDocument",
-            "calledMethod": "getStatusDocuments",
-            "methodProperties": {
-                "Documents": [
-                    {"DocumentNumber": ttn.doc_number, "Phone": ""}
-                    for ttn in ttns_to_check
-                ]
-            },
-        }
-        _logger.debug(_("Data to send: {}").format(data))
-        try:
-            response = APIRequest.get_data(data)
-        except ConnectionError as conn_error:
-            raise ValidationError(_("Connection Error")) from conn_error
-        _logger.debug(_("Response: {}").format(response))
-        if isinstance(response, dict):
-            return
-        else:
-            # """Если найдены ЭН для обновления, смотрим их статусы из респонса"""
+        i = 0
 
-            response_transformed = {
-                record["Number"]: [record["Status"], record["StatusCode"]]
-                for record in response
+        while i < len(ttns_to_check):
+            ttns_to_check_part = ttns_to_check[i : i + 50]
+            i += 50
+            # """ тут спрятан компрехеншн :3 """
+            data = {
+                "apiKey": key.key,
+                "modelName": "TrackingDocument",
+                "calledMethod": "getStatusDocuments",
+                "methodProperties": {
+                    "Documents": [
+                        {"DocumentNumber": ttn.doc_number, "Phone": ""}
+                        for ttn in ttns_to_check_part
+                    ]
+                },
             }
-            for ttn in ttns_to_check:
-                if ttn.doc_number and ttn.status_code != int(
-                    response_transformed[ttn.doc_number][1]
-                ):
-                    ttn.write(
-                        {
-                            "status": response_transformed[ttn.doc_number][0],
-                            "status_code": response_transformed[ttn.doc_number][1],
-                        }
-                    )
+            _logger.debug(_("Data to send: {}").format(data))
+            try:
+                response = APIRequest.get_data(data)
+            except ConnectionError as conn_error:
+                raise ValidationError(_("Connection Error")) from conn_error
+            _logger.debug(_("Response: {}").format(response))
+            if isinstance(response, dict):
+                return
+            else:
+                # """Если найдены ЭН для обновления, смотрим их статусы из респонса"""
 
-                    # """ Высылаем уведомления продажнику этой ЭН """
-
-                    if int(response_transformed[ttn.doc_number][1]) in (
-                        9,
-                        11,
-                        102,
-                        103,
-                        108,
-                        105,
-                        106,
-                        107,
+                response_transformed = {
+                    record["Number"]: [record["Status"], record["StatusCode"]]
+                    for record in response
+                }
+                for ttn in ttns_to_check_part:
+                    if ttn.doc_number and ttn.status_code != int(
+                        response_transformed[ttn.doc_number][1]
                     ):
-                        ttn.salesperson.notify_info(
-                            _("TTN {ttn} changed status to {status}").format(
-                                ttn=ttn.doc_number,
-                                status=response_transformed[ttn.doc_number][0],
-                            ),
-                            sticky=True,
+                        ttn.write(
+                            {
+                                "status": response_transformed[ttn.doc_number][0],
+                                "status_code": response_transformed[ttn.doc_number][1],
+                            }
                         )
-                    elif int(response_transformed[ttn.doc_number][1]) == 2:
-                        ttn.salesperson.notify_warning(
-                            _("TTN {ttn} changed status to {status}").format(
-                                ttn=ttn.doc_number,
-                                status=response_transformed[ttn.doc_number][0],
-                            ),
-                            sticky=True,
-                        )
+
+                        # """ Высылаем уведомления продажнику этой ЭН """
+
+                        if (
+                            int(response_transformed[ttn.doc_number][1])
+                            in TTN_NOTIFY_STATUS
+                        ):
+                            ttn.salesperson.notify_info(
+                                _("TTN {ttn} changed status to {status}").format(
+                                    ttn=ttn.doc_number,
+                                    status=response_transformed[ttn.doc_number][0],
+                                ),
+                                sticky=True,
+                            )
+                        elif int(response_transformed[ttn.doc_number][1]) == 2:
+                            ttn.salesperson.notify_warning(
+                                _("TTN {ttn} changed status to {status}").format(
+                                    ttn=ttn.doc_number,
+                                    status=response_transformed[ttn.doc_number][0],
+                                ),
+                                sticky=True,
+                            )
 
     def update_status_one(self):
         self.ensure_one()
@@ -893,7 +905,16 @@ class NovaPoshtaTTN(models.Model):
                     "status_code": response[0]["StatusCode"],
                 }
             )
-            if int(response[0]["StatusCode"]) in (9, 11, 102, 103, 108, 105, 106, 107):
+            if int(response[0]["StatusCode"]) in (
+                9,
+                11,
+                102,
+                103,
+                108,
+                105,
+                106,
+                107,
+            ):
                 self.salesperson.notify_info(
                     _("TTN {ttn} changed status to {status}").format(
                         ttn=self.doc_number, status=response[0]["Status"]
@@ -996,7 +1017,10 @@ class NovaPoshtaTTN(models.Model):
             else:
                 recipienttype = self.recipient_type.ref
             if recipienttype == "PrivatePerson":
-                private_person_ref, contact_person_ref = self.add_privat_person()
+                (
+                    private_person_ref,
+                    contact_person_ref,
+                ) = self.add_privat_person()
                 data["methodProperties"].update(
                     {
                         "Recipient": private_person_ref,
