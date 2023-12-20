@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 17:12+0000\n"
-"PO-Revision-Date: 2023-12-10 17:12+0000\n"
+"POT-Creation-Date: 2023-12-20 15:06+0000\n"
+"PO-Revision-Date: 2023-12-20 15:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -119,6 +119,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__create_uid
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__create_uid
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__create_uid
 msgid "Created by"
 msgstr ""
 
@@ -127,6 +129,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__create_date
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__create_date
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__create_date
 msgid "Created on"
 msgstr ""
 
@@ -208,6 +212,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__display_name
 msgid "Display Name"
 msgstr ""
@@ -265,6 +271,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__id
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__id
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__id
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__id
 msgid "ID"
 msgstr ""
@@ -342,6 +350,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -351,6 +361,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__write_uid
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__write_uid
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__write_uid
 msgid "Last Updated by"
 msgstr ""
 
@@ -359,12 +371,29 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__write_date
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__write_date
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__line_ids
+msgid "Lines"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__location_id
+msgid "Location"
 msgstr ""
 
 #. module: muztorg_sale_automation
 #: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__location_dest_id
 msgid "Location where the system will stock the finished products."
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.stock_reservation_order_view_form
+msgid "Locations"
 msgstr ""
 
 #. module: muztorg_sale_automation
@@ -389,6 +418,7 @@ msgstr ""
 
 #. module: muztorg_sale_automation
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__name
 msgid "Name"
 msgstr ""
 
@@ -659,6 +689,7 @@ msgstr ""
 
 #. module: muztorg_sale_automation
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__sequence
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__sequence
 msgid "Sequence"
 msgstr ""
 
@@ -714,6 +745,21 @@ msgstr ""
 #. module: muztorg_sale_automation
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.stock_move_reserv_product_pivot
 msgid "Stock Reservation Analysis"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.actions.act_window,name:muztorg_sale_automation.stock_reservation_order_act_window
+#: model:ir.model,name:muztorg_sale_automation.model_stock_reservation_order
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__stock_reservation_order_id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__stock_reservation_order_id
+#: model:ir.ui.menu,name:muztorg_sale_automation.stock_reservation_order_menu
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.sale_confirm_extended_for_warehouse
+msgid "Stock Reservation Order"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_stock_reservation_order_line
+msgid "Stock Reservation Order Line"
 msgstr ""
 
 #. module: muztorg_sale_automation
