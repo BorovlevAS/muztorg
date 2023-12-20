@@ -90,7 +90,7 @@ msgstr ""
 #. module: muztorg_sale_automation
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_order_inherit_form
 msgid "Confirm"
-msgstr "Пыдтвердити"
+msgstr "Підтвердити"
 
 #. module: muztorg_sale_automation
 #: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__product_uom_category_id

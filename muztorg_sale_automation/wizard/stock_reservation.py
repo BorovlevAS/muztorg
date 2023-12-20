@@ -21,10 +21,38 @@ class StockReservation(models.TransientModel):
     )
 
     def action_create_reservation(self):
+        def get_qty_by_locations(product_id, warehouse_id, product_qty):
+            if not warehouse_id.stock_reservation_order_id:
+                picking_type_id = picking_type_obj.search(
+                    [
+                        (
+                            "warehouse_id",
+                            "=",
+                            warehouse_id.id,
+                        ),
+                        ("code", "=", "outgoing"),
+                    ],
+                    limit=1,
+                )
+                return {picking_type_id.default_location_src_id: product_qty}
+            else:
+                result = {}
+                need_to_reserve = product_qty
+                for line in warehouse_id.stock_reservation_order_id.line_ids:
+                    product_quant_loc = product_id.with_context(
+                        location=line.location_id.id
+                    ).qty_available
+                    if product_quant_loc >= need_to_reserve:
+                        result.update({line.location_id: need_to_reserve})
+                        break
+                    elif product_quant_loc > 0.0:
+                        result.update({line.location_id: product_quant_loc})
+                        need_to_reserve -= product_quant_loc
+                return result
+
         self.ensure_one()
         custome_reservtion_obj = self.env["stock.move.reservation"]
         picking_type_obj = self.env["stock.picking.type"]
-        mail_context = []
 
         for line in self.reservation_line_ids:
             if (
@@ -35,19 +63,6 @@ class StockReservation(models.TransientModel):
                 order_line_reserve_qty += line.stock_reservation_qty
 
                 if line.order_line_id.product_uom_qty >= order_line_reserve_qty:
-                    picking_type_id = picking_type_obj.search(
-                        [
-                            (
-                                "warehouse_id",
-                                "=",
-                                self.sale_order_id.warehouse_id.id,
-                            ),
-                            ("code", "=", "outgoing"),
-                        ],
-                        limit=1,
-                    )
-                    location_id = picking_type_id.default_location_src_id
-                    # location_dest_id = self.env.ref("odoo_stock_reservation.stock_dest_location_reservation")
                     location_dest_id = self.env["stock.location"].search(
                         [
                             ("is_stock_location_reservation", "=", True),
@@ -59,35 +74,38 @@ class StockReservation(models.TransientModel):
                         ],
                         limit=1,
                     )
-
-                    reserv_move_id = custome_reservtion_obj.create(
-                        {
-                            "name": self.sale_order_id.name,
-                            "custome_so_line_id": line.order_line_id.id,
-                            "product_id": line.product_id.id,
-                            "product_uom_qty": line.stock_reservation_qty,
-                            "product_uom": line.uom_id.id,
-                            "location_id": location_id.id,
-                            "location_dest_id": location_dest_id.id,
-                            "custome_sale_order_id": self.sale_order_id.id,
-                            "reserv_request_date": fields.Datetime.now(),
-                            "reserv_resquest_user_id": self.env.uid,
-                        }
+                    qty_by_locations = get_qty_by_locations(
+                        line.product_id,
+                        self.sale_order_id.warehouse_id,
+                        line.stock_reservation_qty,
                     )
-
-                    if reserv_move_id:
-                        line.order_line_id.stock_reserved_qty += (
-                            line.stock_reservation_qty
-                        )
-                        self.sale_order_id.is_stock_reserv_created = True
-                        mail_context.append(
+                    reserve_move_ids = []
+                    for (
+                        location_id,
+                        qty_to_reserve,
+                    ) in qty_by_locations.items():
+                        reserv_move_id = custome_reservtion_obj.create(
                             {
-                                "name": reserv_move_id.reserv_code,
-                                "product_id": reserv_move_id.product_id,
-                                "reserved_qty": reserv_move_id.product_uom_qty,
+                                "name": self.sale_order_id.name,
+                                "custome_so_line_id": line.order_line_id.id,
+                                "product_id": line.product_id.id,
+                                "product_uom_qty": qty_to_reserve,
+                                "product_uom": line.uom_id.id,
+                                "location_id": location_id.id,
+                                "location_dest_id": location_dest_id.id,
+                                "custome_sale_order_id": self.sale_order_id.id,
+                                "reserv_request_date": fields.Datetime.now(),
+                                "reserv_resquest_user_id": self.env.uid,
                             }
                         )
-                        reserv_move_id.move_id._action_confirm()
+
+                        if reserv_move_id:
+                            line.order_line_id.stock_reserved_qty += qty_to_reserve
+                            self.sale_order_id.is_stock_reserv_created = True
+                            # reserv_move_id.move_id._action_confirm()
+                            reserve_move_ids.append(reserv_move_id.move_id.id)
+
+                    self.env["stock.move"].browse(reserve_move_ids)._action_confirm()
                 else:
                     raise ValidationError(_("All the quantities are reserved"))
 

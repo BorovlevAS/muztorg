@@ -11,6 +11,12 @@
                 <field name="create_invoice" />
                 <field name="validate_invoice" />
             </field>
+
+            <xpath expr="//page[@name='technical_info']" position="inside">
+                <group string="Stock Reservation Order">
+                    <field name="stock_reservation_order_id" />
+                </group>
+            </xpath>
         </field>
     </record>
 </odoo>

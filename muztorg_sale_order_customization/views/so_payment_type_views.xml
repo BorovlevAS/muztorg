@@ -9,6 +9,7 @@
                 <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="is_prepayment" />
+                <field name="website_ref" />
             </tree>
         </field>
     </record>

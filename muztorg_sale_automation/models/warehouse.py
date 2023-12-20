@@ -13,3 +13,7 @@ class StockWarehouse(models.Model):
         string="When to create an invoice?",
     )
     validate_invoice = fields.Boolean(string="Validate invoice?")
+    stock_reservation_order_id = fields.Many2one(
+        comodel_name="stock.reservation.order",
+        string="Stock Reservation Order",
+    )
