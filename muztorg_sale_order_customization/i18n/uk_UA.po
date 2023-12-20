@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 17:00+0000\n"
-"PO-Revision-Date: 2023-12-10 17:00+0000\n"
+"POT-Creation-Date: 2023-12-20 23:56+0000\n"
+"PO-Revision-Date: 2023-12-20 23:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,12 @@ msgstr "Номер рахунку в 1С"
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__active
 msgid "Active"
-msgstr ""
+msgstr "Активно"
+
+#. module: muztorg_sale_order_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_customization.so_payment_type_view_form
+msgid "Archived"
+msgstr "Архівовано"
 
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__create_uid
@@ -116,3 +121,8 @@ msgstr "Порядок"
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_website_ref
 msgid "Website Order #"
 msgstr "Номер замовлення на сайті"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__website_ref
+msgid "Website Ref"
+msgstr ""
