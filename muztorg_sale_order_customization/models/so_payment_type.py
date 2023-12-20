@@ -14,3 +14,4 @@ class SOPaymentType(models.Model):
 
     is_prepayment = fields.Boolean(string="Is Prepayment")
     sequence = fields.Integer(string="Sequence")
+    website_ref = fields.Char(string="Website Ref")
