@@ -910,13 +910,13 @@ msgstr ""
 #. module: muztorg_sale_automation
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__validate_invoice
 msgid "Validate invoice?"
-msgstr ""
+msgstr "Подтверждать акт?"
 
 #. module: muztorg_sale_automation
 #: model:ir.model.fields.selection,name:muztorg_sale_automation.selection__sale_order__state__waiting
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_order_inherit_form
 msgid "Waiting for payment"
-msgstr ""
+msgstr "Ожидание оплаты"
 
 #. module: muztorg_sale_automation
 #: model:ir.model,name:muztorg_sale_automation.model_stock_warehouse
@@ -927,7 +927,7 @@ msgstr "Склад"
 #. module: muztorg_sale_automation
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__create_invoice
 msgid "When to create an invoice?"
-msgstr ""
+msgstr "Кода создавать акт?"
 
 #. module: muztorg_sale_automation
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__additional
@@ -938,7 +938,7 @@ msgstr ""
 #: code:addons/muztorg_sale_automation/models/number_days_reservation.py:0
 #, python-format
 msgid "You can not create more than one Global Margin"
-msgstr ""
+msgstr "Вы не можете создать более одного глобального ограничения"
 
 #. module: muztorg_sale_automation
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.wiz_stock_reservation_view

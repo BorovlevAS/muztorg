@@ -880,7 +880,7 @@ msgstr ""
 #. module: muztorg_sale_automation
 #: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__validate_invoice
 msgid "Validate invoice?"
-msgstr ""
+msgstr "Підтверджувати акт?"
 
 #. module: muztorg_sale_automation
 #: model:ir.model.fields.selection,name:muztorg_sale_automation.selection__sale_order__state__waiting
