@@ -14,6 +14,7 @@
         "views/stock_warehouse.xml",
         "wizard/stock_reservation_wiz_view.xml",
         "views/stock_reservation_view.xml",
+        "views/stock_reservation_order_views.xml",
         "security/ir.model.access.csv",
         "data/stock_move_data.xml",
         "data/ir_sequence_data.xml",

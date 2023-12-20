@@ -4,6 +4,7 @@ Sale Order Automation (MUZTORG)
 
 #. The module adds new state 'Waiting for payment' into the sale order.
 #. The module adds ability to customize when to create and validate invoices, when to validate stock pickings
+#. The module adds the capability to reserve stock quantities after setting the sale order state to 'Waiting for payment'
 
 Installation
 ============
