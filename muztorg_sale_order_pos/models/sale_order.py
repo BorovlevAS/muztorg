@@ -17,6 +17,7 @@ class SaleOrder(models.Model):
 
         create_values = {
             "order_id": self.id,
+            "mobile_num": self.partner_id.mobile,
         }
 
         employee = self.env["hr.employee"].search(

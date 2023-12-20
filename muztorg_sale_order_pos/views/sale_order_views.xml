@@ -36,7 +36,7 @@
                     title="Fiscal Check Required"
                     bg_color="bg-danger"
                     attrs="{'invisible': ['|', '|',
-                        ('checkbox_receipt_id', '=', True),
+                        ('checkbox_receipt_id', '!=', False),
                         ('fiscal_receipt_req','!=','yes'),
                         ('state','in',['done'])
                         ]}"
@@ -46,7 +46,7 @@
                     title="Fiscal Check Required"
                     bg_color="bg-primary"
                     attrs="{'invisible': ['|', '|',
-                        ('checkbox_receipt_id', '=', True),
+                        ('checkbox_receipt_id', '!=', False),
                         ('fiscal_receipt_req','!=','after_receive'),
                         ('state','in',['done'])
                         ]}"

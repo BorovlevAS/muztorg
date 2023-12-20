@@ -6,6 +6,7 @@
     "depends": [
         "point_of_sale",
         "sale",
+        "phone_validation",
         "checkbox_integration_sale_order",
         "muztorg_sale_order_customization",
     ],

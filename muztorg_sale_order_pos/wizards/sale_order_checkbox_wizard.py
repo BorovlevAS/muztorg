@@ -1,8 +1,18 @@
-from odoo import fields, models
+import requests
+
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
+
+CHECKBOX_TAX_TABLE = {
+    0: 8,
+    7: 4,
+    20: 1,
+}
 
 
 class SaleOrderCheckbox(models.TransientModel):
-    _inherit = "sale.order.checkbox.wizard"
+    _name = "sale.order.checkbox.wizard"
+    _inherit = ["sale.order.checkbox.wizard", "phone.validation.mixin"]
 
     # TODO: make this field computed
     available_pos_config_ids = fields.Many2many(
@@ -17,6 +27,90 @@ class SaleOrderCheckbox(models.TransientModel):
         inverse_name="wizard_id",
         string="Payments",
     )
+    mobile_num = fields.Char(string="Mobile Number")
+
+    @api.onchange("mobile_num")
+    def _onchange_phone_validation(self):
+        if self.mobile_num:
+            self.mobile_num = self.phone_format(
+                number=self.mobile_num, force_format="E164"
+            )
+            if self.mobile_num[0] == "+":
+                self.mobile_num = self.mobile_num[1:]
+
+    def send_receipt_checkbox(self):
+        self.ensure_one()
+
+        payload = {
+            "goods": [],
+            "payments": [],
+            "delivery": {"phone": self.mobile_num},
+        }
+        for line in self.order_id.order_line:
+            good_value = {
+                "good": {
+                    "code": line.product_id.id,
+                    "name": line.product_id.name,
+                    "price": line.price_unit * 100,
+                    "barcode": line.product_id.barcode,
+                    "tax": [],
+                },
+                "quantity": line.product_uom_qty * 1000,
+            }
+            if line.tax_id:
+                for tax in line.tax_id:
+                    good_value["good"]["tax"].append(CHECKBOX_TAX_TABLE[tax.amount])
+            else:
+                good_value["good"]["tax"].append(8)
+            payload["goods"].append(good_value)
+
+        for payment in self.payment_lines:
+            if payment.payment_amount == 0:
+                continue
+            payment_vals = {
+                "type": payment.payment_type.checkbox_payment_type
+                if payment.payment_type.checkbox_payment_type
+                else "CASH",
+                "value": payment.payment_amount * 100,
+            }
+            if payment.payment_type.checkbox_payment_label:
+                payment_vals.update(
+                    {"label": payment.payment_type.checkbox_payment_label}
+                )
+            payload["payments"].append(payment_vals)
+
+        response = requests.post(
+            self.config_id.checkbox_url + "/api/v1/receipts/sell",
+            headers={
+                "Accept": "application/json;",
+                "Authorization": "Bearer " + self.pos_session_id.checkbox_access_token,
+            },
+            json=payload,
+            timeout=5,
+        )
+        if not response.ok:
+            raise ValidationError(response.text)
+
+        data = response.json()
+        self.order_id.update(
+            {
+                "checkbox_receipt_id": data["id"],
+                "checkbox_receipt_response": str(data),
+                "pos_session_id": self.pos_session_id.id,
+            }
+        )
+        self._checkbox_get_pdf_receipt()
+
+    @api.model_create_multi
+    def create(self, vals):
+        for val in vals:
+            if val.get("mobile_num"):
+                val["mobile_num"] = self.phone_format(
+                    number=val["mobile_num"], force_format="E164"
+                )
+                if val["mobile_num"][0] == "+":
+                    val["mobile_num"] = val["mobile_num"][1:]
+        return super().create(vals)
 
 
 class SaleOrderCheckboxWizardLine(models.TransientModel):

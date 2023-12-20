@@ -22,10 +22,14 @@
                     <span class="fa fa-exclamation-circle" />
                     POS session is not opened!
                 </div>
+                <field name="mobile_num" required="1" />
             </field>
             <button name="send_receipt_checkbox" position="attributes">
                 <attribute name="attrs">{'invisible': [('pos_session_id', '=', False)]}</attribute>
             </button>
+            <xpath expr="//button[hasclass('oe_link')]" position="attributes">
+                <attribute name="class">btn-secondary</attribute>
+            </xpath>
             <footer position="before">
                 <notebook>
                     <page name="page_payment_types" string="Payments">
