@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="so_payment_type_view_form" model="ir.ui.view">
+        <field name="name">so_payment_type.view.form.inherit</field>
+        <field name="model">so.payment.type</field>
+        <field name="inherit_id" ref="muztorg_sale_order_customization.so_payment_type_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[@name='pos_settings']" position="inside">
+                <page name="global_pos_settings" string="Global POS Settings">
+                    <group>
+                        <field name="fiscal_receipt_req" required="1" />
+                        <field
+                            name="pos_payment_method_id"
+                            attrs="{'required': [('fiscal_receipt_req','!=','no')]}"
+                            widget="selection"
+                        />
+                    </group>
+                </page>
+                <page name="checkbox_integration" string="Checkbox Integration">
+                    <group>
+                        <field name="checkbox_payment_type" />
+                        <field name="checkbox_payment_label" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -15,7 +15,8 @@
                         <div class="o_setting_right_pane">
                             <label for="is_auto_open_pos" />
                             <div class="text-muted">
-                                Open the cashier interface after pressing the "Start Shift" button
+                                Open the cashier interface after pressing the "Start
+                                Shift" button
                             </div>
                         </div>
                     </div>
@@ -25,7 +26,21 @@
                         </div>
                         <div class="o_setting_right_pane">
                             <label for="is_use_with_sale_order" />
-                            <div class="text-muted" id="invoice_journal">Used for working with Sale Orders</div>
+                            <div class="text-muted">Used for working with Sale Orders</div>
+                        </div>
+                    </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        id="department_ids"
+                        attrs="{'invisible': [('is_use_with_sale_order', 'in', [False, ''])]}"
+                    >
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <label for="department_ids" />
+                            <div class="text-muted">Available departments for this POS configuration</div>
+                            <div class="content-group mt16">
+                                <field name="department_ids" widget="many2many_tags" />
+                            </div>
                         </div>
                     </div>
                 </div>
