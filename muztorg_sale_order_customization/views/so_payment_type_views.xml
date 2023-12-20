@@ -8,7 +8,6 @@
             <tree>
                 <field name="sequence" widget="handle" />
                 <field name="name" />
-                <field name="fiscal_receipt_req" />
                 <field name="website_ref" />
             </tree>
         </field>
