@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
                     vals["route_id"] = warehouse_id.biko_route_id.id
         return super().create(vals_list)
 
-    @api.onchange("warehouse_id")
+    @api.onchange("warehouse_id", "carrier_id")
     def _onchange_warehouse_id(self):
         for rec in self:
             if (
@@ -25,12 +25,5 @@ class SaleOrder(models.Model):
                 and rec.carrier_id in rec.warehouse_id.biko_carrier_ids
             ):
                 rec.route_id = rec.warehouse_id.biko_route_id
-
-    @api.onchange("carrier_id")
-    def _onchange_carrier_id(self):
-        for rec in self:
-            if (
-                rec.warehouse_id.biko_carrier_ids
-                and rec.carrier_id in rec.warehouse_id.biko_carrier_ids
-            ):
-                rec.route_id = rec.warehouse_id.biko_route_id
+            else:
+                rec.route_id = False
