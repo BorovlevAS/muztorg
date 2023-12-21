@@ -104,7 +104,7 @@
                     {'invisible':['|','|','|',('carrier_tracking_ref','!=',False),('delivery_type','in', ['fixed', 'base_on_rule']),('delivery_type','=',False),('picking_type_code', '=', 'incoming')]}
                 </attribute>
             </xpath>
-            <xpath field="//button[@name='carrier_id']" position="attributes">
+            <xpath expr="//field[@name='carrier_id']" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', 'in', ('cancel'))]}</attribute>
             </xpath>
         </field>
