@@ -1,6 +1,6 @@
 import requests
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 CHECKBOX_TAX_TABLE = {
@@ -19,7 +19,15 @@ class SaleOrderCheckbox(models.TransientModel):
         comodel_name="pos.config",
         string="Available POS (nnt)",
     )
-
+    currency_id = fields.Many2one(
+        comodel_name="res.currency",
+        related="order_id.currency_id",
+        string="Currency (nnt)",
+    )
+    order_amount_total = fields.Monetary(
+        related="order_id.amount_total",
+        string="Order Amount Total",
+    )
     config_id = fields.Many2one(domain="[('id', 'in', available_pos_config_ids)]")
     pos_session_id = fields.Many2one(required=False)
     payment_lines = fields.One2many(
@@ -40,6 +48,12 @@ class SaleOrderCheckbox(models.TransientModel):
 
     def send_receipt_checkbox(self):
         self.ensure_one()
+
+        amount_total = sum(self.payment_lines.mapped("payment_amount"))
+        if amount_total != self.order_id.amount_total:
+            raise ValidationError(
+                _("The amount of payments does not match the amount of the order")
+            )
 
         payload = {
             "goods": [],

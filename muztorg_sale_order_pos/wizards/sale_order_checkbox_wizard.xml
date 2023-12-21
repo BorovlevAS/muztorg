@@ -5,6 +5,9 @@
         <field name="model">sale.order.checkbox.wizard</field>
         <field name="inherit_id" ref="checkbox_integration_sale_order.view_sale_order_checkbox_wizard_form" />
         <field name="arch" type="xml">
+            <field name="order_id" position="after">
+                <field name="order_amount_total" />
+            </field>
             <field name="config_id" position="before">
                 <field name="available_pos_config_ids" widget="many2many_tags" invisible="1" />
             </field>
