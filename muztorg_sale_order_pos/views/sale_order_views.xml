@@ -6,20 +6,50 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <group name="order_details" position="attributes">
-                <attribute name="attrs">{'readonly': [('checkbox_receipt_id','!=',False)]}</attribute>
+                <attribute name="attrs">
+                    {'readonly':
+                    [('checkbox_receipt_id','!=',False)]}
+                </attribute>
             </group>
             <group name="partner_details" position="attributes">
-                <attribute name="attrs">{'readonly': [('checkbox_receipt_id','!=',False)]}</attribute>
+                <attribute name="attrs">
+                    {'readonly':
+                    [('checkbox_receipt_id','!=',False)]}
+                </attribute>
             </group>
             <field name="order_line" position="attributes">
-                <attribute name="attrs">{'readonly': [('checkbox_receipt_id','!=',False)]}</attribute>
+                <attribute name="attrs">
+                    {'readonly':
+                    [('checkbox_receipt_id','!=',False)]}
+                </attribute>
             </field>
             <xpath expr="//div[@name='button_box']" position="after">
+                <field name="fiscal_receipt_req" invisible="1" />
                 <widget
                     name="web_ribbon"
                     title="Fiscal Check"
                     bg_color="bg-success"
                     attrs="{'invisible': [('checkbox_receipt_id', '=', False)]}"
+                />
+                <widget
+                    name="web_ribbon"
+                    title="Fiscal Check Required"
+                    bg_color="bg-danger"
+                    attrs="{'invisible': ['|', '|',
+                        ('checkbox_receipt_id', '!=', False),
+                        ('fiscal_receipt_req','!=','yes'),
+                        ('state','in',['done'])
+                        ]}"
+                />
+                <widget
+                    name="web_ribbon"
+                    title="Fiscal Check Required"
+                    bg_color="bg-primary"
+                    attrs="{'invisible': ['|', '|',
+                        ('checkbox_receipt_id', '!=', False),
+                        ('fiscal_receipt_req','!=','after_receive'),
+                        ('state','in',['done'])
+                        ]}"
                 />
             </xpath>
         </field>
@@ -34,13 +64,21 @@
                 name="%(checkbox_integration_sale_order.action_open_sale_order_checkbox_wizard)s"
                 position="attributes"
             >
-                <attribute name="attrs">
-                    {'invisible':
-                    ['|',
-                    ('checkbox_receipt_id','!=',False),
-                    ('state', 'not in', ['sale', 'done'])
-                    ]}
-                </attribute>
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button name="%(checkbox_integration_sale_order.action_open_sale_order_checkbox_wizard)s" position="after">
+                <button
+                    name="action_open_receipt_wizard"
+                    type="object"
+                    string="Send Receipt to Checkbox"
+                    icon="fa-file-text-o"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', '|',
+                        ('checkbox_receipt_id', '!=', False),
+                        ('fiscal_receipt_req', '=', 'no'),
+                        ('state','not in',['sale','done'])
+                        ]}"
+                />
             </button>
         </field>
     </record>

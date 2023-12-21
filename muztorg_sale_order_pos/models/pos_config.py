@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class PosConfig(models.Model):
@@ -18,6 +18,16 @@ class PosConfig(models.Model):
         comodel_name="hr.department",
         string="Departments",
     )
+
+    @api.model
+    def get_pos_config(self, department_id):
+        pos_config_ids = self.search(
+            [
+                ("is_use_with_sale_order", "=", True),
+                ("department_ids", "in", department_id),
+            ]
+        )
+        return pos_config_ids
 
     def open_session_cb(self, check_coa=True):
         """new session button

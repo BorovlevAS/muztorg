@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 16:59+0000\n"
-"PO-Revision-Date: 2023-12-10 16:59+0000\n"
+"POT-Creation-Date: 2023-12-20 23:55+0000\n"
+"PO-Revision-Date: 2023-12-20 23:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,11 @@ msgstr ""
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__active
 msgid "Active"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_customization.so_payment_type_view_form
+msgid "Archived"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
@@ -115,4 +120,9 @@ msgstr ""
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_website_ref
 msgid "Website Order #"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__website_ref
+msgid "Website Ref"
 msgstr ""
