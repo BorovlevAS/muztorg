@@ -103,6 +103,7 @@
                 <attribute name="attrs">
                     {'invisible':['|','|','|',('carrier_tracking_ref','!=',False),('delivery_type','in', ['fixed', 'base_on_rule']),('delivery_type','=',False),('picking_type_code', '=', 'incoming')]}
                 </attribute>
+                <attribute name="string">Transfer to delivery service</attribute>
             </xpath>
             <xpath expr="//field[@name='carrier_id']" position="attributes">
                 <attribute name="attrs">{'readonly': [('state', 'in', ('cancel'))]}</attribute>
