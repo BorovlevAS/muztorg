@@ -1,4 +1,4 @@
-from odoo import _, fields, models
+from odoo import _, models
 from odoo.exceptions import UserError
 
 
@@ -125,37 +125,6 @@ class ProviderNP(models.Model):
                     .create(data)
                 )
             if ttn:
-                if "" in self.np_payer_type.ref == "Sender":
-                    np_partner = self.env.ref("novaposhta_data.np_partner")
-                    np_product = self.env.ref(
-                        "novaposhta_data.product_product_delivery_np"
-                    )
-                    if np_partner and np_product:
-                        invoice_data = {
-                            "name": "",
-                            "move_type": "in_invoice",
-                            "partner_id": np_partner.id,
-                            "invoice_date": fields.Datetime.now(),
-                            "invoice_line_ids": [
-                                (
-                                    0,
-                                    0,
-                                    {
-                                        "name": np_product.name,
-                                        "product_id": np_product.id,
-                                        "quantity": 1,
-                                        "product_uom_id": np_product.uom_id.id,
-                                        "price_unit": ttn.estimated_costs,
-                                        "analytic_account_id": picking.sale_id.analytic_account_id.id,
-                                        "account_id": np_partner.property_account_receivable_id.id,
-                                    },
-                                )
-                            ],
-                            "currency_id": self.env.ref("base.UAH").id,
-                        }
-                        picking.invoice_id = self.env["account.move"].create(
-                            invoice_data
-                        )
                 picking.ttn = ttn
                 res = []
                 cost = ttn.estimated_costs
