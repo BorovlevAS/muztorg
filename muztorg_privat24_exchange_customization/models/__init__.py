@@ -1,1 +1,1 @@
-from . import account_journal, res_partner
+from . import res_partner
