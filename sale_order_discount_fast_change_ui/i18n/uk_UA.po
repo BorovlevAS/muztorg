@@ -28,7 +28,7 @@ msgstr "Застосувати загальну знижку"
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields.selection,name:sale_order_discount_fast_change_ui.selection__sale_order_discount_fast_change__application_policy__all
 msgid "Apply on all lines"
-msgstr "Застосувати до рядка"
+msgstr "Застосувати до всіх рядків"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields.selection,name:sale_order_discount_fast_change_ui.selection__sale_order_discount_fast_change__application_policy__not_discounted
@@ -82,7 +82,7 @@ msgstr "Загальна сума знижки"
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change____last_update
