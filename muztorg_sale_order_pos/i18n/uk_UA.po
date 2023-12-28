@@ -1,0 +1,362 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* checkbox_integration_sale_order
+# 	* muztorg_sale_order_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-21 00:52+0000\n"
+"PO-Revision-Date: 2023-12-21 00:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_wizard_form
+msgid ""
+"<span class=\"fa fa-exclamation-circle\"/>\n"
+"                    POS session is not opened!"
+msgstr ""
+"<span class=\"fa fa-exclamation-circle\"/>\n"
+"                    Необхідно відкрити зміну!"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields.selection,name:muztorg_sale_order_pos.selection__so_payment_type__fiscal_receipt_req__after_receive
+msgid "After Receive"
+msgstr "Після отримання замовлення"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__is_auto_open_pos
+msgid "Auto Open POS interface"
+msgstr "Автоматично відкривати інтерфейс касира"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__available_pos_config_ids
+msgid "Available POS (nnt)"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.pos_config_view_form
+msgid "Available departments for this POS configuration"
+msgstr "Доступні підрозділи для цього робочого місця касира"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields.selection,name:muztorg_sale_order_pos.selection__so_payment_type__checkbox_payment_type__cashless
+msgid "CARD"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields.selection,name:muztorg_sale_order_pos.selection__so_payment_type__checkbox_payment_type__cash
+msgid "CASH"
+msgstr ""
+
+#. module: checkbox_integration_sale_order
+#: model_terms:ir.ui.view,arch_db:checkbox_integration_sale_order.view_sale_order_checkbox_wizard_form
+msgid "Cancel"
+msgstr "Відміна"
+
+#. module: checkbox_integration_sale_order
+#: model_terms:ir.ui.view,arch_db:checkbox_integration_sale_order.view_sale_order_checkbox_form
+msgid "Checkbox"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.so_payment_type_view_form
+msgid "Checkbox Integration"
+msgstr "Інтеграція з Checkbox"
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order__checkbox_receipt_id
+msgid "Checkbox receipt id"
+msgstr ""
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order__checkbox_receipt_response
+msgid "Checkbox_receipt_response"
+msgstr ""
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order_checkbox_wizard__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order_checkbox_wizard__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__create_date
+msgid "Created on"
+msgstr "Створено в"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__currency_id
+msgid "Currency (nnt)"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__department_ids
+msgid "Departments"
+msgstr "Підрозділи"
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_pos_session__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_order_form
+msgid "Fiscal Check"
+msgstr "Чек пробито"
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_order_form
+msgid "Fiscal Check Required"
+msgstr "Чек не зареєстрован"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__checkbox_payment_type
+msgid "Fiscal Payment Type"
+msgstr "Тип оплати (POS)"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__fiscal_receipt_req
+msgid "Fiscal Receipt Required"
+msgstr "Потрібен фіскальний чек"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__fiscal_receipt_req
+msgid "Fiscal Receipt Required (nnt)"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.so_payment_type_view_form
+msgid "Global POS Settings"
+msgstr "Загальні налаштування"
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_pos_session__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__id
+msgid "ID"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,help:muztorg_sale_order_pos.field_so_payment_type__checkbox_payment_label
+msgid "Label for payment type in the POS program"
+msgstr "Мітка для типа платежу в ПРРО"
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_pos_session____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order_checkbox_wizard__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "Останнє оновлення"
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order_checkbox_wizard__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "Останнє оновлення в"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__mobile_num
+msgid "Mobile Number"
+msgstr "Мобільний"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields.selection,name:muztorg_sale_order_pos.selection__so_payment_type__fiscal_receipt_req__no
+msgid "No"
+msgstr "Ні"
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.pos_config_view_form
+msgid ""
+"Open the cashier interface after pressing the \"Start\n"
+"                                Shift\" button"
+msgstr ""
+"Автоматично відкривати POS-інтерфейс післянатискання кнопки \"Відкрити\n"
+"                                зміну\""
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order_checkbox_wizard__order_id
+msgid "Order"
+msgstr "Замовлення"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__order_amount_total
+msgid "Order Amount Total"
+msgstr "Сума замовлення"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__config_id
+msgid "POS"
+msgstr ""
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order__pos_config_id
+msgid "POS Config"
+msgstr "Налаштування точки продажу"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__pos_payment_method_id
+msgid "POS payment method"
+msgstr "Тип платежу (POS)"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__payment_amount
+msgid "Payment Amount"
+msgstr "Сума"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__payment_type
+msgid "Payment Type"
+msgstr "Тип оплати"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__checkbox_payment_label
+msgid "Payment Type Label"
+msgstr "Мітка типа оплати (для ПРРО)"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__payment_lines
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_wizard_form
+msgid "Payments"
+msgstr "Платежі"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.actions.act_window,name:muztorg_sale_order_pos.action_pos_config_kanban
+#: model:ir.ui.menu,name:muztorg_sale_order_pos.menu_pos_config_kanban
+msgid "Point of Sale"
+msgstr "Налаштування РМК"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Налаштування точки продажу"
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model,name:checkbox_integration_sale_order.model_pos_session
+msgid "Point of Sale Session"
+msgstr "Сесія точки продажу"
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order__checkbox_receipt_html
+msgid "Receipt HTML"
+msgstr "Чек HTML"
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order__checkbox_receipt_qr_code
+msgid "Receipt QR code"
+msgstr "QR-код чека"
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_pos_session__sale_order_counter
+msgid "SO count"
+msgstr "Кількість замовлень"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_sale_order_checkbox_wizard
+msgid "Sale Order Checkbox Wizard"
+msgstr "Помічник друку чеку ККМ"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_sale_order_checkbox_wizard_line
+msgid "Sale Order Checkbox Wizard Line (nnt)"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_so_payment_type
+msgid "Sale Order Payment Type"
+msgstr "Типи оплат для замовлення на продаж"
+
+#. module: checkbox_integration_sale_order
+#: model_terms:ir.ui.view,arch_db:checkbox_integration_sale_order.view_pos_session_inherit_form
+msgid "Sale Orders"
+msgstr "Замовлення на продаж"
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.pos_config_view_form
+msgid "Sale order POS"
+msgstr "РМК для замовлень клієнтів"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_sale_order
+msgid "Sales Order"
+msgstr "Замовлення на продаж"
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:checkbox_integration_sale_order.view_sale_order_checkbox_form
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_form
+msgid "Send Receipt to Checkbox"
+msgstr "Зареєструвати чек у Checkbox"
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/models/sale_order.py:0
+#: model:ir.actions.act_window,name:checkbox_integration_sale_order.action_open_sale_order_checkbox_wizard
+#: model_terms:ir.ui.view,arch_db:checkbox_integration_sale_order.view_sale_order_checkbox_wizard_form
+#, python-format
+msgid "Send Receipt to the Checkbox"
+msgstr "Зареєструвати чек у Checkbox"
+
+#. modules: checkbox_integration_sale_order, muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:checkbox_integration_sale_order.field_sale_order__pos_session_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__pos_session_id
+msgid "Session"
+msgstr "Сесія"
+
+#. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
+#, python-format
+msgid "The amount of payments does not match the amount of the order"
+msgstr "Сума платежів не відповідає сумі замовлення"
+
+#. module: checkbox_integration_sale_order
+#: model:ir.model.fields,help:checkbox_integration_sale_order.field_sale_order__pos_config_id
+msgid "The physical point of sale you will use."
+msgstr "Фізична точка продажу, яку ви будете використовувати."
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_wizard_form
+msgid "Total"
+msgstr "Разом"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__is_use_with_sale_order
+msgid "Use with Sale Order"
+msgstr "Використовувати з Замовленнями клієнтів"
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.pos_config_view_form
+msgid "Used for working with Sale Orders"
+msgstr "Використовується при роботі з чеками із Замовлення Клієнта"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__wizard_id
+msgid "Wizard"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields.selection,name:muztorg_sale_order_pos.selection__so_payment_type__fiscal_receipt_req__yes
+msgid "Yes"
+msgstr "Так"

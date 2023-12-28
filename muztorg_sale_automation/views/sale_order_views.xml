@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_inherit_form" model="ir.ui.view">
+        <field name="name">view.order.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <form position="inside">
+                <field name="is_stock_reserv_created" invisible="1" />
+            </form>
+            <xpath expr="//button[@name='action_draft']" position="attributes">
+                <attribute name="string">Draft</attribute>
+                <attribute name="class">btn-primary</attribute>
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['waiting', 'cancel'])]}</attribute>
+                <attribute name="states" />
+            </xpath>
+
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button
+                    name="action_set_waiting"
+                    id="action_set_waiting"
+                    string="Waiting for payment"
+                    class="btn-primary"
+                    type="object"
+                    attrs="{'invisible': [('state', 'not in', ['draft'])]}"
+                />
+            </xpath>
+
+            <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['sent', 'waiting'])]}</attribute>
+                <attribute name="string">Confirm</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="statusbar_visible">draft,sent,waiting,sale</attribute>
+            </xpath>
+
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button
+                    name="action_view_reserved_stock"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-building"
+                    string="Reserved Stock"
+                    attrs="{'invisible': [('is_stock_reserv_created', '=', False)]}"
+                />
+            </xpath>
+
+            <xpath expr="//notebook/page[last()]" position="after">
+                <page name="stock_reservation" string="Stock Reservation">
+                    <field name="stock_move_ids" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">view.sales.order.filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                <separator />
+                <filter string="In waiting" domain="[('state', '=', 'waiting')]" name="state_in_waiting_filter" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

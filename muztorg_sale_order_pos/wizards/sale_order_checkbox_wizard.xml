@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="view_sale_order_checkbox_wizard_form" model="ir.ui.view">
+        <field name="name">view_sale_order_checkbox_wizard_form.inherit</field>
+        <field name="model">sale.order.checkbox.wizard</field>
+        <field name="inherit_id" ref="checkbox_integration_sale_order.view_sale_order_checkbox_wizard_form" />
+        <field name="arch" type="xml">
+            <field name="order_id" position="after">
+                <field name="order_amount_total" />
+            </field>
+            <field name="config_id" position="before">
+                <field name="available_pos_config_ids" widget="many2many_tags" invisible="1" />
+            </field>
+            <field name="pos_session_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('pos_session_id', '=', False)]}</attribute>
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="pos_session_id" position="after">
+                <div
+                    colspan="2"
+                    class="alert alert-danger"
+                    role="alert"
+                    attrs="{'invisible': [('pos_session_id', '!=', False)]}"
+                >
+                    <span class="fa fa-exclamation-circle" />
+                    POS session is not opened!
+                </div>
+                <field name="mobile_num" required="1" />
+            </field>
+            <button name="send_receipt_checkbox" position="attributes">
+                <attribute name="attrs">{'invisible': [('pos_session_id', '=', False)]}</attribute>
+            </button>
+            <xpath expr="//button[hasclass('oe_link')]" position="attributes">
+                <attribute name="class">btn-secondary</attribute>
+            </xpath>
+            <footer position="before">
+                <notebook>
+                    <page name="page_payment_types" string="Payments">
+                        <field name="payment_lines">
+                            <tree create="0" delete="0" editable="bottom">
+                                <field
+                                    name="payment_type"
+                                    options="{'no_create': True, 'no_open': True}"
+                                    readonly="1"
+                                />
+                                <field name="payment_amount" sum="Total" />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </footer>
+        </field>
+    </record>
+</odoo>

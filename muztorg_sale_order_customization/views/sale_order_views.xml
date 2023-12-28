@@ -9,6 +9,13 @@
                 <field name="biko_website_ref" />
                 <field name="biko_1c_ref" />
             </xpath>
+            <field name="validity_date" position="before">
+                <field name="so_payment_type_id" options="{'no_create': True, 'no_open': True}" required="0" />
+            </field>
+            <xpath expr="//page/field[@name='order_line']/tree/field[@name='qty_delivered']" position="after">
+                <!-- below fields are used in the widget qty_at_date_widget -->
+                <field name="json_remainings_popover" string=" " widget="stock_by_location_widget" />
+            </xpath>
         </field>
     </record>
 </odoo>

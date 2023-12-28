@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_so_payment_type_user,access_so_payment_type_user,model_so_payment_type,base.group_user,1,,,
+access_so_payment_type_admin,access_so_payment_type_admin,model_so_payment_type,account.group_account_manager,1,1,1,1

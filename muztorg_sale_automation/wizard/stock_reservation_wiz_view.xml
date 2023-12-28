@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="wiz_stock_reservation_view" model="ir.ui.view">
+            <field name="name">stock.reservation</field>
+            <field name="model">stock.reservation</field>
+            <field name="arch" type="xml">
+                <form string="Stock Reservation">
+                    <group>
+                        <group>
+                            <field name="sale_order_id" />
+                        </group>
+                        <group>
+                            <field name="user_ids" widget="many2many_tags" />
+                        </group>
+                    </group>
+                    <field name="reservation_line_ids">
+                        <tree editable="bottom">
+                            <field name="sale_order_id" invisible="1" />
+                            <!-- <field name="order_line_id" domain="[('order_id','=', sale_order_id)]"/> -->
+                            <field name="order_line_id" />
+                            <field name="product_id" />
+                            <field name="product_qty" />
+                            <field name="uom_id" />
+                            <field name="stock_reservation_qty" />
+                        </tree>
+                    </field>
+                    <footer>
+                        <button
+                            name="action_create_reservation"
+                            type="object"
+                            string="Create Reservation"
+                            class="btn-primary"
+                        />
+                        or
+                        <button string="_Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_stock_reservation_wiz" model="ir.actions.act_window">
+            <field name="name">stock.reservation</field>
+            <field name="res_model">stock.reservation</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="wiz_stock_reservation_view" />
+            <!--            <field name="view_type">form</field>-->
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

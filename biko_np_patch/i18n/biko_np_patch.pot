@@ -339,6 +339,11 @@ msgid "Transfer"
 msgstr ""
 
 #. module: biko_np_patch
+#: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np
+msgid "Transfer to delivery service"
+msgstr ""
+
+#. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats__biko_volume_weight
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_volume_weight
 msgid "Volume Weight"

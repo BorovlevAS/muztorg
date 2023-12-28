@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="so_payment_type_tree_view" model="ir.ui.view">
+        <field name="name">so.payment.type.tree</field>
+        <field name="model">so.payment.type</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="website_ref" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="so_payment_type_view_form" model="ir.ui.view">
+        <field name="name">so_payment_type.view.form</field>
+        <field name="model">so.payment.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <header />
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name" />
+                        </div>
+                        <h1 class="mb32">
+                            <field name="name" class="mb16" />
+                        </h1>
+                    </div>
+                    <group name="header">
+                        <field name="active" widget="boolean_toggle" />
+                        <field name="website_ref" />
+                    </group>
+                    <notebook name="pos_settings" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_so_payment_type_tree" model="ir.actions.act_window">
+        <field name="name">Payment Types</field>
+        <field name="res_model">so.payment.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="so_payment_type_menu"
+        name="Payment Types"
+        action="action_so_payment_type_tree"
+        parent="sale.menu_sale_config"
+        sequence="10"
+    />
+</odoo>

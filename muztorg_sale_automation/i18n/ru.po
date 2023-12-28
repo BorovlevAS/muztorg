@@ -1,0 +1,972 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_sale_automation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 15:07+0000\n"
+"PO-Revision-Date: 2023-12-20 15:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__state
+msgid ""
+"* New: When the stock move is created and not yet confirmed.\n"
+"* Waiting Another Move: This state can be seen when a move is waiting for another one, for example in a chained flow.\n"
+"* Waiting Availability: This state is reached when the procurement resolution is not straight forward. It may need the scheduler to run, a component to be manufactured...\n"
+"* Available: When products are reserved, it is set to 'Available'.\n"
+"* Done: When the shipment is processed, the state is 'Done'."
+msgstr ""
+"* Новый: когда перемещение запаса создается и еще не подтверждено.\n"
+"* Ожидание новой операции: Это состояние можно увидеть, когда движение ожидает другого, например, в цепном потоке.\n"
+"* Ожидание доступности: Это состояние достигается, когда разрешение на закупку не является прямым. Может понадобиться планировщик для запуска, компонент для производства ...\n"
+"* Доступно: если продукт зарезервирован, он имеет значение 'Доступен'.\n"
+"* Выполнено: Когда обработка отправлена, состояние 'Выполнено'."
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__product_type
+msgid ""
+"A storable product is a product for which you manage stock. The Inventory app has to be installed.\n"
+"A consumable product is a product for which stock is not managed.\n"
+"A service is a non-material product you provide."
+msgstr ""
+"Складируемый - это продукт, для которого вы отслеживаете остатки на складе. Необходимо установить приложение Склад.\n"
+"Потребляемый - это продукт, для которого остатки не учитываются.\n"
+"Услуга - это нематериальный продукт, который вы предоставляете."
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__account_move_ids
+msgid "Account Move"
+msgstr "Бухгалтерская проводка"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__returned_move_ids
+msgid "All returned moves"
+msgstr "Все возвращенные перемещения"
+
+#. module: muztorg_sale_automation
+#: code:addons/muztorg_sale_automation/wizard/stock_reservation.py:0
+#, python-format
+msgid "All the quantities are reserved"
+msgstr "Все товары зарезервированы"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__backorder_id
+msgid "Back Order of"
+msgstr "Дозаказ из"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__procure_method
+msgid ""
+"By default, the system will take from the stock in the source location and "
+"passively wait for availability. The other possibility allows you to "
+"directly create a procurement on the source location (and thus ignore its "
+"current stock) to gather products. If we want to chain moves and have this "
+"one to wait for the previous, this second option should be chosen."
+msgstr ""
+"По умолчанию, система будет брать из запаса в исходном месте и пассивно "
+"ждать наличия. Другая возможность позволяет напрямую создать закупку на "
+"исходном месте хранения (и таким образом игнорировать его текущего запаса), "
+"чтобы собрать продукты. Если мы хотим, чтобы была цепь перемещения и один "
+"должен дождаться предыдущего, то должен быть выбран второй вариант."
+
+#. module: muztorg_sale_automation
+#: model:ir.actions.server,name:muztorg_sale_automation.ir_cron_scheduler_cancel_reservation_auto_ir_actions_server
+#: model:ir.cron,cron_name:muztorg_sale_automation.ir_cron_scheduler_cancel_reservation_auto
+#: model:ir.cron,name:muztorg_sale_automation.ir_cron_scheduler_cancel_reservation_auto
+msgid "Cancel Reservation Auto"
+msgstr "Автоотмена резерва"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__product_uom_category_id
+msgid "Category"
+msgstr "Категория"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__scrapped
+msgid ""
+"Check this box to allow using this location to put scrapped/damaged goods."
+msgstr ""
+"Отметьте, чтобы разрешить использование этого места хранения для "
+"бракованных/сломанных продуктов."
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__company_id
+msgid "Company"
+msgstr "Компания"
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_order_inherit_form
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+"Преобразование между единицами измерения может происходить только в том "
+"случае, если они принадлежат к одной и той же категории. Преобразование "
+"будет производиться на основе коэффициентов."
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.actions.act_window,help:muztorg_sale_automation.action_stock_move_reserv_product
+msgid "Create New Stock Move Reservation"
+msgstr "Зарезерваировать товар"
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.wiz_stock_reservation_view
+msgid "Create Reservation"
+msgstr "Зарезервировать товар"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__created_purchase_line_id
+msgid "Created Purchase Order Line"
+msgstr "Создана строка в заказе на закупку"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__create_date
+msgid "Created on"
+msgstr "Создано в"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__date_deadline
+msgid "Date Promise to the customer on the top level document (SO/PO)"
+msgstr "Обещанная дата доставки клиенту в документе верхнего уровня (SO / PO)"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__date
+msgid "Date Scheduled"
+msgstr "Плановая дата"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__nb_days
+msgid "Days"
+msgstr "Дней"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__date_deadline
+msgid "Deadline"
+msgstr "Крайний срок"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__delay_alert_date
+msgid "Delay Alert Date"
+msgstr "Дата уведомления о задержке"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__product_uom_qty
+msgid "Demand"
+msgstr "Спрос"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__name
+msgid "Description"
+msgstr "Описание"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__description_picking
+msgid "Description of Picking"
+msgstr "Описание комплектования"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__partner_id
+msgid "Destination Address "
+msgstr "Адрес назначения "
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__location_dest_id
+msgid "Destination Location"
+msgstr "Расположение назначения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__move_dest_ids
+msgid "Destination Moves"
+msgstr "Назначение перемещений"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__route_ids
+msgid "Destination route"
+msgstr "Маршрут места назначения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__show_details_visible
+msgid "Details Visible"
+msgstr "Отображать подробно"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__display_assign_serial
+msgid "Display Assign Serial"
+msgstr "Отображать назначенный серийный номер"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_location__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__display_name
+msgid "Display Name"
+msgstr "Отображаемое название"
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_order_inherit_form
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__user_ids
+msgid "Email Notification"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__has_tracking
+msgid "Ensure the traceability of a storable product in your warehouse."
+msgstr "Обеспечение отслеживания продукта, хранящегося на вашем складе."
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__next_serial
+msgid "First SN"
+msgstr "Первый серийный номер"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__forecast_availability
+msgid "Forecast Availability"
+msgstr "Прогноз доступности"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__forecast_expected_date
+msgid "Forecasted Expected date"
+msgstr "Прогнозируемая Ожидаемая дата"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__availability
+msgid "Forecasted Quantity"
+msgstr "Прогнозируемое количество"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__show_reserved_availability
+msgid "From Supplier"
+msgstr "от поставщика"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__has_move_lines
+msgid "Has Move Lines"
+msgstr "Имеет строки перемещения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_location__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__id
+msgid "ID"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__propagate_cancel
+msgid "If checked, when this move is cancelled, cancel the linked move too"
+msgstr ""
+"Если отмечено, то это перемещение отменено, связанные перемещения тоже "
+"отменяются"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__show_operations
+msgid ""
+"If this checkbox is ticked, the pickings lines will represent detailed stock"
+" operations. If not, the picking lines will represent an aggregate of "
+"detailed stock operations."
+msgstr ""
+"Если это будет обозначено, строки комплектования будут представлять "
+"детальные складские операции. Если нет, то строка комплектования "
+"представлять совокупность детальных складских операций."
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__backorder_id
+msgid ""
+"If this shipment was split, then this field links to the shipment which "
+"contains the already processed part."
+msgstr ""
+"Если этот груз был разделен, то это поле ссылки на отгрузки, которая "
+"содержит уже обработанную часть."
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__picking_type_entire_packs
+msgid "If ticked, you will be able to select entire packages to move"
+msgstr "Если обозначено, вы сможете выбрать пакеты для перемещения"
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_sales_order_filter
+msgid "In waiting"
+msgstr "Ожидание оплаты"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__inventory_id
+msgid "Inventory"
+msgstr "Склад"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__is_delivery_set_to_done
+msgid "Is Delivery Set to Done"
+msgstr "Подтверждать перемещения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__is_locked
+msgid "Is Locked"
+msgstr "Заблокировано"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order__is_stock_reserv_created
+msgid "Is Stock Created"
+msgstr "Зарезервировано"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_location__is_stock_location_reservation
+msgid "Is Stock Location Reservation ?"
+msgstr "Размещение резерва"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__is_initial_demand_editable
+msgid "Is initial demand editable"
+msgstr "Первоначальный спрос редактируемый"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__is_quantity_done_editable
+msgid "Is quantity done editable"
+msgstr "Есть ли величина редактированной"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_location____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse____last_update
+msgid "Last Modified on"
+msgstr "Последнее изменение в"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__write_uid
+msgid "Last Updated by"
+msgstr "Последнее обновление"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__write_date
+msgid "Last Updated on"
+msgstr "Последнее обновление в"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__line_ids
+msgid "Lines"
+msgstr "Места хранения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__location_id
+msgid "Location"
+msgstr "Место хранения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__location_dest_id
+msgid "Location where the system will stock the finished products."
+msgstr "Место, где система будет хранить готовые продукты."
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.stock_reservation_order_view_form
+msgid "Locations"
+msgstr "Места хранения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__picking_type_entire_packs
+msgid "Move Entire Packages"
+msgstr "Переместить пакеты полностью"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__move_line_ids
+msgid "Move Line"
+msgstr "Позиция перемещения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__move_line_nosuggest_ids
+msgid "Move Line Nosuggest"
+msgstr "Позиция перемещения без предложений"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__origin_returned_move_id
+msgid "Move that created the return move"
+msgstr "Перемещение, создавщее возврат"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_number_days_reservation__name
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order__name
+msgid "Name"
+msgstr "Название"
+
+#. module: muztorg_sale_automation
+#: code:addons/muztorg_sale_automation/models/stock_move_reservation.py:0
+#: code:addons/muztorg_sale_automation/models/stock_move_reservation.py:0
+#: code:addons/muztorg_sale_automation/models/stock_move_reservation.py:0
+#, python-format
+msgid "New"
+msgstr "Новый"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__note
+msgid "Notes"
+msgstr "Комментарий"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__next_serial_count
+msgid "Number of SN"
+msgstr "Количество SN"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields.selection,name:muztorg_sale_automation.selection__stock_warehouse__create_invoice__on_confirm
+msgid "On confirm sale order"
+msgstr "При подтверждении заказа"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields.selection,name:muztorg_sale_automation.selection__stock_warehouse__create_invoice__on_waiting_for_payment
+msgid "On waiting for payment"
+msgstr "При ожидании оплаты"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__picking_type_id
+msgid "Operation Type"
+msgstr "Тип операции"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__partner_id
+msgid ""
+"Optional address where goods are to be delivered, specifically used for "
+"allotment"
+msgstr ""
+"Дополнительный адрес доставки продукта, используется специально для "
+"выделения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__returned_move_ids
+msgid "Optional: all returned moves created from this move"
+msgstr ""
+"Дополнительно: все возвращенные перемещения, созданные из этого перемещения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__move_dest_ids
+msgid "Optional: next stock move when chaining them"
+msgstr "Опционально: следующее перемещение ТМЦ при его сцеплении"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__move_orig_ids
+msgid "Optional: previous stock move when chaining them"
+msgstr "Необязательно: предыдущее перемещение запаса при объединении цепочки"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__custome_so_line_id
+msgid "Order Line"
+msgstr "Строка заказа"
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.stock_move_reserv_product_form
+msgid "Origin"
+msgstr "Документ-основание"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__origin_returned_move_id
+msgid "Origin return move"
+msgstr "Источник возврата"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__move_orig_ids
+msgid "Original Move"
+msgstr "Исходное перемещение"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__orderpoint_id
+msgid "Original Reordering Rule"
+msgstr "Исходное правило повторного заказа"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__restrict_partner_id
+msgid "Owner "
+msgstr "Владелец "
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__package_level_id
+msgid "Package Level"
+msgstr "Уровень упаковки"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__route_ids
+msgid "Preferred route"
+msgstr "Предпочтительный маршрут"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__priority
+msgid "Priority"
+msgstr "Приоритет"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__delay_alert_date
+msgid "Process at this date to be on time"
+msgstr "Обработать на эту дату, чтобы доставить вовремя"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__group_id
+msgid "Procurement Group"
+msgstr "Группа обеспечения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__product_id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__product_id
+msgid "Product"
+msgstr "Продукт"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__product_tmpl_id
+msgid "Product Template"
+msgstr "Шаблон продукта"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__product_type
+msgid "Product Type"
+msgstr "Тип продукта"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__has_tracking
+msgid "Product with Tracking"
+msgstr "Продукт с отслеживанием"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__propagate_cancel
+msgid "Propagate cancel and split"
+msgstr "Отменить размножение и разделить"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__purchase_line_id
+msgid "Purchase Order Line"
+msgstr "Позиция заказа на закупку"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__product_qty
+msgid "Quantity"
+msgstr "Количество"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__quantity_done
+msgid "Quantity Done"
+msgstr "Количество выполнено"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__reserved_availability
+msgid "Quantity Reserved"
+msgstr "Зарезервированное Количество"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__availability
+msgid "Quantity in stock that can still be reserved for this move"
+msgstr ""
+"Количество на складе, которое еще может быть зарезервировано для этого "
+"перемещения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__product_qty
+msgid "Quantity in the default UoM of the product"
+msgstr "Количество в единицах измерения продукта по умолчанию"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__reserved_availability
+msgid "Quantity that has already been reserved for this move"
+msgstr "Количество, которое уже было зарезервировано для этого перемещения"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__product_qty
+msgid "Real Quantity"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__reference
+msgid "Reference"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__reserv_request_date
+msgid "Request for Reservation"
+msgstr "Зарезервировано"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__reserv_resquest_user_id
+msgid "Request for Reservation By"
+msgstr "Зарезервировал"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__reservation_id
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_stock_move_reservation_graph
+msgid "Reservation"
+msgstr "Резерв"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__reserv_code
+msgid "Reservation Code"
+msgstr "Номер документа"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__reservation_line_ids
+msgid "Reservation Line"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__move_id
+msgid "Reservation Move"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__stock_reservation_qty
+msgid "Reservation Quantity"
+msgstr "Зарезервированное количество"
+
+#. module: muztorg_sale_automation
+#: model:ir.actions.act_window,name:muztorg_sale_automation.action_stock_move_reserv_product
+#: model:ir.ui.menu,name:muztorg_sale_automation.menu_stock_reserved_product
+msgid "Reserved Products"
+msgstr "Зарезервированные товары"
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_order_inherit_form
+msgid "Reserved Stock"
+msgstr "Склад резерва"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__custome_sale_order_id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation__sale_order_id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__sale_order_id
+msgid "Sale Order"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__order_line_id
+msgid "Sale Order Line"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_sale_order
+msgid "Sales Order"
+msgstr "Заказ на продажу"
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Строка заказа на продажу"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__date
+msgid "Scheduled date until move is done, then date of actual move processing"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__scrap_ids
+msgid "Scrap"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__scrapped
+msgid "Scrapped"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__sequence
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__lot_ids
+msgid "Serial Numbers"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__location_id
+msgid ""
+"Sets a location if you produce at a fixed location. This can be a partner "
+"location if you subcontract the manufacturing operations."
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__show_operations
+msgid "Show Detailed Operations"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__origin
+msgid "Source Document"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__location_id
+msgid "Source Location"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order__state
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__state
+msgid "Status"
+msgstr "Статус"
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.stock_move_reserv_product_form
+msgid "Stock  Move Reservation"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_stock_location
+msgid "Stock Location"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_order_inherit_form
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.wiz_stock_reservation_view
+msgid "Stock Reservation"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.stock_move_reserv_product_pivot
+msgid "Stock Reservation Analysis"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.actions.act_window,name:muztorg_sale_automation.stock_reservation_order_act_window
+#: model:ir.model,name:muztorg_sale_automation.model_stock_reservation_order
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_order_line__stock_reservation_order_id
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__stock_reservation_order_id
+#: model:ir.ui.menu,name:muztorg_sale_automation.stock_reservation_order_menu
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.sale_confirm_extended_for_warehouse
+msgid "Stock Reservation Order"
+msgstr "Последовательность резерва товаров"
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_stock_reservation_order_line
+msgid "Stock Reservation Order Line"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order__stock_move_ids
+msgid "Stock Reservations"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_sale_order_line__stock_reserved_qty
+msgid "Stock Reserved Quantity"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__rule_id
+msgid "Stock Rule"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__stock_valuation_layer_ids
+msgid "Stock Valuation Layer"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__location_orderpoint_id
+msgid "Stock location orderpoint"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__procure_method
+msgid "Supply Method"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__warehouse_id
+msgid ""
+"Technical field depicting the warehouse to consider for the route selection "
+"on the next procurement (if any)."
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__restrict_partner_id
+msgid ""
+"Technical field used to depict a restriction on the ownership of quants to "
+"consider when marking this move as 'done'"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__price_unit
+msgid ""
+"Technical field used to record the product cost set by the user during a "
+"picking confirmation (when costing method used is 'average price' or "
+"'real'). Value given in company currency and in product uom."
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__product_tmpl_id
+msgid "Technical: used in views"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__rule_id
+msgid "The stock rule that created this stock move"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__product_uom_qty
+msgid ""
+"This is the quantity of products from an inventory point of view. For moves "
+"in the state 'done', this is the quantity of products that were actually "
+"moved. For other moves, this is the quantity of product that is planned to "
+"be moved. Lowering this quantity does not generate a backorder. Changing "
+"this quantity on assigned moves affects the product reservation, and should "
+"be done with care."
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__picking_id
+msgid "Transfer"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__picking_partner_id
+msgid "Transfer Destination Address"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,help:muztorg_sale_automation.field_stock_move_reservation__to_refund
+msgid ""
+"Trigger a decrease of the delivered/received quantity in the associated Sale"
+" Order/Purchase Order"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__picking_code
+msgid "Type of Operation"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_reservation_line__uom_id
+msgid "UOM"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__price_unit
+msgid "Unit Price"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__product_uom
+msgid "Unit of Measure"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__to_refund
+msgid "Update quantities on SO/PO"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__validate_invoice
+msgid "Validate invoice?"
+msgstr "Подтверждать акт?"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields.selection,name:muztorg_sale_automation.selection__sale_order__state__waiting
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.view_order_inherit_form
+msgid "Waiting for payment"
+msgstr "Ожидание оплаты"
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_stock_warehouse
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__warehouse_id
+msgid "Warehouse"
+msgstr "Склад"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_warehouse__create_invoice
+msgid "When to create an invoice?"
+msgstr "Кода создавать акт?"
+
+#. module: muztorg_sale_automation
+#: model:ir.model.fields,field_description:muztorg_sale_automation.field_stock_move_reservation__additional
+msgid "Whether the move was added after the picking's confirmation"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: code:addons/muztorg_sale_automation/models/number_days_reservation.py:0
+#, python-format
+msgid "You can not create more than one Global Margin"
+msgstr "Вы не можете создать более одного глобального ограничения"
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.wiz_stock_reservation_view
+msgid "_Cancel"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_number_days_reservation
+msgid "number.days.reservation"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_automation.wiz_stock_reservation_view
+msgid "or"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_stock_move_reservation
+msgid "stock.move.reservation"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.actions.act_window,name:muztorg_sale_automation.action_stock_reservation_wiz
+#: model:ir.model,name:muztorg_sale_automation.model_stock_reservation
+msgid "stock.reservation"
+msgstr ""
+
+#. module: muztorg_sale_automation
+#: model:ir.model,name:muztorg_sale_automation.model_stock_reservation_line
+msgid "stock.reservation.line"
+msgstr ""

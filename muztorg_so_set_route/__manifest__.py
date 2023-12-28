@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Встановлення значення маршрут при створенні sale.order",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "author": "Zhmyhova T.N.",
     "company": "BIKO Solutions",
     "depends": [
