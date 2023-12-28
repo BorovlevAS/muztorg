@@ -1,5 +1,3 @@
-from dateutil.relativedelta import relativedelta
-
 from odoo import fields, models
 
 
@@ -149,18 +147,19 @@ class SaleOrder(models.Model):
         return action
 
     def schedule_action_cancel_reservation(self):
-        nb_days = 0
-        if self.env["number.days.reservation"].search([])[0]:
-            nb_days = self.env["number.days.reservation"].search([])[0].nb_days
-        date_obj = (fields.datetime.now()) - relativedelta(hours=int(nb_days * 24))
-        reservations = self.env["stock.move.reservation"].search(
-            [
-                ("reserv_request_date", "<=", date_obj),
-                ("state", "!=", "cancel"),
-            ]
-        )
-        for reserve in reservations:
-            reserve.custome_sale_order_id.action_cancel_stock_reservation()
+        return True
+        # nb_days = 0
+        # if self.env["number.days.reservation"].search([])[0]:
+        #     nb_days = self.env["number.days.reservation"].search([])[0].nb_days
+        # date_obj = (fields.datetime.now()) - relativedelta(hours=int(nb_days * 24))
+        # reservations = self.env["stock.move.reservation"].search(
+        #     [
+        #         ("reserv_request_date", "<=", date_obj),
+        #         ("state", "!=", "cancel"),
+        #     ]
+        # )
+        # for reserve in reservations:
+        #     reserve.custome_sale_order_id.action_cancel_stock_reservation()
 
     def process_invoices(self, order, state_to_check):
         warehouse = order.warehouse_id

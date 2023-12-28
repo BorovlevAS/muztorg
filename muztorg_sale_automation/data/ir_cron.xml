@@ -12,6 +12,7 @@
             <field name="numbercall">-1</field>
             <field name="nextcall">2019-08-27</field>
             <field name="doall" eval="True" />
+            <field name="active" eval="False" />
         </record>
     </data>
 </odoo>
