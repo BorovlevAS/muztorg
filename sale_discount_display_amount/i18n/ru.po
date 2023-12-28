@@ -33,7 +33,7 @@ msgstr "Компании"
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_res_config_settings
 msgid "Config Settings"
-msgstr "Конфигурационные настройки"
+msgstr "Настройки"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
@@ -60,7 +60,7 @@ msgstr "Отображаемое название"
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company____last_update
