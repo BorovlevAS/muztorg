@@ -82,7 +82,7 @@ msgstr "Общая сумма скидки"
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change____last_update
@@ -102,4 +102,4 @@ msgstr "Последнее обновление в"
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model,name:sale_order_discount_fast_change_ui.model_sale_order_discount_fast_change
 msgid "Sales Order Discount Fast Change"
-msgstr "Быстрое изменение скидки на заказ продаж"
+msgstr "Быстрое изменение скидки на заказ на продажу"
