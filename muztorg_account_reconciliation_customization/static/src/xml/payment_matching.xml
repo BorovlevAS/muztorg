@@ -8,4 +8,66 @@
             </div>
         </xpath>
     </t>
+
+    <t
+        t-inherit="base_accounting_kit.reconciliation.line.mv_line"
+        t-name="reconciliation.line.mv_line"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//td[hasclass('cell_left')]" position="before">
+            <td class="cell_label" id="cell_so_payment_type_id">
+                <t t-if="line.so_payment_type_id">
+                    <span class="text-muted">
+                        PT:
+                        <t t-esc="line.so_payment_type_id" />
+                    </span>
+                </t>
+                <t t-else="">
+                    <span class="text-muted">&#8203;</span>
+                </t>
+            </td>
+            <td class="cell_label" id="cell_biko_1c_ref">
+                <t t-if="line.biko_1c_ref">
+                    <span class="text-muted">
+                        1C:
+                        <t t-esc="line.biko_1c_ref" />
+                    </span>
+                </t>
+                <t t-else="">
+                    <span class="text-muted">&#8203;</span>
+                </t>
+            </td>
+            <td class="cell_label" id="cell_biko_website_ref">
+                <t t-if="line.biko_website_ref">
+                    <span class="text-muted">
+                        WEB:
+                        <t t-esc="line.biko_website_ref" />
+                    </span>
+                </t>
+                <t t-else="">
+                    <span class="text-muted">&#8203;</span>
+                </t>
+            </td>
+        </xpath>
+    </t>
+
+    <t
+        t-inherit="base_accounting_kit.reconciliation.line.balance"
+        t-name="reconciliation.line.balance"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//td[hasclass('cell_left')]" position="before">
+            <td class="cell_label" id="cell_so_payment_type_id" />
+            <td class="cell_label" id="cell_biko_1c_ref" />
+            <td class="cell_label" id="cell_biko_website_ref" />
+        </xpath>
+    </t>
+
+    <t t-inherit="base_accounting_kit.reconciliation.line" t-name="reconciliation.line" t-inherit-mode="extension">
+        <xpath expr="//td[hasclass('cell_left')]" position="before">
+            <td class="cell_label" id="cell_so_payment_type_id" />
+            <td class="cell_label" id="cell_biko_1c_ref" />
+            <td class="cell_label" id="cell_biko_website_ref" />
+        </xpath>
+    </t>
 </templates>
