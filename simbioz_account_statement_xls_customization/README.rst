@@ -9,6 +9,11 @@ Simbioz: addons for bank Statements Import
 #. Adds the Column 'EDRPOU (TIN)' to the download details and searches for a Partner for it
 ===============================
 
+14.0.2.0.0
+===============================
+#. For sums, added the ability to load an empty value as 0
+===============================
+
 Installation
 ============
 
