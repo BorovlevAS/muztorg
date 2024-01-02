@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_delete_allmoves" model="ir.actions.server">
+        <field name="name">Delete all moves</field>
+        <field name="model_id" ref="base.model_ir_actions_server" />
+        <field name="state">code</field>
+        <field name="code">env["account.move"].action_delete_all_am()</field>
+    </record>
+
+    <menuitem
+        id="account_move_menu_delete_allmoves"
+        name="Delete all moves"
+        action="action_delete_allmoves"
+        parent="account.menu_finance_entries"
+        sequence="5"
+    />
+</odoo>
