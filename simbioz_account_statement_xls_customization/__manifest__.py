@@ -1,7 +1,7 @@
 {
     "name": "simbioz_account_statement_xls_customization ",
     "summary": "Simbioz: addons for bank Statements Import",
-    "version": "14.0.1.0.0",
+    "version": "14.0.2.0.0",
     "license": "LGPL-3",
     "author": "Zhmyhova T.N.",
     "company": "Simbioz Holding",

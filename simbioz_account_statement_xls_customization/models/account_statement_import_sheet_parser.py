@@ -1,4 +1,5 @@
 import logging
+from decimal import Decimal
 
 from odoo import api, models
 
@@ -30,3 +31,9 @@ class AccountStatementImportSheetParser(models.TransientModel):
             transaction[0]["partner_ref"] = partner_ref
 
         return transaction
+
+    @api.model
+    def _parse_decimal(self, value, mapping):
+        if value == "":
+            return Decimal(0)
+        return super()._parse_decimal(value, mapping)
