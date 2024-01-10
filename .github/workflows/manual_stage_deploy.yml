@@ -1,0 +1,32 @@
+name: Manual STAGE deploy
+on:
+    workflow_dispatch:
+        inputs:
+            update_simbioz:
+                description: "Update SIMBIOZ sources"
+                default: false
+                required: true
+                type: boolean
+            base_update:
+                description: "Full update (BASE module)"
+                default: false
+                required: false
+                type: boolean
+
+jobs:
+    STAGE_DEPLOY:
+        uses: BorovlevAS/ci_cd_workflows/.github/workflows/manual_stage_deploy.yml@main
+        with:
+            update_simbioz: ${{ inputs.update_simbioz }}
+            base_update: ${{ inputs.base_update }}
+            SERVER_ADDR: ${{vars.STAGE_SERV_ADDR}}
+            SERVER_USER: ${{vars.STAGE_SERV_USER}}
+            MAIN_PATH: ${{vars.STAGE_MAIN_PATH}}
+            CUSTOM_PATH: ${{vars.STAGE_CUSTOM_PATH}}
+            ODOO_SERVICE: ${{vars.STAGE_ODOO_SERVICE}}
+            ODOO_USER: ${{vars.STAGE_ODOO_USER}}
+            ODOO_URI: ${{vars.STAGE_ODOO_ADDR}}
+            ODOO_DB: ${{vars.STAGE_DB_NAME}}
+        secrets:
+            SSH_KEY: ${{secrets.STAGE_SSH_KEY}}
+            ODOO_PASSWORD: ${{secrets.STAGE_ODOO_ADMIN_PWD}}
