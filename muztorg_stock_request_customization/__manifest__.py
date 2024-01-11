@@ -4,7 +4,7 @@
     "author": "Zhmyhova T.N.",
     "company": "BIKO Solutions",
     "license": "LGPL-3",
-    "version": "14.0.3.3.0",
+    "version": "14.0.3.4.0",
     "depends": [
         "stock_request",
     ],
