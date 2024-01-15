@@ -99,6 +99,11 @@ class StockRequestOrder(models.Model):
 
         return super().action_confirm()
 
+    def action_cancel(self):
+        self.mapped("biko_picking_ids").action_cancel()
+        self.mapped("stock_request_ids").write({"state": "cancel"})
+        return True
+
     def action_view_delivery(self):
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "stock.action_picking_tree_all"
