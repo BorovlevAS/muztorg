@@ -120,7 +120,7 @@ msgstr "Чек пробито"
 #. module: muztorg_sale_order_pos
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_order_form
 msgid "Fiscal Check Required"
-msgstr "Чек не зареєстрован"
+msgstr "Чек не зареєстрований"
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__checkbox_payment_type
