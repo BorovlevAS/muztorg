@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="sale_subscription_template_form" model="ir.ui.view">
-        <field name="name">sale.subscription.template.form</field>
-        <field name="model">sale.subscription.template</field>
+    <record id="purchase_subscription_template_form" model="ir.ui.view">
+        <field name="name">purchase.subscription.template.form</field>
+        <field name="model">purchase.subscription.template</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -60,10 +60,6 @@
                                         month(s)
                                     </div>
                                     <field name="invoicing_mode" widget="radio" />
-                                    <field
-                                        name="invoice_mail_template_id"
-                                        attrs="{'invisible': [('invoicing_mode','!=','invoice_send')], 'required': [('invoicing_mode', '=', 'invoice_send')]}"
-                                    />
                                 </group>
                                 <group name="right_group">
                                     <field name="code" readonly="0" />
@@ -81,9 +77,9 @@
         </field>
     </record>
 
-    <record id="sale_subscription_template_tree" model="ir.ui.view">
-        <field name="name">sale.subscription.template.tree</field>
-        <field name="model">sale.subscription.template</field>
+    <record id="purchase_subscription_template_tree" model="ir.ui.view">
+        <field name="name">purchase.subscription.template.tree</field>
+        <field name="model">purchase.subscription.template</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name" />
@@ -93,16 +89,16 @@
         </field>
     </record>
 
-    <record id="sale_subscription_template_act_window" model="ir.actions.act_window">
+    <record id="purchase_subscription_template_act_window" model="ir.actions.act_window">
         <field name="name">Subscription templates</field>
-        <field name="res_model">sale.subscription.template</field>
+        <field name="res_model">purchase.subscription.template</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <menuitem
-        id="sale_template_subscription_menu"
-        parent="sale_subscription_configuration_menu"
-        action="sale_subscription_template_act_window"
+        id="purchase_template_subscription_menu"
+        parent="purchase_subscription_configuration_menu"
+        action="purchase_subscription_template_act_window"
         sequence="2"
     />
 </odoo>

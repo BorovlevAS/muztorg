@@ -8,18 +8,18 @@ class CloseSubscriptionWizard(models.TransientModel):
     _description = "Close reason wizard"
 
     close_reason_id = fields.Many2one(
-        comodel_name="sale.subscription.close.reason", string="Reason"
+        comodel_name="purchase.subscription.close.reason", string="Reason"
     )
 
     def button_confirm(self):
-        sale_subscription = self.env["sale.subscription"].browse(
+        purchase_subscription = self.env["purchase.subscription"].browse(
             self.env.context["active_id"]
         )
-        sale_subscription.close_reason_id = self.close_reason_id.id
-        stage = sale_subscription.stage_id
-        closed_stage = self.env["sale.subscription.stage"].search(
+        purchase_subscription.close_reason_id = self.close_reason_id.id
+        stage = purchase_subscription.stage_id
+        closed_stage = self.env["purchase.subscription.stage"].search(
             [("type", "=", "post")], limit=1
         )
         if stage != closed_stage:
-            sale_subscription.stage_id = closed_stage
-            sale_subscription.active = False
+            purchase_subscription.stage_id = closed_stage
+            purchase_subscription.active = False

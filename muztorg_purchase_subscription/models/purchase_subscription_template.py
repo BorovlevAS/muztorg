@@ -33,7 +33,6 @@ class PurchaseSubscriptionTemplate(models.Model):
         selection=[
             ("draft", "Draft"),
             ("invoice", "Invoice"),
-            ("purchase_and_invoice", "Purchase order & Invoice"),
         ],
     )
     code = fields.Char()

@@ -325,18 +325,18 @@ class PurchaseSubscription(models.Model):
                     % (msg_static, invoice.id, invoice_number)
                 )
 
-        if self.template_id.invoicing_mode == "purchase_and_invoice":
-            order_id = self.create_purchase_order()
-            order_id.button_confirm()
-            # TODO: доделать создание ордера. как-то
-            new_invoice = order_id.action_create_invoice()
-            new_invoice.action_post()
-            new_invoice.invoice_origin = order_id.name + ", " + self.name
-            invoice_number = new_invoice.name
-            message_body = (
-                "<b>%s</b> <a href=# data-oe-model=account.move data-oe-id=%d>%s</a>"
-                % (msg_static, new_invoice.id, invoice_number)
-            )
+        # if self.template_id.invoicing_mode == "purchase_and_invoice":
+        #     order_id = self.create_purchase_order()
+        #     order_id.button_confirm()
+        #     # TODO: доделать создание ордера. как-то
+        #     new_invoice = order_id.action_create_invoice()
+        #     new_invoice.action_post()
+        #     new_invoice.invoice_origin = order_id.name + ", " + self.name
+        #     invoice_number = new_invoice.name
+        #     message_body = (
+        #         "<b>%s</b> <a href=# data-oe-model=account.move data-oe-id=%d>%s</a>"
+        #         % (msg_static, new_invoice.id, invoice_number)
+        #     )
         if not invoice_number:
             invoice_number = _("To validate")
             message_body = "<b>%s</b> %s" % (msg_static, invoice_number)

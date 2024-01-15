@@ -4,8 +4,8 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
-class SaleSubscriptionStage(models.Model):
-    _name = "sale.subscription.stage"
+class PurchaseSubscriptionStage(models.Model):
+    _name = "purchase.subscription.stage"
     _description = "Subscription stage"
     _order = "sequence, name, id"
 
@@ -22,7 +22,7 @@ class SaleSubscriptionStage(models.Model):
 
     @api.constrains("type")
     def _check_lot_product(self):
-        post_stages = self.env["sale.subscription.stage"].search(
+        post_stages = self.env["purchase.subscription.stage"].search(
             [("type", "=", "post")]
         )
         if len(post_stages) > 1:

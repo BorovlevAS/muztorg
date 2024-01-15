@@ -3,8 +3,8 @@
 from odoo import fields, models
 
 
-class SaleSubscriptionTag(models.Model):
-    _name = "sale.subscription.tag"
+class PurchaseSubscriptionTag(models.Model):
+    _name = "purchase.subscription.tag"
     _description = "Tags for sale subscription"
 
     name = fields.Char("Tag name", required=True)

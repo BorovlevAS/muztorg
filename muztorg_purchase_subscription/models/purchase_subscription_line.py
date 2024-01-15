@@ -37,6 +37,19 @@ class PurchaseSubscriptionLine(models.Model):
         readonly=False,
     )
 
+    analytic_account_id = fields.Many2one(
+        comodel_name="account.analytic.account",
+        string="Analytic Account",
+        check_company=True,
+        copy=True,
+    )
+    analytic_tag_ids = fields.Many2many(
+        comodel_name="account.analytic.tag",
+        string="Analytic Tags",
+        check_company=True,
+        copy=True,
+    )
+
     @api.depends("product_id", "price_unit", "product_uom_qty", "tax_ids")
     def _compute_subtotal(self):
         for record in self:
@@ -101,7 +114,7 @@ class PurchaseSubscriptionLine(models.Model):
             )
             # If company_id is set, always filter taxes by the company
             taxes = line.product_id.taxes_id.filtered(
-                lambda t: t.company_id == line.env.company
+                lambda t, line=line: t.company_id == line.env.company
             )
             line.tax_ids = fpos.map_tax(taxes)
 
@@ -135,71 +148,6 @@ class PurchaseSubscriptionLine(models.Model):
                     product_currency=record.purchase_subscription_id.currency_id,
                 )
 
-    @api.depends(
-        "product_id",
-        "price_unit",
-        "product_uom_qty",
-        "tax_ids",
-        "purchase_subscription_id.partner_id",
-        "purchase_subscription_id.pricelist_id",
-    )
-    def _compute_discount(self):
-        for record in self:
-            if not (
-                record.product_id
-                and record.product_id.uom_id
-                and record.purchase_subscription_id.partner_id
-                and record.purchase_subscription_id.pricelist_id
-                and record.purchase_subscription_id.pricelist_id.discount_policy
-                == "without_discount"
-                and self.env.user.has_group("product.group_discount_per_so_line")
-            ):
-                record.discount = 0.0
-                continue
-
-            record.discount = 0.0
-            product = record.product_id.with_context(
-                lang=record.sale_subscription_id.partner_id.lang,
-                partner=record.sale_subscription_id.partner_id,
-                quantity=record.product_uom_qty,
-                date=fields.Datetime.now(),
-                pricelist=record.sale_subscription_id.pricelist_id.id,
-                uom=record.product_id.uom_id.id,
-                fiscal_position=record.sale_subscription_id.fiscal_position_id
-                or self.env.context.get("fiscal_position"),
-            )
-
-            price, rule_id = record.sale_subscription_id.pricelist_id.with_context(
-                partner_id=record.sale_subscription_id.partner_id.id,
-                date=fields.Datetime.now(),
-                uom=record.product_id.uom_id.id,
-            ).get_product_price_rule(
-                record.product_id,
-                record.product_uom_qty or 1.0,
-                record.sale_subscription_id.partner_id,
-            )
-            new_list_price, currency = record.with_context(
-                partner_id=record.sale_subscription_id.partner_id.id,
-                date=fields.Datetime.now(),
-                uom=record.product_id.uom_id.id,
-            )._get_real_price_currency(
-                product, rule_id, record.product_uom_qty, record.product_id.uom_id
-            )
-
-            if new_list_price != 0:
-                if record.sale_subscription_id.pricelist_id.currency_id != currency:
-                    new_list_price = currency._convert(
-                        new_list_price,
-                        record.sale_subscription_id.pricelist_id.currency_id,
-                        record.sale_subscription_id.company_id or self.env.company,
-                        fields.Date.today(),
-                    )
-                discount = (new_list_price - price) / new_list_price * 100
-                if (discount > 0 and new_list_price > 0) or (
-                    discount < 0 and new_list_price < 0
-                ):
-                    record.discount = discount
-
     def _get_real_price_currency(self, product, rule_id, qty, uom):
         PricelistItem = self.env["product.pricelist.item"]
         field_name = "lst_price"
@@ -217,7 +165,7 @@ class PurchaseSubscriptionLine(models.Model):
                     _price, rule_id = pricelist_item.base_pricelist_id.with_context(
                         uom=uom.id
                     ).get_product_price_rule(
-                        product, qty, self.sale_subscription_id.partner_id
+                        product, qty, self.purchase_subscription_id.partner_id
                     )
                     pricelist_item = PricelistItem.browse(rule_id)
 
@@ -258,45 +206,47 @@ class PurchaseSubscriptionLine(models.Model):
         return product[field_name] * uom_factor * cur_factor, currency_id
 
     def _get_display_price(self, product):
-        if self.sale_subscription_id.pricelist_id.discount_policy == "with_discount":
+        if (
+            self.purchase_subscription_id.pricelist_id.discount_policy
+            == "with_discount"
+        ):
             return product.with_context(
-                pricelist=self.sale_subscription_id.pricelist_id.id,
+                pricelist=self.purchase_subscription_id.pricelist_id.id,
                 uom=self.product_id.uom_id.id,
             ).price
 
-        final_price, rule_id = self.sale_subscription_id.pricelist_id.with_context(
-            partner_id=self.sale_subscription_id.partner_id.id,
+        final_price, rule_id = self.purchase_subscription_id.pricelist_id.with_context(
+            partner_id=self.purchase_subscription_id.partner_id.id,
             date=fields.Datetime.now(),
             uom=self.product_id.uom_id.id,
         ).get_product_price_rule(
             product or self.product_id,
             self.product_uom_qty or 1.0,
-            self.sale_subscription_id.partner_id,
+            self.purchase_subscription_id.partner_id,
         )
         base_price, currency = self.with_context(
-            partner_id=self.sale_subscription_id.partner_id.id,
+            partner_id=self.purchase_subscription_id.partner_id.id,
             date=fields.Datetime.now(),
             uom=self.product_id.uom_id.id,
         )._get_real_price_currency(
             product, rule_id, self.product_uom_qty, self.product_id.uom_id
         )
-        if currency != self.sale_subscription_id.pricelist_id.currency_id:
+        if currency != self.purchase_subscription_id.pricelist_id.currency_id:
             base_price = currency._convert(
                 base_price,
-                self.sale_subscription_id.pricelist_id.currency_id,
-                self.sale_subscription_id.company_id or self.env.company,
+                self.purchase_subscription_id.pricelist_id.currency_id,
+                self.purchase_subscription_id.company_id or self.env.company,
                 fields.Date.today(),
             )
         return max(base_price, final_price)
 
-    def _prepare_sale_order_line(self):
+    def _prepare_purchase_order_line(self):
         self.ensure_one()
         return {
             "product_id": self.product_id.id,
             "name": self.name,
             "product_uom_qty": self.product_uom_qty,
             "price_unit": self.price_unit,
-            "discount": self.discount,
             "price_subtotal": self.price_subtotal,
             "tax_id": self.tax_ids,
             "product_uom": self.product_id.uom_id.id,
@@ -313,9 +263,10 @@ class PurchaseSubscriptionLine(models.Model):
             "name": self.name,
             "quantity": self.product_uom_qty,
             "price_unit": self.price_unit,
-            "discount": self.discount,
             "price_subtotal": self.price_subtotal,
             "tax_ids": [(6, 0, self.tax_ids.ids)],
             "product_uom_id": self.product_id.uom_id.id,
             "account_id": account.id,
+            "analytic_account_id": self.analytic_account_id.id,
+            "analytic_tag_ids": [(6, 0, self.analytic_tag_ids.ids)],
         }

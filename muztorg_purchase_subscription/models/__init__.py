@@ -6,8 +6,8 @@ from . import (
     purchase_subscription,
     purchase_subscription_close_reason,
     purchase_subscription_line,
+    purchase_subscription_stage,
+    purchase_subscription_tag,
     purchase_subscription_template,
     res_partner,
-    sale_subscription_stage,
-    sale_subscription_tag,
 )
