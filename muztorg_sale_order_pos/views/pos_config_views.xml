@@ -37,9 +37,34 @@
                         <div class="o_setting_left_pane" />
                         <div class="o_setting_right_pane">
                             <label for="department_ids" />
-                            <div class="text-muted">Available departments for this POS configuration</div>
+                            <div class="text-muted">
+                                Available departments for this POS
+                                configuration
+                            </div>
                             <div class="content-group mt16">
                                 <field name="department_ids" widget="many2many_tags" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="autoclose_session" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="autoclose_session" />
+                            <div class="content-group mt16" attrs="{'invisible': [('autoclose_session', '=', False)]}">
+                                <div class="row mt16">
+                                    <label
+                                        string="Autoclose Session Time"
+                                        for="autoclose_session_time_string"
+                                        class="col-lg-3 o_light_label"
+                                    />
+                                    <field
+                                        name="autoclose_session_time_string"
+                                        widget="timepicker"
+                                        attrs="{'required' : [('autoclose_session', '=', True)]}"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
