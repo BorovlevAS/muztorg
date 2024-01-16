@@ -1,0 +1,27 @@
+{
+    "name": "BIKO: Improvements to the pricing mechanism",
+    "version": "14.0.1.0.0",
+    "author": "Zhmyhova T.N.",
+    "company": "BIKO Solutions",
+    "depends": [
+        "product",
+        "point_of_sale",
+        "biko_change_product_view",
+        "droggol_theme_common",
+        "mail",
+    ],
+    "data": [
+        "views/biko_marketing_group_views.xml",
+        "views/product_pricelist_views.xml",
+        "views/product_views.xml",
+        "views/res_company.xml",
+        # "views/res_partner.xml",
+        "wizards/price_list_import_wizard.xml",
+        "data/biko_marketing_group.xml",
+        "security/ir.model.access.csv",
+    ],
+    "license": "LGPL-3",
+    "installable": True,
+    "application": True,
+    "auto_install": False,
+}
