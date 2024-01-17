@@ -96,8 +96,10 @@ msgstr "Импорт и просмотр"
 #. module: muztorg_price_list
 #: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
 #, python-format
-msgid "In line No. %s the Control code  %s is incorrect"
-msgstr "В строке № %s  Контрольный код  %s неверный"
+msgid ""
+"In line No. %(line_number)s the Control code %(control_code)s is incorrect"
+msgstr ""
+"В строке № %(line_number)s  Контрольный код  %(control_code)s неверный"
 
 #. module: muztorg_price_list
 #: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser____last_update
