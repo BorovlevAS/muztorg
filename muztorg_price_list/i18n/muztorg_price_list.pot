@@ -96,7 +96,8 @@ msgstr ""
 #. module: muztorg_price_list
 #: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
 #, python-format
-msgid "In line No. %s the Control code  %s is incorrect"
+msgid ""
+"In line No. %(line_number)s the Control code %(control_code)s is incorrect"
 msgstr ""
 
 #. module: muztorg_price_list

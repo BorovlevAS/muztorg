@@ -44,13 +44,13 @@ class PriceListImportWizard(models.TransientModel):
         file_data = base64.b64decode(self.price_file)
         self.import_single_file(file_data, result)
         logger.debug("result=%s", result)
-        if not result["price_ids"]:
-            raise UserError(
-                _(
-                    "You have already imported this file, or this file "
-                    "only contains already imported transactions."
-                )
-            )
+        # if not result["price_ids"]:
+        #     raise UserError(
+        #         _(
+        #             "You have already imported this file, or this file "
+        #             "only contains already imported transactions."
+        #         )
+        #     )
         return result
 
     def import_file_button(self):
@@ -131,6 +131,8 @@ class PriceListImportWizard(models.TransientModel):
                     },
                 }
             ]
+            result["notifications"].extend(notifications)
+            return False
 
         price = self.price_id
         all_item = price.item_ids
@@ -172,7 +174,7 @@ class PriceListImportWizard(models.TransientModel):
                     price_ids.append(line.id)
                     is_download = True
                     break
-                elif single_line_data["date1"] < line.date_date_end:
+                elif single_line_data["date1"] < line.date_end:
                     vals = {
                         "applied_on": "1_product",
                         "compute_price": "fixed",
