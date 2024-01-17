@@ -40,6 +40,9 @@ class PosConfig(models.Model):
     @api.depends("autoclose_session_time_string")
     def _compute_autoclose_session_time(self):
         for record in self:
+            if not record.autoclose_session_time_string:
+                continue
+
             date_time = fields.Datetime.to_datetime(
                 "2020-01-01 {}".format(
                     record.autoclose_session_time_string.replace(" ", "")
