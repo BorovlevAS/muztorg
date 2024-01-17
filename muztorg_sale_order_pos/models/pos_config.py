@@ -42,7 +42,7 @@ class PosConfig(models.Model):
         for record in self:
             date_time = fields.Datetime.to_datetime(
                 "2020-01-01 {}".format(
-                    self.autoclose_session_time_string.replace(" ", "")
+                    record.autoclose_session_time_string.replace(" ", "")
                 )
             )
             tz_name = record._context.get("tz") or record.env.user.tz
