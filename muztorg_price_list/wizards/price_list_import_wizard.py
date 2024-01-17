@@ -160,13 +160,12 @@ class PriceListImportWizard(models.TransientModel):
         else:
             is_discont = single_line_data["date1"]
             is_download = False
-            for line in item_line:
-                if is_discont and not line.date_start:
-                    continue
-                if not is_discont and line.date_start:
-                    continue
-                # тут только нужная нам строка
-                if not is_discont:
+
+            if not is_discont:
+                # ищем строку без даты и меняем в ней цену
+                for line in item_line:
+                    if line.date_start:
+                        continue
                     vals = {
                         "fixed_price": single_line_data["price"],
                     }
@@ -174,35 +173,30 @@ class PriceListImportWizard(models.TransientModel):
                     price_ids.append(line.id)
                     is_download = True
                     break
-                elif single_line_data["date1"] < line.date_end:
-                    vals = {
-                        "applied_on": "1_product",
-                        "compute_price": "fixed",
-                        "pricelist_id": price.id,
-                        "base": "list_price",
-                    }
-                    vals["product_tmpl_id"] = product.id
-                    if single_line_data["date1"]:
-                        vals["date_start"] = single_line_data["date1"]
-                    if single_line_data["date2"]:
-                        vals["date_end"] = single_line_data["date2"]
-                    vals["fixed_price"] = single_line_data["price"]
+            else:
+                for line in item_line:
+                    if not line.date_start:
+                        continue
+                    # проверим пертоды, не загружаем ли пересекающийся
+                    if (
+                        line.date_start <= single_line_data["date2"]
+                        and line.date_start >= single_line_data["date1"]
+                    ) or (
+                        line.date_end <= single_line_data["date2"]
+                        and line.date_end >= single_line_data["date1"]
+                    ):
+                        notifications += [
+                            {
+                                "type": "warning",
+                                "message": _(
+                                    "The promotional price is already valid for the product %s."
+                                )
+                                % product.name,
+                            }
+                        ]
+                        is_download = True
+                        break
 
-                    new_line = PricelistItem.create(vals)
-                    price_ids.append(new_line.id)
-                    is_download = True
-                else:
-                    notifications += [
-                        {
-                            "type": "warning",
-                            "message": _(
-                                "The promotional price is already valid for the product %s."
-                            )
-                            % product.name,
-                        }
-                    ]
-                    is_download = True
-                    break
         if not is_download:
             vals = {
                 "applied_on": "1_product",
@@ -299,8 +293,8 @@ class AccountStatementImportSheetParser(models.TransientModel):
         line = {
             "control_code": control_code,
             "name": name,
-            "date1": date1.date() if date1 != "" else False,
-            "date2": date2.date() if date2 != "" else False,
+            "date1": date1 if date1 != "" else False,
+            "date2": date2 if date2 != "" else False,
             "price": price,
         }
 
