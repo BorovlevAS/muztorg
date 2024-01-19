@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">res.config.settings.saleorder.automation</field>
+        <field name="name">res.config.settings.saleorder.customization</field>
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="biko_base_module.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[@name='muztorg_additional_settings']" position="inside">
-                <div class="col-12 col-lg-6 o_setting_box" name="biko_sale_automation">
+                <div class="col-12 col-lg-6 o_setting_box" name="biko_sale_customization">
                     <div class="o_setting_left_pane" />
                     <div class="o_setting_right_pane">
-                        <span class="o_form_label">Sale Automation</span>
+                        <span class="o_form_label">Pricelist in UAH</span>
                         <span
                             class="fa fa-lg fa-building-o"
                             title="Values set here are company-specific."
@@ -19,11 +19,11 @@
                         <div class="content-group">
                             <div class="row mt16">
                                 <label
-                                    string="Default Automatic Workflow"
-                                    for="biko_default_sale_workflow_id"
+                                    string="Price list in UAH"
+                                    for="biko_uah_pricelist_id"
                                     class="col-lg-3 o_light_label"
                                 />
-                                <field name="biko_default_sale_workflow_id" />
+                                <field name="biko_uah_pricelist_id" />
                             </div>
                         </div>
                     </div>
