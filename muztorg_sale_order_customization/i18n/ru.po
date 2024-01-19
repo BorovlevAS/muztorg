@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-19 12:17+0000\n"
-"PO-Revision-Date: 2024-01-19 12:17+0000\n"
+"POT-Creation-Date: 2024-01-19 22:33+0000\n"
+"PO-Revision-Date: 2024-01-19 22:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,12 @@ msgstr "Компании"
 #. module: muztorg_sale_order_customization
 #: model:ir.model,name:muztorg_sale_order_customization.model_res_config_settings
 msgid "Config Settings"
-msgstr "Настройки"
+msgstr "Конфигурационные настройки"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__purchase_price
+msgid "Cost"
+msgstr "Стоимость"
 
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__create_uid
@@ -118,6 +123,16 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__margin
+msgid "Margin"
+msgstr "Наценка"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__margin_percent
+msgid "Margin (%)"
+msgstr "Прибыль (%)"
+
+#. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__name
 msgid "Name"
 msgstr "Название"
@@ -157,6 +172,11 @@ msgstr "Строка заказа на продажу"
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__sequence
 msgid "Sequence"
 msgstr "Порядок"
+
+#. module: muztorg_sale_order_customization
+#: model:res.groups,name:muztorg_sale_order_customization.biko_group_show_margin
+msgid "Show Margin"
+msgstr "Отображать маржу"
 
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_website_ref
