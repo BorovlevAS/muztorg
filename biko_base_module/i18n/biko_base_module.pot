@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-19 12:15+0000\n"
-"PO-Revision-Date: 2024-01-19 12:15+0000\n"
+"POT-Creation-Date: 2024-01-19 12:14+0000\n"
+"PO-Revision-Date: 2024-01-19 12:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,24 +18,24 @@ msgstr ""
 #. module: biko_base_module
 #: model:ir.ui.menu,name:biko_base_module.biko_additional_menu
 msgid "Additional Information"
-msgstr "Додаткова інформація"
+msgstr ""
 
 #. module: biko_base_module
 #: model:ir.module.category,name:biko_base_module.category_biko_addon_roles
 msgid "BIKO Roles"
-msgstr "BIKO Ролі"
+msgstr ""
 
 #. module: biko_base_module
 #: model:ir.module.category,name:biko_base_module.category_biko_addon_main
 msgid "BIKO additional roles"
-msgstr "BIKO додаткові ролі"
+msgstr ""
 
 #. module: biko_base_module
 #: model_terms:ir.ui.view,arch_db:biko_base_module.res_config_settings_view_form
 msgid "BIKO: Additional Sale Order Settings"
-msgstr "BIKO: Додаткові налаштування"
+msgstr ""
 
 #. module: biko_base_module
 #: model:res.groups,name:biko_base_module.biko_group_show_special_fields
 msgid "Show special fields"
-msgstr "Показувати додаткові поля"
+msgstr ""

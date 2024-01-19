@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Sale Order Customization (MUZTORG)",
-    "version": "14.0.3.2.0",
+    "version": "14.0.4.2.0",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
@@ -13,6 +13,7 @@
     "data": [
         "views/sale_order_views.xml",
         "views/so_payment_type_views.xml",
+        "views/res_config_settings_views.xml",
         "security/ir.model.access.csv",
         "data/so_payment_types.xml",
     ],

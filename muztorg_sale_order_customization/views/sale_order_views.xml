@@ -8,6 +8,7 @@
             <xpath expr="//group[@name='sales_person']" position="inside">
                 <field name="biko_website_ref" />
                 <field name="biko_1c_ref" />
+                <field name="biko_1c_currency" />
             </xpath>
             <field name="validity_date" position="before">
                 <field name="so_payment_type_id" options="{'no_create': True, 'no_open': True}" required="0" />

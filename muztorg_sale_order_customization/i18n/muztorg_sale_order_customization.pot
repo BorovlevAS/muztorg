@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-20 23:55+0000\n"
-"PO-Revision-Date: 2023-12-20 23:55+0000\n"
+"POT-Creation-Date: 2024-01-19 12:16+0000\n"
+"PO-Revision-Date: 2024-01-19 12:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,13 @@ msgid "1C Order #"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_customization.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Pricelist in UAH</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" role=\"img\"/>"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__active
 msgid "Active"
 msgstr ""
@@ -28,6 +35,21 @@ msgstr ""
 #. module: muztorg_sale_order_customization
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_customization.so_payment_type_view_form
 msgid "Archived"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_1c_currency
+msgid "Biko 1C Currency"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model,name:muztorg_sale_order_customization.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model,name:muztorg_sale_order_customization.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
@@ -41,6 +63,14 @@ msgid "Created on"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_company__biko_uah_pricelist_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_config_settings__biko_uah_pricelist_id
+msgid "Default UAH pricelist"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_company__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__display_name
@@ -48,6 +78,8 @@ msgid "Display Name"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_company__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_config_settings__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__id
@@ -65,6 +97,8 @@ msgid "JSON data for the popover widget"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_company____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type____last_update
@@ -95,6 +129,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:muztorg_sale_order_customization.action_so_payment_type_tree
 #: model:ir.ui.menu,name:muztorg_sale_order_customization.so_payment_type_menu
 msgid "Payment Types"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_customization.res_config_settings_view_form
+msgid "Price list in UAH"
 msgstr ""
 
 #. module: muztorg_sale_order_customization

@@ -1,13 +1,16 @@
-# -*- coding: utf-8 -*-
 {
     "name": "BIKO: Базовый модуль",
-    "version": "14.0.1.1.0",
+    "version": "14.0.2.1.0",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
-    "depends": ["base"],
+    "depends": [
+        "base",
+        "sale",
+    ],
     "data": [
         "security/ir_access_roles.xml",
         "views/biko_base_menus.xml",
+        "views/res_config_settings_views.xml",
     ],
     "license": "LGPL-3",
     "installable": True,
