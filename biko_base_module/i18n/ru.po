@@ -6,16 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-30 21:44+0000\n"
-"PO-Revision-Date: 2023-01-30 23:47+0200\n"
+"POT-Creation-Date: 2024-01-19 12:14+0000\n"
+"PO-Revision-Date: 2024-01-19 12:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.2.2\n"
 
 #. module: biko_base_module
 #: model:ir.ui.menu,name:biko_base_module.biko_additional_menu
@@ -31,3 +29,13 @@ msgstr "BIKO Роли"
 #: model:ir.module.category,name:biko_base_module.category_biko_addon_main
 msgid "BIKO additional roles"
 msgstr "BIKO дополнительные роли"
+
+#. module: biko_base_module
+#: model_terms:ir.ui.view,arch_db:biko_base_module.res_config_settings_view_form
+msgid "BIKO: Additional Sale Order Settings"
+msgstr "BIKO: Дополнительные настройки"
+
+#. module: biko_base_module
+#: model:res.groups,name:biko_base_module.biko_group_show_special_fields
+msgid "Show special fields"
+msgstr "Показывать дополнительные поля"
