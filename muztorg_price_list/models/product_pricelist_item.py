@@ -96,31 +96,6 @@ class PricelistItem(models.Model):
                 price = min(price, price_limit + price_max_margin)
         return price
 
-    def calculate_marketing_group(self, product):
-        date = fields.Date.today()
-
-        retail_price = self.env.company.biko_price_retail._compute_price_rule(
-            [(product, 1, False)], date, product.uom_id.id
-        )[product.id][0]
-        dealer_price = self.env.company.biko_price_dealer._compute_price_rule(
-            [(product, 1, False)], date, product.uom_id.id
-        )[product.id][
-            0
-        ]  # TDE: 0 = price, 1 = rule
-
-        if dealer_price != 0:
-            perсent = (retail_price - dealer_price) / dealer_price * 100
-            mg = self.env["biko.marketing.group"].search(
-                [("limit_from", "<=", perсent), ("limit_to", ">", perсent)], limit=1
-            )
-            if mg:
-                vals = {
-                    "biko_mg_id": mg,
-                }
-                product.write(vals)
-
-        return True
-
     def write(self, values):
         res = super().write(values)
         if (
@@ -131,7 +106,7 @@ class PricelistItem(models.Model):
                 or self.pricelist_id == self.env.company.biko_price_retail
             )
         ):
-            self.calculate_marketing_group(self.product_tmpl_id)
+            res.product_tmpl_id.calculate_marketing_group()
         return res
 
     @api.model_create_multi
@@ -145,5 +120,5 @@ class PricelistItem(models.Model):
                 or res.pricelist_id == self.env.company.biko_price_retail
             )
         ):
-            self.calculate_marketing_group(res.product_tmpl_id)
+            res.product_tmpl_id.calculate_marketing_group()
         return res

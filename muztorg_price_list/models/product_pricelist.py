@@ -1,5 +1,7 @@
 from odoo import _, fields, models
 
+# from datetime import date
+
 
 class Pricelist(models.Model):
     _inherit = "product.pricelist"
