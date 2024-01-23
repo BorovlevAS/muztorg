@@ -1,7 +1,8 @@
 from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
+
 from odoo.addons.delivery_novaposhta.models.TTN import date_to_str
 from odoo.addons.delivery_novaposhta.models.utils import APIRequest
-from odoo.exceptions import ValidationError
 
 
 class NovaPoshtaTTN(models.Model):
@@ -147,7 +148,7 @@ class NovaPoshtaTTN(models.Model):
             "modelName": "InternetDocument",
             "calledMethod": "save",
             "methodProperties": {
-                "NewAddress": "1",
+                "NewAddress": "0",
                 "Description": "Музичні інструменти (музичні товари)",
                 "InfoRegClientBarcodes": record.name,
                 "PayerType": record.payer_type.ref,
