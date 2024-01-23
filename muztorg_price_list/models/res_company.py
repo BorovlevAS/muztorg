@@ -16,6 +16,11 @@ class ResCompany(models.Model):
         string="Retail price",
     )
 
+    biko_price_USD_ids = fields.Many2many(
+        comodel_name="product.pricelist",
+        string="USD prices",
+    )
+
     # credit_policy_id = fields.Many2one(
     #     comodel_name="credit.control.policy",
     #     string="Credit Control Policy",

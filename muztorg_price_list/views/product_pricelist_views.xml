@@ -34,5 +34,42 @@
                 </xpath>
             </field>
         </record>
+
+        <record id="biko_product_pricelist_view" model="ir.ui.view">
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="product.product_pricelist_view" />
+            <field name="name">biko.product.pricelist.form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet " position="before">
+                    <header>
+                        <button
+                            name="import_file_call"
+                            type="object"
+                            string="Upload price list"
+                            class="oe_highlight"
+                        />
+                        <button
+                            name="remove_old_discount_prices"
+                            type="object"
+                            string="Remove old discount prices"
+                            class="oe_highlight"
+                        />
+                        <button name="add_all_product" type="object" string="Add all products" class="oe_highlight" />
+                        <!-- attrs="{'invisible': [('type', '!=', 'account_type')]}"
+                        invisible="context.can_add_all_product()"
+                        attrs="{'invisible': [(True, '=', True)]}"
+                        attrs="{'invisible': [('can_add_all_product()', '=', True)]}"
+                        -->
+                    </header>
+                </xpath>
+                <!-- <xpath expr="//sheet " position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </xpath>  -->
+            </field>
+        </record>
     </data>
 </odoo>
