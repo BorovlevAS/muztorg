@@ -242,6 +242,7 @@ class NovaPoshtaTTN(models.Model):
             if record.service_type.ref == "WarehouseDoors":
                 data["methodProperties"].update(
                     {
+                        "NewAddress": "1",
                         "Recipient": organization_ref,
                         "ContactRecipient": contact_person_ref,
                         "CityRecipient": record.recipient_city.ref,
@@ -279,6 +280,7 @@ class NovaPoshtaTTN(models.Model):
             if record.service_type.ref in ["WarehouseDoors", "DoorsDoors"]:
                 data["methodProperties"].update(
                     {
+                        "NewAddress": "1",
                         "RecipientName": record.recipient_name.name,
                         "RecipientCityName": record.recipient_city.name,
                         "RecipientAddressName": record.streets.name,
