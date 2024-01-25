@@ -60,15 +60,69 @@
                         attrs="{'invisible': [(True, '=', True)]}"
                         attrs="{'invisible': [('can_add_all_product()', '=', True)]}"
                         -->
+                        <button
+                            name="open_pricelist_rules"
+                            type="object"
+                            string="open_pricelist_rules"
+                            class="oe_highlight"
+                        />
                     </header>
                 </xpath>
-                <!-- <xpath expr="//sheet " position="after">
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="activity_ids"/>
-                    <field name="message_ids"/>
-                </div>
-            </xpath>  -->
+            </field>
+        </record>
+
+        <record id="biko_product_pricelist_item_tree_view_from_pricelist" model="ir.ui.view">
+            <!-- Access and edit price rules from a given pricelist -->
+            <field name="name">biko.product.pricelist.item.tree</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree string="Pricelist Items" editable="bottom">
+                    <!-- Scope = coming from a product/product template -->
+                    <field name="pricelist_id" string="Pricelist" options="{'no_create_edit':1, 'no_open': 1}" />
+                    <field name="name" string="Applied On" />
+                    <!-- <field name="categ_id" invisible="1" /> -->
+                    <field
+                        name="product_tmpl_id"
+                        attrs="{'required': [('applied_on', '=', '1_product')]}"
+                        domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]"
+                        options="{'no_create_edit':1, 'no_open': 1}"
+                    />
+                    <!--
+                             invisible="context.get('active_model')!='product.category'"
+
+                             ('categ_id', '=', context.get('default_categ_id', True)),
+
+                        -->
+                    <!-- <field name="product_id"
+                        groups="product.group_product_variant"
+                        invisible="context.get('product_without_variants', False)"
+                        readonly="context.get('active_model')=='product.product'"
+                        attrs="{'required': [('applied_on', '=', '0_product_variant')]}"
+                        domain="['|', '|',
+                        ('id', '=', context.get('default_product_id', 0)),
+                        ('product_tmpl_id', '=', context.get('default_product_tmpl_id', 0)),
+                        ('categ_id', '=', context.get('default_categ_id', 0)), '|', ('company_id', '=', company_id), ('company_id', '=', False)
+                      ]"
+                        options="{'no_create_edit':1, 'no_open': 1}"
+                    /> -->
+                    <field name="biko_product_brand_id" optional="show" />
+                    <field name="biko_categ_id" optional="show" />
+                    <field name="biko_control_code" optional="show" />
+
+                    <field name="min_quantity" colspan="4" />
+                    <field name="currency_id" invisible="1" />
+                    <field name="fixed_price" string="Price" required='1' />
+                    <field name="date_start" optional="show" />
+                    <field name="date_end" optional="show" />
+                    <field name="applied_on" invisible="1" />
+                    <field
+                        name="company_id"
+                        groups="base.group_multi_company"
+                        optional="show"
+                        options="{'no_create':1, 'no_open': 1}"
+                    />
+                </tree>
             </field>
         </record>
     </data>

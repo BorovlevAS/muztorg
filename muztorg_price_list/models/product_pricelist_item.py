@@ -16,6 +16,24 @@ class PricelistItem(models.Model):
         "може бути будь-яке або не заповнено",
     )
 
+    biko_product_brand_id = fields.Many2one(
+        comodel_name="product.brand",
+        string="Brand",
+        related="product_tmpl_id.product_brand_id",
+        store=True,
+    )
+    biko_categ_id = fields.Many2one(
+        string="Category",
+        comodel_name="product.category",
+        related="product_tmpl_id.categ_id",
+        store=True,
+    )
+    biko_control_code = fields.Char(
+        string="Control code",
+        related="product_tmpl_id.biko_control_code",
+        store=True,
+    )
+
     def _compute_price(self, price, price_uom, product, quantity=1.0, partner=False):
         """Compute the unit price of a product in the context of a pricelist application.
         The unused parameters are there to make the full context available for overrides.

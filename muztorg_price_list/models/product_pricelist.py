@@ -85,3 +85,37 @@ class Pricelist(models.Model):
                 )
                 for line in item_line:
                     line.unlink()
+
+    def open_pricelist_rules(self):
+        self.ensure_one()
+        domain = [
+            # "|",
+            # ("product_tmpl_id", "=", self.id),
+            # ("product_id", "in", self.product_variant_ids.ids),
+            ("pricelist_id", "=", self.id),
+        ]
+        return {
+            "name": _("Price Rules"),
+            "view_mode": "tree,form",
+            "views": [
+                (
+                    self.env.ref(
+                        "muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist"
+                    ).id,
+                    "tree",
+                ),
+                (False, "form"),
+            ],
+            "res_model": "product.pricelist.item",
+            "type": "ir.actions.act_window",
+            "target": "current",
+            "domain": domain,
+            "context": {
+                # "default_product_tmpl_id": self.id,
+                "default_pricelist_id": self.id,
+                "default_applied_on": "1_product",
+                "default_compute_price": "fixed",
+                "default_base": "list_price",
+                "product_without_variants": True,
+            },
+        }
