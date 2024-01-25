@@ -16,6 +16,24 @@ class PricelistItem(models.Model):
         "може бути будь-яке або не заповнено",
     )
 
+    biko_product_brand_id = fields.Many2one(
+        comodel_name="product.brand",
+        string="Brand",
+        related="product_tmpl_id.product_brand_id",
+        store=True,
+    )
+    biko_categ_id = fields.Many2one(
+        string="Category",
+        comodel_name="product.category",
+        related="product_tmpl_id.categ_id",
+        store=True,
+    )
+    biko_control_code = fields.Char(
+        string="Control code",
+        related="product_tmpl_id.biko_control_code",
+        store=True,
+    )
+
     def _compute_price(self, price, price_uom, product, quantity=1.0, partner=False):
         """Compute the unit price of a product in the context of a pricelist application.
         The unused parameters are there to make the full context available for overrides.
@@ -96,31 +114,6 @@ class PricelistItem(models.Model):
                 price = min(price, price_limit + price_max_margin)
         return price
 
-    def calculate_marketing_group(self, product):
-        date = fields.Date.today()
-
-        retail_price = self.env.company.biko_price_retail._compute_price_rule(
-            [(product, 1, False)], date, product.uom_id.id
-        )[product.id][0]
-        dealer_price = self.env.company.biko_price_dealer._compute_price_rule(
-            [(product, 1, False)], date, product.uom_id.id
-        )[product.id][
-            0
-        ]  # TDE: 0 = price, 1 = rule
-
-        if dealer_price != 0:
-            perсent = (retail_price - dealer_price) / dealer_price * 100
-            mg = self.env["biko.marketing.group"].search(
-                [("limit_from", "<=", perсent), ("limit_to", ">", perсent)], limit=1
-            )
-            if mg:
-                vals = {
-                    "biko_mg_id": mg,
-                }
-                product.write(vals)
-
-        return True
-
     def write(self, values):
         res = super().write(values)
         if (
@@ -131,7 +124,7 @@ class PricelistItem(models.Model):
                 or self.pricelist_id == self.env.company.biko_price_retail
             )
         ):
-            self.calculate_marketing_group(self.product_tmpl_id)
+            res.product_tmpl_id.calculate_marketing_group()
         return res
 
     @api.model_create_multi
@@ -145,5 +138,5 @@ class PricelistItem(models.Model):
                 or res.pricelist_id == self.env.company.biko_price_retail
             )
         ):
-            self.calculate_marketing_group(res.product_tmpl_id)
+            res.product_tmpl_id.calculate_marketing_group()
         return res

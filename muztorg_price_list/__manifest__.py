@@ -19,6 +19,7 @@
         "wizards/price_list_import_wizard.xml",
         "data/biko_marketing_group.xml",
         "security/ir.model.access.csv",
+        "data/ir_cron.xml",
     ],
     "license": "LGPL-3",
     "installable": True,

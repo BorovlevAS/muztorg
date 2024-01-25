@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-16 09:56+0000\n"
-"PO-Revision-Date: 2024-01-16 09:56+0000\n"
+"POT-Creation-Date: 2024-01-25 10:30+0000\n"
+"PO-Revision-Date: 2024-01-25 10:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_view
+msgid "Add all products"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
+msgid "Applied On"
+msgstr ""
+
+#. module: muztorg_price_list
 #: code:addons/muztorg_price_list/models/product_pricelist.py:0
 #, python-format
 msgid "Attachments"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_product_brand_id
+msgid "Brand"
 msgstr ""
 
 #. module: muztorg_price_list
@@ -27,8 +42,18 @@ msgid "Cancel"
 msgstr ""
 
 #. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_categ_id
+msgid "Category"
+msgstr ""
+
+#. module: muztorg_price_list
 #: model:ir.model,name:muztorg_price_list.model_res_company
 msgid "Companies"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_control_code
+msgid "Control code"
 msgstr ""
 
 #. module: muztorg_price_list
@@ -48,6 +73,13 @@ msgstr ""
 #. module: muztorg_price_list
 #: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__biko_price_dealer
 msgid "Dealer price"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model:ir.actions.server,name:muztorg_price_list.biko_delete_no_active_product_ir_actions_server
+#: model:ir.cron,cron_name:muztorg_price_list.biko_delete_no_active_product
+#: model:ir.cron,name:muztorg_price_list.biko_delete_no_active_product
+msgid "Delete no active product"
 msgstr ""
 
 #. module: muztorg_price_list
@@ -139,13 +171,8 @@ msgid "Name"
 msgstr ""
 
 #. module: muztorg_price_list
-#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
-#, python-format
-msgid "No valid encoding was found for the attached file"
-msgstr ""
-
-#. module: muztorg_price_list
 #: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__price_id
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
 msgid "Price"
 msgstr ""
 
@@ -170,6 +197,12 @@ msgid "Price Rounding up to"
 msgstr ""
 
 #. module: muztorg_price_list
+#: code:addons/muztorg_price_list/models/product_pricelist.py:0
+#, python-format
+msgid "Price Rules"
+msgstr ""
+
+#. module: muztorg_price_list
 #: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_price_list_company_form
 msgid "Price list"
 msgstr ""
@@ -181,7 +214,13 @@ msgstr ""
 
 #. module: muztorg_price_list
 #: model:ir.model,name:muztorg_price_list.model_product_pricelist
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
 msgid "Pricelist"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
+msgid "Pricelist Items"
 msgstr ""
 
 #. module: muztorg_price_list
@@ -208,6 +247,16 @@ msgstr ""
 #. module: muztorg_price_list
 #: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__biko_price_retail
 msgid "Retail price"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,help:muztorg_price_list.field_product_pricelist_item__biko_product_brand_id
+msgid "Select a brand for this product"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,help:muztorg_price_list.field_product_pricelist_item__biko_categ_id
+msgid "Select category for the current product"
 msgstr ""
 
 #. module: muztorg_price_list
@@ -239,6 +288,18 @@ msgid "To"
 msgstr ""
 
 #. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__biko_price_USD_ids
+msgid "USD prices"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model:ir.actions.server,name:muztorg_price_list.biko_update_marketing_group_product_ir_actions_server
+#: model:ir.cron,cron_name:muztorg_price_list.biko_update_marketing_group_product
+#: model:ir.cron,name:muztorg_price_list.biko_update_marketing_group_product
+msgid "Update marketing group product"
+msgstr ""
+
+#. module: muztorg_price_list
 #: model_terms:ir.ui.view,arch_db:muztorg_price_list.price_list_import_wizard_form
 msgid "Upload a price list file"
 msgstr ""
@@ -251,16 +312,13 @@ msgid "Upload price list"
 msgstr ""
 
 #. module: muztorg_price_list
-#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
-#, python-format
-msgid ""
-"You have already imported this file, or this file only contains already "
-"imported transactions."
+#: model:ir.model,name:muztorg_price_list.model_biko_marketing_group
+msgid "biko.marketing.group"
 msgstr ""
 
 #. module: muztorg_price_list
-#: model:ir.model,name:muztorg_price_list.model_biko_marketing_group
-msgid "biko.marketing.group"
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_view
+msgid "open_pricelist_rules"
 msgstr ""
 
 #. module: muztorg_price_list

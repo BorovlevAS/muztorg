@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-16 09:57+0000\n"
-"PO-Revision-Date: 2024-01-16 09:57+0000\n"
+"POT-Creation-Date: 2024-01-25 10:33+0000\n"
+"PO-Revision-Date: 2024-01-25 10:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,10 +16,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_view
+msgid "Add all products"
+msgstr "Додати всі продукти"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
+msgid "Applied On"
+msgstr "Застосовано до"
+
+#. module: muztorg_price_list
 #: code:addons/muztorg_price_list/models/product_pricelist.py:0
 #, python-format
 msgid "Attachments"
 msgstr "Прикріплення"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_product_brand_id
+msgid "Brand"
+msgstr "Бренд"
 
 #. module: muztorg_price_list
 #: model_terms:ir.ui.view,arch_db:muztorg_price_list.price_list_import_wizard_form
@@ -27,9 +42,19 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_categ_id
+msgid "Category"
+msgstr "Категорія"
+
+#. module: muztorg_price_list
 #: model:ir.model,name:muztorg_price_list.model_res_company
 msgid "Companies"
 msgstr "Компанії"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_control_code
+msgid "Control code"
+msgstr "Контрольний код"
 
 #. module: muztorg_price_list
 #: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser__create_uid
@@ -49,6 +74,13 @@ msgstr "Створено в"
 #: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__biko_price_dealer
 msgid "Dealer price"
 msgstr "Дилерська ціна"
+
+#. module: muztorg_price_list
+#: model:ir.actions.server,name:muztorg_price_list.biko_delete_no_active_product_ir_actions_server
+#: model:ir.cron,cron_name:muztorg_price_list.biko_delete_no_active_product
+#: model:ir.cron,name:muztorg_price_list.biko_delete_no_active_product
+msgid "Delete no active product"
+msgstr "Видаляти не активні продукти"
 
 #. module: muztorg_price_list
 #: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser__display_name
@@ -86,7 +118,7 @@ msgstr "Від"
 #: model:ir.model.fields,field_description:muztorg_price_list.field_product_template__id
 #: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__id
 msgid "ID"
-msgstr ""
+msgstr "ІД"
 
 #. module: muztorg_price_list
 #: model_terms:ir.ui.view,arch_db:muztorg_price_list.price_list_import_wizard_form
@@ -140,13 +172,8 @@ msgid "Name"
 msgstr "Назва"
 
 #. module: muztorg_price_list
-#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
-#, python-format
-msgid "No valid encoding was found for the attached file"
-msgstr ""
-
-#. module: muztorg_price_list
 #: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__price_id
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
 msgid "Price"
 msgstr "Ціна"
 
@@ -171,6 +198,12 @@ msgid "Price Rounding up to"
 msgstr "Ціна до, Округлення"
 
 #. module: muztorg_price_list
+#: code:addons/muztorg_price_list/models/product_pricelist.py:0
+#, python-format
+msgid "Price Rules"
+msgstr "Правила ціни"
+
+#. module: muztorg_price_list
 #: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_price_list_company_form
 msgid "Price list"
 msgstr "Прайс лист"
@@ -182,8 +215,14 @@ msgstr "Ціна до"
 
 #. module: muztorg_price_list
 #: model:ir.model,name:muztorg_price_list.model_product_pricelist
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
 msgid "Pricelist"
 msgstr "Прайс-лист"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
+msgid "Pricelist Items"
+msgstr "Елементи прайс-листа"
 
 #. module: muztorg_price_list
 #: model:ir.model,name:muztorg_price_list.model_product_pricelist_item
@@ -212,6 +251,16 @@ msgid "Retail price"
 msgstr "Роздрібна ціна"
 
 #. module: muztorg_price_list
+#: model:ir.model.fields,help:muztorg_price_list.field_product_pricelist_item__biko_product_brand_id
+msgid "Select a brand for this product"
+msgstr "Виберіть бренд для цього продукту"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,help:muztorg_price_list.field_product_pricelist_item__biko_categ_id
+msgid "Select category for the current product"
+msgstr "Вибрати категорію поточного продукту"
+
+#. module: muztorg_price_list
 #: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_is_special_rounding
 msgid "Special rounding"
 msgstr "Спеціальне округлення"
@@ -226,7 +275,7 @@ msgstr "У рядку № %s контрольний код не заповнює
 #: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
 #, python-format
 msgid "The parsing of the statement file returned an invalid result."
-msgstr "Розбір файлу повернув недійсний результат."
+msgstr "Аналіз файлу не вірний результат."
 
 #. module: muztorg_price_list
 #: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
@@ -238,6 +287,18 @@ msgstr "На товар %s вже діє акційна ціна."
 #: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__limit_to
 msgid "To"
 msgstr "До"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__biko_price_USD_ids
+msgid "USD prices"
+msgstr "Прайси в доларах США"
+
+#. module: muztorg_price_list
+#: model:ir.actions.server,name:muztorg_price_list.biko_update_marketing_group_product_ir_actions_server
+#: model:ir.cron,cron_name:muztorg_price_list.biko_update_marketing_group_product
+#: model:ir.cron,name:muztorg_price_list.biko_update_marketing_group_product
+msgid "Update marketing group product"
+msgstr "Оновити маркетингови групи продуктів"
 
 #. module: muztorg_price_list
 #: model_terms:ir.ui.view,arch_db:muztorg_price_list.price_list_import_wizard_form
@@ -252,17 +313,14 @@ msgid "Upload price list"
 msgstr "Завантажити прайс-лист"
 
 #. module: muztorg_price_list
-#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
-#, python-format
-msgid ""
-"You have already imported this file, or this file only contains already "
-"imported transactions."
-msgstr ""
-
-#. module: muztorg_price_list
 #: model:ir.model,name:muztorg_price_list.model_biko_marketing_group
 msgid "biko.marketing.group"
 msgstr ""
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_view
+msgid "open_pricelist_rules"
+msgstr "Відкрити правила прайс-листа"
 
 #. module: muztorg_price_list
 #: model:ir.model.fields,help:muztorg_price_list.field_product_pricelist_item__biko_price_to_round
