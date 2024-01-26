@@ -63,11 +63,11 @@ class SaleOrder(models.Model):
 
         return result
 
-    def write(self, vals):
-        result = super().write(vals)
+    # def write(self, vals):
+    #     result = super().write(vals)
 
-        if not self.env.context.get("skip_recalculation_currency", False):
-            for record in self:
-                record.recalculate_prices()
+    #     if not self.env.context.get("skip_recalculation_currency", False):
+    #         for record in self:
+    #             record.recalculate_prices()
 
-        return result
+    #     return result
