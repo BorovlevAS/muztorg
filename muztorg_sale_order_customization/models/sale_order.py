@@ -92,12 +92,13 @@ class SaleOrder(models.Model):
                     continue
 
                 for order_line in record.order_line:
-                    order_line["price_unit"] = from_curr._convert(
+                    price_unit = from_curr._convert(
                         order_line["price_unit"],
                         to_curr,
                         company_id,
                         record.date_order,
                     )
+                    order_line.write({"price_unit": price_unit})
 
                 record.with_context(skip_recalculation_currency=True).write(
                     {"pricelist_id": pricelist_uah.id}
