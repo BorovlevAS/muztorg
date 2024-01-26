@@ -71,3 +71,8 @@ class SaleOrder(models.Model):
                 )
 
         return super().create(vals_list)
+
+    def write(self, vals):
+        result = super().write(vals)
+        _logger.info("MUZTORG_SALE_ORDER_CUSTOMIZATION: vals: {vals}".format(vals=vals))
+        return result
