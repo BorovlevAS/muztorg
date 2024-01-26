@@ -21,6 +21,9 @@ class SaleOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
+            _logger.info(
+                "MUZTORG_SALE_ORDER_CUSTOMIZATION: vals: {vals}".format(vals=vals)
+            )
             if not vals.get("biko_1c_currency"):
                 _logger.info(
                     "MUZTORG_SALE_ORDER_CUSTOMIZATION: biko_1c_currency: empty field"
