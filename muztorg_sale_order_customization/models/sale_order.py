@@ -1,4 +1,8 @@
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -18,12 +22,21 @@ class SaleOrder(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if not vals.get("biko_1c_currency"):
+                _logger.info(
+                    "MUZTORG_SALE_ORDER_CUSTOMIZATION: biko_1c_currency: empty field"
+                )
                 continue
 
             if not vals.get("company_id", False):
+                _logger.info(
+                    "MUZTORG_SALE_ORDER_CUSTOMIZATION: company_id: empty field"
+                )
                 continue
 
             if not vals.get("order_line", False):
+                _logger.info(
+                    "MUZTORG_SALE_ORDER_CUSTOMIZATION: order_line: empty field"
+                )
                 continue
 
             company_id = self.env["res.company"].browse(vals["company_id"])
@@ -33,6 +46,9 @@ class SaleOrder(models.Model):
                 vals.get("pricelist_id", False)
                 and vals["pricelist_id"] == pricelist_uah.id
             ):
+                _logger.info(
+                    "MUZTORG_SALE_ORDER_CUSTOMIZATION: pricelist_id: empty or equal to UAH pricelist"
+                )
                 continue
 
             from_curr = (
