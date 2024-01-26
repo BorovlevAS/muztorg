@@ -98,6 +98,12 @@ class SaleOrder(models.Model):
                         company_id,
                         record.date_order,
                     )
+                    _logger.info(
+                        "MUZTORG_SALE_ORDER_CUSTOMIZATION: {old_price} -> {new_price}".format(
+                            old_price=order_line["price_unit"],
+                            new_price=price_unit,
+                        )
+                    )
                     order_line.write({"price_unit": price_unit})
 
                 record.with_context(skip_recalculation_currency=True).write(
