@@ -77,5 +77,27 @@ class SaleOrder(models.Model):
 
     def write(self, vals):
         result = super().write(vals)
-        _logger.info("MUZTORG_SALE_ORDER_CUSTOMIZATION: vals: {vals}".format(vals=vals))
+
+        for record in self:
+            if not record.biko_1c_currency:
+                continue
+
+            company_id = record.company_id
+            pricelist_uah = company_id.biko_uah_pricelist_id
+            from_curr = record.pricelist_id.currency_id
+            to_curr = pricelist_uah.currency_id
+
+            if from_curr == to_curr:
+                continue
+
+            record.update({"pricelist_id": pricelist_uah.id})
+
+            for order_line in record.order_line:
+                order_line["price_unit"] = from_curr._convert(
+                    order_line["price_unit"],
+                    to_curr,
+                    company_id,
+                    record.date_order,
+                )
+
         return result
