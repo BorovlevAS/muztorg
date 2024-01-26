@@ -18,90 +18,56 @@ class SaleOrder(models.Model):
 
     biko_1c_currency = fields.Integer()
 
+    def recalculate_prices(self):
+        if len(self) > 1:
+            return
+
+        record = self
+
+        if not record.biko_1c_currency:
+            return
+
+        company_id = record.company_id
+        pricelist_uah = company_id.biko_uah_pricelist_id
+        from_curr = record.pricelist_id.currency_id
+        to_curr = pricelist_uah.currency_id
+
+        if from_curr == to_curr:
+            return
+
+        for order_line in record.order_line:
+            price_unit = from_curr._convert(
+                order_line["price_unit"],
+                to_curr,
+                company_id,
+                record.date_order,
+            )
+            _logger.info(
+                "MUZTORG_SALE_ORDER_CUSTOMIZATION: {old_price} -> {new_price}".format(
+                    old_price=order_line["price_unit"],
+                    new_price=price_unit,
+                )
+            )
+            order_line.write({"price_unit": price_unit})
+
+        record.with_context(skip_recalculation_currency=True).write(
+            {"pricelist_id": pricelist_uah.id}
+        )
+
     @api.model_create_multi
     def create(self, vals_list):
-        for vals in vals_list:
-            _logger.info(
-                "MUZTORG_SALE_ORDER_CUSTOMIZATION: vals: {vals}".format(vals=vals)
-            )
-            if not vals.get("biko_1c_currency"):
-                _logger.info(
-                    "MUZTORG_SALE_ORDER_CUSTOMIZATION: biko_1c_currency: empty field"
-                )
-                continue
+        result = super().create(vals_list)
 
-            if not vals.get("company_id", False) and not self.env.company.id:
-                _logger.info(
-                    "MUZTORG_SALE_ORDER_CUSTOMIZATION: company_id: empty field"
-                )
-                continue
+        for record in result:
+            record.recalculate_prices()
 
-            if not vals.get("order_line", False):
-                _logger.info(
-                    "MUZTORG_SALE_ORDER_CUSTOMIZATION: order_line: empty field"
-                )
-                continue
-
-            company_id = self.env["res.company"].browse(
-                vals.get("company_id") or self.env.company.id
-            )
-            pricelist_uah = company_id.biko_uah_pricelist_id
-
-            if (
-                vals.get("pricelist_id", False)
-                and vals["pricelist_id"] == pricelist_uah.id
-            ):
-                _logger.info(
-                    "MUZTORG_SALE_ORDER_CUSTOMIZATION: pricelist_id: empty or equal to UAH pricelist"
-                )
-                continue
-
-            from_curr = (
-                self.env["product.pricelist"].browse(vals["pricelist_id"]).currency_id
-            )
-            to_curr = pricelist_uah.currency_id
-            vals["pricelist_id"] = pricelist_uah.id
-
-            for order_line in vals["order_line"]:
-                line = order_line[2]
-                line["price_unit"] = from_curr._convert(
-                    line["price_unit"],
-                    to_curr,
-                    company_id,
-                    fields.Datetime.to_datetime(
-                        vals.get("date_order", fields.Datetime.now())
-                    ),
-                )
-
-        return super().create(vals_list)
+        return result
 
     def write(self, vals):
         result = super().write(vals)
 
         if not self.env.context.get("skip_recalculation_currency", False):
             for record in self:
-                if not record.biko_1c_currency:
-                    continue
-
-                company_id = record.company_id
-                pricelist_uah = company_id.biko_uah_pricelist_id
-                from_curr = record.pricelist_id.currency_id
-                to_curr = pricelist_uah.currency_id
-
-                if from_curr == to_curr:
-                    continue
-
-                for order_line in record.order_line:
-                    price_unit = from_curr._convert(
-                        order_line["price_unit"],
-                        to_curr,
-                        company_id,
-                        record.date_order,
-                    )
-                    order_line.write({"price_unit": price_unit})
-
-                record.with_context(skip_recalculation_currency=True).write(
-                    {"pricelist_id": pricelist_uah.id}
-                )
+                record.recalculate_prices()
 
         return result
