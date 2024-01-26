@@ -78,26 +78,29 @@ class SaleOrder(models.Model):
     def write(self, vals):
         result = super().write(vals)
 
-        for record in self:
-            if not record.biko_1c_currency:
-                continue
+        if not self.env.context.get("skip_recalculation_currency", False):
+            for record in self:
+                if not record.biko_1c_currency:
+                    continue
 
-            company_id = record.company_id
-            pricelist_uah = company_id.biko_uah_pricelist_id
-            from_curr = record.pricelist_id.currency_id
-            to_curr = pricelist_uah.currency_id
+                company_id = record.company_id
+                pricelist_uah = company_id.biko_uah_pricelist_id
+                from_curr = record.pricelist_id.currency_id
+                to_curr = pricelist_uah.currency_id
 
-            if from_curr == to_curr:
-                continue
+                if from_curr == to_curr:
+                    continue
 
-            record.update({"pricelist_id": pricelist_uah.id})
+                for order_line in record.order_line:
+                    order_line["price_unit"] = from_curr._convert(
+                        order_line["price_unit"],
+                        to_curr,
+                        company_id,
+                        record.date_order,
+                    )
 
-            for order_line in record.order_line:
-                order_line["price_unit"] = from_curr._convert(
-                    order_line["price_unit"],
-                    to_curr,
-                    company_id,
-                    record.date_order,
+                record.with_context(skip_recalculation_currency=True).write(
+                    {"pricelist_id": pricelist_uah.id}
                 )
 
         return result
