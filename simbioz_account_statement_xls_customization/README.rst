@@ -14,6 +14,11 @@ Simbioz: addons for bank Statements Import
 #. For sums, added the ability to load an empty value as 0
 ===============================
 
+14.0.3.0.0
+===============================
+#. For accounts with the same number but different currencies
+===============================
+
 Installation
 ============
 
