@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
                 )
                 continue
 
-            if not vals.get("company_id", False):
+            if not vals.get("company_id", False) and not self.env.company.id:
                 _logger.info(
                     "MUZTORG_SALE_ORDER_CUSTOMIZATION: company_id: empty field"
                 )
@@ -39,7 +39,9 @@ class SaleOrder(models.Model):
                 )
                 continue
 
-            company_id = self.env["res.company"].browse(vals["company_id"])
+            company_id = self.env["res.company"].browse(
+                vals.get("company_id") or self.env.company.id
+            )
             pricelist_uah = company_id.biko_uah_pricelist_id
 
             if (
