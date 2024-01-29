@@ -5,7 +5,7 @@
     "website": "https://simbioz.ua",
     "license": "AGPL-3",
     "category": "Uncategorized",
-    "version": "14.0.0.1.7",
+    "version": "14.0.0.1.8",
     "depends": [
         "contacts",
         "product",
