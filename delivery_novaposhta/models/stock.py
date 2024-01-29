@@ -47,40 +47,51 @@ class StockPicking(models.Model):
     rec_city_ref = fields.Char(related="recipient_city.ref", help="Technical field")
     send_city_ref = fields.Char(related="sender_city.ref", help="Technical field")
 
-    @api.model
-    def create(self, vals):
-        if vals.get("carrier_id"):
-            carrier_id = self.env["delivery.carrier"].browse(vals["carrier_id"])
-            order = self.env["sale.order"].search([("name", "=", vals.get("origin"))])
-            if carrier_id.delivery_type == "np":
-                vals["service_type"] = carrier_id.np_service_type.id
-                vals["payer_type"] = carrier_id.np_payer_type.id
-                vals["sender_warehouse"] = carrier_id.np_sender_warehouse.id
-                vals["sender_city"] = carrier_id.np_city_sender.id
-                vals["cargo_type"] = carrier_id.np_cargo_type.id
-                vals["payment_method"] = carrier_id.np_payment_method.id
-                if order:
-                    vals["seats_amount"] = order.seats_amount
-                    vals["backward_money"] = (
-                        vals.get("backward_money") or order.backward_money
-                    )
-                    vals["bm_payer_type"] = (
-                        vals.get("bm_payer_type") or order.bm_payer_type.id
-                    )
-                    vals["backward_money_costs"] = (
-                        vals.get("backward_money_costs") or order.amount_total
-                    )
-                    vals["recipient_city"] = (
-                        order.partner_shipping_id.np_city.id or False
-                    )
-                    vals["recipient_warehouse"] = (
-                        order.partner_shipping_id.np_warehouse.id or False
-                    )
-                    vals["streets"] = order.partner_shipping_id.np_street.id or False
-                    vals["recipient_house"] = order.partner_shipping_id.house or False
-                    vals["recipient_flat"] = order.partner_shipping_id.flat or False
-        res = super().create(vals)
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("carrier_id"):
+                carrier_id = self.env["delivery.carrier"].browse(vals["carrier_id"])
+                order = self.env["sale.order"].search(
+                    [
+                        ("name", "=", vals.get("origin")),
+                        ("partner_shipping_id", "=", vals.get("partner_id")),
+                    ],
+                    limit=1,
+                    order="date_order desc",
+                )
+                if carrier_id.delivery_type == "np":
+                    vals["service_type"] = carrier_id.np_service_type.id
+                    vals["payer_type"] = carrier_id.np_payer_type.id
+                    vals["sender_warehouse"] = carrier_id.np_sender_warehouse.id
+                    vals["sender_city"] = carrier_id.np_city_sender.id
+                    vals["cargo_type"] = carrier_id.np_cargo_type.id
+                    vals["payment_method"] = carrier_id.np_payment_method.id
+                    if order:
+                        vals["seats_amount"] = order.seats_amount
+                        vals["backward_money"] = (
+                            vals.get("backward_money") or order.backward_money
+                        )
+                        vals["bm_payer_type"] = (
+                            vals.get("bm_payer_type") or order.bm_payer_type.id
+                        )
+                        vals["backward_money_costs"] = (
+                            vals.get("backward_money_costs") or order.amount_total
+                        )
+                        vals["recipient_city"] = (
+                            order.partner_shipping_id.np_city.id or False
+                        )
+                        vals["recipient_warehouse"] = (
+                            order.partner_shipping_id.np_warehouse.id or False
+                        )
+                        vals["streets"] = (
+                            order.partner_shipping_id.np_street.id or False
+                        )
+                        vals["recipient_house"] = (
+                            order.partner_shipping_id.house or False
+                        )
+                        vals["recipient_flat"] = order.partner_shipping_id.flat or False
+        return super().create(vals_list)
 
     def open_ttn(self):
         return {
