@@ -34,4 +34,36 @@ class SaleOrderLine(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             self._calculate_customer_lead(vals)
-        return super().create(vals_list)
+        result = super().create(vals_list)
+
+        for record in result:
+            order_id = record.order_id
+
+            if not order_id:
+                continue
+            if not order_id.biko_1c_currency:
+                continue
+
+            company_id = order_id.company_id
+            pricelist_uah = company_id.biko_uah_pricelist_id
+            from_curr = self.env["res.currency"].search(
+                [("id", "=", order_id.biko_1c_currency)]
+            )
+
+            if not from_curr:
+                continue
+
+            to_curr = pricelist_uah.currency_id
+
+            if from_curr == to_curr:
+                continue
+
+            price_unit = from_curr._convert(
+                record["price_unit"],
+                to_curr,
+                company_id,
+                order_id.date_order,
+            )
+            record.write({"price_unit": price_unit})
+
+        return result
