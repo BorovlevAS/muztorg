@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="biko_product_template_view" model="ir.ui.view">
+        <field name="name">product.template.biko_product_template_view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="biko_change_product_view.biko_product_template_view" />
+        <field name="arch" type="xml">
+            <label for="standard_price" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </label>
+            <div name="standard_price_uom" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </div>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.tree_view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view" />
+        <field name="arch" type="xml">
+            <field name="standard_price" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <label for="standard_price" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </label>
+            <div name="standard_price_uom" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </div>
+        </field>
+    </record>
+</odoo>
