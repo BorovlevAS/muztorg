@@ -1,0 +1,65 @@
+<odoo>
+    <record id="sale_margin_sale_order" model="ir.ui.view">
+        <field name="name">sale.order.margin.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order" />
+        <field name="arch" type="xml">
+            <label for="margin" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </label>
+            <xpath expr="//div[hasclass('text-nowrap')]" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_margin_sale_order_line" model="ir.ui.view">
+        <field name="name">sale.order.line.margin.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line" />
+        <field name="arch" type="xml">
+            <field name="purchase_price" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_margin_sale_order_line_form" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.margin.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form" />
+        <field name="arch" type="xml">
+            <field name="purchase_price" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </field>
+            <field name="margin" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </field>
+            <field name="margin_percent" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_margin_sale_order_pivot" model="ir.ui.view">
+        <field name="name">sale.order.margin.view.pivot</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_pivot" />
+        <field name="arch" type="xml">
+            <field name="margin_percent" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_margin_sale_order_graph" model="ir.ui.view">
+        <field name="name">sale.order.margin.view.graph</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_graph" />
+        <field name="arch" type="xml">
+            <field name="margin_percent" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

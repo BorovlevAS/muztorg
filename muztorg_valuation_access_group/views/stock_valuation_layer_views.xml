@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="stock_account.menu_valuation"
+        name="Inventory Valuation"
+        parent="stock.menu_warehouse_report"
+        sequence="110"
+        action="stock_account.stock_valuation_layer_action"
+        groups="muztorg_valuation_access_group.biko_group_show_margin"
+    />
+</odoo>

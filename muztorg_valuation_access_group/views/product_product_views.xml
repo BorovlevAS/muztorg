@@ -1,0 +1,12 @@
+<odoo>
+    <record id="product_product_tree_view" model='ir.ui.view'>
+        <field name="name">product.product.tree_vuew.inherited</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="standard_price" position="attributes">
+                <attribute name="groups">muztorg_valuation_access_group.biko_group_show_margin</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
