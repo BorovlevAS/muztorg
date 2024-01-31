@@ -1,4 +1,8 @@
+import logging
+
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -14,42 +18,30 @@ class SaleOrder(models.Model):
 
     biko_1c_currency = fields.Integer()
 
+    def recalculate_prices(self):
+        if len(self) > 1:
+            return
+
+        record = self
+
+        if not record.biko_1c_currency:
+            return
+
+        company_id = record.company_id
+        pricelist_uah = company_id.biko_uah_pricelist_id
+        from_curr = record.pricelist_id.currency_id
+        to_curr = pricelist_uah.currency_id
+
+        if from_curr == to_curr:
+            return
+
+        record.write({"pricelist_id": pricelist_uah.id})
+
     @api.model_create_multi
     def create(self, vals_list):
-        for vals in vals_list:
-            if not vals.get("biko_1c_currency"):
-                continue
+        result = super().create(vals_list)
 
-            if not vals.get("company_id", False):
-                continue
+        for record in result:
+            record.recalculate_prices()
 
-            if not vals.get("order_line", False):
-                continue
-
-            company_id = self.env["res.company"].browse(vals["company_id"])
-            pricelist_uah = company_id.biko_uah_pricelist_id
-
-            if (
-                vals.get("pricelist_id", False)
-                and vals["pricelist_id"] == pricelist_uah.id
-            ):
-                continue
-
-            from_curr = (
-                self.env["product.pricelist"].browse(vals["pricelist_id"]).currency_id
-            )
-            to_curr = pricelist_uah.currency_id
-            vals["pricelist_id"] = pricelist_uah.id
-
-            for order_line in vals["order_line"]:
-                line = order_line[2]
-                line["price_unit"] = from_curr._convert(
-                    line["price_unit"],
-                    to_curr,
-                    company_id,
-                    fields.Datetime.to_datetime(
-                        vals.get("date_order", fields.Datetime.now())
-                    ),
-                )
-
-        return super().create(vals_list)
+        return result
