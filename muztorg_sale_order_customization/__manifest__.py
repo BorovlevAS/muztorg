@@ -15,7 +15,6 @@
         "views/sale_order_views.xml",
         "views/so_payment_type_views.xml",
         "views/res_config_settings_views.xml",
-        "security/ir_access_roles.xml",
         "security/ir.model.access.csv",
         "data/so_payment_types.xml",
     ],

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-    <record id="biko_group_show_margin" model="res.groups">
-        <field name="name">Show Margin</field>
-        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
-        <!-- <field name="category_id" ref="biko_base_module.category_biko_addon_roles" /> -->
-    </record>
-</odoo>
