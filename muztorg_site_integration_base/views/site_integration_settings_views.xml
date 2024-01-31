@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="site_integration_settings_view_form" model="ir.ui.view">
+        <field name="name">site.integration.base.form.view.muztorg</field>
+        <field name="model">site.integration.base</field>
+        <field name="arch" type="xml">
+            <form string="Settings site integration">
+                <sheet>
+                    <header>
+                        <button name="sync_call" type="object" string="sync" class="oe_highlight" />
+                        <!-- <button
+                            name="remove_old_discount_prices"
+                            type="object"
+                            string="Remove old discount prices"
+                            class="oe_highlight"
+                        /> -->
+                    </header>
+                    <group>
+                        <field name="name" />
+                        <field name="url" />
+                        <!-- <field name="setting_pickup_id" />
+                        <field name="setting_nova_poshta_id" />
+                        <field name="setting_warehouse_podol_id" /> -->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="site_integration_settings_view_tree" model="ir.ui.view">
+        <field name="name">site.integration.base.view.tree.muztorg</field>
+        <field name="model">site.integration.base</field>
+        <field name="arch" type="xml">
+            <tree string="Settings site integration">
+                <field name="name" />
+                <field name="url" />
+                <!-- <field name="setting_nova_poshta_id" />
+                <field name="setting_warehouse_podol_id" />                 -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_site_integration_settings_tree" model="ir.actions.act_window">
+        <field name="name">Settings site integration</field>
+        <field name="res_model">site.integration.base</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="site_integration_settings_menu"
+        name="Settings site integration"
+        action="action_site_integration_settings_tree"
+        parent="muztorg_site_integration_base.site_integration_menu_websites"
+        sequence="10"
+    />
+</odoo>
