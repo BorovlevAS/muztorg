@@ -19,6 +19,7 @@ class SiteIntegrationBase(models.Model):
         string="Company",
         default=lambda self: self.env.company,
     )
+    setting_ids = fields.Many2many(comodel_name="site.integration.setting")
 
     def sync_call(self):
         self.ensure_one()

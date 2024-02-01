@@ -19,6 +19,8 @@ class SiteIntegrationSetting(models.Model):
 
     name = fields.Char()
 
+    setting_id = fields.Many2one(comodel_name="site.integration.base")
+
     id_seting = fields.Char(
         compute="_compute_id_seting",
         store=True,
