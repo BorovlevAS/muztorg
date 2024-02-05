@@ -1,0 +1,135 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_ccd_customization
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-05 22:16+0000\n"
+"PO-Revision-Date: 2024-02-05 22:16+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model,name:muztorg_ccd_customization.model_cargo_customs_declaration
+msgid "Cargo Customs Declaration"
+msgstr "Таможенная декларация на импорт"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model,name:muztorg_ccd_customization.model_cargo_customs_declaration_line
+msgid "Cargo Customs Declaration Line"
+msgstr ""
+
+#. module: muztorg_ccd_customization
+#: model:ir.model,name:muztorg_ccd_customization.model_cargo_customs_declaration_section
+msgid "Cargo Customs Declaration Section"
+msgstr "Секция таможенной декларации"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__customs_amount
+msgid "Customs Amount"
+msgstr "Таможенная стоимость"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__customs_amount_uah
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__customs_amount_uah
+msgid "Customs Amount (UAH)"
+msgstr "Таможенная стоимость (ГРН)"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,help:muztorg_ccd_customization.field_cargo_customs_declaration_line__customs_amount_uah
+msgid "Customs Amount in UAH"
+msgstr "Таможенная стоимость в ГРН"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__customs_fee
+msgid "Customs fee"
+msgstr "Таможенный сбор"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__customs_fee_uah
+msgid "Customs fee (UAH)"
+msgstr "Таможенный сбор (ГРН)"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__display_name
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__display_name
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__display_name
+msgid "Display Name"
+msgstr "Отображаемое название"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__duty_amount
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__duty_amount
+msgid "Duty Amount"
+msgstr "Сумма пошлины"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__duty_amount_uah
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__duty_amount_uah
+msgid "Duty Amount (UAH)"
+msgstr "Сумма пошлины (ГРН)"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__excide_tax_amount
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__excide_tax_amount
+msgid "Excide Tax Amount"
+msgstr "Сумма акциза"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__excide_tax_amount_uah
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__excide_tax_amount_uah
+msgid "Excide Tax Amount (UAH)"
+msgstr "Сумма акциза (ГРН)"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__id
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__id
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__id
+msgid "ID"
+msgstr ""
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration____last_update
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line____last_update
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section____last_update
+msgid "Last Modified on"
+msgstr "Последнее изменение в"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__purchase_currency_id
+msgid "Purchase Currency"
+msgstr "Валюта закупки"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__purchase_currency_rate
+msgid "Purchase Currency Rate"
+msgstr "Курс валюты закупки к ГРН"
+
+#. module: muztorg_ccd_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_ccd_customization.ccd_section_view_form
+msgid "Total"
+msgstr "Всего"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__uah_currency_id
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__uah_currency_id
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__uah_currency_id
+msgid "UAH Currency"
+msgstr "Валюта ГРН"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__vat_amount
+msgid "VAT Amount"
+msgstr "НДС"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__vat_amount_uah
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__vat_amount_uah
+msgid "VAT Amount (UAH)"
+msgstr "НДС (ГРН)"
