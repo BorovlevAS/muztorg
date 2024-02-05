@@ -47,7 +47,20 @@ class Product(models.Model):
             [(self, 1, False)], date, self.uom_id.id
         )[self.id][0]
 
-        if dealer_price != 0:
+        mg_defolt = self.env["biko.marketing.group"].search(
+            [("limit_from", "<=", 5), ("limit_to", ">", 0)], limit=1
+        )
+        if (
+            not retail_price
+            or retail_price == 0
+            or not dealer_price
+            or dealer_price == 0
+        ):
+            vals = {
+                "biko_mg_id": mg_defolt,
+            }
+            self.write(vals)
+        elif retail_price != 0:
             percent = (retail_price - dealer_price) / retail_price * 100
             mg = self.env["biko.marketing.group"].search(
                 [("limit_from", "<=", percent), ("limit_to", ">", percent)], limit=1
