@@ -124,7 +124,7 @@ class PricelistItem(models.Model):
                 or self.pricelist_id == self.env.company.biko_price_retail
             )
         ):
-            res.product_tmpl_id.calculate_marketing_group()
+            self.product_tmpl_id.calculate_marketing_group()
         return res
 
     @api.model_create_multi
