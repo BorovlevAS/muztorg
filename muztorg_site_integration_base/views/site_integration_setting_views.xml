@@ -8,11 +8,11 @@
                 <sheet>
                     <group>
                         <field name="name" />
-                        <field name="ttype" />
+                        <!-- <field name="ttype" /> -->
                         <!-- <field name="model_reference" /> -->
-                        <field name="value_char" attrs="{'invisible': [('ttype', '!=', 'char')]}" />
-                        <field name="value_many2one" attrs="{'invisible': [('ttype', '!=', 'many2one')]}" />
-                        <field name="value_boolean" attrs="{'invisible': [('ttype', '!=', 'boolean')]}" />
+                        <!-- <field name="value_char" attrs="{'invisible': [('ttype', '!=', 'char')]}" /> -->
+                        <field name="value_many2one" />
+                        <!-- <field name="value_boolean" attrs="{'invisible': [('ttype', '!=', 'boolean')]}" /> -->
                         <field name="id_seting" />
                         <!-- <field name="model_reference" />
                         <field name="model_reference" /> -->
@@ -27,13 +27,14 @@
         <field name="model">site.integration.setting</field>
         <field name="arch" type="xml">
             <tree string="setting site integration">
+                <field name="setting_id" readonly="1" />
                 <field name="name" />
                 <!-- <field name="model_reference" /> -->
-                <field name="id_seting" />
-                <field name="ttype" />
-                <field name="value_char" attrs="{'invisible': [('ttype', '!=', 'char')]}" />
-                <field name="value_many2one" attrs="{'invisible': [('ttype', '!=', 'many2one')]}" />
-                <field name="value_boolean" attrs="{'invisible': [('ttype', '!=', 'boolean')]}" />
+                <!-- <field name="id_seting" />attrs="{'invisible': [('ttype', '!=', 'boolean')]}"  attrs="{'invisible': [('ttype', '!=', 'many2one')]}" attrs="{'invisible': [('ttype', '!=', 'char')]}"-->
+                <!-- <field name="ttype" /> -->
+                <!-- <field name="value_char"  /> -->
+                <field name="value_many2one" />
+                <!-- <field name="value_boolean" /> -->
                 <field name="id_seting" />
                 <!-- <field name="setting_pickup_id" />
                 <field name="setting_nova_poshta_id" />

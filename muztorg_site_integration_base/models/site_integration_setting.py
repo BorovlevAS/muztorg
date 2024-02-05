@@ -40,10 +40,10 @@ class SiteIntegrationSetting(models.Model):
         # readonly=True
     )
 
-    value_char = fields.Char(
-        # compute="_compute_origin_values",
-        # readonly=True
-    )
+    # value_char = fields.Char(
+    #     # compute="_compute_origin_values",
+    #     # readonly=True
+    # )
     # value_date = fields.Date(
     #     # compute="_compute_origin_values",
     #     # readonly=True
@@ -56,24 +56,34 @@ class SiteIntegrationSetting(models.Model):
     #     # compute="_compute_origin_values",
     #     # readonly=True
     #     )
-    value_boolean = fields.Boolean(
-        # compute="_compute_origin_values",
-        # readonly=True
-    )
+    # value_boolean = fields.Boolean(
+    #     # compute="_compute_origin_values",
+    #     # readonly=True
+    # )
 
-    ttype = fields.Selection(
-        string="Field Type",
-        selection=_TTYPE_SELECTION,
-        # help="Type of the"
-        # " Odoo field that will be created. Keep empty if you don't want to"
-        # " create a new field. If empty, this field will not be displayed"
-        # " neither available for search or group by function",
-    )
+    # ttype = fields.Selection(
+    #     string="Field Type",
+    #     selection=_TTYPE_SELECTION,
+    #     # help="Type of the"
+    #     # " Odoo field that will be created. Keep empty if you don't want to"
+    #     # " create a new field. If empty, this field will not be displayed"
+    #     # " neither available for search or group by function",
+    # )
 
     @api.model
     def _reference_models(self):
-        models = self.env["ir.model"].search([])
+        # models = self.env["ir.model"].search([]) добавила отбор по конкретнім моделям, бо задолбало
+        models = self.env["ir.model"].search([("model", "in", self.get_model_names())])
         return [(model.model, model.name) for model in models]
+
+    @api.model
+    def get_model_names(self):
+        return [
+            "delivery.carrier",
+            "crm.team",
+            "stock.warehouse",
+            "product.pricelist",
+        ]
 
     @api.depends("name")
     def _compute_id_seting(self):

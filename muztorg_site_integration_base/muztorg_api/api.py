@@ -22,41 +22,41 @@ class MTApi:
             self.endpoint,
         )
 
-    def send_data(self, message):
-        try:
-            _logger.debug("==== MTApi: sending data: %s", message)
-            # URI = posixpath.join(self.URI, self.endpoint)
-            # reply = requests.post(url=URI, headers=self.headers, data=message)
-            reply = requests.get(
-                url=self.URI,
-                headers=self.headers,
-                timeout=10.0,
-            )
-            result = reply.json()
-            if result.get("status") != "success":
-                _logger.error(
-                    """MTApi: error sending data:
-                    API: %s
-                    DATA: %s
-                    result: %s
-                    """,
-                    self,
-                    message,
-                    result,
-                )
-            else:
-                _logger.debug("==== MTApi: data was sent: %s", message)
-        except Exception as exc:
-            _logger.exception(
-                """MTApi error:
-                API: %s
-                DATA: %s
-                exception: %s
-                """,
-                self,
-                message,
-                exc,
-            )
+    # def send_data(self, message):
+    #     try:
+    #         _logger.debug("==== MTApi: sending data: %s", message)
+    #         # URI = posixpath.join(self.URI, self.endpoint)
+    #         # reply = requests.post(url=URI, headers=self.headers, data=message)
+    #         reply = requests.get(
+    #             url=self.URI,
+    #             headers=self.headers,
+    #             timeout=10.0,
+    #         )
+    #         result = reply.json()
+    #         if result.get("status") != "success":
+    #             _logger.error(
+    #                 """MTApi: error sending data:
+    #                 API: %s
+    #                 DATA: %s
+    #                 result: %s
+    #                 """,
+    #                 self,
+    #                 message,
+    #                 result,
+    #             )
+    #         else:
+    #             _logger.debug("==== MTApi: data was sent: %s", message)
+    #     except Exception as exc:
+    #         _logger.exception(
+    #             """MTApi error:
+    #             API: %s
+    #             DATA: %s
+    #             exception: %s
+    #             """,
+    #             self,
+    #             message,
+    #             exc,
+    #         )
 
     def import_data(self):
         # headers = {

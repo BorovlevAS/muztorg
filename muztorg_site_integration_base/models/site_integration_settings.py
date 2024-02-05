@@ -19,7 +19,11 @@ class SiteIntegrationBase(models.Model):
         string="Company",
         default=lambda self: self.env.company,
     )
-    setting_ids = fields.Many2many(comodel_name="site.integration.setting")
+    is_create_leads = fields.Boolean()
+
+    setting_ids = fields.One2many(
+        "site.integration.setting", "setting_id", auto_join=True
+    )
 
     def sync_call(self):
         self.ensure_one()
