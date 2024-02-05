@@ -26,6 +26,31 @@ class CargoCustomsDeclaration(models.Model):
         store=True,
     )
 
+    @api.depends("company_id", "state", "purchase_currency_id")
+    def _compute_allowed_picking_ids(self):
+        allowed_picking_states = ["in_customs"]
+        cancelled_ccd = self.env["cargo.customs.declaration"].search_read(
+            [("state", "=", "cancel")], ["id"]
+        )
+        cancelled_ccd_ids = [declaration["id"] for declaration in cancelled_ccd]
+
+        for declaration in self:
+            domain_states = list(allowed_picking_states)
+            domain = [
+                ("company_id", "=", declaration.company_id.id),
+                ("purchase_id.currency_id", "=", declaration.purchase_currency_id.id),
+                ("immediate_transfer", "=", False),
+                ("state", "in", domain_states),
+                ("partner_id", "=", declaration.partner_id.id),
+                "|",
+                "|",
+                ("customs_declaration_ids", "=", False),
+                ("customs_declaration_ids", "in", declaration.id),
+                ("customs_declaration_ids", "in", cancelled_ccd_ids),
+            ]
+
+            declaration.allowed_picking_ids = self.env["stock.picking"].search(domain)
+
     @api.depends("customs_fee_uah", "date")
     def _compute_customs_fee(self):
         for declaration in self:
