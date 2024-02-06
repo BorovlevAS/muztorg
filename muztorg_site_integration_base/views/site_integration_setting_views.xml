@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="site_integration_setting_view_form" model="ir.ui.view">
+        <field name="name">site.integration.setting.form.view.muztorg</field>
+        <field name="model">site.integration.setting</field>
+        <field name="arch" type="xml">
+            <form string="setting site integration">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <!-- <field name="ttype" /> -->
+                        <!-- <field name="model_reference" /> -->
+                        <!-- <field name="value_char" attrs="{'invisible': [('ttype', '!=', 'char')]}" /> -->
+                        <!-- <field name="value_many2one" /> -->
+                        <!-- <field name="value_boolean" attrs="{'invisible': [('ttype', '!=', 'boolean')]}" /> -->
+                        <field name="id_seting" />
+                        <!-- <field name="model_reference" />
+                        <field name="model_reference" /> -->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="site_integration_setting_view_tree" model="ir.ui.view">
+        <field name="name">site.integration.setting.view.tree.muztorg</field>
+        <field name="model">site.integration.setting</field>
+        <field name="arch" type="xml">
+            <tree string="setting site integration">
+                <!-- <field name="setting_id" readonly="1" /> -->
+                <field name="name" />
+                <!-- <field name="value_many2one" /> -->
+                <field name="id_seting" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_site_integration_setting_tree" model="ir.actions.act_window">
+        <field name="name">setting site integration</field>
+        <field name="res_model">site.integration.setting</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="site_integration_setting_menu"
+        name="setting site integration"
+        action="action_site_integration_setting_tree"
+        parent="muztorg_site_integration_base.menu_site_integration_operations"
+        sequence="30"
+    />
+    <menuitem
+        id="site_integration_setting_menu2"
+        name="setting site integration"
+        action="action_site_integration_setting_tree"
+        parent="muztorg_site_integration_base.site_integration_menu_websites"
+        sequence="30"
+    />
+</odoo>

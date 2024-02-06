@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <menuitem
+        id="site_integration_menu_root"
+        name="BIKO: site integration"
+        web_icon="muztorg_site_integration_base,static/description/api-icon-integration.png"
+        sequence="110"
+    />
+    <!-- groups="muztorg_site_integration_base.group_site_integration_admin,muztorg_site_integration_base.group_site_integration_user" -->
+    <menuitem id="site_integration_menu_websites" name="Websites" parent="site_integration_menu_root" />
+
+    <menuitem
+        id="menu_site_integration_operations"
+        parent="site_integration_menu_root"
+        name="Operations"
+        sequence="10"
+    />
+</odoo>
