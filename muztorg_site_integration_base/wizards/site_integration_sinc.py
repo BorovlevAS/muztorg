@@ -49,7 +49,6 @@ class SiteIntegrationSync(models.TransientModel):
 
             return True
         else:
-            # print("Failed to download file")
             _logger.exception("Failed to download file")
             return False
 
@@ -64,7 +63,6 @@ class SiteIntegrationSync(models.TransientModel):
 
     def load_order(self, data_order):
         def get_partner(value_partner, value_address):
-            # phone_code, telephone, email, lastname, firstname, patronymic
             def format_phone(number):
                 if not number:
                     return False
@@ -198,8 +196,6 @@ class SiteIntegrationSync(models.TransientModel):
 
                 Partner = self.env["res.partner"].sudo()
                 data = {
-                    # "mobile": phone,
-                    # "email": email,
                     "country_id": self.env.ref("base.ua").id,
                     "type": "delivery",
                     "lang": self.env.lang,
@@ -302,8 +298,6 @@ class SiteIntegrationSync(models.TransientModel):
             .value_many2one
         )
 
-        # so_payment_type_id	ищем по полю website_ref в таблице so.payment.type
-        # ??? website_id или biko_website_ref, ага website_ref в so.payment.type, но пока там пусто.
         payment_type = self.env["so.payment.type"].search(
             [("website_ref", "=", data_order.get("payment", None))], limit=1
         )
@@ -383,9 +377,6 @@ class SiteIntegrationSync(models.TransientModel):
             "afterpayment_check": afterpayment_check,
             "note": note,
             "so_payment_type_id": payment_type,
-            # "address": address,
-            # "pricelist_value": pricelist_value,
-            # "warehouse_value": warehouse_value,
         }
         if carrier_value:
             so_values["carrier_id"] = carrier_value.id
@@ -407,15 +398,5 @@ class SiteIntegrationSync(models.TransientModel):
             else:
                 for product_dict in product:
                     get_so_line(so, product_dict)
-
-                # product_dict = products[ind]
-                # if product_dict:
-
-            #         so_count = self.load_data(dict_reply[ind].get("orders"))
-            # for product_dict in products:
-            #     if product_dict.get('product_id', False):
-
-            # order_line = self.env["sale.order.line"].create(str_values)
-            # order_line.product_id_change()
 
         return True
