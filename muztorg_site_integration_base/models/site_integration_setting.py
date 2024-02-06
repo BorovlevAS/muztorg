@@ -19,7 +19,7 @@ class SiteIntegrationSetting(models.Model):
 
     name = fields.Char()
 
-    setting_id = fields.Many2one(comodel_name="site.integration.base")
+    # setting_id = fields.Many2one(comodel_name="site.integration.base")
 
     id_seting = fields.Char(
         compute="_compute_id_seting",
@@ -27,12 +27,12 @@ class SiteIntegrationSetting(models.Model):
         readonly=False,
     )
 
-    model_reference = fields.Reference(
-        string="Value",
-        # compute="_compute_origin_values",
-        selection="_reference_models",
-        # readonly=True
-    )
+    # model_reference = fields.Reference(
+    #     string="Value",
+    #     # compute="_compute_origin_values",
+    #     selection="_reference_models",
+    #     # readonly=True
+    # )
     value_many2one = fields.Reference(
         string="Value",
         # compute="_compute_origin_values",

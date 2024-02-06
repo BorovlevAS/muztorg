@@ -20,7 +20,7 @@
                         <field name="company_id" groups="base.group_multi_company" />
 
                         <field name="url" />
-                        <field name="active" widget="boolean_toggle" />
+                        <!-- <field name="active" widget="boolean_toggle" /> -->
                         <field name="is_create_leads" widget="boolean_toggle" />
                         <!-- <field name="setting_pickup_id" />
                         <field name="setting_nova_poshta_id" /> widget="many2many_tags"
@@ -32,11 +32,21 @@
                     </notebook>                             -->
                     <group>
                         <field name="setting_ids" widget="section_and_note_one2many" mode="tree">
-                            <form string="setting site integration">
-                                <field name="name" />
+                            <form>
+                                <group>
+                                    <field name="setting_id" />
+                                    <!-- <field name="name" /> -->
+                                    <field name="value_many2one" />
+                                    <field name="id_seting" />
+                                </group>
+                            </form>
+
+                            <tree string="">
+                                <field name="setting_id" />
+                                <!-- <field name="name" /> -->
                                 <field name="value_many2one" />
                                 <field name="id_seting" />
-                            </form>
+                            </tree>
                         </field>
                     </group>
                 </sheet>

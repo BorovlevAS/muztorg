@@ -125,7 +125,8 @@ class SiteIntegrationSync(models.TransientModel):
         _logger.info("-----------------search for a partner %s", lastname)
         phone = format_phone(phone_code + telephone)
 
-        firstname = firstname + " " + patronymic
+        if patronymic:
+            firstname = firstname + " " + patronymic
 
         # errors = []
 
@@ -228,11 +229,11 @@ class SiteIntegrationSync(models.TransientModel):
             )
 
             pricelist_value = (
-                self.env["site.integration.setting"]
+                self.env["site.integration.setting.line"]
                 .search(
                     [
-                        ("setting_id", "=", self.settings_id.id),
-                        ("id_seting", "=", "id_samovyviz"),
+                        ("settings_id", "=", self.settings_id.id),
+                        ("setting_id.id_seting", "=", "id_prajs"),
                     ]
                 )
                 .value_many2one
@@ -248,11 +249,11 @@ class SiteIntegrationSync(models.TransientModel):
             # warehouse_id	Склад отгрузки определяем так: если shipping = 'NOVA POSHTA', то это всегда склад головний, (!!!! а где он прячется?)
             # если SamovyvozMTPodol, то это склад подол
             warehouse_value = (
-                self.env["site.integration.setting"]
+                self.env["site.integration.setting.line"]
                 .search(
                     [
-                        ("setting_id", "=", self.settings_id.id),
-                        ("id_seting", "=", "id_sklad_podil"),
+                        ("settings_id", "=", self.settings_id.id),
+                        ("setting_id.id_seting", "=", "id_sklad_podil"),
                     ]
                 )
                 .value_many2one
@@ -261,10 +262,10 @@ class SiteIntegrationSync(models.TransientModel):
 
             if shipping == "NOVA POSHTA":
                 carrier_value = (
-                    self.env["site.integration.setting"]
+                    self.env["site.integration.setting.line"]
                     .search(
                         [
-                            ("setting_id", "=", self.settings_id.id),
+                            ("settings_id", "=", self.settings_id.id),
                             ("id_seting", "=", "id_nova_poshta"),
                         ]
                     )
@@ -272,10 +273,10 @@ class SiteIntegrationSync(models.TransientModel):
                 )
             else:
                 carrier_value = (
-                    self.env["site.integration.setting"]
+                    self.env["site.integration.setting.line"]
                     .search(
                         [
-                            ("setting_id", "=", self.settings_id.id),
+                            ("settings_id", "=", self.settings_id.id),
                             ("id_seting", "=", "id_samovyviz"),
                         ]
                     )
@@ -305,84 +306,91 @@ class SiteIntegrationSync(models.TransientModel):
                 "biko_website_ref": data_order.get("order_id"),
                 "date_order": data_order.get("order_date"),
                 "afterpayment_check": afterpayment_check,
-                "carrier_id": carrier_value.id,
                 "note": note,
-                "address": address,
-                "pricelist_value": pricelist_value,
-                "warehouse_value": warehouse_value,
+                # "address": address,
+                # "pricelist_value": pricelist_value,
+                # "warehouse_value": warehouse_value,
             }
+            if carrier_value:
+                so_values["carrier_id"] = carrier_value.id
+            if pricelist_value:
+                so_values["carrier_id"] = pricelist_value.id
 
-            return so_values
-
-            # if address:
+            if address:
+                so_values["carrier_id"] = address.id
+            if warehouse_value:
+                so_values["carrier_id"] = warehouse_value.id
             #    so_values.
             # "partner_shipping_id":
             # 'pricelist_id': ,
 
-        #      new_lines = self.env['sale.order.line']
-        # for line in self.opportunity_id.lead_product_ids:
+            return so_values
 
-        #     data = self._prepare_sale_order_lines_from_opportunity(line)
-        #     new_line = new_lines.new(data)
-        #     new_lines += new_line
 
-        # self.order_line += new_lines
+#      new_lines = self.env['sale.order.line']
+# for line in self.opportunity_id.lead_product_ids:
 
-    #      def get_values_convert2saleorder(self):
-    #     return {
-    #         "name": self.name,
-    #         "partner_id": self.partner_id.id,
-    #         "team_id": self.team_id.id,
-    #         "campaign_id": self.campaign_id.id,
-    #         "source_id": self.source_id.id,
-    #         "medium_id": self.medium_id.id,
-    #         "tag_ids": [(6, 0, self.tag_ids.ids)],
-    #     }
+#     data = self._prepare_sale_order_lines_from_opportunity(line)
+#     new_line = new_lines.new(data)
+#     new_lines += new_line
 
-    # def action_button_convert2saleorder(self):
-    #     """Convert a phonecall into SO and redirect to the SO view."""
-    #     self.ensure_one()
-    #     so = self.env["sale.order"]
-    #     so_id = so.create(self.get_values_convert2saleorder())
+# self.order_line += new_lines
 
-    #  order_line = self.env["sale.order.line"].create(
-    #                 {
-    #                     "order_id": self.res_id,
-    #                     "product_id": line.product_id.id,
-    #                     "product_uom_qty": line.qty,
-    #                     "price_unit": line.price_unit,
-    #                 }
-    #             )
-    #             order_line.product_id_change()
+#      def get_values_convert2saleorder(self):
+#     return {
+#         "name": self.name,
+#         "partner_id": self.partner_id.id,
+#         "team_id": self.team_id.id,
+#         "campaign_id": self.campaign_id.id,
+#         "source_id": self.source_id.id,
+#         "medium_id": self.medium_id.id,
+#         "tag_ids": [(6, 0, self.tag_ids.ids)],
+#     }
 
-    # values = {
-    #         'order_id': self.id,
-    #         'name': so_description,
-    #         'product_uom_qty': 1,
-    #         'product_uom': carrier.product_id.uom_id.id,
-    #         'product_id': carrier.product_id.id,
-    #         'tax_id': [(6, 0, taxes_ids)],
-    #         'is_delivery': True,
-    #     }
+# def action_button_convert2saleorder(self):
+#     """Convert a phonecall into SO and redirect to the SO view."""
+#     self.ensure_one()
+#     so = self.env["sale.order"]
+#     so_id = so.create(self.get_values_convert2saleorder())
 
-    #  sample_sales_order = self.env['sale.order'].create({
-    #     'partner_id': partner.id
-    # })
-    # # take any existing product or create one
-    # product = self.env['product.product'].search([], limit=1)
-    # if len(product) == 0:
-    #     default_image_path = get_module_resource('product', 'static/img', 'product_product_13-image.png')
-    #     product = self.env['product.product'].create({
-    #         'name': _('Sample Product'),
-    #         'active': False,
-    #         'image_1920': base64.b64encode(open(default_image_path, 'rb').read())
-    #     })
-    #     product.product_tmpl_id.write({'active': False})
-    # self.env['sale.order.line'].create({
-    #     'name': _('Sample Order Line'),
-    #     'product_id': product.id,
-    #     'product_uom_qty': 10,
-    #     'price_unit': 123,
-    #     'order_id': sample_sales_order.id,
-    #     'company_id': sample_sales_order.company_id.id,
-    # })
+#  order_line = self.env["sale.order.line"].create(
+#                 {
+#                     "order_id": self.res_id,
+#                     "product_id": line.product_id.id,
+#                     "product_uom_qty": line.qty,
+#                     "price_unit": line.price_unit,
+#                 }
+#             )
+#             order_line.product_id_change()
+
+# values = {
+#         'order_id': self.id,
+#         'name': so_description,
+#         'product_uom_qty': 1,
+#         'product_uom': carrier.product_id.uom_id.id,
+#         'product_id': carrier.product_id.id,
+#         'tax_id': [(6, 0, taxes_ids)],
+#         'is_delivery': True,
+#     }
+
+#  sample_sales_order = self.env['sale.order'].create({
+#     'partner_id': partner.id
+# })
+# # take any existing product or create one
+# product = self.env['product.product'].search([], limit=1)
+# if len(product) == 0:
+#     default_image_path = get_module_resource('product', 'static/img', 'product_product_13-image.png')
+#     product = self.env['product.product'].create({
+#         'name': _('Sample Product'),
+#         'active': False,
+#         'image_1920': base64.b64encode(open(default_image_path, 'rb').read())
+#     })
+#     product.product_tmpl_id.write({'active': False})
+# self.env['sale.order.line'].create({
+#     'name': _('Sample Order Line'),
+#     'product_id': product.id,
+#     'product_uom_qty': 10,
+#     'price_unit': 123,
+#     'order_id': sample_sales_order.id,
+#     'company_id': sample_sales_order.company_id.id,
+# })

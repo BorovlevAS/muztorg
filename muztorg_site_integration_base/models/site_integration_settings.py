@@ -13,7 +13,7 @@ class SiteIntegrationBase(models.Model):
     #     string="Warehouse Podol", comodel_name="stock.warehouse"
     # )
     url = fields.Char()
-    active = fields.Boolean()
+    # active = fields.Boolean()
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
@@ -22,7 +22,7 @@ class SiteIntegrationBase(models.Model):
     is_create_leads = fields.Boolean()
 
     setting_ids = fields.One2many(
-        "site.integration.setting", "setting_id", auto_join=True
+        "site.integration.setting.line", "settings_id", auto_join=True
     )
 
     def sync_call(self):
