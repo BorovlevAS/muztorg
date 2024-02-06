@@ -15,6 +15,7 @@
         # "views/site_integration_fields_views.xml",
         "views/site_integration_setting_views.xml",
         "wizards/site_integration_sinc.xml",
+        "data/site_integration_setting.xml",
     ],
     "license": "LGPL-3",
     "installable": True,

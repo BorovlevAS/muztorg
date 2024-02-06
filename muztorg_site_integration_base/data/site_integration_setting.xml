@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="id_komanda_prodazhu" model="site.integration.setting">
+            <field name="name">Команда продажу</field>
+            <field name="id_seting">id_komanda_prodazhu</field>
+        </record>
+        <record id="id_samovyviz" model="site.integration.setting">
+            <field name="name">Самовивіз</field>
+            <field name="id_seting">id_samovyviz</field>
+        </record>
+        <record id="id_nova_poshta" model="site.integration.setting">
+            <field name="name">Нова Пошта</field>
+            <field name="id_seting">id_nova_poshta</field>
+        </record>
+        <record id="id_sklad_podil" model="site.integration.setting">
+            <field name="name">Склад Поділ</field>
+            <field name="id_seting">id_sklad_podil</field>
+        </record>
+        <record id="id_prajs" model="site.integration.setting">
+            <field name="name">Прайс</field>
+            <field name="id_seting">id_prajs</field>
+        </record>
+        <record id="pt_bank" model="site.integration.setting">
+            <field name="name">Склад головний</field>
+            <field name="id_seting">id_sklad_holovnyj</field>
+        </record>
+    </data>
+</odoo>

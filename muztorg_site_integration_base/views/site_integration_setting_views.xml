@@ -11,7 +11,7 @@
                         <!-- <field name="ttype" /> -->
                         <!-- <field name="model_reference" /> -->
                         <!-- <field name="value_char" attrs="{'invisible': [('ttype', '!=', 'char')]}" /> -->
-                        <field name="value_many2one" />
+                        <!-- <field name="value_many2one" /> -->
                         <!-- <field name="value_boolean" attrs="{'invisible': [('ttype', '!=', 'boolean')]}" /> -->
                         <field name="id_seting" />
                         <!-- <field name="model_reference" />
@@ -29,7 +29,7 @@
             <tree string="setting site integration">
                 <!-- <field name="setting_id" readonly="1" /> -->
                 <field name="name" />
-                <field name="value_many2one" />
+                <!-- <field name="value_many2one" /> -->
                 <field name="id_seting" />
             </tree>
         </field>

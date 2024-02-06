@@ -6,16 +6,16 @@ from odoo import api, fields, models
 class SiteIntegrationSetting(models.Model):
     _name = "site.integration.setting"
 
-    _TTYPE_SELECTION = [
-        ("boolean", "boolean"),
-        ("char", "char"),
-        # ("date", "date"),
-        # ("datetime", "datetime"),
-        # ("float", "float"),
-        # ("integer", "integer"),
-        ("many2one", "many2one"),
-        # ("selection", "selection"),
-    ]
+    # _TTYPE_SELECTION = [
+    #     ("boolean", "boolean"),
+    #     ("char", "char"),
+    #     # ("date", "date"),
+    #     # ("datetime", "datetime"),
+    #     # ("float", "float"),
+    #     # ("integer", "integer"),
+    #     ("many2one", "many2one"),
+    #     # ("selection", "selection"),
+    # ]
 
     name = fields.Char()
 
@@ -24,7 +24,7 @@ class SiteIntegrationSetting(models.Model):
     id_seting = fields.Char(
         compute="_compute_id_seting",
         store=True,
-        readonly=False,
+        # readonly=False,
     )
 
     # model_reference = fields.Reference(
@@ -33,12 +33,12 @@ class SiteIntegrationSetting(models.Model):
     #     selection="_reference_models",
     #     # readonly=True
     # )
-    value_many2one = fields.Reference(
-        string="Value",
-        # compute="_compute_origin_values",
-        selection="_reference_models",
-        # readonly=True
-    )
+    # value_many2one = fields.Reference(
+    #     string="Value",
+    #     # compute="_compute_origin_values",
+    #     selection="_reference_models",
+    #     # readonly=True
+    # )
 
     # value_char = fields.Char(
     #     # compute="_compute_origin_values",
@@ -70,22 +70,22 @@ class SiteIntegrationSetting(models.Model):
     #     # " neither available for search or group by function",
     # )
 
-    @api.model
-    def _reference_models(self):
-        # models = self.env["ir.model"].search([]) добавила отбор по конкретнім моделям, бо задолбало
-        models = self.env["ir.model"].search([("model", "in", self.get_model_names())])
-        return [(model.model, model.name) for model in models]
+    # @api.model
+    # def _reference_models(self):
+    #     # models = self.env["ir.model"].search([]) добавила отбор по конкретнім моделям, бо задолбало
+    #     models = self.env["ir.model"].search([("model", "in", self.get_model_names())])
+    #     return [(model.model, model.name) for model in models]
 
-    @api.model
-    def get_model_names(self):
-        return [
-            "delivery.carrier",
-            "crm.team",
-            "stock.warehouse",
-            "product.pricelist",
-        ]
+    # @api.model
+    # def get_model_names(self):
+    #     return [
+    #         "delivery.carrier",
+    #         "crm.team",
+    #         "stock.warehouse",
+    #         "product.pricelist",
+    #     ]
 
-    @api.depends("name")
+    @api.onchange("name")
     def _compute_id_seting(self):
         if self.name:
             latin_text = (
