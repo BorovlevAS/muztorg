@@ -198,8 +198,8 @@ class SiteIntegrationSync(models.TransientModel):
 
                 Partner = self.env["res.partner"].sudo()
                 data = {
-                    "mobile": phone,
-                    "email": email,
+                    # "mobile": phone,
+                    # "email": email,
                     "country_id": self.env.ref("base.ua").id,
                     "type": "delivery",
                     "lang": self.env.lang,
