@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime
 
 import xml2dict
 
@@ -49,7 +50,9 @@ class SiteIntegrationSync(models.TransientModel):
 
             return True
         else:
-            _logger.exception("Failed to download file")
+            _logger.exception(
+                "Failed to download file with setting %s", self.settings_id.name
+            )
             return False
 
     def load_data(self, data):
@@ -93,13 +96,15 @@ class SiteIntegrationSync(models.TransientModel):
                 city = CitiesList.search([("ref", "=", city_ref)], limit=1)
                 if not city:
                     _logger.info("city not found %s", city_str)
-                    return False
+                    return partner
 
                 if warehouse_ref:
                     WarehouseNP = self.env["delivery_novaposhta.warehouse"].sudo()
                     warehouse = WarehouseNP.search(
                         [("ref", "=", warehouse_ref)], limit=1
                     )
+                else:
+                    warehouse = None
                 street = self.env["delivery_novaposhta.streets_list"]
                 if address_str and not warehouse_ref:
                     streer_str = address_str.split(",")[0]
@@ -107,6 +112,8 @@ class SiteIntegrationSync(models.TransientModel):
                     street = StreetNP.search(
                         [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
                     )
+                    _logger.info("street not found %s", streer_str)
+                    return partner
 
                 Partner = self.env["res.partner"].sudo()
                 partner_domain = [
@@ -186,6 +193,8 @@ class SiteIntegrationSync(models.TransientModel):
                     warehouse = WarehouseNP.search(
                         [("ref", "=", warehouse_ref)], limit=1
                     )
+                else:
+                    warehouse = None
                 street = self.env["delivery_novaposhta.streets_list"]
                 if address_str and not warehouse_ref:
                     streer_str = address_str.split(",")[0]
@@ -193,6 +202,10 @@ class SiteIntegrationSync(models.TransientModel):
                     street = StreetNP.search(
                         [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
                     )
+                    # если не нашли улицу, то возвращаем самого партнера, т.к это поле обязательное
+                    if not street:
+                        _logger.info("street not found %s", streer_str)
+                        return partner, partner
 
                 Partner = self.env["res.partner"].sudo()
                 data = {
@@ -373,7 +386,9 @@ class SiteIntegrationSync(models.TransientModel):
             "biko_recipient_id": partner.id,
             "biko_recipient_type": "person",
             "biko_website_ref": data_order.get("order_id"),
-            "date_order": data_order.get("order_date"),
+            "date_order": datetime.strptime(
+                data_order.get("order_date"), "%Y-%m-%d %H:%M:%S"
+            ),
             "afterpayment_check": afterpayment_check,
             "note": note,
             "so_payment_type_id": payment_type,
@@ -398,5 +413,57 @@ class SiteIntegrationSync(models.TransientModel):
             else:
                 for product_dict in product:
                     get_so_line(so, product_dict)
+
+        # Если в настройке установлен признак Создавать лиды/сделки, то нужно создавать еще и их (модель crm.lead).
+        if self.settings_id.is_create_leads:
+            team_value = (
+                self.env["site.integration.setting.line"]
+                .search(
+                    [
+                        ("settings_id", "=", self.settings_id.id),
+                        ("id_seting", "=", "id_komanda_prodazhu"),
+                    ]
+                )
+                .value_many2one
+            )
+            stage_value = (
+                self.env["site.integration.setting.line"]
+                .search(
+                    [
+                        ("settings_id", "=", self.settings_id.id),
+                        ("id_seting", "=", "id_etap"),
+                    ]
+                )
+                .value_many2one
+            )
+
+            lead_values = {
+                "team_id": team_value.id,
+                "stage_id": stage_value.id,
+                "type": "opportunity",
+                "name": partner.name,
+                "expected_revenue": so.amount_total,
+                "partner_id": partner.id,
+                "contact_name": partner.firstname,
+                "contact_lastname": partner.lastname,
+                "mobile": partner.mobile,
+            }
+            lead = self.env["crm.lead"].create(lead_values)
+            so.opportunity_id = lead.id
+
+            for line in so.order_line:
+                str_values = {
+                    "lead_id": lead.id,
+                    "product_id": line.product_id.id,
+                    "description": line.name,
+                    "qty": line.product_uom_qty,
+                    "product_uom": line.product_uom.id,
+                    "price_unit": line.price_unit,
+                    "tax_id": line.tax_id,
+                }
+                # new_line = new_lines.new(data)
+                # new_lines += new_line
+                # lead.lead_product_ids += new_lines
+                self.env["crm.lead.product"].create(str_values)
 
         return True

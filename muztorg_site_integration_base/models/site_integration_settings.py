@@ -13,7 +13,7 @@ class SiteIntegrationBase(models.Model):
     #     string="Warehouse Podol", comodel_name="stock.warehouse"
     # )
     url = fields.Char()
-    # active = fields.Boolean()
+    active = fields.Boolean()
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
@@ -40,3 +40,12 @@ class SiteIntegrationBase(models.Model):
             "view_type": "form",
             "target": "new",
         }
+
+    # @api.model_create_multi
+    def _cron_import_data(self):
+        # SiteIntegration = self.env["site.integration.base"].sudo
+        syncs = self.env["site.integration.base"].search([])
+        for sync in syncs:
+            vals = {"settings_id": sync.id, "url": sync.url}
+            si_sync = self.env["site.integration.sync"].create(vals)
+            si_sync.import_data()
