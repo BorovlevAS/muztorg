@@ -41,13 +41,13 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem
+    <!-- <menuitem
         id="site_integration_setting_menu"
         name="setting site integration"
         action="action_site_integration_setting_tree"
         parent="muztorg_site_integration_base.menu_site_integration_operations"
         sequence="30"
-    />
+    /> -->
     <menuitem
         id="site_integration_setting_menu2"
         name="setting site integration"

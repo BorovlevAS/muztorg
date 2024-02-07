@@ -1,0 +1,229 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_site_integration_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-07 13:28+0000\n"
+"PO-Revision-Date: 2024-02-07 13:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__active
+msgid "Active"
+msgstr "Активное"
+
+#. module: muztorg_site_integration_base
+#: model:res.groups,name:muztorg_site_integration_base.group_site_integration_admin
+msgid "Administrator"
+msgstr "Администратор"
+
+#. module: muztorg_site_integration_base
+#: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_menu_root
+msgid "BIKO: site integration"
+msgstr "Обмен с сайтом"
+
+#. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_sync_wizard_form
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__company_id
+msgid "Company"
+msgstr "Компания"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__create_uid
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__create_uid
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__create_uid
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__create_date
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__create_date
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__create_date
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__create_date
+msgid "Created on"
+msgstr "Создано в"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__display_name
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__display_name
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__display_name
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__display_name
+msgid "Display Name"
+msgstr "Отображаемое название"
+
+#. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
+msgid "Export"
+msgstr "Выгрузка"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__id
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__id
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__id
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__id
+msgid "ID"
+msgstr "ИД"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__id_seting
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__id_seting
+msgid "Id Seting"
+msgstr "ИД параметра"
+
+#. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_sync_wizard_form
+msgid "Import"
+msgstr "Загрузка"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__is_create_leads
+msgid "Is Create Leads"
+msgstr "Создавать лиды/сделки"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base____last_update
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting____last_update
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line____last_update
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync____last_update
+msgid "Last Modified on"
+msgstr "Последнее изменение в"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__write_uid
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__write_uid
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__write_uid
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__write_uid
+msgid "Last Updated by"
+msgstr "Последнее обновление"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__write_date
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__write_date
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__write_date
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__write_date
+msgid "Last Updated on"
+msgstr "Последнее обновление в"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__name
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__name
+msgid "Name"
+msgstr "Название"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__name
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__setting_id
+msgid "Parameter"
+msgstr "Параметр"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__setting_ids
+msgid "Setting"
+msgstr "Настройка"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__settings_id
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__settings_id
+msgid "Settings"
+msgstr "Настройки"
+
+#. module: muztorg_site_integration_base
+#: model:ir.actions.act_window,name:muztorg_site_integration_base.action_site_integration_settings_tree
+#: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_settings_menu
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_tree
+msgid "Settings site integration"
+msgstr "Настройки обмена с сайтом"
+
+#. module: muztorg_site_integration_base
+#: model:ir.module.category,name:muztorg_site_integration_base.category_site_integration
+msgid "Site integration"
+msgstr "Обмен с сайтом"
+
+#. module: muztorg_site_integration_base
+#: model:ir.actions.server,name:muztorg_site_integration_base.biko_site_integration_import_data_ir_actions_server
+#: model:ir.cron,cron_name:muztorg_site_integration_base.biko_site_integration_import_data
+#: model:ir.cron,name:muztorg_site_integration_base.biko_site_integration_import_data
+msgid "Site integration: import data"
+msgstr "Обмен с сайтом: импорт данных"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model,name:muztorg_site_integration_base.model_site_integration_sync
+msgid "Site-integration Sync client"
+msgstr "Обмен с сайтом: синхронизация"
+
+#. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_sync_wizard_form
+msgid "Upload a file"
+msgstr "Загрузить файл"
+
+#. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_sync_wizard_form
+msgid "Upload orders"
+msgstr "Загрузить заказы"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__url
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__url
+msgid "Url"
+msgstr "Строка адреса"
+
+#. module: muztorg_site_integration_base
+#: model:res.groups,name:muztorg_site_integration_base.group_site_integration_user
+msgid "User"
+msgstr "Пользователь"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__value_many2one
+msgid "Value"
+msgstr "Значение"
+
+#. module: muztorg_site_integration_base
+#: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_menu_websites
+msgid "Websites"
+msgstr "Настройки обмена"
+
+#. module: muztorg_site_integration_base
+#: model:ir.actions.act_window,name:muztorg_site_integration_base.action_site_integration_setting_tree
+#: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_setting_menu
+#: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_setting_menu2
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_setting_view_form
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_setting_view_tree
+msgid "setting site integration"
+msgstr "Настройка параметров обмена"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model,name:muztorg_site_integration_base.model_site_integration_base
+msgid "site.integration.base"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model,name:muztorg_site_integration_base.model_site_integration_setting
+msgid "site.integration.setting"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model,name:muztorg_site_integration_base.model_site_integration_setting_line
+msgid "site.integration.setting.line"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/models/site_integration_settings.py:0
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
+#, python-format
+msgid "sync"
+msgstr "Синхронизировать"

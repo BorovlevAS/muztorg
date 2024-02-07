@@ -45,4 +45,5 @@ class SiteIntegrationSettingLine(models.Model):
             "crm.team",
             "stock.warehouse",
             "product.pricelist",
+            "crm.stage",
         ]

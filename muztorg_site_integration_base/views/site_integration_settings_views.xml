@@ -26,29 +26,31 @@
                         <field name="setting_nova_poshta_id" /> widget="many2many_tags"
                         <field name="setting_warehouse_podol_id" />  string="Settings" -->
                     </group>
-                    <!-- <notebook>
-                        <page name="settings">
-                        </page>
-                    </notebook>                             -->
-                    <group>
-                        <field name="setting_ids" widget="section_and_note_one2many" mode="tree">
-                            <form>
-                                <group>
-                                    <field name="setting_id" />
+                    <notebook>
+                        <page name="settings_import" string="Import">
+                            <field name="setting_ids" widget="section_and_note_one2many" mode="tree">
+                                <form>
+                                    <group>
+                                        <field name="setting_id" string="Parameter" />
+                                        <!-- <field name="name" /> -->
+                                        <field name="value_many2one" />
+                                        <field name="id_seting" />
+                                    </group>
+                                </form>
+
+                                <tree string="">
+                                    <field name="setting_id" string="Parameter" />
                                     <!-- <field name="name" /> -->
                                     <field name="value_many2one" />
                                     <field name="id_seting" />
-                                </group>
-                            </form>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="settings_export" string="Export" />
+                    </notebook>
+                    <!-- <group>
 
-                            <tree string="">
-                                <field name="setting_id" />
-                                <!-- <field name="name" /> -->
-                                <field name="value_many2one" />
-                                <field name="id_seting" />
-                            </tree>
-                        </field>
-                    </group>
+                    </group> -->
                 </sheet>
             </form>
         </field>

@@ -9,10 +9,10 @@
     <!-- groups="muztorg_site_integration_base.group_site_integration_admin,muztorg_site_integration_base.group_site_integration_user" -->
     <menuitem id="site_integration_menu_websites" name="Websites" parent="site_integration_menu_root" />
 
-    <menuitem
+    <!-- <menuitem
         id="menu_site_integration_operations"
         parent="site_integration_menu_root"
         name="Operations"
         sequence="10"
-    />
+    /> -->
 </odoo>

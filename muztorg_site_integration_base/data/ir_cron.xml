@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="biko_site_integration_import_data" model="ir.cron">
+            <field name="name">Site integration: import data</field>
+            <field name="model_id" ref="model_site_integration_base" />
+            <field name="code">model._cron_import_data()</field>
+            <!-- <field name="interval_number">1</field>
+            <field name="interval_type">days</field> -->
+            <field name="interval_number">20</field>
+            <field name="interval_type">minutes</field>
+            <!-- <field name="nextcall" eval="(DateTime.now() + timedelta(hours=2)).strftime('%Y-%m-%d %H:%M:%S')" /> -->
+            <field name="doall" eval="False" />
+            <field name="numbercall">-1</field>
+            <field name="state">code</field>
+
+            <field name="user_id" ref="base.user_root" />
+        </record>
+    </data>
+</odoo>
+<!-- <field name="name">Account: Test Draft Moves Exception</field>
+<field name="model_id" ref="account.model_account_move" />
+<field name="state">code</field>
+<field name="code">model.test_all_draft_moves()</field>
+<field name="user_id" ref="base.user_root" />
+<field name="interval_number">20</field>
+<field name="interval_type">minutes</field>
+<field name="numbercall">-1</field>
+<field name="doall" eval="False" />
+<field name="active" eval="False" /> -->

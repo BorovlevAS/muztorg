@@ -21,9 +21,13 @@
             <field name="name">Прайс</field>
             <field name="id_seting">id_prajs</field>
         </record>
-        <record id="pt_bank" model="site.integration.setting">
+        <record id="id_seting" model="site.integration.setting">
             <field name="name">Склад головний</field>
             <field name="id_seting">id_sklad_holovnyj</field>
+        </record>
+        <record id="id_etap" model="site.integration.setting">
+            <field name="name">Етап</field>
+            <field name="id_seting">id_etap</field>
         </record>
     </data>
 </odoo>
