@@ -1,4 +1,4 @@
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class SiteIntegrationBase(models.Model):
@@ -29,17 +29,18 @@ class SiteIntegrationBase(models.Model):
         self.ensure_one()
         vals = {"settings_id": self.id, "url": self.url}
         si_sync = self.env["site.integration.sync"].create(vals)
+        si_sync.import_data()
 
-        return {
-            "name": _("sync"),
-            "res_model": "site.integration.sync",
-            "res_id": si_sync.id,
-            "type": "ir.actions.act_window",
-            "view_id": False,
-            "view_mode": "form",
-            "view_type": "form",
-            "target": "new",
-        }
+        # return {
+        #     "name": _("sync"),
+        #     "res_model": "site.integration.sync",
+        #     "res_id": si_sync.id,
+        #     "type": "ir.actions.act_window",
+        #     "view_id": False,
+        #     "view_mode": "form",
+        #     "view_type": "form",
+        #     "target": "new",
+        # }
 
     # @api.model_create_multi
     def _cron_import_data(self):

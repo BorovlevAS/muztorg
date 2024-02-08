@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-07 13:28+0000\n"
-"PO-Revision-Date: 2024-02-07 13:28+0000\n"
+"POT-Creation-Date: 2024-02-08 09:02+0000\n"
+"PO-Revision-Date: 2024-02-08 09:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,12 @@ msgstr ""
 #. module: muztorg_site_integration_base
 #: model:res.groups,name:muztorg_site_integration_base.group_site_integration_admin
 msgid "Administrator"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_search
+msgid "Archived"
 msgstr ""
 
 #. module: muztorg_site_integration_base
@@ -90,6 +96,11 @@ msgid "Import"
 msgstr ""
 
 #. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_search
+msgid "Include archived"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__is_create_leads
 msgid "Is Create Leads"
 msgstr ""
@@ -126,12 +137,18 @@ msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__name
-#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__setting_id
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
 msgid "Parameter"
 msgstr ""
 
 #. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_search
+msgid "Search Sync. settings"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__setting_ids
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__setting_id
 msgid "Setting"
 msgstr ""
 
@@ -199,7 +216,6 @@ msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model:ir.actions.act_window,name:muztorg_site_integration_base.action_site_integration_setting_tree
-#: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_setting_menu
 #: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_setting_menu2
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_setting_view_form
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_setting_view_tree
@@ -222,8 +238,6 @@ msgid "site.integration.setting.line"
 msgstr ""
 
 #. module: muztorg_site_integration_base
-#: code:addons/muztorg_site_integration_base/models/site_integration_settings.py:0
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
-#, python-format
 msgid "sync"
 msgstr ""

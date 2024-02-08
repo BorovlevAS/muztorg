@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <record id="site_integration_settings_view_search" model="ir.ui.view">
+        <field name="name">site.integration.view.search</field>
+        <field name="model">site.integration.base</field>
+        <field name="arch" type="xml">
+            <search string="Search Sync. settings">
+                <field name="name" />
+                <filter
+                    string="Include archived"
+                    name="archived"
+                    domain="['|', ('active', '=', True), ('active', '=', False)]"
+                />
+                <separator />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+
     <record id="site_integration_settings_view_form" model="ir.ui.view">
         <field name="name">site.integration.base.form.view.muztorg</field>
         <field name="model">site.integration.base</field>
@@ -15,12 +32,18 @@
                             class="oe_highlight"
                         /> -->
                     </header>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
                     <group>
                         <field name="name" />
                         <field name="company_id" groups="base.group_multi_company" />
 
                         <field name="url" />
-                        <!-- <field name="active" widget="boolean_toggle" /> -->
+                        <field name="active" widget="boolean_toggle" />
                         <field name="is_create_leads" widget="boolean_toggle" />
                         <!-- <field name="setting_pickup_id" />
                         <field name="setting_nova_poshta_id" /> widget="many2many_tags"

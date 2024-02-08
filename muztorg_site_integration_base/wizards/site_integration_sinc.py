@@ -375,7 +375,7 @@ class SiteIntegrationSync(models.TransientModel):
 
         order_id = data_order.get("order_id")
 
-        note = f"Номер: {order_id}. Доставка: {shipping} {data_order.get('address')} {partner.phone} {partner.email}"
+        note = f"Номер: {order_id}. Доставка: {shipping} {data_order.get('address')} {partner.mobile} {partner.email}"
         if data_order.get("comment"):
             note = data_order.get("comment") + " " + note
 
