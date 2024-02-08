@@ -15,6 +15,7 @@
         "views/site_integration_setting_views.xml",
         "wizards/site_integration_sinc.xml",
         "data/site_integration_setting.xml",
+        "views/site_integration_protocol_views.xml",
         "data/ir_cron.xml",
     ],
     "license": "LGPL-3",

@@ -3,7 +3,7 @@ from datetime import datetime
 
 import xml2dict
 
-from odoo import fields, models
+from odoo import _, fields, models
 
 from odoo.addons.phone_validation.tools import phone_validation
 
@@ -28,32 +28,57 @@ class SiteIntegrationSync(models.TransientModel):
 
     settings_id = fields.Many2one("site.integration.base")
     url = fields.Char()
+    protocol_id = fields.Many2one("site.integration.protocol")
 
     def _get_rest_endpoint(self, website, **kwargs):
         return ""
 
     def import_data(self):
-        # Загрузка файла с сайта
-        API = MTApi(self.url, "")  # self._get_rest_endpoint(website, **kwargs)
-        response = API.import_data()
-        if response:
-            data = response.content.decode("utf-8")
-            dict_reply = xml2dict.parse(data)
-            # print(dict)
+        value_protocol = {
+            "note": "",
+            "date_exchange": datetime.today(),
+            "settings_id": self.settings_id.id,
+        }
+        protocol = self.env["site.integration.protocol"].sudo()
+        # id =  protocol.create(value_protocol)
+        self.protocol_id = protocol.create(value_protocol)
 
-            if not dict_reply.get("orders"):
-                for ind in dict_reply:
-                    if dict_reply[ind].get("orders"):
-                        so_count = self.load_data(dict_reply[ind].get("orders"))
+        try:
+            # Загрузка файла с сайта
+            API = MTApi(self.url, "")  # self._get_rest_endpoint(website, **kwargs)
+            response = API.import_data()
+            if response:
+                data = response.content.decode("utf-8")
+                self.protocol_id.create_file(response.content)
+                dict_reply = xml2dict.parse(data)
+                self.protocol_id.status = "ok"
+                return self.import_orders(dict_reply)
+            else:
+                _logger.exception(
+                    "Failed to download file with setting %s", self.settings_id.name
+                )
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nFailed to download file with setting %s", self.settings_id.name
+                )
+                self.protocol_id.status = "error"
+                return False
+        except Exception as exc:
+            _logger.exception("exception: %s", exc)
+            self.protocol_id.note = self.protocol_id.note + _("\nexception: %s", exc)
+            self.protocol_id.status = "error"
 
-            _logger.exception("%s orders loaded", so_count)
+    def import_orders(self, dict_reply):
+        if not dict_reply.get("orders"):
+            for ind in dict_reply:
+                if dict_reply[ind].get("orders"):
+                    so_count = self.load_data(dict_reply[ind].get("orders"))
 
-            return True
-        else:
-            _logger.exception(
-                "Failed to download file with setting %s", self.settings_id.name
-            )
-            return False
+        _logger.exception("%s orders loaded", so_count)
+        self.protocol_id.note = self.protocol_id.note + _(
+            "\n%s orders loaded", so_count
+        )
+
+        return True
 
     def load_data(self, data):
         count = 0
@@ -96,6 +121,9 @@ class SiteIntegrationSync(models.TransientModel):
                 city = CitiesList.search([("ref", "=", city_ref)], limit=1)
                 if not city:
                     _logger.info("city not found %s", city_str)
+                    self.protocol_id.note = self.protocol_id.note + _(
+                        "\ncity not found %s", city_str
+                    )
                     return partner
 
                 if warehouse_ref:
@@ -113,6 +141,9 @@ class SiteIntegrationSync(models.TransientModel):
                         [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
                     )
                     _logger.info("street not found %s", streer_str)
+                    self.protocol_id.note = self.protocol_id.note + _(
+                        "\nstreet not found %s", streer_str
+                    )
                     return partner
 
                 Partner = self.env["res.partner"].sudo()
@@ -171,6 +202,9 @@ class SiteIntegrationSync(models.TransientModel):
                     "lang": self.env.lang,
                 }
                 _logger.info("create a partner %s", lastname)
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\ncreate a partner %s", lastname
+                )
                 partner = Partner.create(data)
 
                 shipping = value_address.get("shipping")
@@ -186,6 +220,9 @@ class SiteIntegrationSync(models.TransientModel):
                 city = CitiesList.search([("ref", "=", city_ref)], limit=1)
                 if not city:
                     _logger.info("city not found %s", city_str)
+                    self.protocol_id.note = self.protocol_id.note + _(
+                        "\ncity not found %s", city_str
+                    )
                     return partner, partner
 
                 if warehouse_ref:
@@ -205,6 +242,9 @@ class SiteIntegrationSync(models.TransientModel):
                     # если не нашли улицу, то возвращаем самого партнера, т.к это поле обязательное
                     if not street:
                         _logger.info("street not found %s", streer_str)
+                        self.protocol_id.note = self.protocol_id.note + _(
+                            "\nstreet not found %s", streer_str
+                        )
                         return partner, partner
 
                 Partner = self.env["res.partner"].sudo()
@@ -277,6 +317,9 @@ class SiteIntegrationSync(models.TransientModel):
         if so:
             #  уже загружен, пропускаем
             _logger.info("the order is already loaded %s", so)
+            self.protocol_id.note = self.protocol_id.note + _(
+                "\nthe order is already loaded %s", data_order.get("order_id")
+            )
             return False
 
         shipping = data_order.get("shipping", None)
@@ -416,54 +459,57 @@ class SiteIntegrationSync(models.TransientModel):
 
         # Если в настройке установлен признак Создавать лиды/сделки, то нужно создавать еще и их (модель crm.lead).
         if self.settings_id.is_create_leads:
-            team_value = (
-                self.env["site.integration.setting.line"]
-                .search(
-                    [
-                        ("settings_id", "=", self.settings_id.id),
-                        ("id_seting", "=", "id_komanda_prodazhu"),
-                    ]
-                )
-                .value_many2one
-            )
-            stage_value = (
-                self.env["site.integration.setting.line"]
-                .search(
-                    [
-                        ("settings_id", "=", self.settings_id.id),
-                        ("id_seting", "=", "id_etap"),
-                    ]
-                )
-                .value_many2one
-            )
-
-            lead_values = {
-                "team_id": team_value.id,
-                "stage_id": stage_value.id,
-                "type": "opportunity",
-                "name": partner.name,
-                "expected_revenue": so.amount_total,
-                "partner_id": partner.id,
-                "contact_name": partner.firstname,
-                "contact_lastname": partner.lastname,
-                "mobile": partner.mobile,
-            }
-            lead = self.env["crm.lead"].create(lead_values)
-            so.opportunity_id = lead.id
-
-            for line in so.order_line:
-                str_values = {
-                    "lead_id": lead.id,
-                    "product_id": line.product_id.id,
-                    "description": line.name,
-                    "qty": line.product_uom_qty,
-                    "product_uom": line.product_uom.id,
-                    "price_unit": line.price_unit,
-                    "tax_id": line.tax_id,
-                }
-                # new_line = new_lines.new(data)
-                # new_lines += new_line
-                # lead.lead_product_ids += new_lines
-                self.env["crm.lead.product"].create(str_values)
+            self.create_lead(so)
 
         return True
+
+    def create_lead(self, so):
+        team_value = (
+            self.env["site.integration.setting.line"]
+            .search(
+                [
+                    ("settings_id", "=", self.settings_id.id),
+                    ("id_seting", "=", "id_komanda_prodazhu"),
+                ]
+            )
+            .value_many2one
+        )
+        stage_value = (
+            self.env["site.integration.setting.line"]
+            .search(
+                [
+                    ("settings_id", "=", self.settings_id.id),
+                    ("id_seting", "=", "id_etap"),
+                ]
+            )
+            .value_many2one
+        )
+
+        lead_values = {
+            "team_id": team_value.id,
+            "stage_id": stage_value.id,
+            "type": "opportunity",
+            "name": so.partner_id.name,
+            "expected_revenue": so.amount_total,
+            "partner_id": so.partner_id.id,
+            "contact_name": so.partner_id.firstname,
+            "contact_lastname": so.partner_id.lastname,
+            "mobile": so.partner_id.mobile,
+        }
+        lead = self.env["crm.lead"].create(lead_values)
+        so.opportunity_id = lead.id
+
+        for line in so.order_line:
+            str_values = {
+                "lead_id": lead.id,
+                "product_id": line.product_id.id,
+                "description": line.name,
+                "qty": line.product_uom_qty,
+                "product_uom": line.product_uom.id,
+                "price_unit": line.price_unit,
+                "tax_id": line.tax_id,
+            }
+            # new_line = new_lines.new(data)
+            # new_lines += new_line
+            # lead.lead_product_ids += new_lines
+            self.env["crm.lead.product"].create(str_values)
