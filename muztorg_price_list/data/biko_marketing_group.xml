@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="biko_mg_01" model="biko.marketing.group">
+        <field name="name">MG01</field>
+        <field name="limit_from">0</field>
+        <field name="limit_to">5</field>
+    </record>
+    <record id="biko_mg_02" model="biko.marketing.group">
+        <field name="name">MG02</field>
+        <field name="limit_from">5</field>
+        <field name="limit_to">10</field>
+    </record>
+    <record id="biko_mg_03" model="biko.marketing.group">
+        <field name="name">MG03</field>
+        <field name="limit_from">10</field>
+        <field name="limit_to">15</field>
+    </record>
+    <record id="biko_mg_04" model="biko.marketing.group">
+        <field name="name">MG04</field>
+        <field name="limit_from">15</field>
+        <field name="limit_to">20</field>
+    </record>
+    <record id="biko_mg_05" model="biko.marketing.group">
+        <field name="name">MG05</field>
+        <field name="limit_from">20</field>
+        <field name="limit_to">100</field>
+    </record>
+</odoo>

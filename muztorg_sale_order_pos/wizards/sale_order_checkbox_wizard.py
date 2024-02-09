@@ -65,17 +65,31 @@ class SaleOrderCheckbox(models.TransientModel):
                 "good": {
                     "code": line.product_id.id,
                     "name": line.product_id.name,
-                    "price": line.price_unit * 100,
+                    "price": round(line.price_unit * 100, 2),
                     "barcode": line.product_id.barcode,
                     "tax": [],
                 },
-                "quantity": line.product_uom_qty * 1000,
+                "quantity": round(line.product_uom_qty * 1000, 2),
             }
             if line.tax_id:
                 for tax in line.tax_id:
                     good_value["good"]["tax"].append(CHECKBOX_TAX_TABLE[tax.amount])
             else:
                 good_value["good"]["tax"].append(8)
+
+            if line.discount:
+                good_value.update(
+                    {
+                        "discounts": [
+                            {
+                                "type": "DISCOUNT",
+                                "mode": "PERCENT",
+                                "value": line.discount,
+                            }
+                        ]
+                    }
+                )
+
             payload["goods"].append(good_value)
 
         for payment in self.payment_lines:
@@ -85,7 +99,7 @@ class SaleOrderCheckbox(models.TransientModel):
                 "type": payment.payment_type.checkbox_payment_type
                 if payment.payment_type.checkbox_payment_type
                 else "CASH",
-                "value": payment.payment_amount * 100,
+                "value": round(payment.payment_amount * 100, 2),
             }
             if payment.payment_type.checkbox_payment_label:
                 payment_vals.update(
