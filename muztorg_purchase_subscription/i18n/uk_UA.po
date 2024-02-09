@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-15 13:11+0000\n"
-"PO-Revision-Date: 2024-01-15 13:11+0000\n"
+"POT-Creation-Date: 2024-02-09 11:26+0000\n"
+"PO-Revision-Date: 2024-02-09 11:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -476,7 +476,7 @@ msgstr "Журнал"
 #. module: muztorg_purchase_subscription
 #: model:ir.model,name:muztorg_purchase_subscription.model_account_move
 msgid "Journal Entry"
-msgstr "Запис журналу"
+msgstr ""
 
 #. module: muztorg_purchase_subscription
 #: model:ir.model.fields,field_description:muztorg_purchase_subscription.field_purchase_subscription_stage__fold
@@ -884,9 +884,9 @@ msgid "Susbcription stages"
 msgstr "Етапи підписки"
 
 #. module: muztorg_purchase_subscription
-#: model_terms:ir.ui.view,arch_db:muztorg_purchase_subscription.view_product_suscribable_filter
+#: model_terms:ir.ui.view,arch_db:muztorg_purchase_subscription.biko_product_template_search_view
 msgid "Suscribable products"
-msgstr "Продукти, що доступні для підписок"
+msgstr "Доступні для підписки"
 
 #. module: muztorg_purchase_subscription
 #: model:ir.model.fields,field_description:muztorg_purchase_subscription.field_purchase_subscription_tag__name

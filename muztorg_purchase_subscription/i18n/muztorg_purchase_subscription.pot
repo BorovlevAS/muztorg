@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-15 13:10+0000\n"
-"PO-Revision-Date: 2024-01-15 13:10+0000\n"
+"POT-Creation-Date: 2024-02-09 11:26+0000\n"
+"PO-Revision-Date: 2024-02-09 11:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -857,7 +857,7 @@ msgid "Susbcription stages"
 msgstr ""
 
 #. module: muztorg_purchase_subscription
-#: model_terms:ir.ui.view,arch_db:muztorg_purchase_subscription.view_product_suscribable_filter
+#: model_terms:ir.ui.view,arch_db:muztorg_purchase_subscription.biko_product_template_search_view
 msgid "Suscribable products"
 msgstr ""
 

@@ -10,6 +10,7 @@
         "purchase",
         "account",
         "product",
+        "biko_add_h_product_ux",
     ],
     "data": [
         "views/product_template_views.xml",
