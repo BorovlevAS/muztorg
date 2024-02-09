@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings" model="ir.ui.view">
+        <field name="name">res.config.settings.inherited</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="simbioz_account_cargo_customs_declaration.res_config_settings" />
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='ccd_broker_product_id']/../.." position="after">
+                <div class="content-group">
+                    <div class="row mt16">
+                        <label string="VAT product" for="ccd_vat_product_id" class="col-lg-3 o_light_label" />
+                        <field name="ccd_vat_product_id" domain="[('type', '=', 'service')]" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
