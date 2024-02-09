@@ -58,7 +58,7 @@ class SiteIntegrationSync(models.TransientModel):
                     "Failed to download file with setting %s", self.settings_id.name
                 )
                 self.protocol_id.note = self.protocol_id.note + _(
-                    "\nFailed to download file with setting %s", self.settings_id.name
+                    "\nNo access to the site "
                 )
                 self.protocol_id.status = "error"
                 return False
@@ -89,201 +89,211 @@ class SiteIntegrationSync(models.TransientModel):
 
         return count
 
-    def load_order(self, data_order):
-        def get_partner(value_partner, value_address):
-            def format_phone(number):
-                if not number:
-                    return False
+    def get_partner(self, value_partner, value_address):
+        def format_phone(number):
+            if not number:
+                return False
 
-                country = self.env.ref("base.ua")
-                if not country:
-                    return number
-                return phone_validation.phone_format(
-                    number,
-                    country.code if country else None,
-                    country.phone_code if country else None,
-                    force_format="INTERNATIONAL",
-                    raise_exception=False,
-                )
+            country = self.env.ref("base.ua")
+            if not country:
+                return number
+            return phone_validation.phone_format(
+                number,
+                country.code if country else None,
+                country.phone_code if country else None,
+                force_format="INTERNATIONAL",
+                raise_exception=False,
+            )
 
-            def search_address(partner, value_address):
-                # city, warehouse, street=None
-                shipping = value_address.get("shipping")
-                if shipping != "NOVA POSHTA":
-                    return False
+        def search_address(partner, value_address):
+            # city, warehouse, street=None
+            shipping = value_address.get("shipping")
+            if shipping != "NOVA POSHTA":
+                return False
 
-                city_str = value_address.get("city")
-                city_ref = value_address.get("city_ref")
-                address_str = value_address.get("address")
-                warehouse_ref = value_address.get("warehouse")
+            city_str = value_address.get("city")
+            city_ref = value_address.get("city_ref")
+            address_str = value_address.get("address")
+            warehouse_ref = value_address.get("warehouse")
 
-                CitiesList = self.env["delivery_novaposhta.cities_list"].sudo()
-                city = CitiesList.search([("ref", "=", city_ref)], limit=1)
-                if not city:
-                    _logger.info("city not found %s", city_str)
-                    self.protocol_id.note = self.protocol_id.note + _(
-                        "\ncity not found %s", city_str
-                    )
-                    return partner
-
-                if warehouse_ref:
-                    WarehouseNP = self.env["delivery_novaposhta.warehouse"].sudo()
-                    warehouse = WarehouseNP.search(
-                        [("ref", "=", warehouse_ref)], limit=1
-                    )
-                else:
-                    warehouse = None
-                street = self.env["delivery_novaposhta.streets_list"]
-                if address_str and not warehouse_ref:
-                    streer_str = address_str.split(",")[0]
-                    StreetNP = self.env["delivery_novaposhta.streets_list"].sudo()
-                    street = StreetNP.search(
-                        [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
-                    )
-                    _logger.info("street not found %s", streer_str)
-                    self.protocol_id.note = self.protocol_id.note + _(
-                        "\nstreet not found %s", streer_str
-                    )
-                    return partner
-
-                Partner = self.env["res.partner"].sudo()
-                partner_domain = [
-                    ("parent_id", "=", partner.id),
-                    ("type", "=", "delivery"),  # Тип адреси	Адреса доставки
-                    ("np_delivery_address", "=", True),  # Адреса для Нової Пошти
-                    ("np_city", "=", city.id),
-                ]
-                # np_service_type 1		Doors	Адреса 2		Warehouse	Склад Тип послуги
-                if warehouse:
-                    partner_domain.append(("np_warehouse", "=", warehouse.id))
-                    partner_domain.append(("np_service_type", "=", "Warehouse"))
-                elif street:
-                    partner_domain.append(("np_street", "=", street.id))
-                    partner_domain.append(("np_service_type", "=", "Doors"))
-
-                partner_address = Partner.search(partner_domain, limit=1)
-
-                if partner_address:
-                    return partner_address
-                else:
-                    return partner
-
-            def search_partner(phone, email, lastname, firstname, value_address):
-                # Partner = self.env["res.partner"].with_company(company.id).sudo()
-                Partner = self.env["res.partner"].sudo()
-
-                partner_domain = [
-                    "|",
-                    ("mobile", "=", phone),
-                    ("biko_1c_phone", "=", phone),
-                ]
-                partner = Partner.search(partner_domain, limit=1)
-
-                if partner:
-                    address = search_address(partner, value_address)
-                    return partner, address
-
-                partner_domain = [
-                    ("email", "=", email),
-                ]
-                partner = Partner.search(partner_domain, limit=1)
-
-                if partner:
-                    address = search_address(partner, value_address)
-                    return partner, address
-
-                data = {
-                    "lastname": lastname,
-                    "firstname": firstname,
-                    "mobile": phone,
-                    "email": email,
-                    "country_id": self.env.ref("base.ua").id,
-                    "type": "contact",
-                    "lang": self.env.lang,
-                }
-                _logger.info("create a partner %s", lastname)
+            CitiesList = self.env["delivery_novaposhta.cities_list"].sudo()
+            city = CitiesList.search([("ref", "=", city_ref)], limit=1)
+            if not city:
+                _logger.info("city not found %s", city_str)
                 self.protocol_id.note = self.protocol_id.note + _(
-                    "\ncreate a partner %s", lastname
+                    "\nDelivery city not found  %s", city_str
                 )
-                partner = Partner.create(data)
+                return partner
 
-                shipping = value_address.get("shipping")
-                if shipping != "NOVA POSHTA":
-                    return partner, False
-
-                city_str = value_address.get("city")
-                city_ref = value_address.get("city_ref")
-                address_str = value_address.get("address")
-                warehouse_ref = value_address.get("warehouse")
-
-                CitiesList = self.env["delivery_novaposhta.cities_list"].sudo()
-                city = CitiesList.search([("ref", "=", city_ref)], limit=1)
-                if not city:
-                    _logger.info("city not found %s", city_str)
+            if warehouse_ref:
+                WarehouseNP = self.env["delivery_novaposhta.warehouse"].sudo()
+                warehouse = WarehouseNP.search([("ref", "=", warehouse_ref)], limit=1)
+                if not warehouse:
                     self.protocol_id.note = self.protocol_id.note + _(
-                        "\ncity not found %s", city_str
+                        "\nDelivery branch not found %s", warehouse_ref
                     )
-                    return partner, partner
+            else:
+                warehouse = None
+            street = self.env["delivery_novaposhta.streets_list"]
+            if address_str and not warehouse_ref:
+                streer_str = address_str.split(",")[0]
+                StreetNP = self.env["delivery_novaposhta.streets_list"].sudo()
+                street = StreetNP.search(
+                    [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
+                )
+                _logger.info("street not found %s", streer_str)
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nDelivery street not found %s", streer_str
+                )
+                return partner
 
-                if warehouse_ref:
-                    WarehouseNP = self.env["delivery_novaposhta.warehouse"].sudo()
-                    warehouse = WarehouseNP.search(
-                        [("ref", "=", warehouse_ref)], limit=1
-                    )
-                else:
-                    warehouse = None
-                street = self.env["delivery_novaposhta.streets_list"]
-                if address_str and not warehouse_ref:
-                    streer_str = address_str.split(",")[0]
-                    StreetNP = self.env["delivery_novaposhta.streets_list"].sudo()
-                    street = StreetNP.search(
-                        [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
-                    )
-                    # если не нашли улицу, то возвращаем самого партнера, т.к это поле обязательное
-                    if not street:
-                        _logger.info("street not found %s", streer_str)
-                        self.protocol_id.note = self.protocol_id.note + _(
-                            "\nstreet not found %s", streer_str
-                        )
-                        return partner, partner
+            Partner = self.env["res.partner"].sudo()
+            partner_domain = [
+                ("parent_id", "=", partner.id),
+                ("type", "=", "delivery"),  # Тип адреси	Адреса доставки
+                ("np_delivery_address", "=", True),  # Адреса для Нової Пошти
+                ("np_city", "=", city.id),
+            ]
+            # np_service_type 1		Doors	Адреса 2		Warehouse	Склад Тип послуги
+            if warehouse:
+                partner_domain.append(("np_warehouse", "=", warehouse.id))
+                partner_domain.append(("np_service_type", "=", "Warehouse"))
+            elif street:
+                partner_domain.append(("np_street", "=", street.id))
+                partner_domain.append(("np_service_type", "=", "Doors"))
 
-                Partner = self.env["res.partner"].sudo()
-                data = {
-                    "country_id": self.env.ref("base.ua").id,
-                    "type": "delivery",
-                    "lang": self.env.lang,
-                    "parent_id": partner.id,
-                    "np_delivery_address": True,
-                    "np_city": city.id,
-                }
+            partner_address = Partner.search(partner_domain, limit=1)
 
-                # np_service_type 1		Doors	Адреса 2		Warehouse	Склад Тип послуги
-                if warehouse:
-                    data["np_warehouse"] = warehouse.id
-                    data["np_service_type"] = "Warehouse"
-                elif street:
-                    data["lastname"] = streer_str
-                    data["np_street"] = street.id
-                    data["np_service_type"] = "Doors"
-                    data["house"] = address_str.split(",")[1]
-                partner_address = Partner.create(data)
+            if partner_address:
+                return partner_address
+            else:
+                return partner
 
-                return partner, partner_address
+        def search_partner(phone, email, lastname, firstname, value_address):
+            # Partner = self.env["res.partner"].with_company(company.id).sudo()
+            Partner = self.env["res.partner"].sudo()
 
-            phone_code = value_partner.get("phone_code")
-            telephone = value_partner.get("telephone")
-            email = value_partner.get("email")
-            lastname = value_partner.get("lastname")
-            firstname = value_partner.get("firstname")
-            patronymic = value_partner.get("patronymic")
-            _logger.info("-----------------search for a partner %s", lastname)
-            phone = format_phone(phone_code + telephone)
+            partner_domain = [
+                "|",
+                ("mobile", "=", phone),
+                ("biko_1c_phone", "=", phone),
+            ]
+            partner = Partner.search(partner_domain, limit=1)
 
-            if patronymic:
-                firstname = firstname + " " + patronymic
+            if partner:
+                address = search_address(partner, value_address)
+                return partner, address
 
-            return search_partner(phone, email, lastname, firstname, value_address)
+            partner_domain = [
+                ("email", "=", email),
+            ]
+            partner = Partner.search(partner_domain, limit=1)
 
+            if partner:
+                address = search_address(partner, value_address)
+                return partner, address
+
+            data = {
+                "lastname": lastname,
+                "firstname": firstname,
+                "mobile": phone,
+                "email": email,
+                "country_id": self.env.ref("base.ua").id,
+                "type": "contact",
+                "lang": self.env.lang,
+            }
+            _logger.info("create a partner %s", lastname)
+            self.protocol_id.note = self.protocol_id.note + _(
+                "\ncreate a partner %s", lastname
+            )
+            partner = Partner.create(data)
+
+            if not partner:
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nIt is impossible to register a client %s",
+                    lastname + " " + firstname,
+                )
+
+            # shipping = value_address.get("shipping")
+            # if shipping != "NOVA POSHTA":
+            #     return partner, False
+
+            # city_str = value_address.get("city")
+            # city_ref = value_address.get("city_ref")
+            # address_str = value_address.get("address")
+            # warehouse_ref = value_address.get("warehouse")
+
+            # CitiesList = self.env["delivery_novaposhta.cities_list"].sudo()
+            # city = CitiesList.search([("ref", "=", city_ref)], limit=1)
+            # if not city:
+            #     _logger.info("city not found %s", city_str)
+            #     self.protocol_id.note = self.protocol_id.note + _(
+            #         "\ncity not found %s", city_str
+            #     )
+            #     return partner, partner
+
+            # if warehouse_ref:
+            #     WarehouseNP = self.env["delivery_novaposhta.warehouse"].sudo()
+            #     warehouse = WarehouseNP.search(
+            #         [("ref", "=", warehouse_ref)], limit=1
+            #     )
+            # else:
+            #     warehouse = None
+            # street = self.env["delivery_novaposhta.streets_list"]
+            # if address_str and not warehouse_ref:
+            #     streer_str = address_str.split(",")[0]
+            #     StreetNP = self.env["delivery_novaposhta.streets_list"].sudo()
+            #     street = StreetNP.search(
+            #         [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
+            #     )
+            #     # если не нашли улицу, то возвращаем самого партнера, т.к это поле обязательное
+            #     if not street:
+            #         _logger.info("street not found %s", streer_str)
+            #         self.protocol_id.note = self.protocol_id.note + _(
+            #             "\nstreet not found %s", streer_str
+            #         )
+
+            #             return partner, partner
+
+            # Partner = self.env["res.partner"].sudo()
+            # data = {
+            #     "country_id": self.env.ref("base.ua").id,
+            #     "type": "delivery",
+            #     "lang": self.env.lang,
+            #     "parent_id": partner.id,
+            #     "np_delivery_address": True,
+            #     "np_city": city.id,
+            # }
+
+            # # np_service_type 1		Doors	Адреса 2		Warehouse	Склад Тип послуги
+            # if warehouse:
+            #     data["np_warehouse"] = warehouse.id
+            #     data["np_service_type"] = "Warehouse"
+            # elif street:
+            #     data["lastname"] = streer_str
+            #     data["np_street"] = street.id
+            #     data["np_service_type"] = "Doors"
+            #     data["house"] = address_str.split(",")[1]
+            # partner_address = Partner.create(data)
+
+            partner_address = search_address(partner, value_address)
+            return partner, partner_address
+
+        phone_code = value_partner.get("phone_code")
+        telephone = value_partner.get("telephone")
+        email = value_partner.get("email")
+        lastname = value_partner.get("lastname")
+        firstname = value_partner.get("firstname")
+        patronymic = value_partner.get("patronymic")
+        _logger.info("-----------------search for a partner %s", lastname)
+        phone = format_phone(phone_code + telephone)
+
+        if patronymic:
+            firstname = firstname + " " + patronymic
+
+        return search_partner(phone, email, lastname, firstname, value_address)
+
+    def load_order(self, data_order):
         def get_so_line(so, product_dict):
             product = self.env["product.product"].search(
                 [
@@ -307,6 +317,13 @@ class SiteIntegrationSync(models.TransientModel):
                 order_line = self.env["sale.order.line"].create(str_values)
                 order_line.product_id_change()
                 order_line.price_unit = product_dict.get("price", order_line.price_unit)
+                return False
+            else:
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nProduct not found by control code  %s",
+                    product_dict.get("product_id"),
+                )
+                return True
 
         if not data_order.get("order_id"):
             return False
@@ -318,10 +335,13 @@ class SiteIntegrationSync(models.TransientModel):
             #  уже загружен, пропускаем
             _logger.info("the order is already loaded %s", so)
             self.protocol_id.note = self.protocol_id.note + _(
-                "\nthe order is already loaded %s", data_order.get("order_id")
+                "\nthe order is already loaded #%s", data_order.get("order_id")
             )
             return False
 
+        self.protocol_id.note = self.protocol_id.note + _(
+            "\nLoading order #%s", data_order.get("order_id")
+        )
         shipping = data_order.get("shipping", None)
         order_id = data_order.get("order_id", None)
 
@@ -341,7 +361,7 @@ class SiteIntegrationSync(models.TransientModel):
             "shipping": shipping,
         }
 
-        partner, address = get_partner(value_partner, value_address)
+        partner, address = self.get_partner(value_partner, value_address)
 
         pricelist_value = (
             self.env["site.integration.setting.line"]
@@ -357,6 +377,10 @@ class SiteIntegrationSync(models.TransientModel):
         payment_type = self.env["so.payment.type"].search(
             [("website_ref", "=", data_order.get("payment", None))], limit=1
         )
+        if not payment_type:
+            self.protocol_id.note = self.protocol_id.note + _(
+                "\nFailed to select payment type %s", data_order.get("payment", None)
+            )
 
         # carrier_id	Способ доставки - если shipping = 'NOVA POSHTA', то это Новая почта, если SamovyvozMTPodol - самовывоз
         # склад
@@ -434,7 +458,7 @@ class SiteIntegrationSync(models.TransientModel):
             ),
             "afterpayment_check": afterpayment_check,
             "note": note,
-            "so_payment_type_id": payment_type,
+            "so_payment_type_id": payment_type.id,
         }
         if carrier_value:
             so_values["carrier_id"] = carrier_value.id
@@ -449,13 +473,25 @@ class SiteIntegrationSync(models.TransientModel):
 
         #  ТЧ Продукты
         products = data_order.get("products", False)
+        is_error = False
         if products:
             product = products["product"]
             if isinstance(product, dict):
-                get_so_line(so, product)
+                is_error += get_so_line(so, product)
             else:
                 for product_dict in product:
-                    get_so_line(so, product_dict)
+                    is_error += get_so_line(so, product_dict)
+
+        if len(so.order_line) != 0 and not is_error:
+            if data_order.get("payment") == "PriPoluchenii":
+                so.action_confirm()
+            else:
+                so.action_set_waiting()
+        else:
+            self.protocol_id.note = self.protocol_id.note + _(
+                "\nThe order has not been confirmed and is recorded with number  %s",
+                so.name,
+            )
 
         # Если в настройке установлен признак Создавать лиды/сделки, то нужно создавать еще и их (модель crm.lead).
         if self.settings_id.is_create_leads:
