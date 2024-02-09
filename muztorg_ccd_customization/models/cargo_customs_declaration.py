@@ -63,3 +63,146 @@ class CargoCustomsDeclaration(models.Model):
                 )
             else:
                 declaration.customs_fee = declaration.customs_fee_uah
+
+    def _generate_landed_costs(self):
+        for record in self.with_context(skip_account_move_synchronization=True):
+            if record.landed_cost_ids:
+                record.landed_cost_ids.unlink()
+
+            customs_fee_coef = (
+                record.customs_fee / record.customs_amount_total
+                if record.customs_amount_total
+                else 0
+            )
+            landed_costs = []
+            for line in record.ccd_lines_ids:
+                if (
+                    not line.duty_amount
+                    and not line.excide_tax_amount
+                    and not customs_fee_coef
+                ):
+                    continue
+
+                landed_cost = self.env["stock.landed.cost"].create(
+                    {
+                        "date": record.date,
+                        "picking_ids": [(6, 0, [line.move_line_id.picking_id.id])],
+                        "cost_lines": [],
+                    }
+                )
+
+                landed_costs.append(landed_cost.id)
+
+                adjustment_lines = []
+
+                if line.duty_amount:
+                    cost_line = self.env["stock.landed.cost.lines"].create(
+                        {
+                            "name": record.company_id.ccd_duty_product_id.name,
+                            "cost_id": landed_cost.id,
+                            "product_id": record.company_id.ccd_duty_product_id.id,
+                            "price_unit": line.duty_amount,
+                            "split_method": "by_current_cost_price",
+                            "account_id": record.company_id.ccd_customs_duty_account_id.id,
+                        },
+                    )
+
+                    landed_cost["cost_lines"] = [(4, cost_line.id)]
+
+                    val_vals = {
+                        "cost_id": landed_cost.id,
+                        "cost_line_id": cost_line.id,
+                        "move_id": line.move_line_id.id,
+                        "product_id": line.product_id.id,
+                        "former_cost": sum(
+                            line.move_line_id.stock_valuation_layer_ids.mapped("value")
+                        ),
+                        "additional_landed_cost": line.duty_amount,
+                    }
+
+                    adjustment_lines.append((0, 0, val_vals))
+
+                if line.excide_tax_amount:
+                    cost_line = self.env["stock.landed.cost.lines"].create(
+                        {
+                            "name": record.company_id.ccd_excise_product_id.name,
+                            "cost_id": landed_cost.id,
+                            "product_id": record.company_id.ccd_excise_product_id.id,
+                            "price_unit": line.excide_tax_amount,
+                            "split_method": "by_current_cost_price",
+                            "account_id": record.company_id.ccd_customs_excide_account_id.id,
+                        },
+                    )
+
+                    landed_cost["cost_lines"] = [(4, cost_line.id)]
+
+                    val_vals = {
+                        "cost_id": landed_cost.id,
+                        "cost_line_id": cost_line.id,
+                        "move_id": line.move_line_id.id,
+                        "product_id": line.product_id.id,
+                        "former_cost": sum(
+                            line.move_line_id.stock_valuation_layer_ids.mapped("value")
+                        ),
+                        "additional_landed_cost": line.excide_tax_amount,
+                    }
+
+                    adjustment_lines.append((0, 0, val_vals))
+
+                if line.vat_amount:
+                    cost_line = self.env["stock.landed.cost.lines"].create(
+                        {
+                            "name": record.company_id.ccd_vat_product_id.name,
+                            "cost_id": landed_cost.id,
+                            "product_id": record.company_id.ccd_vat_product_id.id,
+                            "price_unit": line.vat_amount,
+                            "split_method": "by_current_cost_price",
+                            "account_id": record.company_id.uavat_account_id.id,
+                        },
+                    )
+
+                    landed_cost["cost_lines"] = [(4, cost_line.id)]
+
+                    val_vals = {
+                        "cost_id": landed_cost.id,
+                        "cost_line_id": cost_line.id,
+                        "move_id": line.move_line_id.id,
+                        "product_id": line.product_id.id,
+                        "former_cost": sum(
+                            line.move_line_id.stock_valuation_layer_ids.mapped("value")
+                        ),
+                        "additional_landed_cost": line.vat_amount,
+                    }
+
+                    adjustment_lines.append((0, 0, val_vals))
+
+                if customs_fee_coef:
+                    cost_line = self.env["stock.landed.cost.lines"].create(
+                        {
+                            "name": record.company_id.ccd_broker_product_id.name,
+                            "cost_id": landed_cost.id,
+                            "product_id": record.company_id.ccd_broker_product_id.id,
+                            "price_unit": line.customs_amount * customs_fee_coef,
+                            "split_method": "by_current_cost_price",
+                            "account_id": record.customs_fee_account_id.id,
+                        },
+                    )
+
+                    landed_cost["cost_lines"] = [(4, cost_line.id)]
+
+                    val_vals = {
+                        "cost_id": landed_cost.id,
+                        "cost_line_id": cost_line.id,
+                        "move_id": line.move_line_id.id,
+                        "product_id": line.product_id.id,
+                        "former_cost": sum(
+                            line.move_line_id.stock_valuation_layer_ids.mapped("value")
+                        ),
+                        "additional_landed_cost": line.customs_amount
+                        * customs_fee_coef,
+                    }
+                    adjustment_lines.append((0, 0, val_vals))
+
+                landed_cost["valuation_adjustment_lines"] = adjustment_lines
+
+            record.landed_cost_ids = [(6, 0, landed_costs)]
