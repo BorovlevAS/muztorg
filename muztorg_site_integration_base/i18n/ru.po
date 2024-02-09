@@ -16,6 +16,137 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"%s orders loaded"
+msgstr ""
+"\n"
+"%s загружено ордеров"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"Delivery branch not found %s"
+msgstr ""
+"\n"
+"Не найдено отделение доставки %s"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"Delivery city not found  %s"
+msgstr ""
+"\n"
+"Не найден город доставки  %s"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"Delivery street not found %s"
+msgstr ""
+"\n"
+"Не найдена улица доставки %s"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"Failed to select payment type %s"
+msgstr ""
+"\n"
+"Не удалось подобрать тип оплаты %s"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"It is impossible to register a client %s"
+msgstr ""
+"\n"
+"Невозможно записать клиента %s"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"No access to the site "
+msgstr ""
+"\n"
+"Нет доступа к сайту "
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"Product not found by control code  %s"
+msgstr ""
+"\n"
+"Товар не найден по контрольному коду %s"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"The order has not been confirmed. because there are filling errorse"
+msgstr ""
+"\n"
+"Заказ не подтвержден. т.к. есть ошибки заполнения"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"create a partner %s"
+msgstr ""
+"\n"
+"Создан клиент %s"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"exception: %s"
+msgstr ""
+"\n"
+"ошибка: %s"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"the order is already loaded %s"
+msgstr ""
+"\n"
+"Заказ %s уже загружен"
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/models/site_integration_protocol.py:0
+#, python-format
+msgid " of "
+msgstr " от "
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_needaction
+msgid "Action Needed"
+msgstr "Требуется действие"
+
+#. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__active
 msgid "Active"
 msgstr "Активное"
@@ -30,6 +161,11 @@ msgstr "Администратор"
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_search
 msgid "Archived"
 msgstr "Заархивировано"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_menu_root
@@ -48,6 +184,7 @@ msgstr "Компания"
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__create_uid
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__create_uid
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__create_uid
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__create_uid
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__create_uid
@@ -56,6 +193,7 @@ msgstr "Создано"
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__create_date
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__create_date
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__create_date
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__create_date
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__create_date
@@ -63,7 +201,13 @@ msgid "Created on"
 msgstr "Создано в"
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__date_exchange
+msgid "Date Exchange"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__display_name
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__display_name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__display_name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__display_name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__display_name
@@ -76,7 +220,28 @@ msgid "Export"
 msgstr "Выгрузка"
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__failed_message_ids
+msgid "Failed Messages"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__id
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__id
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__id
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__id
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__id
@@ -88,6 +253,17 @@ msgstr "ИД"
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__id_seting
 msgid "Id Seting"
 msgstr "ИД параметра"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__message_needaction
+#: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
@@ -106,7 +282,13 @@ msgid "Is Create Leads"
 msgstr "Создавать лиды/сделки"
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base____last_update
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol____last_update
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting____last_update
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line____last_update
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync____last_update
@@ -115,6 +297,7 @@ msgstr "Последнее изменение в"
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__write_uid
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__write_uid
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__write_uid
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__write_uid
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__write_uid
@@ -123,6 +306,7 @@ msgstr "Последнее обновление"
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__write_date
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__write_date
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__write_date
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__write_date
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__write_date
@@ -130,16 +314,80 @@ msgid "Last Updated on"
 msgstr "Последнее обновление в"
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__name
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__name
 msgid "Name"
 msgstr "Название"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields.selection,name:muztorg_site_integration_base.selection__site_integration_protocol__status__ok
+msgid "No errors"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__note
+msgid "Note"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__name
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_form
 msgid "Parameter"
 msgstr "Параметр"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__protocol_id
+msgid "Protocol"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.actions.act_window,name:muztorg_site_integration_base.action_site_integration_protocol_tree
+#: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_protocol_menu
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_protocol_view_form
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_protocol_view_tree
+msgid "Protocol site integration"
+msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_settings_view_search
@@ -154,6 +402,7 @@ msgstr "Настройка"
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__settings_id
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__settings_id
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__settings_id
 msgid "Settings"
 msgstr "Настройки"
@@ -182,6 +431,21 @@ msgstr "Обмен с сайтом: импорт данных"
 #: model:ir.model,name:muztorg_site_integration_base.model_site_integration_sync
 msgid "Site-integration Sync client"
 msgstr "Обмен с сайтом: синхронизация"
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__status
+msgid "Status"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_sync_wizard_form
@@ -215,6 +479,11 @@ msgid "Websites"
 msgstr "Настройки обмена"
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields.selection,name:muztorg_site_integration_base.selection__site_integration_protocol__status__error
+msgid "With errors"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.actions.act_window,name:muztorg_site_integration_base.action_site_integration_setting_tree
 #: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_setting_menu2
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_setting_view_form
@@ -225,6 +494,11 @@ msgstr "Настройка параметров обмена"
 #. module: muztorg_site_integration_base
 #: model:ir.model,name:muztorg_site_integration_base.model_site_integration_base
 msgid "site.integration.base"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model,name:muztorg_site_integration_base.model_site_integration_protocol
+msgid "site.integration.protocol"
 msgstr ""
 
 #. module: muztorg_site_integration_base
