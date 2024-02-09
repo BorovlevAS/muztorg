@@ -1,0 +1,8 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_purchase_subscription_template,sale.subscription.template,model_purchase_subscription_template,purchase.group_purchase_user,1,1,1,1
+access_custom_purchase_subscription,sale.subscription,model_purchase_subscription,purchase.group_purchase_user,1,1,1,1
+access_custom_purchase_subscription_close_reason,sale.subscription.close.reason,model_purchase_subscription_close_reason,purchase.group_purchase_user,1,1,1,1
+access_custom_purchase_subscription_stage,sale.subscription.stage,model_purchase_subscription_stage,purchase.group_purchase_user,1,1,1,1
+access_custom_purchase_subscription_line,sale.subscription.line,model_purchase_subscription_line,purchase.group_purchase_user,1,1,1,1
+access_custom_purchase_subscription_tag,sale.subscription.tag,model_purchase_subscription_tag,purchase.group_purchase_user,1,1,1,1
+access_close_subscription,Close subscription access,model_close_reason_wizard,purchase.group_purchase_user,1,1,1,1
