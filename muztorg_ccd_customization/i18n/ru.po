@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-05 22:16+0000\n"
-"PO-Revision-Date: 2024-02-05 22:16+0000\n"
+"POT-Creation-Date: 2024-02-09 14:07+0000\n"
+"PO-Revision-Date: 2024-02-09 14:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,21 @@ msgstr ""
 #: model:ir.model,name:muztorg_ccd_customization.model_cargo_customs_declaration_section
 msgid "Cargo Customs Declaration Section"
 msgstr "Секция таможенной декларации"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_company__ccd_journal_id
+msgid "Ccd Journal"
+msgstr ""
+
+#. module: muztorg_ccd_customization
+#: model:ir.model,name:muztorg_ccd_customization.model_res_company
+msgid "Companies"
+msgstr "Компании"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model,name:muztorg_ccd_customization.model_res_config_settings
+msgid "Config Settings"
+msgstr "Конфигурационные настройки"
 
 #. module: muztorg_ccd_customization
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__customs_amount
@@ -60,6 +75,8 @@ msgstr "Таможенный сбор (ГРН)"
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__display_name
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__display_name
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__display_name
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_company__display_name
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr "Отображаемое название"
 
@@ -91,6 +108,8 @@ msgstr "Сумма акциза (ГРН)"
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__id
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__id
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__id
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_company__id
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
@@ -98,8 +117,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration____last_update
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line____last_update
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section____last_update
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_company____last_update
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr "Последнее изменение в"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_company__ccd_vat_product_id
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_res_config_settings__ccd_vat_product_id
+msgid "Product for customs broker"
+msgstr "Услуга \"Таможенный сбор\""
 
 #. module: muztorg_ccd_customization
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__purchase_currency_id
@@ -133,3 +160,8 @@ msgstr "НДС"
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__vat_amount_uah
 msgid "VAT Amount (UAH)"
 msgstr "НДС (ГРН)"
+
+#. module: muztorg_ccd_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_ccd_customization.res_config_settings
+msgid "VAT product"
+msgstr "Услуга \"НДС\""
