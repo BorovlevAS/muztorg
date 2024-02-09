@@ -551,10 +551,9 @@
                             </field>
                             <p class="oe_grey oe_edit_only">
                                 <strong>Warning</strong>
-                                : adding or deleting
-                                attributes will delete and recreate existing
-                                variants and lead to the loss of their possible
-                                customizations.
+                                : adding or deleting attributes
+                                will delete and recreate existing variants and lead to
+                                the loss of their possible customizations.
                             </p>
                         </page>
                         <page name="custom_info" string="Custom Information">
@@ -721,8 +720,8 @@
                                 </field>
 
                                 <div colspan="2" class="text-center">
-                                    You can
-                                    find icon at
+                                    You can find icon
+                                    at
                                     <a href="https://fontawesome.com/v4.7.0/icons/" target="_blank">FontAwesome</a>
                                     .
                                 </div>
@@ -793,6 +792,13 @@
                                     colspan="3"
                                     nolabel="1"
                                     attrs="{'required':[('purchase_line_warn','!=','no-message')],'readonly':[('purchase_line_warn','=','no-message')], 'invisible':[('purchase_line_warn','=','no-message')]}"
+                                />
+                            </group>
+                            <group>
+                                <field name="subscribable" />
+                                <field
+                                    name="subscription_template_id"
+                                    attrs="{'invisible': [('subscribable', '=', False)]}"
                                 />
                             </group>
                         </page>
