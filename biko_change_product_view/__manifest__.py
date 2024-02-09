@@ -26,6 +26,7 @@
         "base_accounting_kit",
         "pim",
         "product_multiple_barcodes",
+        "muztorg_purchase_subscription",
     ],
     "data": [
         "views/product_views.xml",
