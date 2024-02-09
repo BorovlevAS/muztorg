@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-20 23:56+0000\n"
-"PO-Revision-Date: 2023-12-20 23:56+0000\n"
+"POT-Creation-Date: 2024-01-19 22:33+0000\n"
+"PO-Revision-Date: 2024-01-19 22:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,15 @@ msgid "1C Order #"
 msgstr "Номер рахунку в 1С"
 
 #. module: muztorg_sale_order_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_customization.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Pricelist in UAH</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" role=\"img\"/>"
+msgstr ""
+"<span class=\"o_form_label\">Прайс-лист в ГРН</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Налаштування задаються для компанії.\" aria-label=\"Налаштування задаються для компанії.\" role=\"img\"/>"
+
+#. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__active
 msgid "Active"
 msgstr "Активно"
@@ -29,6 +38,26 @@ msgstr "Активно"
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_customization.so_payment_type_view_form
 msgid "Archived"
 msgstr "Архівовано"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_1c_currency
+msgid "Biko 1C Currency"
+msgstr ""
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model,name:muztorg_sale_order_customization.model_res_company
+msgid "Companies"
+msgstr "Компанії"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model,name:muztorg_sale_order_customization.model_res_config_settings
+msgid "Config Settings"
+msgstr "Налаштування"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__purchase_price
+msgid "Cost"
+msgstr "Собівартість"
 
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__create_uid
@@ -41,6 +70,14 @@ msgid "Created on"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_company__biko_uah_pricelist_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_config_settings__biko_uah_pricelist_id
+msgid "Default UAH pricelist"
+msgstr "Прайс-лист в ГРН"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_company__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__display_name
@@ -48,6 +85,8 @@ msgid "Display Name"
 msgstr "Відображувана назва"
 
 #. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_company__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_config_settings__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__id
@@ -65,6 +104,8 @@ msgid "JSON data for the popover widget"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_company____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type____last_update
@@ -82,6 +123,16 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__margin
+msgid "Margin"
+msgstr "Маржа"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__margin_percent
+msgid "Margin (%)"
+msgstr "Прибуток (%)"
+
+#. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__name
 msgid "Name"
 msgstr "Назва"
@@ -96,6 +147,11 @@ msgstr "Тип оплати"
 #: model:ir.ui.menu,name:muztorg_sale_order_customization.so_payment_type_menu
 msgid "Payment Types"
 msgstr "Типи оплат"
+
+#. module: muztorg_sale_order_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_customization.res_config_settings_view_form
+msgid "Price list in UAH"
+msgstr "Прайс-лист в ГРН"
 
 #. module: muztorg_sale_order_customization
 #: model:ir.model,name:muztorg_sale_order_customization.model_so_payment_type
@@ -116,6 +172,11 @@ msgstr "Рядок замовлення на продаж"
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_so_payment_type__sequence
 msgid "Sequence"
 msgstr "Порядок"
+
+#. module: muztorg_sale_order_customization
+#: model:res.groups,name:muztorg_sale_order_customization.biko_group_show_margin
+msgid "Show Margin"
+msgstr "Відображати маржу"
 
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_website_ref

@@ -23,9 +23,25 @@
                     'default_company_id': company_id,
                     'default_state': state,
                     'default_route_id': biko_route_id,
-                }
+                    }
                 </attribute>
             </xpath>
+            <button name="action_view_transfer" position="before">
+                <field name="biko_picking_ids" invisible="1" />
+                <button
+                    type="object"
+                    name="action_view_delivery"
+                    class="oe_stat_button"
+                    icon="fa-truck"
+                    attrs="{'invisible': [('biko_picking_count', '=', 0)]}"
+                    groups="stock.group_stock_user"
+                >
+                    <field name="biko_picking_count" widget="statinfo" string="Transfers" />
+                </button>
+            </button>
+            <button name="action_view_transfer" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
         </field>
     </record>
 </odoo>

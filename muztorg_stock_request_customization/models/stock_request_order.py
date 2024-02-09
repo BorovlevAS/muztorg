@@ -18,6 +18,21 @@ class StockRequestOrder(models.Model):
         readonly=True,
     )
 
+    biko_picking_ids = fields.One2many(
+        comodel_name="stock.picking",
+        inverse_name="stock_request_order_id",
+        string="Transfers",
+    )
+
+    biko_picking_count = fields.Integer(
+        string="Delivery Orders", compute="_compute_biko_picking_ids", readonly=True
+    )
+
+    @api.depends("biko_picking_ids")
+    def _compute_biko_picking_ids(self):
+        for record in self:
+            record.biko_picking_count = len(record.biko_picking_ids)
+
     @api.depends("warehouse_id", "location_id")
     def _compute_biko_route_ids(self):
         route_obj = self.env["stock.location.route"]
@@ -66,13 +81,38 @@ class StockRequestOrder(models.Model):
                 line.procurement_group_id = self.procurement_group_id
                 line.route_id = self.biko_route_id
 
+    def _prepare_procurement_group_vals(self):
+        return {
+            "name": self.name,
+            "move_type": self.picking_policy,
+            "stock_request_order_id": self.id,
+        }
+
     def action_confirm(self):
         for rec in self:
             if not rec.procurement_group_id:
                 rec.with_context(no_change_childs=True).procurement_group_id = self.env[
                     "procurement.group"
-                ].create({"name": rec.name, "move_type": rec.picking_policy})
+                ].create(rec._prepare_procurement_group_vals())
                 for line in self.stock_request_ids:
                     line.procurement_group_id = rec.procurement_group_id
 
         return super().action_confirm()
+
+    def action_cancel(self):
+        self.mapped("biko_picking_ids").action_cancel()
+        self.mapped("stock_request_ids").write({"state": "cancel"})
+        return True
+
+    def action_view_delivery(self):
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "stock.action_picking_tree_all"
+        )
+
+        pickings = self.mapped("biko_picking_ids")
+        if len(pickings) > 1:
+            action["domain"] = [("id", "in", pickings.ids)]
+        elif pickings:
+            action["views"] = [(self.env.ref("stock.view_picking_form").id, "form")]
+            action["res_id"] = pickings.id
+        return action
