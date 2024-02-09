@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="cargo_customs_declaration_view_form" model="ir.ui.view">
+        <field name="name">cargo.customs.declaration.form</field>
+        <field name="model">cargo.customs.declaration</field>
+        <field name="inherit_id" ref="simbioz_account_cargo_customs_declaration.cargo_customs_declaration_view_form" />
+        <field name="arch" type="xml">
+            <field name="number_cid" position="after">
+                <field name="uah_currency_id" required="1" />
+                <field name="purchase_currency_id" required="1" />
+                <field name="purchase_currency_rate" required="1" />
+            </field>
+            <field name="customs_fee" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="customs_fee" position="before">
+                <field name="customs_fee_uah" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+            </field>
+            <xpath expr="//field[@name='section_ids']//field[@name='customs_amount']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='section_ids']//field[@name='duty_amount']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='section_ids']//field[@name='excide_tax_amount']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='section_ids']//field[@name='vat_amount']" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='section_ids']//field[@name='customs_amount']" position="before">
+                <field name="customs_amount_uah" />
+            </xpath>
+            <xpath expr="//field[@name='section_ids']//field[@name='duty_amount']" position="before">
+                <field name="duty_amount_uah" />
+            </xpath>
+            <xpath expr="//field[@name='section_ids']//field[@name='excide_tax_amount']" position="before">
+                <field name="excide_tax_amount_uah" />
+            </xpath>
+            <xpath expr="//field[@name='section_ids']//field[@name='vat_amount']" position="before">
+                <field name="vat_amount_uah" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
