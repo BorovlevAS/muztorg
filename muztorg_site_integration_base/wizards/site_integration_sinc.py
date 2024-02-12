@@ -167,7 +167,36 @@ class SiteIntegrationSync(models.TransientModel):
             if partner_address:
                 return partner_address
             else:
-                return partner
+                Partner = self.env["res.partner"].sudo()
+                data = {
+                    "country_id": self.env.ref("base.ua").id,
+                    "type": "delivery",
+                    "lang": self.env.lang,
+                    "parent_id": partner.id,
+                    "np_delivery_address": True,
+                    "np_city": city.id,
+                }
+
+                # np_service_type 1		Doors	Адреса 2		Warehouse	Склад Тип послуги
+                if warehouse:
+                    data["np_warehouse"] = warehouse.id
+                    data["np_service_type"] = "Warehouse"
+                elif street:
+                    data["lastname"] = streer_str
+                    data["np_street"] = street.id
+                    data["np_service_type"] = "Doors"
+                    data["house"] = address_str.split(",")[1]
+                partner_address = Partner.create(data)
+                if partner_address:
+                    self.protocol_id.note = self.protocol_id.note + _(
+                        "\ncreate an address %s", address_str
+                    )
+                    return partner_address
+                else:
+                    self.protocol_id.note = self.protocol_id.note + _(
+                        "\nAddress street not found %s", address_str
+                    )
+                    return partner
 
         def search_partner(phone, email, lastname, firstname, value_address):
             # Partner = self.env["res.partner"].with_company(company.id).sudo()
@@ -339,11 +368,8 @@ class SiteIntegrationSync(models.TransientModel):
             )
             return False
 
-        self.protocol_id.note = self.protocol_id.note + _(
-            "\nLoading order #%s", data_order.get("order_id")
-        )
         shipping = data_order.get("shipping", None)
-        order_id = data_order.get("order_id", None)
+        data_order.get("order_id", None)
 
         value_partner = {
             "phone_code": data_order.get("phone_code", None),
@@ -407,6 +433,7 @@ class SiteIntegrationSync(models.TransientModel):
                 )
                 .value_many2one
             )
+            note = f"Номер: {data_order.get('order_id')}. Доставка: {shipping} {data_order.get('city')}, {data_order.get('address')} {partner.mobile} {partner.email}"
 
         else:
             carrier_value = (
@@ -429,6 +456,7 @@ class SiteIntegrationSync(models.TransientModel):
                 )
                 .value_many2one
             )
+            note = f"Номер: {data_order.get('order_id')}. Доставка: {shipping} {data_order.get('address')} {partner.mobile} {partner.email}"
         # afterpayment_check	если способ доставки Новая почта и способ payment = PriPoluchenii, то True, иначе False
         afterpayment_check = (
             True
@@ -437,12 +465,6 @@ class SiteIntegrationSync(models.TransientModel):
             else False
         )
 
-        # note	Комментарий. Нужно составить строку #Заказ з сайту.
-        # Номер: <номер_заказа>. Доставка: <что_там_нашли> <куда_отправляем> и контакты клиента
-
-        order_id = data_order.get("order_id")
-
-        note = f"Номер: {order_id}. Доставка: {shipping} {data_order.get('address')} {partner.mobile} {partner.email}"
         if data_order.get("comment"):
             note = data_order.get("comment") + " " + note
 
@@ -470,6 +492,13 @@ class SiteIntegrationSync(models.TransientModel):
         if warehouse_value:
             so_values["warehouse_id"] = warehouse_value.id
         so = self.env["sale.order"].create(so_values)
+        self.protocol_id.note = self.protocol_id.note + _(
+            # "\nLoading order #%s (%s)", data_order.get("order_id"), so.name)
+            "%(loading_text)s"
+        ) % {
+            "loading_text": "Loading order #%s (%s)"
+            % (data_order.get("order_id"), so.name)
+        }
 
         #  ТЧ Продукты
         products = data_order.get("products", False)

@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <!-- <record id="site_integration_protocol_view_search" model="ir.ui.view">
+    <record id="site_integration_protocol_view_search" model="ir.ui.view">
         <field name="name">site.integration.view.search</field>
         <field name="model">site.integration.protocol</field>
         <field name="arch" type="xml">
             <search string="Search Sync. protocol">
                 <field name="name" />
-                <filter
-                    string="Include archived"
-                    name="archived"
-                    domain="['|', ('active', '=', True), ('active', '=', False)]"
-                />
+                <field name="note" />
+                <filter string="With errors" name="is_errors" domain="[('status', '=', 'error')]" />
+                <filter string="No errors" name="all_ok" domain="[('status', '=', 'ok')]" />
                 <separator />
-                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
             </search>
         </field>
-    </record> -->
+    </record>
 
     <record id="site_integration_protocol_view_form" model="ir.ui.view">
         <field name="name">site.integration.protocol.form.view.muztorg</field>
@@ -35,14 +32,9 @@
                     <group>
                         <field name="name" />
                         <field name="date_exchange" />
-
                         <field name="settings_id" />
-                        <!-- <field name="active" widget="boolean_toggle" /> -->
                         <field name="status" />
                         <field name="note" />
-                        <!-- <field name="setting_pickup_id" />
-                        <field name="setting_nova_poshta_id" /> widget="many2many_tags"
-                        <field name="setting_warehouse_podol_id" />  string="Settings" -->
                     </group>
                     <!-- <notebook>
                         <page name="settings_import" string="Import">
@@ -70,7 +62,6 @@
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" />
-                    <!-- <field name="activity_ids"/> -->
                     <field name="message_ids" widget="mail_thread" />
                 </div>
             </form>
@@ -85,8 +76,7 @@
                 <field name="date_exchange" />
                 <field name="settings_id" />
                 <field name="status" />
-                <!-- <field name="setting_nova_poshta_id" />
-                <field name="setting_warehouse_podol_id" />                 -->
+                <field name="note" optional="hide" />
             </tree>
         </field>
     </record>
