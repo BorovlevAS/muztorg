@@ -7,14 +7,17 @@
         <field name="arch" type="xml">
             <xpath expr="//div[@name='muztorg_acc_additional_settings']" position="inside">
                 <div class="col-12 col-lg-6 o_setting_box">
-                    <div class="content-group">
-                        <div class="row mt16">
-                            <label
-                                string="Max Available Difference"
-                                for="max_avail_diff"
-                                class="col-lg-3 o_light_label"
-                            />
-                            <field name="max_avail_diff" />
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    string="Max Available Difference"
+                                    for="max_avail_diff"
+                                    class="col-lg-4 o_light_label"
+                                />
+                                <field name="max_avail_diff" />
+                            </div>
                         </div>
                     </div>
                 </div>
