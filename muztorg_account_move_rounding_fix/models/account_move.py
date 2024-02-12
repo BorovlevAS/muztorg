@@ -57,8 +57,3 @@ class AccountMove(models.Model):
                 "credit": diff > 0 and diff or 0,
             }
             self.env["account.move.line"].create(line)
-
-        # if query_res:
-        #     ids = [res[0] for res in query_res]
-        #     sums = [res[1] for res in query_res]
-        #     raise UserError(_("Cannot create unbalanced journal entry. Ids: %s\nDifferences debit - credit: %s") % (ids, sums))
