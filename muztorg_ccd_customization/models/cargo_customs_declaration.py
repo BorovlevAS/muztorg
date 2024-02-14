@@ -114,6 +114,7 @@ class CargoCustomsDeclaration(models.Model):
                         "cost_line_id": cost_line.id,
                         "move_id": line.move_line_id.id,
                         "product_id": line.product_id.id,
+                        "quantity": line.product_qty,
                         "former_cost": sum(
                             line.move_line_id.stock_valuation_layer_ids.mapped("value")
                         ),
@@ -141,6 +142,7 @@ class CargoCustomsDeclaration(models.Model):
                         "cost_line_id": cost_line.id,
                         "move_id": line.move_line_id.id,
                         "product_id": line.product_id.id,
+                        "quantity": line.product_qty,
                         "former_cost": sum(
                             line.move_line_id.stock_valuation_layer_ids.mapped("value")
                         ),
@@ -168,6 +170,7 @@ class CargoCustomsDeclaration(models.Model):
                         "cost_line_id": cost_line.id,
                         "move_id": line.move_line_id.id,
                         "product_id": line.product_id.id,
+                        "quantity": line.product_qty,
                         "former_cost": sum(
                             line.move_line_id.stock_valuation_layer_ids.mapped("value")
                         ),
@@ -195,6 +198,7 @@ class CargoCustomsDeclaration(models.Model):
                         "cost_line_id": cost_line.id,
                         "move_id": line.move_line_id.id,
                         "product_id": line.product_id.id,
+                        "quantity": line.product_qty,
                         "former_cost": sum(
                             line.move_line_id.stock_valuation_layer_ids.mapped("value")
                         ),
