@@ -600,8 +600,10 @@ class SiteIntegrationSync(models.TransientModel):
             so_values = {
                 "partner_id": partner.id if partner else False,
                 "biko_contact_person_type": "person",
-                "biko_contact_person_id": contact_person.id if partner else False,
-                "biko_recipient_id": recipient.id if partner else False,
+                "biko_contact_person_id": contact_person.id
+                if contact_person
+                else False,
+                "biko_recipient_id": recipient.id if recipient else False,
                 "biko_recipient_type": "person",
                 "biko_website_ref": data_order.get("order_id"),
                 "date_order": datetime.strptime(
@@ -610,7 +612,7 @@ class SiteIntegrationSync(models.TransientModel):
                 "afterpayment_check": afterpayment_check,
                 "note": note,
                 "so_payment_type_id": payment_type.id,
-                "biko_dealer_id": dealer.id if partner else False,
+                "biko_dealer_id": dealer.id if dealer else False,
             }
         else:
             so_values = {
