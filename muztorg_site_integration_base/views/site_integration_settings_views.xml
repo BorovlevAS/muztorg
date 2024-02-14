@@ -43,6 +43,7 @@
                         <field name="company_id" groups="base.group_multi_company" />
 
                         <field name="url" />
+                        <field name="type_exchange" />
                         <field name="active" widget="boolean_toggle" />
                         <field name="is_create_leads" widget="boolean_toggle" />
                         <!-- <field name="setting_pickup_id" />

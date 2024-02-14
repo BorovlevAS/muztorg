@@ -30,9 +30,6 @@ class SiteIntegrationSync(models.TransientModel):
     url = fields.Char()
     protocol_id = fields.Many2one("site.integration.protocol")
 
-    def _get_rest_endpoint(self, website, **kwargs):
-        return ""
-
     def import_data(self):
         value_protocol = {
             "note": "",
@@ -89,22 +86,22 @@ class SiteIntegrationSync(models.TransientModel):
 
         return count
 
+    def format_phone(self, number):
+        if not number:
+            return False
+
+        country = self.env.ref("base.ua")
+        if not country:
+            return number
+        return phone_validation.phone_format(
+            number,
+            country.code if country else None,
+            country.phone_code if country else None,
+            force_format="INTERNATIONAL",
+            raise_exception=False,
+        )
+
     def get_partner(self, value_partner, value_address):
-        def format_phone(number):
-            if not number:
-                return False
-
-            country = self.env.ref("base.ua")
-            if not country:
-                return number
-            return phone_validation.phone_format(
-                number,
-                country.code if country else None,
-                country.phone_code if country else None,
-                force_format="INTERNATIONAL",
-                raise_exception=False,
-            )
-
         def search_address(partner, value_address):
             # city, warehouse, street=None
             shipping = value_address.get("shipping")
@@ -235,7 +232,12 @@ class SiteIntegrationSync(models.TransientModel):
             self.protocol_id.note = self.protocol_id.note + _(
                 "\ncreate a partner %s", lastname
             )
-            partner = Partner.create(data)
+            try:
+                partner = Partner.create(data)
+            except Exception as exc:
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nexception: %s", exc
+                )
 
             if not partner:
                 self.protocol_id.note = self.protocol_id.note + _(
@@ -315,12 +317,66 @@ class SiteIntegrationSync(models.TransientModel):
         firstname = value_partner.get("firstname")
         patronymic = value_partner.get("patronymic")
         _logger.info("-----------------search for a partner %s", lastname)
-        phone = format_phone(phone_code + telephone)
+        if telephone:
+            try:
+                phone = self.format_phone(phone_code + telephone)
+            except Exception as exc:
+                phone = ""
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nexception: %s", exc
+                )
+        else:
+            phone = ""
 
         if patronymic:
             firstname = firstname + " " + patronymic
 
         return search_partner(phone, email, lastname, firstname, value_address)
+
+    def get_partner_dealer(self, value_partner):
+        # phone_code = value_partner.get("phone_code")
+        # telephone = value_partner.get("telephone")
+        # email = value_partner.get("email")
+        lastname = value_partner.get("lastname", "")
+        firstname = value_partner.get("firstname", "")
+        customer_id = value_partner.get("customer_id")
+        _logger.info(
+            "-----------------search for a partner %s",
+            str(lastname) + " " + str(firstname),
+        )
+
+        if not customer_id:
+            return False, False, False, False, False
+
+        Partner = self.env["res.partner"].sudo()
+        partner_domain = [
+            ("dealer_code", "=", customer_id),
+        ]
+        partner = Partner.search(partner_domain, limit=1)
+
+        if not partner:
+            return False, False, False, False, False
+
+        #  . контактное лицо - подбор из первого в списке соответствующий клиенту biko_contact_person_id
+        contact_person = (
+            partner.biko_contact_person_ids[0]
+            if partner.biko_contact_person_ids
+            else False
+        )
+        # 4. получатель - подбор из первого в списке соответствующий клиенту biko_recipient_id
+        recipient = (
+            partner.biko_recipient_ids[0] if partner.biko_recipient_ids else False
+        )
+        # 5. Адрес доставки - подбор из первого в списке соответствующий клиенту partner_shipping_id
+        delivery_address = (
+            partner.biko_delivery_address_ids[0]
+            if partner.biko_delivery_address_ids
+            else False
+        )
+        # 6. Поле дилер - заполняем связаной компанией из контакта   biko_dealer_id
+        dealer = partner.parent_id
+
+        return partner, contact_person, recipient, delivery_address, dealer
 
     def load_order(self, data_order):
         def get_so_line(so, product_dict):
@@ -369,25 +425,57 @@ class SiteIntegrationSync(models.TransientModel):
             return False
 
         shipping = data_order.get("shipping", None)
-        data_order.get("order_id", None)
 
-        value_partner = {
-            "phone_code": data_order.get("phone_code", None),
-            "telephone": data_order.get("telephone", None),
-            "email": data_order.get("email", None),
-            "lastname": data_order.get("lastname", None),
-            "firstname": data_order.get("firstname", None),
-            "patronymic": data_order.get("patronymic", None),
-        }
-        value_address = {
-            "city": data_order.get("city", None),
-            "city_ref": data_order.get("city_ref", None),
-            "address": data_order.get("address", None),
-            "warehouse": data_order.get("warehouse", None),
-            "shipping": shipping,
-        }
+        if self.settings_id.type_exchange == "dealer":
+            value_partner = {
+                # "phone_code": data_order.get("phone_code", ""),
+                # "telephone": data_order.get("telephone", ""),
+                # "email": data_order.get("email", ""),
+                "lastname": data_order.get("lastname", ""),
+                "firstname": data_order.get("firstname", ""),
+                "customer_id": data_order.get("customer_id", ""),
+            }
+            (
+                partner,
+                contact_person,
+                recipient,
+                address,
+                dealer,
+            ) = self.get_partner_dealer(value_partner)
+            if not partner:
+                note = f"Номер: {data_order.get('order_id')}. {data_order.get('lastname')} {data_order.get('firstname')} {data_order.get('phone_code')} {data_order.get('telephone')} {data_order.get('email')}"
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nThe order was not created because the Partner was not found #%s",
+                    note,
+                )
+                # self.protocol_id.note = self.protocol_id.note + _(
+                #     # "\nLoading order #%s (%s)", data_order.get("order_id"), so.name)
+                #     "%(loading_text)s"
+                # ) % {
+                #     "loading_text": "\nLoading order #%s (%s)"
+                #     % (data_order.get("order_id"), so.name)
+                # }
 
-        partner, address = self.get_partner(value_partner, value_address)
+                return False
+        else:
+            # это если не дилер
+            value_partner = {
+                "phone_code": data_order.get("phone_code", ""),
+                "telephone": data_order.get("telephone", ""),
+                "email": data_order.get("email", ""),
+                "lastname": data_order.get("lastname", ""),
+                "firstname": data_order.get("firstname", ""),
+                "patronymic": data_order.get("patronymic", ""),
+            }
+            value_address = {
+                "city": data_order.get("city", ""),
+                "city_ref": data_order.get("city_ref", ""),
+                "address": data_order.get("address", ""),
+                "warehouse": data_order.get("warehouse", ""),
+                "shipping": shipping,
+            }
+
+            partner, address = self.get_partner(value_partner, value_address)
 
         pricelist_value = (
             self.env["site.integration.setting.line"]
@@ -434,7 +522,29 @@ class SiteIntegrationSync(models.TransientModel):
                 .value_many2one
             )
             note = f"Номер: {data_order.get('order_id')}. Доставка: {shipping} {data_order.get('city')}, {data_order.get('address')} {partner.mobile} {partner.email}"
-
+        elif self.settings_id.type_exchange == "dealer":
+            carrier_value = (
+                self.env["site.integration.setting.line"]
+                .search(
+                    [
+                        ("settings_id", "=", self.settings_id.id),
+                        ("id_seting", "=", "id_samovyviz"),
+                    ]
+                )
+                .value_many2one
+            )
+            warehouse_value = (
+                self.env["site.integration.setting.line"]
+                .search(
+                    [
+                        ("settings_id", "=", self.settings_id.id),
+                        ("id_seting", "=", "id_sklad_holovnyj"),
+                    ]
+                )
+                .value_many2one
+            )
+            # данные из тегов lastname +  firstname + phone_code + telephone + email + comment выводим в комментарий к заказу
+            note = f"Номер: {data_order.get('order_id')}. {data_order.get('lastname')} {data_order.get('firstname')} {data_order.get('phone_code')} {data_order.get('telephone')} {data_order.get('email')}"
         else:
             carrier_value = (
                 self.env["site.integration.setting.line"]
@@ -468,20 +578,37 @@ class SiteIntegrationSync(models.TransientModel):
         if data_order.get("comment"):
             note = data_order.get("comment") + " " + note
 
-        so_values = {
-            "partner_id": partner.id,
-            "biko_contact_person_type": "person",
-            "biko_contact_person_id": partner.id,
-            "biko_recipient_id": partner.id,
-            "biko_recipient_type": "person",
-            "biko_website_ref": data_order.get("order_id"),
-            "date_order": datetime.strptime(
-                data_order.get("order_date"), "%Y-%m-%d %H:%M:%S"
-            ),
-            "afterpayment_check": afterpayment_check,
-            "note": note,
-            "so_payment_type_id": payment_type.id,
-        }
+        if self.settings_id.type_exchange == "dealer":
+            so_values = {
+                "partner_id": partner.id if partner else False,
+                "biko_contact_person_type": "person",
+                "biko_contact_person_id": contact_person.id if partner else False,
+                "biko_recipient_id": recipient.id if partner else False,
+                "biko_recipient_type": "person",
+                "biko_website_ref": data_order.get("order_id"),
+                "date_order": datetime.strptime(
+                    data_order.get("order_date"), "%Y-%m-%d %H:%M:%S"
+                ),
+                "afterpayment_check": afterpayment_check,
+                "note": note,
+                "so_payment_type_id": payment_type.id,
+                "biko_dealer_id": dealer.id if partner else False,
+            }
+        else:
+            so_values = {
+                "partner_id": partner.id,
+                "biko_contact_person_type": "person",
+                "biko_contact_person_id": partner.id,
+                "biko_recipient_id": partner.id,
+                "biko_recipient_type": "person",
+                "biko_website_ref": data_order.get("order_id"),
+                "date_order": datetime.strptime(
+                    data_order.get("order_date"), "%Y-%m-%d %H:%M:%S"
+                ),
+                "afterpayment_check": afterpayment_check,
+                "note": note,
+                "so_payment_type_id": payment_type.id,
+            }
         if carrier_value:
             so_values["carrier_id"] = carrier_value.id
         if pricelist_value:
@@ -496,7 +623,7 @@ class SiteIntegrationSync(models.TransientModel):
             # "\nLoading order #%s (%s)", data_order.get("order_id"), so.name)
             "%(loading_text)s"
         ) % {
-            "loading_text": "Loading order #%s (%s)"
+            "loading_text": "\nLoading order #%s (%s)"
             % (data_order.get("order_id"), so.name)
         }
 
@@ -511,16 +638,16 @@ class SiteIntegrationSync(models.TransientModel):
                 for product_dict in product:
                     is_error += get_so_line(so, product_dict)
 
-        if len(so.order_line) != 0 and not is_error:
-            if data_order.get("payment") == "PriPoluchenii":
-                so.action_confirm()
-            else:
-                so.action_set_waiting()
-        else:
-            self.protocol_id.note = self.protocol_id.note + _(
-                "\nThe order has not been confirmed and is recorded with number  %s",
-                so.name,
-            )
+        # if len(so.order_line) != 0 and not is_error and self.settings_id.type_exchange != "dealer":
+        #     if data_order.get("payment") == "PriPoluchenii":
+        #         so.action_confirm()
+        #     else:
+        #         so.action_set_waiting()
+        # else:
+        #     self.protocol_id.note = self.protocol_id.note + _(
+        #         "\nThe order has not been confirmed and is recorded with number  %s",
+        #         so.name,
+        #     )
 
         # Если в настройке установлен признак Создавать лиды/сделки, то нужно создавать еще и их (модель crm.lead).
         if self.settings_id.is_create_leads:

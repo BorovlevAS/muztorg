@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Inherited sale order quotation tree view. -->
+    <record id="muztorg_view_quotation_tree_with_onboarding" model="ir.ui.view">
+        <field name="name">sale.order.view.tree.inherit.muztorg</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="biko_website_ref" optional="show" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

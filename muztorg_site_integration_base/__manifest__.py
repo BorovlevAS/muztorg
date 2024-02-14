@@ -5,11 +5,15 @@
     "company": "BIKO Solutions",
     "depends": [
         "base",
+        "muztorg_sale_order_customization",
+        "biko_client_add_mandatory_contact",
         "phone_validation",
     ],
     "data": [
         "security/ir_access_roles.xml",
         "security/ir.model.access.csv",
+        "views/sale_order_views.xml",
+        "views/res_partner.xml",
         "views/site_integration_menus_views.xml",
         "views/site_integration_settings_views.xml",
         "views/site_integration_setting_views.xml",

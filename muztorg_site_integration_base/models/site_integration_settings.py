@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import _, fields, models
 
 
 class SiteIntegrationBase(models.Model):
@@ -25,6 +25,12 @@ class SiteIntegrationBase(models.Model):
         "site.integration.setting.line", "settings_id", auto_join=True
     )
 
+    type_exchange = fields.Selection(
+        string="Exchange Type",
+        selection=[("basic", "basic"), ("dealer", "dealer")],
+        default="basic",
+    )
+
     def sync_call(self):
         self.ensure_one()
         vals = {"settings_id": self.id, "url": self.url}
@@ -49,4 +55,9 @@ class SiteIntegrationBase(models.Model):
         for sync in syncs:
             vals = {"settings_id": sync.id, "url": sync.url}
             si_sync = self.env["site.integration.sync"].create(vals)
-            si_sync.import_data()
+            try:
+                si_sync.import_data()
+            except Exception as exc:
+                si_sync.protocol_id.note = si_sync.protocol_id.note + _(
+                    "\nexception: %s", exc
+                )
