@@ -65,10 +65,20 @@ class SiteIntegrationSync(models.TransientModel):
             self.protocol_id.status = "error"
 
     def import_orders(self, dict_reply):
-        if not dict_reply.get("orders"):
-            for ind in dict_reply:
-                if dict_reply[ind].get("orders"):
-                    so_count = self.load_data(dict_reply[ind].get("orders"))
+        # if not dict_reply.get("orders"):
+        for ind in dict_reply:
+            if dict_reply[ind].get("orders"):
+                so_count = self.load_data(dict_reply[ind].get("orders"))
+                if len(dict_reply[ind].get("orders")) == 0:
+                    self.protocol_id.note = self.protocol_id.note + _(
+                        "\nNo orders found to download"
+                    )
+                    self.protocol_id.status = "error"
+            else:
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nNo orders found to download"
+                )
+                self.protocol_id.status = "error"
 
         _logger.exception("%s orders loaded", so_count)
         self.protocol_id.note = self.protocol_id.note + _(
@@ -120,6 +130,7 @@ class SiteIntegrationSync(models.TransientModel):
                 self.protocol_id.note = self.protocol_id.note + _(
                     "\nDelivery city not found  %s", city_str
                 )
+                self.protocol_id.status = "error"
                 return partner
 
             if warehouse_ref:
@@ -129,6 +140,7 @@ class SiteIntegrationSync(models.TransientModel):
                     self.protocol_id.note = self.protocol_id.note + _(
                         "\nDelivery branch not found %s", warehouse_ref
                     )
+                    self.protocol_id.status = "error"
             else:
                 warehouse = None
             street = self.env["delivery_novaposhta.streets_list"]
@@ -142,6 +154,7 @@ class SiteIntegrationSync(models.TransientModel):
                 self.protocol_id.note = self.protocol_id.note + _(
                     "\nDelivery street not found %s", streer_str
                 )
+                self.protocol_id.status = "error"
                 return partner
 
             Partner = self.env["res.partner"].sudo()
@@ -193,6 +206,7 @@ class SiteIntegrationSync(models.TransientModel):
                     self.protocol_id.note = self.protocol_id.note + _(
                         "\nAddress street not found %s", address_str
                     )
+                    self.protocol_id.status = "error"
                     return partner
 
         def search_partner(phone, email, lastname, firstname, value_address):
@@ -238,12 +252,14 @@ class SiteIntegrationSync(models.TransientModel):
                 self.protocol_id.note = self.protocol_id.note + _(
                     "\nexception: %s", exc
                 )
+                self.protocol_id.status = "error"
 
             if not partner:
                 self.protocol_id.note = self.protocol_id.note + _(
                     "\nIt is impossible to register a client %s",
                     lastname + " " + firstname,
                 )
+                self.protocol_id.status = "error"
 
             # shipping = value_address.get("shipping")
             # if shipping != "NOVA POSHTA":
@@ -325,6 +341,7 @@ class SiteIntegrationSync(models.TransientModel):
                 self.protocol_id.note = self.protocol_id.note + _(
                     "\nexception: %s", exc
                 )
+                self.protocol_id.status = "error"
         else:
             phone = ""
 
@@ -495,6 +512,7 @@ class SiteIntegrationSync(models.TransientModel):
             self.protocol_id.note = self.protocol_id.note + _(
                 "\nFailed to select payment type %s", data_order.get("payment", None)
             )
+            self.protocol_id.status = "error"
 
         # carrier_id	Способ доставки - если shipping = 'NOVA POSHTA', то это Новая почта, если SamovyvozMTPodol - самовывоз
         # склад
@@ -582,8 +600,10 @@ class SiteIntegrationSync(models.TransientModel):
             so_values = {
                 "partner_id": partner.id if partner else False,
                 "biko_contact_person_type": "person",
-                "biko_contact_person_id": contact_person.id if partner else False,
-                "biko_recipient_id": recipient.id if partner else False,
+                "biko_contact_person_id": contact_person.id
+                if contact_person
+                else False,
+                "biko_recipient_id": recipient.id if recipient else False,
                 "biko_recipient_type": "person",
                 "biko_website_ref": data_order.get("order_id"),
                 "date_order": datetime.strptime(
@@ -592,7 +612,7 @@ class SiteIntegrationSync(models.TransientModel):
                 "afterpayment_check": afterpayment_check,
                 "note": note,
                 "so_payment_type_id": payment_type.id,
-                "biko_dealer_id": dealer.id if partner else False,
+                "biko_dealer_id": dealer.id if dealer else False,
             }
         else:
             so_values = {
@@ -638,16 +658,26 @@ class SiteIntegrationSync(models.TransientModel):
                 for product_dict in product:
                     is_error += get_so_line(so, product_dict)
 
-        # if len(so.order_line) != 0 and not is_error and self.settings_id.type_exchange != "dealer":
-        #     if data_order.get("payment") == "PriPoluchenii":
-        #         so.action_confirm()
-        #     else:
-        #         so.action_set_waiting()
-        # else:
-        #     self.protocol_id.note = self.protocol_id.note + _(
-        #         "\nThe order has not been confirmed and is recorded with number  %s",
-        #         so.name,
-        #     )
+        if (
+            len(so.order_line) != 0
+            and not is_error
+            and self.settings_id.type_exchange != "dealer"
+        ):
+            try:
+                if data_order.get("payment") == "PriPoluchenii":
+                    so.action_confirm()
+                else:
+                    so.action_set_waiting()
+            except Exception as exc:
+                self.protocol_id.note = self.protocol_id.note + _(
+                    "\nexception: %s", exc
+                )
+                is_error = True
+        else:
+            self.protocol_id.note = self.protocol_id.note + _(
+                "\nThe order has not been confirmed and is recorded with number  %s",
+                so.name,
+            )
 
         if is_error:
             self.protocol_id.status = "error"
