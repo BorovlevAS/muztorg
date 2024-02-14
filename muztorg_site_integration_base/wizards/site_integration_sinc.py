@@ -443,7 +443,7 @@ class SiteIntegrationSync(models.TransientModel):
                 dealer,
             ) = self.get_partner_dealer(value_partner)
             if not partner:
-                note = f"Номер: {data_order.get('order_id')}. {data_order.get('lastname')} {data_order.get('firstname')} {data_order.get('phone_code')} {data_order.get('telephone')} {data_order.get('email')}"
+                note = f"Номер: {data_order.get('order_id')}. {data_order.get('customer_id')} {data_order.get('lastname')} {data_order.get('firstname')} {data_order.get('phone_code')} {data_order.get('telephone')} {data_order.get('email')}"
                 self.protocol_id.note = self.protocol_id.note + _(
                     "\nThe order was not created because the Partner was not found #%s",
                     note,
@@ -455,7 +455,7 @@ class SiteIntegrationSync(models.TransientModel):
                 #     "loading_text": "\nLoading order #%s (%s)"
                 #     % (data_order.get("order_id"), so.name)
                 # }
-
+                self.protocol_id.status = "error"
                 return False
         else:
             # это если не дилер
@@ -649,6 +649,8 @@ class SiteIntegrationSync(models.TransientModel):
         #         so.name,
         #     )
 
+        if is_error:
+            self.protocol_id.status = "error"
         # Если в настройке установлен признак Создавать лиды/сделки, то нужно создавать еще и их (модель crm.lead).
         if self.settings_id.is_create_leads:
             self.create_lead(so)

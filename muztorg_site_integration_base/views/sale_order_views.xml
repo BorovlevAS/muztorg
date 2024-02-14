@@ -11,4 +11,16 @@
             </xpath>
         </field>
     </record>
+
+    <record id="muztorg_view_sales_order_filter_inherited" model="ir.ui.view">
+        <field name="name">muztorg.view.sales.order.filter.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="priority" eval="15" />
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="biko_website_ref" />
+            </search>
+        </field>
+    </record>
 </odoo>
