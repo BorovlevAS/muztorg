@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Cargo Customs Declaration for MUZTORG",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
