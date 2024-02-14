@@ -7,6 +7,7 @@
             <search string="Search Sync. protocol">
                 <field name="name" />
                 <field name="note" />
+                <field name="settings_id" />
                 <filter string="With errors" name="is_errors" domain="[('status', '=', 'error')]" />
                 <filter string="No errors" name="all_ok" domain="[('status', '=', 'ok')]" />
                 <separator />
