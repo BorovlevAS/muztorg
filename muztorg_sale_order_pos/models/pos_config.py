@@ -37,6 +37,12 @@ class PosConfig(models.Model):
         store=True,
     )
 
+    cash_journal_id = fields.Many2one(
+        comodel_name="account.journal",
+        string="Cash Journal",
+        domain="[('type', '=', 'cash')]",
+    )
+
     @api.depends("autoclose_session_time_string")
     def _compute_autoclose_session_time(self):
         for record in self:
@@ -114,6 +120,20 @@ class PosConfig(models.Model):
             self.env["pos.session"].create(
                 {"user_id": self.env.uid, "config_id": self.id}
             )
+
+        if self.cash_journal_id and self.current_session_id:
+            current_abs_id = self.env["account.bank.statement"].search(
+                [("pos_session_id", "=", self.current_session_id.id)]
+            )
+            if not current_abs_id:
+                current_abs_id = self.env["account.bank.statement"].create(
+                    {
+                        "journal_id": self.cash_journal_id.id,
+                        "user_id": self.env.uid,
+                        "pos_session_id": self.current_session_id.id,
+                        "date": fields.Datetime.now(),
+                    }
+                )
 
         if self.is_auto_open_pos:
             return self.open_ui()

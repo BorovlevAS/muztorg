@@ -68,6 +68,21 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                        class="col-12 col-lg-6 o_setting_box"
+                        attrs="{'invisible': [('is_use_with_sale_order', 'in', [False, ''])]}"
+                    >
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <label for="cash_journal_id" />
+                            <div class="content-group mt16">
+                                <field
+                                    name="cash_journal_id"
+                                    attrs="{'required' : [('is_use_with_sale_order', '=', True)]}"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </sheet>
         </field>
