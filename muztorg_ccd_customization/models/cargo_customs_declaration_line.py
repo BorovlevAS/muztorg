@@ -13,6 +13,7 @@ class CargoCustomsDeclarationLine(models.Model):
     customs_amount_uah = fields.Monetary(
         string="Customs Amount (UAH)",
         compute="_compute_customs_amount_uah",
+        inverse="_inverse_customs_amount_uah",
         help="Customs Amount in UAH",
         currency_field="uah_currency_id",
         store=True,
@@ -121,6 +122,18 @@ class CargoCustomsDeclarationLine(models.Model):
                 )
             else:
                 line.customs_amount_uah = line.customs_amount_po_curr
+
+    def _inverse_customs_amount_uah(self):
+        for line in self:
+            if line.po_currency_id != line.uah_currency_id:
+                line.customs_amount_po_curr = (
+                    line.customs_amount_uah
+                    / line.customs_declaration_id.purchase_currency_rate
+                    if line.customs_declaration_id.purchase_currency_rate
+                    else 0.0
+                )
+            else:
+                line.customs_amount_po_curr = line.customs_amount_uah
 
     @api.depends(
         "product_qty",
