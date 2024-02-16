@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Sale Order Customization (MUZTORG)",
-    "version": "14.0.5.2.0",
+    "version": "14.0.5.2.1",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
@@ -10,6 +10,7 @@
         "account",
         "product_stock_by_location_widget",
         "sale_margin",
+        "simbioz_uktzed",
     ],
     "data": [
         "views/sale_order_views.xml",
