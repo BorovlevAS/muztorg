@@ -1,17 +1,15 @@
 {
-    "name": "BIKO: Базовый модуль",
-    "version": "14.0.2.1.0",
+    "name": "BIKO: Account Move Rounding Fix",
+    "version": "14.0.1.0.0",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
-        "base",
-        "sale",
         "account",
+        "biko_base_module",
+        "account_multicurrency_revaluation",
     ],
     "data": [
-        "security/ir_access_roles.xml",
-        "views/biko_base_menus.xml",
-        "views/res_config_settings_views.xml",
+        "views/res_config_settings.xml",
     ],
     "license": "LGPL-3",
     "installable": True,
