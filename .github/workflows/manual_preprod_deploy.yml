@@ -21,6 +21,7 @@ jobs:
             base_update: ${{ inputs.base_update }}
             SERVER_ADDR: ${{vars.PREPROD_SERV_ADDR}}
             SERVER_USER: ${{vars.PREPROD_SERV_USER}}
+            SERVER_PORT: ${{vars.PREPROD_SERV_PORT}}
             MAIN_PATH: ${{vars.PREPROD_MAIN_PATH}}
             CUSTOM_PATH: ${{vars.PREPROD_CUSTOM_PATH}}
             ODOO_SERVICE: ${{vars.PREPROD_ODOO_SERVICE}}
