@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_account_move_rounding_fix
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-12 19:33+0000\n"
+"PO-Revision-Date: 2024-02-12 19:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_account_move_rounding_fix
+#: code:addons/muztorg_account_move_rounding_fix/models/account_move.py:0
+#, python-format
+msgid ""
+"Cannot create unbalanced journal entry. Id: %()s\n"
+"Differences debit - credit: %()s"
+msgstr ""
+
+#. module: muztorg_account_move_rounding_fix
+#: model:ir.model,name:muztorg_account_move_rounding_fix.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: muztorg_account_move_rounding_fix
+#: model:ir.model,name:muztorg_account_move_rounding_fix.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: muztorg_account_move_rounding_fix
+#: code:addons/muztorg_account_move_rounding_fix/models/account_move.py:0
+#, python-format
+msgid "Difference"
+msgstr ""
+
+#. module: muztorg_account_move_rounding_fix
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_account_move__display_name
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_res_company__display_name
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: muztorg_account_move_rounding_fix
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_account_move__id
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_res_company__id
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: muztorg_account_move_rounding_fix
+#: model:ir.model,name:muztorg_account_move_rounding_fix.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: muztorg_account_move_rounding_fix
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_account_move____last_update
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_res_company____last_update
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: muztorg_account_move_rounding_fix
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_res_company__max_avail_diff
+#: model:ir.model.fields,field_description:muztorg_account_move_rounding_fix.field_res_config_settings__max_avail_diff
+#: model_terms:ir.ui.view,arch_db:muztorg_account_move_rounding_fix.res_config_settings_account_view_form
+msgid "Max Available Difference"
+msgstr ""
