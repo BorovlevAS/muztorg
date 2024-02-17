@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="check_product_confidential" model="ir.cron">
         <field name="name">MT: confidential product check</field>
         <field name="active" eval="True" />
@@ -12,5 +11,4 @@
         <field name="state">code</field>
         <field name="code">model._cron_check_product_confidential()</field>
     </record>
-
 </odoo>
