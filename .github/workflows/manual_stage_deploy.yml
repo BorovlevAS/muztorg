@@ -21,6 +21,7 @@ jobs:
             base_update: ${{ inputs.base_update }}
             SERVER_ADDR: ${{vars.STAGE_SERV_ADDR}}
             SERVER_USER: ${{vars.STAGE_SERV_USER}}
+            SERVER_PORT: ${{vars.STAGE_SERV_PORT}}
             MAIN_PATH: ${{vars.STAGE_MAIN_PATH}}
             CUSTOM_PATH: ${{vars.STAGE_CUSTOM_PATH}}
             ODOO_SERVICE: ${{vars.STAGE_ODOO_SERVICE}}
