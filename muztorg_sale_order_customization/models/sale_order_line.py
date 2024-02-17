@@ -18,7 +18,9 @@ class SaleOrderLine(models.Model):
         groups="muztorg_sale_order_customization.biko_group_show_margin"
     )
 
-    uktzed_id = fields.Many2one(comodel_name="catalog.uktzed", string="UKTZED", related="product_id.uktzed_id")
+    uktzed_id = fields.Many2one(
+        comodel_name="catalog.uktzed", string="UKTZED", related="product_id.uktzed_id"
+    )
 
     def _calculate_customer_lead(self, vals):
         customer_lead = vals.get("customer_lead", 0)

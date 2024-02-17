@@ -18,7 +18,7 @@
                 <field name="json_remainings_popover" string=" " widget="stock_by_location_widget" />
             </xpath>
             <xpath expr="//page/field[@name='order_line']/tree/field[@name='sequence']" position="after">
-                <field name="uktzed_id" readonly="1" optional="show"/>
+                <field name="uktzed_id" readonly="1" optional="show" />
             </xpath>
         </field>
     </record>
