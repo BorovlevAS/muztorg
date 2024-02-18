@@ -14,8 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.3.2\n"
 
 #. module: biko_add_product_class
@@ -91,12 +90,12 @@ msgstr "Страна для таможни"
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__create_uid
 msgid "Created by"
-msgstr "Created by"
+msgstr ""
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr ""
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__display_name
@@ -104,7 +103,7 @@ msgstr "Created on"
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__display_name
 #: model:ir.model.fields,field_description:biko_add_product_class.field_res_config_settings__display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr ""
 
 #. module: biko_add_product_class
 #: model_terms:ir.ui.view,arch_db:biko_add_product_class.product_vendor_code_uniue_config_settings_view
@@ -128,7 +127,7 @@ msgstr "Высота (см)"
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__id
 #: model:ir.model.fields,field_description:biko_add_product_class.field_res_config_settings__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class____last_update
@@ -136,17 +135,17 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template____last_update
 #: model:ir.model.fields,field_description:biko_add_product_class.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr ""
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__write_date
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr ""
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_length
@@ -259,9 +258,9 @@ msgstr "Ширина (см)"
 #. module: biko_add_product_class
 #: model:ir.model,name:biko_add_product_class.model_biko_product_class
 msgid "biko.product.class"
-msgstr "biko.product.class"
+msgstr ""
 
 #. module: biko_add_product_class
 #: model:ir.model.constraint,message:biko_add_product_class.constraint_product_template_vendor_code_unique
 msgid "Товар с таким артикулом поставщика уже есть в базе"
-msgstr "Товар с таким артикулом поставщика уже есть в базе"
+msgstr ""
