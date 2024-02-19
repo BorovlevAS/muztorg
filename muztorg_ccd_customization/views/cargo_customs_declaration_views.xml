@@ -34,16 +34,16 @@
             </xpath>
 
             <xpath expr="//field[@name='section_ids']//field[@name='customs_amount']" position="before">
-                <field name="customs_amount_uah" />
+                <field name="customs_amount_uah" sum="Total" />
             </xpath>
             <xpath expr="//field[@name='section_ids']//field[@name='duty_amount']" position="before">
-                <field name="duty_amount_uah" />
+                <field name="duty_amount_uah" sum="Total" />
             </xpath>
             <xpath expr="//field[@name='section_ids']//field[@name='excide_tax_amount']" position="before">
-                <field name="excide_tax_amount_uah" />
+                <field name="excide_tax_amount_uah" sum="Total" />
             </xpath>
             <xpath expr="//field[@name='section_ids']//field[@name='vat_amount']" position="before">
-                <field name="vat_amount_uah" />
+                <field name="vat_amount_uah" sum="Total" />
             </xpath>
         </field>
     </record>
