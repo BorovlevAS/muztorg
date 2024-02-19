@@ -1,0 +1,26 @@
+<odoo>
+    <record id="site_integration_sync_wizard_form" model="ir.ui.view">
+        <field name="model">site.integration.sync</field>
+        <field name="arch" type="xml">
+            <form string="Upload orders">
+                <h2>Upload a file</h2>
+
+                <!-- <field name="price_file" filename="price_filename" />
+                <field name="price_filename" invisible="1" /> -->
+                <field name="settings_id" invisible="1" />
+                <field name="url" />
+                <footer>
+                    <button
+                        name="import_data"
+                        string="Import"
+                        type="object"
+                        class="btn-primary"
+                        context="{'default_active_id': 'settings_id.id'}"
+                    />
+
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

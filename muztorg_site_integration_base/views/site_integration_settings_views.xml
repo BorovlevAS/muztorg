@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="site_integration_settings_view_search" model="ir.ui.view">
+        <field name="name">site.integration.view.search</field>
+        <field name="model">site.integration.base</field>
+        <field name="arch" type="xml">
+            <search string="Search Sync. settings">
+                <field name="name" />
+                <filter
+                    string="Include archived"
+                    name="archived"
+                    domain="['|', ('active', '=', True), ('active', '=', False)]"
+                />
+                <separator />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+            </search>
+        </field>
+    </record>
+
+    <record id="site_integration_settings_view_form" model="ir.ui.view">
+        <field name="name">site.integration.base.form.view.muztorg</field>
+        <field name="model">site.integration.base</field>
+        <field name="arch" type="xml">
+            <form string="Settings site integration">
+                <sheet>
+                    <header>
+                        <button name="sync_call" type="object" string="sync" class="oe_highlight" />
+                        <!-- <button
+                            name="remove_old_discount_prices"
+                            type="object"
+                            string="Remove old discount prices"
+                            class="oe_highlight"
+                        /> -->
+                    </header>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <group>
+                        <field name="name" />
+                        <field name="company_id" groups="base.group_multi_company" />
+
+                        <field name="url" />
+                        <field name="type_exchange" />
+                        <field name="active" widget="boolean_toggle" />
+                        <field name="is_create_leads" widget="boolean_toggle" />
+                        <!-- <field name="setting_pickup_id" />
+                        <field name="setting_nova_poshta_id" /> widget="many2many_tags"
+                        <field name="setting_warehouse_podol_id" />  string="Settings" -->
+                    </group>
+                    <notebook>
+                        <page name="settings_import" string="Import">
+                            <field name="setting_ids" widget="section_and_note_one2many" mode="tree">
+                                <form>
+                                    <group>
+                                        <field name="setting_id" string="Parameter" />
+                                        <!-- <field name="name" /> -->
+                                        <field name="value_many2one" />
+                                        <field name="id_seting" />
+                                    </group>
+                                </form>
+
+                                <tree string="">
+                                    <field name="setting_id" string="Parameter" />
+                                    <!-- <field name="name" /> -->
+                                    <field name="value_many2one" />
+                                    <field name="id_seting" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="settings_export" string="Export" />
+                    </notebook>
+                    <!-- <group>
+
+                    </group> -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="site_integration_settings_view_tree" model="ir.ui.view">
+        <field name="name">site.integration.base.view.tree.muztorg</field>
+        <field name="model">site.integration.base</field>
+        <field name="arch" type="xml">
+            <tree string="Settings site integration">
+                <field name="name" />
+                <field name="url" />
+                <!-- <field name="setting_nova_poshta_id" />
+                <field name="setting_warehouse_podol_id" />                 -->
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_site_integration_settings_tree" model="ir.actions.act_window">
+        <field name="name">Settings site integration</field>
+        <field name="res_model">site.integration.base</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="site_integration_settings_menu"
+        name="Settings site integration"
+        action="action_site_integration_settings_tree"
+        parent="muztorg_site_integration_base.site_integration_menu_websites"
+        sequence="10"
+    />
+</odoo>
