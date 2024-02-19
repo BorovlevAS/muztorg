@@ -9,6 +9,10 @@ class ResCompany(models.Model):
         comodel_name="product.product",
         string="Product for customs broker",
     )
+    ccd_vat_tax_id = fields.Many2one(
+        comodel_name="account.tax",
+        string="Default VAT Tax",
+    )
 
 
 class Settings(models.TransientModel):
@@ -17,5 +21,11 @@ class Settings(models.TransientModel):
         comodel_name="product.product",
         related="company_id.ccd_vat_product_id",
         string="Product for customs broker",
+        readonly=False,
+    )
+    ccd_vat_tax_id = fields.Many2one(
+        comodel_name="account.tax",
+        related="company_id.ccd_vat_tax_id",
+        string="Default VAT Tax",
         readonly=False,
     )
