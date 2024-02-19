@@ -14,7 +14,9 @@ class CargoCustomsDeclaration(models.Model):
         comodel_name="res.currency",
         string="Purchase Currency",
     )
-    purchase_currency_rate = fields.Float(string="Purchase Currency Rate")
+    purchase_currency_rate = fields.Float(
+        string="Purchase Currency Rate", digits=(12, 6)
+    )
 
     customs_fee_uah = fields.Monetary(
         string="Customs fee (UAH)",
