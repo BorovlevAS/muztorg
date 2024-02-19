@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- <record id="category_biko_addon_main" model="ir.module.category">
+        <field name="name">BIKO additional roles</field>
+        <field name="sequence">100</field>
+    </record>
+
+    <record id="category_biko_addon_roles" model="ir.module.category">
+        <field name="name">RabbitMQ roles</field>
+        <field name="sequence">300</field>
+        <field name="parent_id" ref="muztorg_site_integration_base.category_biko_addon_main" />
+    </record> -->
+
+    <record id="category_site_integration" model="ir.module.category">
+        <field name="name">Site integration</field>
+        <field name="sequence">40</field>
+        <field name="parent_id" ref="biko_base_module.category_biko_addon_roles" />
+    </record>
+
+    <record id="group_site_integration_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="muztorg_site_integration_base.category_site_integration" />
+    </record>
+
+    <record id="group_site_integration_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]" />
+        <field name="implied_ids" eval="[(4, ref('group_site_integration_user'))]" />
+        <field name="category_id" ref="muztorg_site_integration_base.category_site_integration" />
+    </record>
+
+    <!-- Multi - Company Rules -->
+    <!-- <data noupdate="1">
+        <record model="ir.rule" id="rabbitmq_website_comp_rule">
+            <field name="name">RabbitMQ website multi-company</field>
+            <field name="model_id" ref="model_rabbitmq_website" />
+            <field
+                name="domain_force"
+            >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+    </data> -->
+</odoo>
