@@ -229,9 +229,9 @@ msgid "Recipient"
 msgstr ""
 
 #. module: biko_np_patch
-#: code:addons/biko_np_patch/models/TTN.py:0
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
 #, python-format
-msgid "Recipient city is empty"
+msgid "Recipient city is not specified"
 msgstr ""
 
 #. module: biko_np_patch
@@ -356,9 +356,9 @@ msgid "Volume Weight"
 msgstr ""
 
 #. module: biko_np_patch
-#: code:addons/biko_np_patch/models/TTN.py:0
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
 #, python-format
-msgid "Warehouse is empty"
+msgid "Warehouse is not specified"
 msgstr ""
 
 #. module: biko_np_patch
