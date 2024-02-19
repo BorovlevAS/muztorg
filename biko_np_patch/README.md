@@ -116,3 +116,7 @@ backward_money_costs, переносятся в stock.picking backward_money_cos
 ### 14.0.1.1.27
 
 [FIX] - исправил формирование ТТН
+
+### 14.0.1.1.28
+
+[IMP] - добавилf в stock.picking для поля biko_recipient_id domain="('type', '=', 'contact')
