@@ -14,7 +14,9 @@ class CargoCustomsDeclaration(models.Model):
         comodel_name="res.currency",
         string="Purchase Currency",
     )
-    purchase_currency_rate = fields.Float(string="Purchase Currency Rate")
+    purchase_currency_rate = fields.Float(
+        string="Purchase Currency Rate", digits=(12, 6)
+    )
 
     customs_fee_uah = fields.Monetary(
         string="Customs fee (UAH)",
@@ -210,3 +212,73 @@ class CargoCustomsDeclaration(models.Model):
                 landed_cost["valuation_adjustment_lines"] = adjustment_lines
 
             record.landed_cost_ids = [(6, 0, landed_costs)]
+
+    def action_fill_sections(self):
+        self.ensure_one()
+        move_lines = self.stock_picking_ids.mapped("move_lines").filtered(
+            lambda rec: not rec.customs_declaration_line_ids
+        )
+
+        if not move_lines:
+            return
+
+        sections = {
+            uktzed: sec_id
+            for uktzed, sec_id in self.section_ids.mapped(
+                lambda rec: (rec.uktzed_id.id, rec)
+            )
+        }
+
+        max_section_num = max(self.section_ids.mapped("sequence") or [0])
+        sections_to_create = {}
+        sections_to_update = {}
+
+        for line in move_lines:
+            product_id = line.product_id
+            new_line_vals = {
+                "move_line_id": line.id,
+                "product_id": line.product_id.id,
+                "product_uom_id": line.product_uom.id,
+                "product_qty": line.product_qty,
+                "product_uom_qty": line.product_uom_qty,
+                "customs_amount_po_curr": line.purchase_line_id.price_total,
+                "tax_ids": [(6, 0, self.company_id.ccd_vat_tax_id.ids)],
+            }
+            uktzed_key = product_id.uktzed_id.id
+            section_id = sections.get(uktzed_key, False)
+            if section_id:
+                if sections_to_update.get(section_id):
+                    sections_to_update[section_id].append((0, 0, new_line_vals))
+                else:
+                    sections_to_update[section_id] = [(0, 0, new_line_vals)]
+            else:
+                if sections_to_create.get(uktzed_key):
+                    sections_to_create[uktzed_key]["line_ids"].append(
+                        (0, 0, new_line_vals)
+                    )
+                else:
+                    max_section_num += 1
+                    sections_to_create[uktzed_key] = {
+                        "uktzed_id": uktzed_key,
+                        "customs_declaration_id": self.id,
+                        "sequence": max_section_num + 1,
+                        "tax_ids": [(6, 0, self.company_id.ccd_vat_tax_id.ids)],
+                        "line_ids": [(0, 0, new_line_vals)],
+                    }
+
+        sections_to_calculate = []
+        for section_data in sections_to_create.values():
+            section_id = self.env["cargo.customs.declaration.section"].create(
+                section_data
+            )
+            sections_to_calculate.append(section_id.id)
+
+        for section_id, line_ids in sections_to_update.items():
+            section_id.write({"line_ids": line_ids})
+            sections_to_calculate.append(section_id.id)
+
+        self.env["cargo.customs.declaration.section"].browse(
+            sections_to_calculate
+        ).action_calc_by_products()
+
+        return True

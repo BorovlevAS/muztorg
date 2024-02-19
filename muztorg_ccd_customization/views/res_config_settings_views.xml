@@ -12,6 +12,12 @@
                         <field name="ccd_vat_product_id" domain="[('type', '=', 'service')]" />
                     </div>
                 </div>
+                <div class="content-group">
+                    <div class="row mt16">
+                        <label string="Default VAT Tax" for="ccd_vat_tax_id" class="col-lg-3 o_light_label" />
+                        <field name="ccd_vat_tax_id" domain="[('type_tax_use', '=', 'purchase')]" />
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
