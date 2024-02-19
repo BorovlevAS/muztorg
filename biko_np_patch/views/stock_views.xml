@@ -69,7 +69,7 @@
             </field>
             <field name="recipient_city" position="before">
                 <field name="biko_dropshipping" />
-                <field name="biko_recipient_id" />
+                <field name="biko_recipient_id" domain="[('type', '=', 'contact')]" />
                 <field name="biko_recipient_mobile" />
                 <field name="biko_1c_phone" />
             </field>
