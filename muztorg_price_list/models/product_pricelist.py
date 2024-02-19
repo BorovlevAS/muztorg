@@ -110,6 +110,12 @@ class Pricelist(models.Model):
             "type": "ir.actions.act_window",
             "target": "current",
             "domain": domain,
+            "search_view_id": [
+                self.env.ref(
+                    "muztorg_price_list.biko_product_pricelist_item_view_search_from_pricelist"
+                ).id,
+                "search",
+            ],
             "context": {
                 # "default_product_tmpl_id": self.id,
                 "default_pricelist_id": self.id,
