@@ -229,6 +229,12 @@ msgid "Recipient"
 msgstr ""
 
 #. module: biko_np_patch
+#: code:addons/biko_np_patch/models/TTN.py:0
+#, python-format
+msgid "Recipient city is empty"
+msgstr ""
+
+#. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_id
 msgid "Recipient person"
 msgstr ""
@@ -347,6 +353,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:biko_np_patch.field_novaposhta_seats__biko_volume_weight
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_volume_weight
 msgid "Volume Weight"
+msgstr ""
+
+#. module: biko_np_patch
+#: code:addons/biko_np_patch/models/TTN.py:0
+#, python-format
+msgid "Warehouse is empty"
 msgstr ""
 
 #. module: biko_np_patch
