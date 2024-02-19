@@ -245,10 +245,10 @@ msgid "Recipient"
 msgstr ""
 
 #. module: biko_np_patch
-#: code:addons/biko_np_patch/models/TTN.py:0
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
 #, python-format
-msgid "Recipient city is empty"
-msgstr "Місто одержувача порожнє"
+msgid "Recipient city is not specified"
+msgstr "Місто одержувача не вказано"
 
 #. module: biko_np_patch
 #: model:ir.model.fields,field_description:biko_np_patch.field_stock_picking__biko_recipient_id
@@ -368,10 +368,10 @@ msgid "Volume Weight"
 msgstr "Об'ємна вага"
 
 #. module: biko_np_patch
-#: code:addons/biko_np_patch/models/TTN.py:0
+#: code:addons/biko_np_patch/models/delivery_carrier.py:0
 #, python-format
-msgid "Warehouse is empty"
-msgstr "Склад порожій"
+msgid "Warehouse is not specified"
+msgstr "Склад не вказано"
 
 #. module: biko_np_patch
 #: model_terms:ir.ui.view,arch_db:biko_np_patch.biko_view_picking_inherit_form_np

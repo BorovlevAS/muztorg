@@ -39,6 +39,14 @@ class ProviderNP(models.Model):
                 error_messages.append(_("Recipient person mobile not specified"))
                 error = True
 
+            if not picking.recipient_city:
+                error_messages.append(_("Recipient city is not specified"))
+                error = True
+
+            if not picking.recipient_warehouse:
+                error_messages.append(_("Warehouse is not specified"))
+                error = True
+
             if error:
                 raise UserError("\n".join(error_messages))
 

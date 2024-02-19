@@ -132,11 +132,6 @@ class NovaPoshtaTTN(models.Model):
 
         record = super(NovaPoshtaTTN, self.with_context(create=True)).create(vals)
 
-        if not vals["recipient_city"]:
-            raise ValidationError(_("Recipient city is empty"))
-        if not vals["recipient_warehouse"]:
-            raise ValidationError(_("Warehouse is empty"))
-
         if self._context.get("create"):
             return record
         key = self.get_api_key()
