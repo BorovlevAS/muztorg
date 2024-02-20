@@ -43,7 +43,13 @@ class ProviderNP(models.Model):
                 error_messages.append(_("Recipient city is not specified"))
                 error = True
 
-            if not picking.recipient_warehouse:
+            if (
+                picking.service_type.ref
+                in [
+                    "DoorsWarehouse",
+                    "WarehouseWarehouse",
+                ]
+            ) and (not picking.recipient_warehouse):
                 error_messages.append(_("Warehouse is not specified"))
                 error = True
 
