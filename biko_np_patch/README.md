@@ -116,3 +116,19 @@ backward_money_costs, переносятся в stock.picking backward_money_cos
 ### 14.0.1.1.27
 
 [FIX] - исправил формирование ТТН
+
+### 14.0.1.1.28
+
+[IMP] - добавила проверку на заполнение Recipient city и Warehouse в ТТН
+
+### 14.0.1.1.29
+
+[IMP] - добавила в stock.picking для поля biko_recipient_id domain="('type', '=', 'contact')
+
+### 14.0.1.1.30
+
+[FIX] - перенесла проверку на заполнение Recipient city и Warehouse в ТТН в delivery_carrier.py
+
+### 14.0.1.1.31
+
+[FIX] - исправил ошибку контроля заполнения склада в stock.picking

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="site_integration_protocol_view_search" model="ir.ui.view">
+        <field name="name">site.integration.view.search</field>
+        <field name="model">site.integration.protocol</field>
+        <field name="arch" type="xml">
+            <search string="Search Sync. protocol">
+                <field name="name" />
+                <field name="note" />
+                <field name="settings_id" />
+                <filter string="With errors" name="is_errors" domain="[('status', '=', 'error')]" />
+                <filter string="No errors" name="all_ok" domain="[('status', '=', 'ok')]" />
+                <separator />
+            </search>
+        </field>
+    </record>
+
+    <record id="site_integration_protocol_view_form" model="ir.ui.view">
+        <field name="name">site.integration.protocol.form.view.muztorg</field>
+        <field name="model">site.integration.protocol</field>
+        <field name="arch" type="xml">
+            <form string="Protocol site integration">
+                <sheet>
+                    <!-- <header>
+                        <button name="sync_call" type="object" string="sync" class="oe_highlight" />
+                    </header> -->
+                    <!-- <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    /> -->
+                    <group>
+                        <field name="name" />
+                        <field name="date_exchange" />
+                        <field name="settings_id" />
+                        <field name="status" />
+                        <field name="note" />
+                    </group>
+                    <!-- <notebook>
+                        <page name="settings_import" string="Import">
+                            <field name="setting_ids" widget="section_and_note_one2many" mode="tree">
+                                <form>
+                                    <group>
+                                        <field name="setting_id" string="Parameter" />
+                                        <field name="value_many2one" />
+                                        <field name="id_seting" />
+                                    </group>
+                                </form>
+
+                                <tree string="">
+                                    <field name="setting_id" string="Parameter" />
+                                    <field name="value_many2one" />
+                                    <field name="id_seting" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="settings_export" string="Export" />
+                    </notebook> -->
+                    <!-- <group>
+
+                    </group> -->
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="site_integration_protocol_view_tree" model="ir.ui.view">
+        <field name="name">site.integration.protocol.view.tree.muztorg</field>
+        <field name="model">site.integration.protocol</field>
+        <field name="arch" type="xml">
+            <tree string="Protocol site integration">
+                <field name="date_exchange" />
+                <field name="settings_id" />
+                <field name="status" />
+                <field name="note" optional="hide" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_site_integration_protocol_tree" model="ir.actions.act_window">
+        <field name="name">Protocol site integration</field>
+        <field name="res_model">site.integration.protocol</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="site_integration_protocol_menu"
+        name="Protocol site integration"
+        action="action_site_integration_protocol_tree"
+        parent="muztorg_site_integration_base.site_integration_menu_websites"
+        sequence="20"
+    />
+</odoo>

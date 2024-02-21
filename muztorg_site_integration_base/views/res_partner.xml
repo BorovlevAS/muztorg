@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="biko_view_partner_form_add_dealer_code_inherit" model="ir.ui.view">
+        <field name="name">biko.view.partner.form.add.dealer.code.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="biko_client_add_mandatory_contact.biko_view_partner_form_mt_d02_3_inherit" />
+        <field name="arch" type="xml">
+            <field name="biko_1c_phone" position="after">
+                <field name="dealer_code" />
+            </field>
+        </field>
+    </record>
+</odoo>

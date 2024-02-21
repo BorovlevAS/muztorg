@@ -131,6 +131,7 @@ class NovaPoshtaTTN(models.Model):
         """Один из самых потных кусков. Тут вся магия(почти)."""
 
         record = super(NovaPoshtaTTN, self.with_context(create=True)).create(vals)
+
         if self._context.get("create"):
             return record
         key = self.get_api_key()

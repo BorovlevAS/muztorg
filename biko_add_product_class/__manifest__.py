@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Добавить класс товара",
-    "version": "14.0.1.1.12",
+    "version": "14.0.1.1.13",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [

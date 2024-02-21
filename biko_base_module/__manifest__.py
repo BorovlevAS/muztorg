@@ -6,6 +6,7 @@
     "depends": [
         "base",
         "sale",
+        "account",
     ],
     "data": [
         "security/ir_access_roles.xml",
