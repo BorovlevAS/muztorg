@@ -9,14 +9,6 @@ from odoo.addons.phone_validation.tools import phone_validation
 
 from ..muztorg_api.api import MTApi
 
-# import XML2Dict
-# from encoder import XML2Dict
-# import muztorg_site_integration_base.muztorg_api.xml2dict as xml2dict
-
-
-# import XML2Dict
-
-
 _logger = logging.getLogger(__name__)
 
 # from odoo import http
@@ -639,13 +631,30 @@ class SiteIntegrationSync(models.TransientModel):
         if warehouse_value:
             so_values["warehouse_id"] = warehouse_value.id
         so = self.env["sale.order"].create(so_values)
-        self.protocol_id.note = self.protocol_id.note + _(
-            # "\nLoading order #%s (%s)", data_order.get("order_id"), so.name)
-            "%(loading_text)s"
-        ) % {
-            "loading_text": "\nLoading order #%s (%s)"
-            % (data_order.get("order_id"), so.name)
-        }
+        # "\nLoading order #%s (%s)", data_order.get("order_id"), so.name)
+        # self.protocol_id.note = self.protocol_id.note + _("\n%(loading_text)s") % {
+        #     "loading_text": _("Loading order #%s (%s)")
+        #     % {
+        #         "placeholder1": data_order.get("order_id"),
+        #         "placeholder2": so.name,
+        #     }
+        # }
+        self.protocol_id.note = self.protocol_id.note + (
+            "\n{} #{} ({})".format(
+                _("Loading order"), data_order.get("order_id"), so.name
+            )
+        )
+
+        # self.protocol_id.note = self.protocol_id.note + (
+        #     ("\n%(loading_text)s")
+        #     % {
+        #         "loading_text": _("Loading order #%(order_id)s (%(so_name)s)")
+        #         % {
+        #             "order_id": data_order.get("order_id"),
+        #             "so_name": so.name,
+        #         }
+        #     }
+        # )
 
         #  ТЧ Продукты
         products = data_order.get("products", False)
@@ -661,13 +670,13 @@ class SiteIntegrationSync(models.TransientModel):
         if (
             len(so.order_line) != 0
             and not is_error
-            and self.settings_id.type_exchange != "dealer"
+            # and self.settings_id.type_exchange != "dealer"
         ):
             try:
-                if data_order.get("payment") == "PriPoluchenii":
-                    so.action_confirm()
-                else:
-                    so.action_set_waiting()
+                # if data_order.get("payment") == "PriPoluchenii":
+                #     so.action_confirm()
+                # else:
+                so.action_set_waiting()
             except Exception as exc:
                 self.protocol_id.note = self.protocol_id.note + _(
                     "\nexception: %s", exc

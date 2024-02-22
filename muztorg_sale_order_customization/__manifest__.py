@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Sale Order Customization (MUZTORG)",
-    "version": "14.0.5.2.1",
+    "version": "14.0.6.2.1",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [

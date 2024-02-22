@@ -45,3 +45,8 @@ class SaleOrder(models.Model):
             record.recalculate_prices()
 
         return result
+
+    def action_confirm(self):
+        self.write({"user_id": self.env.user.id})
+        self.onchange_user_id()
+        return super().action_confirm()
