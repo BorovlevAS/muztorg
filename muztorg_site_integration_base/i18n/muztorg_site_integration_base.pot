@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-09 12:44+0000\n"
-"PO-Revision-Date: 2024-02-09 12:44+0000\n"
+"POT-Creation-Date: 2024-02-22 09:15+0000\n"
+"PO-Revision-Date: 2024-02-22 09:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,14 @@ msgstr ""
 msgid ""
 "\n"
 "%s orders loaded"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"Address street not found %s"
 msgstr ""
 
 #. module: muztorg_site_integration_base
@@ -73,6 +81,15 @@ msgstr ""
 
 #. module: muztorg_site_integration_base
 #: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"No orders found to download"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
 #, python-format
 msgid ""
 "\n"
@@ -84,7 +101,15 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"The order has not been confirmed. because there are filling errorse"
+"The order has not been confirmed and is recorded with number  %s"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"The order was not created because the Partner was not found #%s"
 msgstr ""
 
 #. module: muztorg_site_integration_base
@@ -100,6 +125,18 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
+"create an address %s"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/models/site_integration_settings.py:0
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
 "exception: %s"
 msgstr ""
 
@@ -108,13 +145,19 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"the order is already loaded %s"
+"the order is already loaded #%s"
 msgstr ""
 
 #. module: muztorg_site_integration_base
 #: code:addons/muztorg_site_integration_base/models/site_integration_protocol.py:0
 #, python-format
 msgid " of "
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid "%(loading_text)s"
 msgstr ""
 
 #. module: muztorg_site_integration_base
@@ -182,12 +225,24 @@ msgid "Date Exchange"
 msgstr ""
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_res_partner__dealer_code
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_res_users__dealer_code
+msgid "Dealer code"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_res_partner__display_name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__display_name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__display_name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__display_name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting_line__display_name
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_sync__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__type_exchange
+msgid "Exchange Type"
 msgstr ""
 
 #. module: muztorg_site_integration_base
@@ -216,6 +271,7 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_res_partner__id
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base__id
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__id
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting__id
@@ -238,6 +294,7 @@ msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__message_has_error
+#: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -263,6 +320,7 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_res_partner____last_update
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_base____last_update
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol____last_update
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_setting____last_update
@@ -290,6 +348,12 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid "Loading order"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_main_attachment_id
 msgid "Main Attachment"
 msgstr ""
@@ -313,6 +377,7 @@ msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields.selection,name:muztorg_site_integration_base.selection__site_integration_protocol__status__ok
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_protocol_view_search
 msgid "No errors"
 msgstr ""
 
@@ -363,6 +428,21 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_protocol_view_form
 #: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_protocol_view_tree
 msgid "Protocol site integration"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model,name:muztorg_site_integration_base.model_res_partner
+msgid "Res partner Sequences"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_protocol_view_search
+msgid "Search Sync. protocol"
 msgstr ""
 
 #. module: muztorg_site_integration_base
@@ -450,13 +530,34 @@ msgid "Value"
 msgstr ""
 
 #. module: muztorg_site_integration_base
+#: model:ir.model.fields,field_description:muztorg_site_integration_base.field_site_integration_protocol__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields,help:muztorg_site_integration_base.field_site_integration_protocol__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: muztorg_site_integration_base
 #: model:ir.ui.menu,name:muztorg_site_integration_base.site_integration_menu_websites
 msgid "Websites"
 msgstr ""
 
 #. module: muztorg_site_integration_base
 #: model:ir.model.fields.selection,name:muztorg_site_integration_base.selection__site_integration_protocol__status__error
+#: model_terms:ir.ui.view,arch_db:muztorg_site_integration_base.site_integration_protocol_view_search
 msgid "With errors"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields.selection,name:muztorg_site_integration_base.selection__site_integration_base__type_exchange__basic
+msgid "basic"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: model:ir.model.fields.selection,name:muztorg_site_integration_base.selection__site_integration_base__type_exchange__dealer
+msgid "dealer"
 msgstr ""
 
 #. module: muztorg_site_integration_base
