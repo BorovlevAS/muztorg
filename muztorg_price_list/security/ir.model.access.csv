@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_biko_marketing_group_system,biko.marketing.group manager,model_biko_marketing_group,base.group_system,1,1,1,1
+access_biko_marketing_group_user,biko.marketing.group user,model_biko_marketing_group,base.group_user,1,0,0,0
+access_price_list_import_system,price.list.import manager,model_price_list_import,base.group_system,1,1,1,1
+access_price_list_import_user,price.list.import user,model_price_list_import,base.group_user,1,1,1,1

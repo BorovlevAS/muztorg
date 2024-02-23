@@ -1,0 +1,330 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_price_list
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-25 10:33+0000\n"
+"PO-Revision-Date: 2024-01-25 10:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_view
+msgid "Add all products"
+msgstr "Додати всі продукти"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
+msgid "Applied On"
+msgstr "Застосовано до"
+
+#. module: muztorg_price_list
+#: code:addons/muztorg_price_list/models/product_pricelist.py:0
+#, python-format
+msgid "Attachments"
+msgstr "Прикріплення"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_product_brand_id
+msgid "Brand"
+msgstr "Бренд"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.price_list_import_wizard_form
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_categ_id
+msgid "Category"
+msgstr "Категорія"
+
+#. module: muztorg_price_list
+#: model:ir.model,name:muztorg_price_list.model_res_company
+msgid "Companies"
+msgstr "Компанії"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_control_code
+msgid "Control code"
+msgstr "Контрольний код"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser__create_uid
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__create_uid
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__create_uid
+msgid "Created by"
+msgstr "Створено"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser__create_date
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__create_date
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__create_date
+msgid "Created on"
+msgstr "Створено в"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__biko_price_dealer
+msgid "Dealer price"
+msgstr "Дилерська ціна"
+
+#. module: muztorg_price_list
+#: model:ir.actions.server,name:muztorg_price_list.biko_delete_no_active_product_ir_actions_server
+#: model:ir.cron,cron_name:muztorg_price_list.biko_delete_no_active_product
+#: model:ir.cron,name:muztorg_price_list.biko_delete_no_active_product
+msgid "Delete no active product"
+msgstr "Видаляти не активні продукти"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser__display_name
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__display_name
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__display_name
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist__display_name
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__display_name
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_template__display_name
+#: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__display_name
+msgid "Display Name"
+msgstr "Відображувана назва"
+
+#. module: muztorg_price_list
+#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
+#, python-format
+msgid "Errors while downloading"
+msgstr "Помилки під час завантаження"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__price_file
+msgid "File"
+msgstr "Файл"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__limit_from
+msgid "From"
+msgstr "Від"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser__id
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__id
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__id
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist__id
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__id
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_template__id
+#: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__id
+msgid "ID"
+msgstr "ІД"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.price_list_import_wizard_form
+msgid "Import and View"
+msgstr "Завантажити та переглянути"
+
+#. module: muztorg_price_list
+#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
+#, python-format
+msgid ""
+"In line No. %(line_number)s the Control code %(control_code)s is incorrect"
+msgstr ""
+"У рядку № %(line_number)s неправильний контрольний код %(control_code)s"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser____last_update
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group____last_update
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import____last_update
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist____last_update
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item____last_update
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_template____last_update
+#: model:ir.model.fields,field_description:muztorg_price_list.field_res_company____last_update
+msgid "Last Modified on"
+msgstr "Останні зміни на"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser__write_uid
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__write_uid
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__write_uid
+msgid "Last Updated by"
+msgstr "Востаннє оновлено"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_import_price_parser__write_date
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__write_date
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__write_date
+msgid "Last Updated on"
+msgstr "Останнє оновлення в"
+
+#. module: muztorg_price_list
+#: model:ir.actions.act_window,name:muztorg_price_list.action_biko_marketing_group
+#: model:ir.ui.menu,name:muztorg_price_list.biko_marketing_group_menu
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_marketing_group_form
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_marketing_group_tree
+msgid "Marketing groups"
+msgstr "Маркетингові групи"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__price_id
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
+msgid "Price"
+msgstr "Ціна"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_price_list_import__price_filename
+msgid "Price Filename"
+msgstr "Назва файлу"
+
+#. module: muztorg_price_list
+#: model:ir.model,name:muztorg_price_list.model_price_list_import
+msgid "Price List Import"
+msgstr "Прайс-лист Імпорт"
+
+#. module: muztorg_price_list
+#: model:ir.model,name:muztorg_price_list.model_biko_import_price_parser
+msgid "Price List Import Sheet Parser"
+msgstr "Прайс-лист Імпорт, парсер сторінок"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_price_to_round
+msgid "Price Rounding up to"
+msgstr "Ціна до, Округлення"
+
+#. module: muztorg_price_list
+#: code:addons/muztorg_price_list/models/product_pricelist.py:0
+#, python-format
+msgid "Price Rules"
+msgstr "Правила ціни"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_price_list_company_form
+msgid "Price list"
+msgstr "Прайс лист"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_price_to
+msgid "Price up to"
+msgstr "Ціна до"
+
+#. module: muztorg_price_list
+#: model:ir.model,name:muztorg_price_list.model_product_pricelist
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
+msgid "Pricelist"
+msgstr "Прайс-лист"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_item_tree_view_from_pricelist
+msgid "Pricelist Items"
+msgstr "Елементи прайс-листа"
+
+#. module: muztorg_price_list
+#: model:ir.model,name:muztorg_price_list.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr "Правило прайс-листа"
+
+#. module: muztorg_price_list
+#: model:ir.model,name:muztorg_price_list.model_product_template
+msgid "Product Template"
+msgstr "Шаблон продукту"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_product__biko_mg_id
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_template__biko_mg_id
+msgid "Product marketing group"
+msgstr "Маркетингова група товару"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_view
+msgid "Remove old discount prices"
+msgstr "Видалити старі знижки"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__biko_price_retail
+msgid "Retail price"
+msgstr "Роздрібна ціна"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,help:muztorg_price_list.field_product_pricelist_item__biko_product_brand_id
+msgid "Select a brand for this product"
+msgstr "Виберіть бренд для цього продукту"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,help:muztorg_price_list.field_product_pricelist_item__biko_categ_id
+msgid "Select category for the current product"
+msgstr "Вибрати категорію поточного продукту"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_product_pricelist_item__biko_is_special_rounding
+msgid "Special rounding"
+msgstr "Спеціальне округлення"
+
+#. module: muztorg_price_list
+#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
+#, python-format
+msgid "The control code is not filled out in line No %s"
+msgstr "У рядку № %s контрольний код не заповнюється"
+
+#. module: muztorg_price_list
+#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
+#, python-format
+msgid "The parsing of the statement file returned an invalid result."
+msgstr "Аналіз файлу не вірний результат."
+
+#. module: muztorg_price_list
+#: code:addons/muztorg_price_list/wizards/price_list_import_wizard.py:0
+#, python-format
+msgid "The promotional price is already valid for the product %s."
+msgstr "На товар %s вже діє акційна ціна."
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_biko_marketing_group__limit_to
+msgid "To"
+msgstr "До"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,field_description:muztorg_price_list.field_res_company__biko_price_USD_ids
+msgid "USD prices"
+msgstr "Прайси в доларах США"
+
+#. module: muztorg_price_list
+#: model:ir.actions.server,name:muztorg_price_list.biko_update_marketing_group_product_ir_actions_server
+#: model:ir.cron,cron_name:muztorg_price_list.biko_update_marketing_group_product
+#: model:ir.cron,name:muztorg_price_list.biko_update_marketing_group_product
+msgid "Update marketing group product"
+msgstr "Оновити маркетингови групи продуктів"
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.price_list_import_wizard_form
+msgid "Upload a price list file"
+msgstr "Завантажте файл прайс-листа"
+
+#. module: muztorg_price_list
+#: model:ir.actions.act_window,name:muztorg_price_list.biko_price_list_import
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_view
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.price_list_import_wizard_form
+msgid "Upload price list"
+msgstr "Завантажити прайс-лист"
+
+#. module: muztorg_price_list
+#: model:ir.model,name:muztorg_price_list.model_biko_marketing_group
+msgid "biko.marketing.group"
+msgstr ""
+
+#. module: muztorg_price_list
+#: model_terms:ir.ui.view,arch_db:muztorg_price_list.biko_product_pricelist_view
+msgid "open_pricelist_rules"
+msgstr "Відкрити правила прайс-листа"
+
+#. module: muztorg_price_list
+#: model:ir.model.fields,help:muztorg_price_list.field_product_pricelist_item__biko_price_to_round
+msgid ""
+"в перерахунку на валюту даного прайс-листа, значення задається вручну,\n"
+"може бути будь-яке або не заповнено"
+msgstr ""

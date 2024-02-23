@@ -1,0 +1,66 @@
+<odoo>
+    <record id="price_list_import_wizard_form" model="ir.ui.view">
+        <field name="model">price.list.import</field>
+        <field name="arch" type="xml">
+            <form string="Upload price list">
+                <h2>Upload a price list file</h2>
+
+                <field name="price_file" filename="price_filename" />
+                <field name="price_filename" invisible="1" />
+                <field name="price_id" invisible="1" />
+                <footer>
+                    <button
+                        name="import_file_button"
+                        string="Import and View"
+                        type="object"
+                        class="btn-primary"
+                        context="{'default_active_id': 'price_id.id'}"
+                    />
+
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="biko_price_list_import" model="ir.actions.act_window">
+        <field name="name">Upload price list</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">price.list.import</field>
+
+        <field name="binding_type">action</field>
+        <!-- <field name="binding_type">report</field>  -->
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="product.model_product_pricelist" />
+        <field name="binding_view_types">form</field>
+    </record>
+
+    <!-- <record id="kw_lib_book_author_act_window" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kw.lib.book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="binding_model_id" ref="model_kw_lib_author" />
+        <field name="binding_view_types">form</field>
+        <field name="domain">[('author_ids','=',active_id)]</field>
+     </record>
+
+        <field name="binding_model_id" ref="model_crm_lead"/>
+        <field name="binding_view_types">list</field> -->
+
+    <!-- <record id="price_list_import_action" model="ir.actions.act_window">
+        <field name="name">Import price list File</field>
+        <field name="res_model">price.list.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+
+    </record> -->
+
+    <!-- <record id="price_list_import_menu" model="ir.ui.menu">
+        <field name="name">Import price</field>
+        <field name="parent_id" ref="account.menu_finance_entries_actions" />
+        <field name="action" ref="account_statement_import_action" />
+        <field name="sequence" eval="70" />
+    </record> -->
+</odoo>
