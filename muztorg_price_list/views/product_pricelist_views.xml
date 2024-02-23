@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="biko_product_pricelist_item_form_view" model="ir.ui.view">
+            <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+            <field name="name">biko_product.pricelist.item.form</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='pricelist_rule_advanced']" position="after">
+                    <group
+                        name="biko_pricelist_special_rounding"
+                        attrs="{'invisible':[('compute_price', '!=', 'formula')]}"
+                    >
+                        <field name="biko_is_special_rounding" on_change="1" id="biko_is_special_rounding" />
+                        <label for="biko_is_special_rounding" />
+
+                        <group name="biko_to_from" attrs="{'invisible':[('biko_is_special_rounding', '!=', True)]}">
+                            <!-- <field name="biko_price_to" /> -->
+                            <div>
+                                <group>
+                                    <field name="biko_price_to" />
+                                    <field name="biko_price_to_round" />
+                                </group>
+                            </div>
+                            <!-- <div>
+                                <group>
+                                    <field name="biko_price_from" />
+                                    <field name="biko_price_from_round" />
+                                </group>
+
+                            </div> -->
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="biko_product_pricelist_view" model="ir.ui.view">
+            <field name="model">product.pricelist</field>
+            <field name="inherit_id" ref="product.product_pricelist_view" />
+            <field name="name">biko.product.pricelist.form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet " position="before">
+                    <header>
+                        <button
+                            name="import_file_call"
+                            type="object"
+                            string="Upload price list"
+                            class="oe_highlight"
+                        />
+                        <button
+                            name="remove_old_discount_prices"
+                            type="object"
+                            string="Remove old discount prices"
+                            class="oe_highlight"
+                        />
+                        <button name="add_all_product" type="object" string="Add all products" class="oe_highlight" />
+
+                        <button
+                            name="open_pricelist_rules"
+                            type="object"
+                            string="open_pricelist_rules"
+                            class="oe_highlight"
+                        />
+                    </header>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="biko_product_pricelist_item_tree_view_from_pricelist" model="ir.ui.view">
+            <!-- Access and edit price rules from a given pricelist -->
+            <field name="name">biko.product.pricelist.item.tree</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <tree string="Pricelist Items" editable="bottom">
+                    <field name="pricelist_id" string="Pricelist" options="{'no_create_edit':1, 'no_open': 1}" />
+                    <field name="name" string="Applied On" />
+                    <field
+                        name="product_tmpl_id"
+                        attrs="{'required': [('applied_on', '=', '1_product')]}"
+                        domain="['|', ('company_id', '=', company_id), ('company_id', '=', False)]"
+                        options="{'no_create_edit':1, 'no_open': 1}"
+                    />
+
+                    <field name="biko_product_brand_id" optional="show" />
+                    <field name="biko_categ_id" optional="show" />
+                    <field name="biko_control_code" optional="show" />
+
+                    <field name="min_quantity" colspan="4" />
+                    <field name="currency_id" invisible="1" />
+                    <field name="fixed_price" string="Price" required='1' />
+                    <field name="date_start" optional="show" />
+                    <field name="date_end" optional="show" />
+                    <field name="applied_on" invisible="1" />
+                    <field
+                        name="company_id"
+                        groups="base.group_multi_company"
+                        optional="show"
+                        options="{'no_create':1, 'no_open': 1}"
+                    />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="biko_product_pricelist_item_view_search_from_pricelist">
+            <field name="name">biko.product.pricelist.item.search</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <search string="Products Price Rules Search">
+                    <separator />
+                    <field name="biko_control_code" />
+                    <field name="product_tmpl_id" />
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>
