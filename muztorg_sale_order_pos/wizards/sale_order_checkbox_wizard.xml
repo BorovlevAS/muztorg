@@ -44,11 +44,6 @@
                                     readonly="1"
                                 />
                                 <field name="payment_amount" sum="Total" />
-                                <field
-                                    name="pos_payment_method_id"
-                                    options="{'no_create': True, 'no_open': True}"
-                                    readonly="1"
-                                />
                             </tree>
                         </field>
                     </page>
