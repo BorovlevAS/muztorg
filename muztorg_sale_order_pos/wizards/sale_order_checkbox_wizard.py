@@ -75,7 +75,7 @@ class SaleOrderCheckbox(models.TransientModel):
                 for tax in line.tax_id:
                     good_value["good"]["tax"].append(CHECKBOX_TAX_TABLE[tax.amount])
             else:
-                good_value["good"]["tax"].append(8)
+                good_value["good"]["tax"].append(1)
 
             if line.discount:
                 good_value.update(
@@ -96,9 +96,11 @@ class SaleOrderCheckbox(models.TransientModel):
             if payment.payment_amount == 0:
                 continue
             payment_vals = {
-                "type": payment.payment_type.checkbox_payment_type
-                if payment.payment_type.checkbox_payment_type
-                else "CASH",
+                "type": (
+                    payment.payment_type.checkbox_payment_type
+                    if payment.payment_type.checkbox_payment_type
+                    else "CASH"
+                ),
                 "value": round(payment.payment_amount * 100, 2),
             }
             if payment.payment_type.checkbox_payment_label:
@@ -127,7 +129,63 @@ class SaleOrderCheckbox(models.TransientModel):
                 "pos_session_id": self.pos_session_id.id,
             }
         )
+        self.create_payment()
         self._checkbox_get_pdf_receipt()
+
+    def create_payment(self):
+        self.ensure_one()
+        invoice_id = self.order_id.invoice_ids.filtered(
+            lambda x: x.state == "posted" and x.payment_state == "not_paid"
+        )
+        if not invoice_id:
+            raise ValidationError(_("There is no invoice to pay"))
+
+        if len(invoice_id) > 1:
+            invoice_id = invoice_id[0]
+
+        for payment in self.payment_lines.filtered(lambda x: x.payment_amount > 0):
+            create_vals = {
+                "journal_id": payment.pos_payment_method_id.cash_journal_id.id,
+                "amount": payment.payment_amount,
+            }
+            wizard = (
+                self.env["account.payment.register"]
+                .with_context(
+                    active_model="account.move",
+                    active_ids=invoice_id.ids,
+                )
+                .create(create_vals)
+            )
+            wizard._create_payments()
+
+            if not payment.pos_payment_method_id.is_cash_count:
+                continue
+            # ищем кассовую выписку, куда нужно добавить эту сумму
+            bank_statement_id = self.pos_session_id.statement_ids.filtered(
+                lambda x, payment: x.journal_id
+                == payment.pos_payment_method_id.cash_journal_id
+            )
+            if not bank_statement_id:
+                raise ValidationError(
+                    _("There is no cash statement to add this amount")
+                )
+            if len(bank_statement_id) > 1:
+                bank_statement_id = bank_statement_id[0]
+            absl_values = {
+                "statement_id": bank_statement_id.id,
+                "date": bank_statement_id.date,
+                "payment_type": "sale",
+                "payment_subtype": "1",
+                "payment_ref": invoice_id.name,
+                "partner_id": self.order_id.partner_id.id,
+                "contract_id": self.order_id.contract_id.id
+                if self.order_id.contract_id
+                else False,
+                "sale_order_id": self.order_id.id,
+                "amount": payment.payment_amount,
+                "account_id": payment.pos_payment_method_id.cash_journal_id.suspense_account_id.id,
+            }
+            self.env["account.bank.statement.line"].create(absl_values)
 
     @api.model_create_multi
     def create(self, vals):
@@ -148,6 +206,11 @@ class SaleOrderCheckboxWizardLine(models.TransientModel):
     wizard_id = fields.Many2one(
         comodel_name="sale.order.checkbox.wizard", string="Wizard"
     )
+    pos_config_id = fields.Many2one(
+        comodel_name="pos.config",
+        related="wizard_id.config_id",
+        string="POS Config (nnt)",
+    )
 
     payment_type = fields.Many2one(
         comodel_name="so.payment.type",
@@ -155,4 +218,25 @@ class SaleOrderCheckboxWizardLine(models.TransientModel):
         required=True,
     )
 
+    pos_payment_method_id = fields.Many2one(
+        comodel_name="pos.payment.method",
+        compute="_compute_pos_pm",
+        string="Payment Method (nnt)",
+        store=True,
+    )
+
     payment_amount = fields.Float(string="Payment Amount", required=True)
+
+    @api.depends("payment_type")
+    def _compute_pos_pm(self):
+        for rec in self:
+            rec.pos_payment_method_id = (
+                self.env["sale.pos.payment.line"]
+                .search(
+                    [
+                        ("pos_config_id", "=", rec.pos_config_id.id),
+                        ("sale_order_payment_id", "=", rec.payment_type.id),
+                    ]
+                )
+                .pos_payment_method_id
+            )

@@ -31,18 +31,18 @@
                     </div>
                     <div
                         class="col-12 col-lg-6 o_setting_box"
-                        id="department_ids"
+                        id="user_ids"
                         attrs="{'invisible': [('is_use_with_sale_order', 'in', [False, ''])]}"
                     >
                         <div class="o_setting_left_pane" />
                         <div class="o_setting_right_pane">
-                            <label for="department_ids" />
+                            <label for="user_ids" />
                             <div class="text-muted">
                                 Available departments for this POS
                                 configuration
                             </div>
                             <div class="content-group mt16">
-                                <field name="department_ids" widget="many2many_tags" />
+                                <field name="user_ids" widget="many2many_tags" />
                             </div>
                         </div>
                     </div>
@@ -74,12 +74,17 @@
                     >
                         <div class="o_setting_left_pane" />
                         <div class="o_setting_right_pane">
-                            <label for="cash_journal_id" />
+                            <label for="payment_corr_ids" />
                             <div class="content-group mt16">
                                 <field
-                                    name="cash_journal_id"
+                                    name="payment_corr_ids"
                                     attrs="{'required' : [('is_use_with_sale_order', '=', True)]}"
-                                />
+                                >
+                                    <tree editable="bottom">
+                                        <field name="sale_order_payment_id" />
+                                        <field name="pos_payment_method_id" />
+                                    </tree>
+                                </field>
                             </div>
                         </div>
                     </div>

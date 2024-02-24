@@ -9,11 +9,11 @@
                 <page name="global_pos_settings" string="Global POS Settings">
                     <group>
                         <field name="fiscal_receipt_req" required="1" />
-                        <field
+                        <!-- <field
                             name="pos_payment_method_id"
                             attrs="{'required': [('fiscal_receipt_req','!=','no')]}"
                             widget="selection"
-                        />
+                        /> -->
                     </group>
                 </page>
                 <page name="checkbox_integration" string="Checkbox Integration">

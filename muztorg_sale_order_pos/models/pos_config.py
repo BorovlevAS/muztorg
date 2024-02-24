@@ -20,9 +20,9 @@ class PosConfig(models.Model):
         default=False,
     )
 
-    department_ids = fields.Many2many(
-        comodel_name="hr.department",
-        string="Departments",
+    user_ids = fields.Many2many(
+        comodel_name="res.users",
+        string="Users",
     )
 
     autoclose_session = fields.Boolean(
@@ -37,10 +37,10 @@ class PosConfig(models.Model):
         store=True,
     )
 
-    cash_journal_id = fields.Many2one(
-        comodel_name="account.journal",
-        string="Cash Journal",
-        domain="[('type', '=', 'cash')]",
+    payment_corr_ids = fields.One2many(
+        comodel_name="sale.pos.payment.line",
+        inverse_name="pos_config_id",
+        string="Payment Types Correspondence",
     )
 
     @api.depends("autoclose_session_time_string")
@@ -71,11 +71,11 @@ class PosConfig(models.Model):
             record.autoclose_session_time = date_time
 
     @api.model
-    def get_pos_config(self, department_id):
+    def get_pos_config(self, user_id):
         pos_config_ids = self.search(
             [
                 ("is_use_with_sale_order", "=", True),
-                ("department_ids", "in", department_id),
+                ("user_ids", "in", user_id),
             ]
         )
         return pos_config_ids
@@ -120,20 +120,6 @@ class PosConfig(models.Model):
             self.env["pos.session"].create(
                 {"user_id": self.env.uid, "config_id": self.id}
             )
-
-        if self.cash_journal_id and self.current_session_id:
-            current_abs_id = self.env["account.bank.statement"].search(
-                [("pos_session_id", "=", self.current_session_id.id)]
-            )
-            if not current_abs_id:
-                current_abs_id = self.env["account.bank.statement"].create(
-                    {
-                        "journal_id": self.cash_journal_id.id,
-                        "user_id": self.env.uid,
-                        "pos_session_id": self.current_session_id.id,
-                        "date": fields.Datetime.now(),
-                    }
-                )
 
         if self.is_auto_open_pos:
             return self.open_ui()
