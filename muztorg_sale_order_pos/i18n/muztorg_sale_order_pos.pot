@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-16 12:03+0000\n"
-"PO-Revision-Date: 2024-01-16 12:03+0000\n"
+"POT-Creation-Date: 2024-02-24 16:44+0000\n"
+"PO-Revision-Date: 2024-02-24 16:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -84,11 +84,13 @@ msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__create_date
 msgid "Created on"
 msgstr ""
 
@@ -98,15 +100,12 @@ msgid "Currency (nnt)"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
-#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__department_ids
-msgid "Departments"
-msgstr ""
-
-#. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__display_name
 msgid "Display Name"
 msgstr ""
@@ -143,11 +142,18 @@ msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__id
 msgid "ID"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method__cash_journal_id
+msgid "Journal"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
@@ -157,26 +163,35 @@ msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__mobile_num
 msgid "Mobile Number"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__name
+msgid "Name"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
@@ -202,13 +217,24 @@ msgid "POS"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
-#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__pos_payment_method_id
-msgid "POS payment method"
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__pos_config_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__pos_config_id
+msgid "POS Config (nnt)"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__pos_payment_method_id
+msgid "POS Payment Method"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__payment_amount
 msgid "Payment Amount"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__pos_payment_method_id
+msgid "Payment Method (nnt)"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
@@ -219,6 +245,11 @@ msgstr ""
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__checkbox_payment_label
 msgid "Payment Type Label"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__payment_corr_ids
+msgid "Payment Types Correspondence"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
@@ -239,6 +270,11 @@ msgid "Point of Sale Configuration"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_pos_payment_method
+msgid "Point of Sale Payment Methods"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model,name:muztorg_sale_order_pos.model_sale_order_checkbox_wizard
 msgid "Sale Order Checkbox Wizard"
 msgstr ""
@@ -249,8 +285,18 @@ msgid "Sale Order Checkbox Wizard Line (nnt)"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__sale_order_payment_id
+msgid "Sale Order Payment"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model,name:muztorg_sale_order_pos.model_so_payment_type
 msgid "Sale Order Payment Type"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_sale_pos_payment_line
+msgid "Sale Payment - POS Payment correspondence"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
@@ -286,6 +332,25 @@ msgid "The amount of payments does not match the amount of the order"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,help:muztorg_sale_order_pos.field_pos_payment_method__cash_journal_id
+msgid ""
+"The payment method is of type cash. A cash statement will be automatically "
+"generated."
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
+#, python-format
+msgid "There is no cash statement to add this amount"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
+#, python-format
+msgid "There is no invoice to pay"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_wizard_form
 msgid "Total"
 msgstr ""
@@ -298,6 +363,11 @@ msgstr ""
 #. module: muztorg_sale_order_pos
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.pos_config_view_form
 msgid "Used for working with Sale Orders"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__user_ids
+msgid "Users"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
