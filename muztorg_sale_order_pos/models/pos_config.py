@@ -20,9 +20,9 @@ class PosConfig(models.Model):
         default=False,
     )
 
-    department_ids = fields.Many2many(
-        comodel_name="hr.department",
-        string="Departments",
+    user_ids = fields.Many2many(
+        comodel_name="res.users",
+        string="Users",
     )
 
     autoclose_session = fields.Boolean(
@@ -35,6 +35,26 @@ class PosConfig(models.Model):
         string="Autoclose Session Time (nnt)",
         compute="_compute_autoclose_session_time",
         store=True,
+    )
+
+    payment_corr_ids = fields.One2many(
+        comodel_name="sale.pos.payment.line",
+        inverse_name="pos_config_id",
+        string="Payment Types Correspondence",
+    )
+
+    cash_register_total_entry_encoding = fields.Monetary(
+        related="current_session_id.cash_register_total_entry_encoding",
+        string="Total Cash Transaction",
+        readonly=True,
+        help="Total of all paid sales orders",
+    )
+
+    cash_register_balance_end = fields.Monetary(
+        related="current_session_id.cash_register_balance_end",
+        string="Theoretical Closing Balance",
+        help="Sum of opening balance and transactions.",
+        readonly=True,
     )
 
     @api.depends("autoclose_session_time_string")
@@ -65,11 +85,11 @@ class PosConfig(models.Model):
             record.autoclose_session_time = date_time
 
     @api.model
-    def get_pos_config(self, department_id):
+    def get_pos_config(self, user_id):
         pos_config_ids = self.search(
             [
                 ("is_use_with_sale_order", "=", True),
-                ("department_ids", "in", department_id),
+                ("user_ids", "in", user_id),
             ]
         )
         return pos_config_ids
@@ -111,9 +131,13 @@ class PosConfig(models.Model):
             self._check_profit_loss_cash_journal()
             self._check_payment_method_ids()
             self._check_payment_method_receivable_accounts()
-            self.env["pos.session"].create(
-                {"user_id": self.env.uid, "config_id": self.id}
+            pos_session = self.env["pos.session"].create(
+                {
+                    "user_id": self.env.uid,
+                    "config_id": self.id,
+                }
             )
+            pos_session.state = "opened"
 
         if self.is_auto_open_pos:
             return self.open_ui()
