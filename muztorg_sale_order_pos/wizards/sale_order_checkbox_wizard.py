@@ -46,9 +46,7 @@ class SaleOrderCheckbox(models.TransientModel):
             if self.mobile_num[0] == "+":
                 self.mobile_num = self.mobile_num[1:]
 
-    def send_receipt_checkbox(self):
-        self.ensure_one()
-
+    def _register_fiscal_receipt(self):
         amount_total = sum(self.payment_lines.mapped("payment_amount"))
         if amount_total != self.order_id.amount_total:
             raise ValidationError(
@@ -129,11 +127,15 @@ class SaleOrderCheckbox(models.TransientModel):
                 "pos_session_id": self.pos_session_id.id,
             }
         )
-        self.create_payment()
+
         self._checkbox_get_pdf_receipt()
 
-    def create_payment(self):
+    def send_receipt_checkbox(self):
         self.ensure_one()
+        self.create_payment()
+        self._register_fiscal_receipt()
+
+    def create_payment(self):
         invoice_id = self.order_id.invoice_ids.filtered(
             lambda x: x.state == "posted" and x.payment_state == "not_paid"
         )
@@ -143,10 +145,10 @@ class SaleOrderCheckbox(models.TransientModel):
         if len(invoice_id) > 1:
             invoice_id = invoice_id[0]
 
-        for payment in self.payment_lines.filtered(lambda x: x.payment_amount > 0):
+        for payment_line in self.payment_lines.filtered(lambda x: x.payment_amount > 0):
             create_vals = {
-                "journal_id": payment.pos_payment_method_id.cash_journal_id.id,
-                "amount": payment.payment_amount,
+                "journal_id": payment_line.pos_payment_method_id.cash_journal_id.id,
+                "amount": payment_line.payment_amount,
             }
             wizard = (
                 self.env["account.payment.register"]
@@ -156,14 +158,14 @@ class SaleOrderCheckbox(models.TransientModel):
                 )
                 .create(create_vals)
             )
-            wizard._create_payments()
+            payment_id = wizard._create_payments()
 
-            if not payment.pos_payment_method_id.is_cash_count:
+            if not payment_line.pos_payment_method_id.is_cash_count:
                 continue
             # ищем кассовую выписку, куда нужно добавить эту сумму
             bank_statement_id = self.pos_session_id.statement_ids.filtered(
-                lambda x, payment: x.journal_id
-                == payment.pos_payment_method_id.cash_journal_id
+                lambda x, payment_line=payment_line: x.journal_id
+                == payment_line.pos_payment_method_id.cash_journal_id
             )
             if not bank_statement_id:
                 raise ValidationError(
@@ -182,8 +184,9 @@ class SaleOrderCheckbox(models.TransientModel):
                 if self.order_id.contract_id
                 else False,
                 "sale_order_id": self.order_id.id,
-                "amount": payment.payment_amount,
-                "account_id": payment.pos_payment_method_id.cash_journal_id.suspense_account_id.id,
+                "amount": payment_line.payment_amount,
+                "account_id": payment_line.pos_payment_method_id.cash_journal_id.suspense_account_id.id,
+                "pos_payment_id": payment_id.id,
             }
             self.env["account.bank.statement.line"].create(absl_values)
 
