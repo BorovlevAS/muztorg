@@ -17,6 +17,7 @@
         "views/sale_order_views.xml",
         "views/so_payment_type_views.xml",
         "views/pos_payment_method_views.xml",
+        "views/point_of_sale_dashboard.xml",
         "data/ir_cron.xml",
         "wizards/sale_order_checkbox_wizard.xml",
         "security/ir.model.access.csv",
