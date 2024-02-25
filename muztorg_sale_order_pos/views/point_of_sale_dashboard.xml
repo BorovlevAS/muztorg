@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="view_pos_config_kanban" model="ir.ui.view">
+        <field name="name">pos.config.kanban.view</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_config_kanban" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='open_existing_session_cb'][2]" position="replace">
+                <button
+                    t-if="_.contains(['opened', 'closing_control'], record.current_session_state.raw_value)"
+                    class="btn btn-primary"
+                    name="open_existing_session_cb"
+                    type="object"
+                >
+                    Open Active Session
+                </button>
+            </xpath>
+            <button name="open_ui" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <xpath expr="//field[@name='last_session_closing_cash']/../../.." position="after">
+                <div t-if="record.current_session_id" attrs='{"invisible": [("cash_control","=",False)]}' class="row">
+                    <div class="col-6">
+                        <span>Transactions</span>
+                    </div>
+                    <div class="col-6">
+                        <span>
+                            <field name="cash_register_total_entry_encoding" widget="monetary" />
+                        </span>
+                    </div>
+                </div>
+                <div t-if="record.current_session_id" attrs='{"invisible": [("cash_control","=",False)]}' class="row">
+                    <div class="col-6">
+                        <span>Expected in Cash</span>
+                    </div>
+                    <div class="col-6">
+                        <span>
+                            <field name="cash_register_balance_end" widget="monetary" />
+                        </span>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

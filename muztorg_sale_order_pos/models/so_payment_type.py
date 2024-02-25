@@ -10,10 +10,11 @@ class SOPaymentType(models.Model):
         string="Fiscal Receipt Required",
     )
 
-    pos_payment_method_id = fields.Many2one(
-        comodel_name="pos.payment.method",
-        string="POS payment method",
-    )
+    # #
+    # pos_payment_method_id = fields.Many2one(
+    #     comodel_name="pos.payment.method",
+    #     string="POS payment method",
+    # )
     checkbox_payment_type = fields.Selection(
         [
             ("CASH", "CASH"),

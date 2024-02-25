@@ -20,22 +20,15 @@ class SaleOrder(models.Model):
             "mobile_num": self.partner_id.mobile,
         }
 
-        employee = self.env["hr.employee"].search(
-            [("user_id", "=", self.env.user.id)], limit=1
-        )
-
-        if employee and employee.department_id:
-            pos_config_ids = self.env["pos.config"].get_pos_config(
-                employee.department_id.id
+        pos_config_ids = self.env["pos.config"].get_pos_config(self.env.uid)
+        if pos_config_ids:
+            create_values.update(
+                {
+                    "config_id": pos_config_ids[0].id,
+                    "pos_session_id": pos_config_ids[0].current_session_id.id,
+                    "available_pos_config_ids": pos_config_ids._ids,
+                }
             )
-            if pos_config_ids:
-                create_values.update(
-                    {
-                        "config_id": pos_config_ids[0].id,
-                        "pos_session_id": pos_config_ids[0].current_session_id.id,
-                        "available_pos_config_ids": pos_config_ids._ids,
-                    }
-                )
 
         payment_types = self.env["so.payment.type"].search(
             [("fiscal_receipt_req", "in", ["yes", "after_receive"])]
