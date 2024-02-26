@@ -103,8 +103,8 @@ class SiteIntegrationSync(models.TransientModel):
             raise_exception=False,
         )
 
-    def get_partner(self, value_partner, value_address):
-        def search_address(partner, value_address):
+    def get_partner(self, value_partner, value_address, note_so):
+        def search_address(partner, note_so, value_address):
             # city, warehouse, street=None
             shipping = value_address.get("shipping")
             if shipping != "NOVA POSHTA":
@@ -119,9 +119,8 @@ class SiteIntegrationSync(models.TransientModel):
             city = CitiesList.search([("ref", "=", city_ref)], limit=1)
             if not city:
                 _logger.info("city not found %s", city_str)
-                self.protocol_id.note = self.protocol_id.note + _(
-                    "\nDelivery city not found  %s", city_str
-                )
+                # self.protocol_id.note = self.protocol_id.note +
+                note_so = note_so + _("\nDelivery city not found  %s", city_str)
                 self.protocol_id.status = "error"
                 return partner
 
@@ -129,7 +128,8 @@ class SiteIntegrationSync(models.TransientModel):
                 WarehouseNP = self.env["delivery_novaposhta.warehouse"].sudo()
                 warehouse = WarehouseNP.search([("ref", "=", warehouse_ref)], limit=1)
                 if not warehouse:
-                    self.protocol_id.note = self.protocol_id.note + _(
+                    # self.protocol_id.note = self.protocol_id.note +
+                    note_so = note_so + _(
                         "\nDelivery branch not found %s", warehouse_ref
                     )
                     self.protocol_id.status = "error"
@@ -143,9 +143,8 @@ class SiteIntegrationSync(models.TransientModel):
                     [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
                 )
                 _logger.info("street not found %s", streer_str)
-                self.protocol_id.note = self.protocol_id.note + _(
-                    "\nDelivery street not found %s", streer_str
-                )
+                # self.protocol_id.note = self.protocol_id.note +
+                note_so = note_so + _("\nDelivery street not found %s", streer_str)
                 self.protocol_id.status = "error"
                 return partner
 
@@ -177,6 +176,7 @@ class SiteIntegrationSync(models.TransientModel):
                     "parent_id": partner.id,
                     "np_delivery_address": True,
                     "np_city": city.id,
+                    "name": address_str,
                 }
 
                 # np_service_type 1		Doors	Адреса 2		Warehouse	Склад Тип послуги
@@ -190,18 +190,16 @@ class SiteIntegrationSync(models.TransientModel):
                     data["house"] = address_str.split(",")[1]
                 partner_address = Partner.create(data)
                 if partner_address:
-                    self.protocol_id.note = self.protocol_id.note + _(
-                        "\ncreate an address %s", address_str
-                    )
+                    # self.protocol_id.note = self.protocol_id.note +
+                    note_so = note_so + _("\ncreate an address %s", address_str)
                     return partner_address
                 else:
-                    self.protocol_id.note = self.protocol_id.note + _(
-                        "\nAddress street not found %s", address_str
-                    )
+                    # self.protocol_id.note = self.protocol_id.note +
+                    note_so = note_so + _("\nAddress street not found %s", address_str)
                     self.protocol_id.status = "error"
                     return partner
 
-        def search_partner(phone, email, lastname, firstname, value_address):
+        def search_partner(phone, email, lastname, firstname, value_address, note_so):
             # Partner = self.env["res.partner"].with_company(company.id).sudo()
             Partner = self.env["res.partner"].sudo()
 
@@ -213,7 +211,7 @@ class SiteIntegrationSync(models.TransientModel):
             partner = Partner.search(partner_domain, limit=1)
 
             if partner:
-                address = search_address(partner, value_address)
+                address = search_address(partner, note_so, value_address)
                 return partner, address
 
             partner_domain = [
@@ -222,7 +220,7 @@ class SiteIntegrationSync(models.TransientModel):
             partner = Partner.search(partner_domain, limit=1)
 
             if partner:
-                address = search_address(partner, value_address)
+                address = search_address(partner, note_so, value_address)
                 return partner, address
 
             data = {
@@ -235,87 +233,24 @@ class SiteIntegrationSync(models.TransientModel):
                 "lang": self.env.lang,
             }
             _logger.info("create a partner %s", lastname)
-            self.protocol_id.note = self.protocol_id.note + _(
-                "\ncreate a partner %s", lastname
-            )
+            # self.protocol_id.note = self.protocol_id.note +
+            note_so = note_so + _("\ncreate a partner %s", lastname)
             try:
                 partner = Partner.create(data)
             except Exception as exc:
-                self.protocol_id.note = self.protocol_id.note + _(
-                    "\nexception: %s", exc
-                )
+                # self.protocol_id.note = self.protocol_id.note +
+                note_so = note_so + _("\nexception: %s", exc)
                 self.protocol_id.status = "error"
 
             if not partner:
-                self.protocol_id.note = self.protocol_id.note + _(
+                # self.protocol_id.note = self.protocol_id.note +
+                note_so = note_so + _(
                     "\nIt is impossible to register a client %s",
                     lastname + " " + firstname,
                 )
                 self.protocol_id.status = "error"
 
-            # shipping = value_address.get("shipping")
-            # if shipping != "NOVA POSHTA":
-            #     return partner, False
-
-            # city_str = value_address.get("city")
-            # city_ref = value_address.get("city_ref")
-            # address_str = value_address.get("address")
-            # warehouse_ref = value_address.get("warehouse")
-
-            # CitiesList = self.env["delivery_novaposhta.cities_list"].sudo()
-            # city = CitiesList.search([("ref", "=", city_ref)], limit=1)
-            # if not city:
-            #     _logger.info("city not found %s", city_str)
-            #     self.protocol_id.note = self.protocol_id.note + _(
-            #         "\ncity not found %s", city_str
-            #     )
-            #     return partner, partner
-
-            # if warehouse_ref:
-            #     WarehouseNP = self.env["delivery_novaposhta.warehouse"].sudo()
-            #     warehouse = WarehouseNP.search(
-            #         [("ref", "=", warehouse_ref)], limit=1
-            #     )
-            # else:
-            #     warehouse = None
-            # street = self.env["delivery_novaposhta.streets_list"]
-            # if address_str and not warehouse_ref:
-            #     streer_str = address_str.split(",")[0]
-            #     StreetNP = self.env["delivery_novaposhta.streets_list"].sudo()
-            #     street = StreetNP.search(
-            #         [("city_id", "=", city.id), ("name", "=", streer_str)], limit=1
-            #     )
-            #     # если не нашли улицу, то возвращаем самого партнера, т.к это поле обязательное
-            #     if not street:
-            #         _logger.info("street not found %s", streer_str)
-            #         self.protocol_id.note = self.protocol_id.note + _(
-            #             "\nstreet not found %s", streer_str
-            #         )
-
-            #             return partner, partner
-
-            # Partner = self.env["res.partner"].sudo()
-            # data = {
-            #     "country_id": self.env.ref("base.ua").id,
-            #     "type": "delivery",
-            #     "lang": self.env.lang,
-            #     "parent_id": partner.id,
-            #     "np_delivery_address": True,
-            #     "np_city": city.id,
-            # }
-
-            # # np_service_type 1		Doors	Адреса 2		Warehouse	Склад Тип послуги
-            # if warehouse:
-            #     data["np_warehouse"] = warehouse.id
-            #     data["np_service_type"] = "Warehouse"
-            # elif street:
-            #     data["lastname"] = streer_str
-            #     data["np_street"] = street.id
-            #     data["np_service_type"] = "Doors"
-            #     data["house"] = address_str.split(",")[1]
-            # partner_address = Partner.create(data)
-
-            partner_address = search_address(partner, value_address)
+            partner_address = search_address(partner, note_so, value_address)
             return partner, partner_address
 
         phone_code = value_partner.get("phone_code")
@@ -330,9 +265,8 @@ class SiteIntegrationSync(models.TransientModel):
                 phone = self.format_phone(phone_code + telephone)
             except Exception as exc:
                 phone = ""
-                self.protocol_id.note = self.protocol_id.note + _(
-                    "\nexception: %s", exc
-                )
+                # self.protocol_id.note = self.protocol_id.note +
+                note_so = note_so + _("\nexception: %s", exc)
                 self.protocol_id.status = "error"
         else:
             phone = ""
@@ -340,7 +274,7 @@ class SiteIntegrationSync(models.TransientModel):
         if patronymic:
             firstname = firstname + " " + patronymic
 
-        return search_partner(phone, email, lastname, firstname, value_address)
+        return search_partner(phone, email, lastname, firstname, value_address, note_so)
 
     def get_partner_dealer(self, value_partner):
         # phone_code = value_partner.get("phone_code")
@@ -417,6 +351,12 @@ class SiteIntegrationSync(models.TransientModel):
                     "\nProduct not found by control code  %s",
                     product_dict.get("product_id"),
                 )
+                so.message_post(
+                    body=_(
+                        "\nProduct not found by control code  %s",
+                        product_dict.get("product_id"),
+                    )
+                )
                 return True
 
         if not data_order.get("order_id"):
@@ -434,6 +374,7 @@ class SiteIntegrationSync(models.TransientModel):
             return False
 
         shipping = data_order.get("shipping", None)
+        note_so = ""
 
         if self.settings_id.type_exchange == "dealer":
             value_partner = {
@@ -484,7 +425,7 @@ class SiteIntegrationSync(models.TransientModel):
                 "shipping": shipping,
             }
 
-            partner, address = self.get_partner(value_partner, value_address)
+            partner, address = self.get_partner(value_partner, value_address, note_so)
 
         pricelist_value = (
             self.env["site.integration.setting.line"]
@@ -501,7 +442,10 @@ class SiteIntegrationSync(models.TransientModel):
             [("website_ref", "=", data_order.get("payment", None))], limit=1
         )
         if not payment_type:
-            self.protocol_id.note = self.protocol_id.note + _(
+            # self.protocol_id.note = self.protocol_id.note + _(
+            #     "\nFailed to select payment type %s", data_order.get("payment", None)
+            # )
+            note_so = note_so + _(
                 "\nFailed to select payment type %s", data_order.get("payment", None)
             )
             self.protocol_id.status = "error"
@@ -639,11 +583,16 @@ class SiteIntegrationSync(models.TransientModel):
         #         "placeholder2": so.name,
         #     }
         # }
-        self.protocol_id.note = self.protocol_id.note + (
-            "\n{} #{} ({})".format(
-                _("Loading order"), data_order.get("order_id"), so.name
+        self.protocol_id.note = (
+            self.protocol_id.note
+            + note_so
+            + (
+                "\n{} #{} ({})".format(
+                    _("Loading order"), data_order.get("order_id"), so.name
+                )
             )
         )
+        so.message_post(body=note_so)
 
         # self.protocol_id.note = self.protocol_id.note + (
         #     ("\n%(loading_text)s")
