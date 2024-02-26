@@ -55,6 +55,30 @@
         </field>
     </record>
 
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="is_fiscal_registered" invisible="1" />
+                <button icon="fa-file-text-o" attrs="{'invisible': [('is_fiscal_registered', '=', False)]}" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="is_fiscal_registered" invisible="1" />
+                <button icon="fa-file-text-o" attrs="{'invisible': [('is_fiscal_registered', '=', False)]}" />
+            </field>
+        </field>
+    </record>
+
     <record id="view_sale_order_checkbox_form" model="ir.ui.view">
         <field name="name">view_sale_order_checkbox_form.muztorg</field>
         <field name="model">sale.order</field>

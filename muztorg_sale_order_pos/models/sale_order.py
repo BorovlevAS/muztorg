@@ -1,4 +1,5 @@
 from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
@@ -8,6 +9,15 @@ class SaleOrder(models.Model):
         related="so_payment_type_id.fiscal_receipt_req",
         string="Fiscal Receipt Required (nnt)",
     )
+
+    is_fiscal_registered = fields.Boolean(
+        string="Fiscal Registered (nnt)",
+        compute="_compute_is_fiscal_registered",
+    )
+
+    def _compute_is_fiscal_registered(self):
+        for order in self:
+            order.is_fiscal_registered = order.checkbox_receipt_id
 
     def action_open_receipt_wizard(self):
         self.ensure_one()
@@ -59,3 +69,8 @@ class SaleOrder(models.Model):
         }
 
         return action
+
+    def action_cancel(self):
+        if any(self.filtered(lambda order: order.is_fiscal_registered)):
+            raise UserError(_("You can't cancel an order with a fiscal receipt."))
+        return super().action_cancel()
