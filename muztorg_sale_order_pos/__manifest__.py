@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Sale Order POS (Muztorg)",
-    "version": "14.0.3.0.0",
+    "version": "14.0.4.0.0",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
@@ -18,6 +18,8 @@
         "views/so_payment_type_views.xml",
         "views/pos_payment_method_views.xml",
         "views/point_of_sale_dashboard.xml",
+        "views/pos_session_views.xml",
+        "wizards/x_report_views.xml",
         "data/ir_cron.xml",
         "wizards/sale_order_checkbox_wizard.xml",
         "security/ir.model.access.csv",
