@@ -29,7 +29,11 @@ class SaleOrderCheckbox(models.TransientModel):
         string="Order Amount Total",
     )
     config_id = fields.Many2one(domain="[('id', 'in', available_pos_config_ids)]")
-    pos_session_id = fields.Many2one(required=False)
+    pos_session_id = fields.Many2one(
+        comodel_name="pos.session",
+        related="config_id.current_session_id",
+        required=False,
+    )
     payment_lines = fields.One2many(
         comodel_name="sale.order.checkbox.wizard.line",
         inverse_name="wizard_id",
@@ -47,12 +51,6 @@ class SaleOrderCheckbox(models.TransientModel):
                 self.mobile_num = self.mobile_num[1:]
 
     def _register_fiscal_receipt(self):
-        amount_total = sum(self.payment_lines.mapped("payment_amount"))
-        if amount_total != self.order_id.amount_total:
-            raise ValidationError(
-                _("The amount of payments does not match the amount of the order")
-            )
-
         payload = {
             "goods": [],
             "payments": [],
@@ -132,8 +130,27 @@ class SaleOrderCheckbox(models.TransientModel):
 
     def send_receipt_checkbox(self):
         self.ensure_one()
+        self.check_settings()
         self.create_payment()
         self._register_fiscal_receipt()
+
+    def check_settings(self):
+        amount_total = sum(self.payment_lines.mapped("payment_amount"))
+        if amount_total != self.order_id.amount_total:
+            raise ValidationError(
+                _("The amount of payments does not match the amount of the order")
+            )
+
+        if any(
+            self.payment_lines.filtered(
+                lambda x: x.payment_amount > 0 and not x.pos_payment_method_id
+            )
+        ):
+            raise ValidationError(
+                _(
+                    "There is no payment method for the selected payment type. Please, contact the administrator."
+                )
+            )
 
     def create_payment(self):
         invoice_id = self.order_id.invoice_ids.filtered(
@@ -230,7 +247,7 @@ class SaleOrderCheckboxWizardLine(models.TransientModel):
 
     payment_amount = fields.Float(string="Payment Amount", required=True)
 
-    @api.depends("payment_type")
+    @api.depends("payment_type", "pos_config_id")
     def _compute_pos_pm(self):
         for rec in self:
             rec.pos_payment_method_id = (

@@ -35,7 +35,6 @@ class SaleOrder(models.Model):
             create_values.update(
                 {
                     "config_id": pos_config_ids[0].id,
-                    "pos_session_id": pos_config_ids[0].current_session_id.id,
                     "available_pos_config_ids": pos_config_ids._ids,
                 }
             )
