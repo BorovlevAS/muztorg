@@ -81,6 +81,7 @@ class CargoCustomsDeclaration(models.Model):
                 if (
                     not line.duty_amount
                     and not line.excide_tax_amount
+                    and not line.vat_amount
                     and not customs_fee_coef
                 ):
                     continue
