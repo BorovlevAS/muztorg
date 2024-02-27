@@ -20,6 +20,7 @@
         "views/point_of_sale_dashboard.xml",
         "views/pos_session_views.xml",
         "wizards/x_report_views.xml",
+        "wizards/pos_box_wizard_views.xml",
         "data/ir_cron.xml",
         "wizards/sale_order_checkbox_wizard.xml",
         "security/ir.model.access.csv",
