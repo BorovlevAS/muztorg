@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-27 15:11+0000\n"
-"PO-Revision-Date: 2024-02-27 15:11+0000\n"
+"POT-Creation-Date: 2024-02-28 12:26+0000\n"
+"PO-Revision-Date: 2024-02-28 12:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -98,6 +98,23 @@ msgid "CASH"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_cash_box_out
+msgid "Cash Box Out"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/pos_box.py:0
+#, python-format
+msgid "Cash In"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/pos_box.py:0
+#, python-format
+msgid "Cash Out"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.so_payment_type_view_form
 msgid "Checkbox Integration"
 msgstr ""
@@ -129,6 +146,7 @@ msgstr ""
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_account_bank_statement__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_account_bank_statement_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_cash_box_out__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_session__display_name
@@ -179,6 +197,7 @@ msgstr ""
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_account_bank_statement__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_account_bank_statement_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_cash_box_out__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_session__id
@@ -204,6 +223,7 @@ msgstr ""
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_account_bank_statement____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_account_bank_statement_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_cash_box_out____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_session____last_update
@@ -471,13 +491,9 @@ msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: code:addons/muztorg_sale_order_pos/models/pos_session.py:0
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_pos_session_form
 #, python-format
 msgid "X-Report"
-msgstr ""
-
-#. module: muztorg_sale_order_pos
-#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_pos_session_form
-msgid "X-report"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
