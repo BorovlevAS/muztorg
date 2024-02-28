@@ -71,7 +71,7 @@ class SaleOrderCheckbox(models.TransientModel):
                 for tax in line.tax_id:
                     good_value["good"]["tax"].append(CHECKBOX_TAX_TABLE[tax.amount])
             else:
-                good_value["good"]["tax"].append(1)
+                good_value["good"]["tax"].append(8)
 
             if line.discount:
                 good_value.update(
