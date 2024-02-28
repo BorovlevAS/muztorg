@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="cash_box_out_form" model="ir.ui.view">
+        <field name="name">cash_box_out_inherit</field>
+        <field name="model">cash.box.out</field>
+        <field name="inherit_id" ref="account.cash_box_out_form" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="in_out" class="oe_inline" widget="radio" options="{'horizontal': true}" />
+            </field>
+            <field name="name" position="after">
+                <field name="amount_user" class="oe_inline" />
+            </field>
+            <field name="amount" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
