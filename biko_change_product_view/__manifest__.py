@@ -1,6 +1,6 @@
 {
     "name": "BIKO: Модуль изменяет форму товара для удобства внесения информации",
-    "version": "14.0.1.1.4",
+    "version": "14.0.1.1.5",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
