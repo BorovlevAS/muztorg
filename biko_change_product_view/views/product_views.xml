@@ -481,7 +481,7 @@
                                         colspan="2"
                                     />
                                     <field name="biko_product_class" />
-                                    <field name="biko_country_customs" options="{'no_create': True}" />
+                                    <field name="biko_country_customs" options="{'no_create': True}" invisible="1" />
                                     <field name="uktzed_id" domain="[('not_select', '=', False)]" />
                                     <field name="biko_control_code" readonly="1" />
                                     <field
