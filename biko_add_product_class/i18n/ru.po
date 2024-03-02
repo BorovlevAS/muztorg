@@ -76,16 +76,16 @@ msgid "Control code"
 msgstr "Контрольный код"
 
 #. module: biko_add_product_class
-#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_country
-#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_country
-msgid "Country"
-msgstr "Страна"
-
-#. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_country_customs
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_country_customs
 msgid "Country for custom"
 msgstr "Страна для таможни"
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_country
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_country
+msgid "Country of manufacture"
+msgstr "Cтрана производства"
 
 #. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_biko_product_class__create_uid
