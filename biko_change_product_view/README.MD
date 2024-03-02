@@ -27,3 +27,7 @@ biko_change_product_view
 ### 14.0.1.1.4
 
 [IMP] - поле biko_product_class доступно для редактирования
+
+### 14.0.1.1.5
+
+[IMP] - поле biko_country_customs скрыто
