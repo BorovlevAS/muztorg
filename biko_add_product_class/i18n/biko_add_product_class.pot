@@ -74,15 +74,15 @@ msgid "Control code"
 msgstr ""
 
 #. module: biko_add_product_class
-#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_country
-#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_country
-msgid "Country"
-msgstr ""
-
-#. module: biko_add_product_class
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_country_customs
 #: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_country_customs
 msgid "Country for custom"
+msgstr ""
+
+#. module: biko_add_product_class
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_product__biko_country
+#: model:ir.model.fields,field_description:biko_add_product_class.field_product_template__biko_country
+msgid "Country of manufacture"
 msgstr ""
 
 #. module: biko_add_product_class
