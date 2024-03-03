@@ -43,7 +43,7 @@ msgstr "Позиция заказа на закупку"
 #. module: muztorg_purchase_customization
 #: model:ir.model.fields,field_description:muztorg_purchase_customization.field_purchase_order_line__uktzed_id
 msgid "UKTZED"
-msgstr ""
+msgstr "УКТВЭД"
 
 #. module: muztorg_purchase_customization
 #: model:ir.model.fields,help:muztorg_purchase_customization.field_purchase_order_line__uktzed_id
