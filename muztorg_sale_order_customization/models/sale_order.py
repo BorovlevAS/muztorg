@@ -50,3 +50,12 @@ class SaleOrder(models.Model):
         self.write({"user_id": self.env.user.id})
         self.onchange_user_id()
         return super().action_confirm()
+
+    def _action_cancel(self):
+        result = super()._action_cancel()
+        if result:
+            inv = self.invoice_ids.filtered(
+                lambda inv: inv.state == "posted" and inv.payment_state == "not_paid"
+            )
+            inv.button_cancel()
+        return result
