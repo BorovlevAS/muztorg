@@ -14,6 +14,10 @@
                     position="move"
                 />
             </xpath>
+            <xpath expr="//page/field[@name='order_line']/tree/field[@name='sequence']" position="after">
+                <field name="uktzed_id" readonly="1" optional="show" />
+                <field name="biko_country_name" readonly="1" optional="show" />
+            </xpath>
         </field>
     </record>
 </odoo>
