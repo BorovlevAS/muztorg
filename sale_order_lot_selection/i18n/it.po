@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_lot_selection
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-02-26 09:59+0000\n"
+"PO-Revision-Date: 2023-11-04 18:38+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
+msgid "Lot"
+msgstr "Lotto"
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#, python-format
+#~ msgid "Can't reserve products for lot %s"
+#~ msgstr "Non è possibile riservare prodotti per il lotto %s"
+
+#, python-format
+#~ msgid "Can't retrieve lot on stock"
+#~ msgstr "Impossibile recuperare il lotto a magazzino"
+
+#~ msgid "Sales Order"
+#~ msgstr "Ordine di vendita"
+
+#~ msgid "Stock Move"
+#~ msgstr "Movimento di magazzino"
