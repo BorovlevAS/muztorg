@@ -489,7 +489,18 @@ class SaleStockReturn(models.Model):
         }
 
     def action_fill_products(self):
-        pass
+        for record in self:
+            new_lines = [(5, 0, 0)]
+
+            for order_line in record.sale_order_id.order_line.filtered(
+                lambda line: line.product_id.type in ["product", "consu"]
+                and not line.display_type
+                and (line.qty_delivered or line.qty_invoiced)
+            ):
+                order_line_vals = order_line._prepare_return_order_line_vals()
+                new_lines.append((0, 0, order_line_vals))
+
+            record.write({"line_ids": new_lines})
 
     def action_add_products(self):
         self.ensure_one()
