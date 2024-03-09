@@ -9,13 +9,13 @@ class SaleOrderLine(models.Model):
     )
 
     margin = fields.Float(
-        groups="muztorg_sale_order_customization.biko_group_show_margin"
+        groups="muztorg_valuation_access_group.biko_group_show_margin"
     )
     margin_percent = fields.Float(
-        groups="muztorg_sale_order_customization.biko_group_show_margin"
+        groups="muztorg_valuation_access_group.biko_group_show_margin"
     )
     purchase_price = fields.Float(
-        groups="muztorg_sale_order_customization.biko_group_show_margin"
+        groups="muztorg_valuation_access_group.biko_group_show_margin"
     )
 
     uktzed_id = fields.Many2one(
