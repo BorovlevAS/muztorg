@@ -91,15 +91,29 @@
                         <field name="company_id" groups="base.group_multi_company" />
                         <field name="operation_type" attrs="{'readonly': [('state', '!=', 'draft')]}" />
                         <field name="date" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}" />
-                        <field name="partner_id" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        <field
+                            name="partner_id"
+                            required="1"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            options="{'no_create': True}"
+                        />
                         <field
                             name="contract_id"
                             attrs="{'required': [('is_partner_contract_mandatory','=',True)],
                                 'readonly': [('state', '!=', 'draft')]}"
+                            options="{'no_create': True}"
                         />
-                        <field name="currency_id" attrs="{'readonly': [('state', '!=', 'draft')]}" />
-                        <field name="sale_order_id" attrs="{'readonly': [('state', '!=', 'draft')]}" />
-                        <field name="location_id" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        <field
+                            name="sale_order_id"
+                            options="{'no_create': True}"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        />
+                        <field name="currency_id" />
+                        <field
+                            name="location_id"
+                            options="{'no_create': True}"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                        />
                         <field name="partner_location_id" invisible="1" />
                     </group>
                     <notebook>

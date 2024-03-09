@@ -42,7 +42,7 @@ class SaleStockReturn(models.Model):
         comodel_name="res.currency",
         string="Currency",
         required=True,
-        default=lambda self: self.env.company.currency_id,
+        related="sale_order_id.currency_id",
     )
     date = fields.Date(
         string="Date",
@@ -222,6 +222,11 @@ class SaleStockReturn(models.Model):
                     "price_total_no_discount": price_total_no_discount,
                 }
             )
+
+    @api.onchange("sale_order_id")
+    def onchange_sale_order_id(self):
+        for record in self:
+            record.location_id = record.sale_order_id.warehouse_id.lot_stock_id.id
 
     def _prepare_move_default_values(self, line, qty, move):
         """Extend this method to add values to return move"""
@@ -487,7 +492,46 @@ class SaleStockReturn(models.Model):
         pass
 
     def action_add_products(self):
-        pass
+        self.ensure_one()
+
+        move_lines = self.sale_order_id.order_line.filtered(
+            lambda line: line.product_id.type in ["product", "consu"]
+            and not line.display_type
+            and (line.qty_delivered or line.qty_invoiced)
+        )
+
+        new_lines = []
+        for line in move_lines:
+            new_lines.append(
+                (
+                    0,
+                    0,
+                    {
+                        "sale_order_line_id": line.id,
+                        "currency_id": self.sale_order_id.currency_id.id,
+                    },
+                )
+            )
+
+        wizard = self.env["add.so.lines.wizard"].create(
+            {
+                "return_order_id": self.id,
+                "domain_sale_line_ids": new_lines,
+            }
+        )
+
+        view = self.env.ref("simbioz_sale_order_return.add_so_lines_wizard_view_form")
+
+        return {
+            "name": _("Add SO Lines"),
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "res_model": "add.so.lines.wizard",
+            "views": [(view.id, "form")],
+            "view_id": view.id,
+            "target": "new",
+            "res_id": wizard.id,
+        }
 
     @api.model_create_multi
     def create(self, vals_list):
