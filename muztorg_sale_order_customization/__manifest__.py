@@ -11,6 +11,7 @@
         "product_stock_by_location_widget",
         "sale_margin",
         "simbioz_uktzed",
+        "muztorg_valuation_access_group",
     ],
     "data": [
         "views/sale_order_views.xml",

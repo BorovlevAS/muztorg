@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="return_order_cancel_view_form" model="ir.ui.view">
+        <field name="name">sale.return.cancel.form</field>
+        <field name="model">sale.return.cancel</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="order_id" invisible="1" />
+                <div>
+                    Are you sure you want to cancel the return?
+                    <br />
+                    Invoices and pickings, which are not in the
+                    "Done" state will be cancelled.
+                </div>
+                <footer>
+                    <button string="Confirm" name="action_cancel" type="object" class="oe_highlight" />
+                    <button string="Cancel" class="btn btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
