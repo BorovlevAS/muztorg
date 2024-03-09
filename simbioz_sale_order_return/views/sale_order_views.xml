@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <button name="action_draft" position="after">
+                <button
+                    name="action_create_return_order"
+                    string="Create Return Order"
+                    type="object"
+                    states="sale,done"
+                />
+            </button>
+            <div class="oe_button_box" position="inside">
+                <field name="sale_stock_return_id" invisible="1" />
+                <button
+                    name="action_view_return"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-undo"
+                    string="Return Orders"
+                    attrs="{'invisible': [('sale_stock_return_id', '=', [])]}"
+                />
+            </div>
+        </field>
+    </record>
+</odoo>
