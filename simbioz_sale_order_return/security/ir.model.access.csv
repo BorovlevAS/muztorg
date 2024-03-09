@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_stock_return_user,sale.stock.return.user,model_sale_stock_return,simbioz_sale_order_return.biko_group_return_order,1,1,1,1
+access_sale_stock_return_manager,sale.stock.return.manager,model_sale_stock_return,simbioz_sale_order_return.biko_group_return_order,1,1,1,1
+access_sale_stock_return_line_user,sale.stock.return.line.user,model_sale_stock_return_line,simbioz_sale_order_return.biko_group_return_order,1,1,1,1
+access_sale_stock_return_line_manager,sale.stock.return.line.manager,model_sale_stock_return_line,simbioz_sale_order_return.biko_group_return_order,1,1,1,1
+access_sale_return_wizard_access,sale.return.wizard.access,model_sale_return_cancel,base.group_user,1,1,1,1
+access_add_so_lines_wizard_access,add.so.lines.wizard.access,model_add_so_lines_wizard,base.group_user,1,1,1,1
+access_add_so_lines_wizard_line_access,add.so.lines.wizard.line.access,model_add_so_lines_wizard_line,base.group_user,1,1,1,1

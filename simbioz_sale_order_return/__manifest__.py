@@ -1,0 +1,31 @@
+{
+    "name": "SaleOrder return",
+    "summary": "SaleOrder return",
+    "version": "14.0.1.0.0",
+    "license": "LGPL-3",
+    "author": "Borovlev A.S.",
+    "company": "Simbioz Holding",
+    "depends": [
+        "sale",
+        "account",
+        "stock",
+        "simbioz_analytic_contract_sale",
+    ],
+    "data": [
+        "views/sale_stock_return_views.xml",
+        "views/sale_order_views.xml",
+        "wizards/sale_return_cancel_views.xml",
+        "wizards/select_sale_order_line_views.xml",
+        "data/sequence.xml",
+        "security/ir_access_roles.xml",
+        "security/ir.model.access.csv",
+    ],
+    "demo": [],
+    "external_dependencies": {
+        "python": [],
+        "bin": [],
+    },
+    "installable": True,
+    "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
+}
