@@ -35,7 +35,7 @@ class AddPOLinesWizard(models.TransientModel):
 class AddPOLinesWizardLine(models.TransientModel):
     _name = "add.so.lines.wizard.line"
 
-    add_so_lines_wizard_id = fields.Many2one(comodel_name="add.po.lines.wizard")
+    add_so_lines_wizard_id = fields.Many2one(comodel_name="add.so.lines.wizard")
     sale_order_line_id = fields.Many2one(comodel_name="sale.order.line")
 
     currency_id = fields.Many2one(comodel_name="res.currency", string="Currency")
