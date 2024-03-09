@@ -172,7 +172,7 @@ class SaleOrder(models.Model):
 
         if warehouse.validate_invoice and order.invoice_ids:
             for invoice in order.invoice_ids.filtered(lambda s: s.state == "draft"):
-                invoice.action_post()
+                invoice.sudo().action_post()
 
     def process_pickings(self, order):
         warehouse = order.warehouse_id
