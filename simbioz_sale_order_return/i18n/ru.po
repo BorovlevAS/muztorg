@@ -1,0 +1,800 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* simbioz_sale_order_return
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-09 18:01+0000\n"
+"PO-Revision-Date: 2024-03-09 18:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/wizards/select_sale_order_line.py:0
+#, python-format
+msgid ""
+"%(prod_descr)s: [Inv. qty: %(inv_qty)s] - [Del. qty: %(del_qty)s] - [UoM: "
+"%(uom)s]  - [Sum w/o taxes: %(subtotal)s] - [Sum with taxes: %(total)s]"
+msgstr ""
+"%(prod_descr)s: [Оплачено: %(inv_qty)s] - [Доставлено: %(del_qty)s] - [Ед. "
+"изм.: %(uom)s]  - [Сумма без налогов: %(subtotal)s] - [Сумма с налогами: "
+"%(total)s]"
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "<span>Journal Entry</span>"
+msgstr "<span>Записи журнала</span>"
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "<span>Sale Order</span>"
+msgstr "<span>Заказ на продажу</span>"
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "<span>Stock Pickings</span>"
+msgstr "<span>Складские перемещения</span>"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__access_warning
+msgid "Access warning"
+msgstr "Предупреждение о доступе"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__account_move_ids
+msgid "Account moves (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/models/sale_stock_return.py:0
+#: model:ir.model,name:simbioz_sale_order_return.model_add_so_lines_wizard
+#, python-format
+msgid "Add SO Lines"
+msgstr "Добавить строку заказа"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__add_so_lines_wizard_id
+msgid "Add So Lines Wizard"
+msgstr "Помощник выбора строк заказа"
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "Add products"
+msgstr "Добавить продукты"
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "Additional info"
+msgstr "Дополнительная информация"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__allowed_sale_order_ids
+msgid "Allowed Sale Orders (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.return_order_cancel_view_form
+msgid ""
+"Are you sure you want to cancel the return?\n"
+"                    <br/>\n"
+"                    Invoices and pickings, which are not in the\n"
+"                    \"Done\" state will be cancelled."
+msgstr ""
+"Вы точно хотите отменит возврат?\n"
+"                    <br/>\n"
+"                    Накладные и неподтвержденные перемещения будут отменены"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "Back to draft"
+msgstr "Сделать черновиком"
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.return_order_cancel_view_form
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/models/sale_stock_return.py:0
+#, python-format
+msgid "Cancel Return Order"
+msgstr "Отменить возвратную накладную"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__state__cancel
+msgid "Cancelled"
+msgstr "Отменено"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__company_id
+msgid "Company"
+msgstr "Компания"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__company_id
+msgid "Company (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.add_so_lines_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.return_order_cancel_view_form
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__contract_id
+msgid "Contract"
+msgstr "Контракт"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__is_partner_contract_mandatory
+msgid "Contract settlements"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.view_order_form
+msgid "Create Return Order"
+msgstr "Создать возвратную накладную"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__create_uid
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__create_uid
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__create_uid
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__create_uid
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__create_date
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__create_date
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__create_date
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__create_date
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__currency_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__currency_id
+msgid "Currency"
+msgstr "Валюта"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__currency_id
+msgid "Currency (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__access_url
+msgid "Customer Portal URL"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__date
+msgid "Date"
+msgstr "Дата"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__qty_delivered
+msgid "Delivered Qty"
+msgstr "Доставлено"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__name
+msgid "Description"
+msgstr "Описание"
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.add_so_lines_wizard_view_form
+msgid "Discard"
+msgstr "Отменить"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__discount
+msgid "Discount (%)"
+msgstr "Скидка (%)"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__discount_total
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__discount_total
+msgid "Discount Subtotal"
+msgstr "Промежуточная скидка"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Отображаемое название"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__domain_sale_line_ids
+msgid "Domain Sale Order Lines"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__state__done
+msgid "Done"
+msgstr "Готово"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__state__draft
+msgid "Draft"
+msgstr "Черновик"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__failed_message_ids
+msgid "Failed Messages"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "Fill products"
+msgstr "Заполнить продукты"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__operation_type__financial_return
+msgid "Financial return"
+msgstr "Возврат денег"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__operation_type__full_return
+msgid "Full return"
+msgstr "Возврат денег и товаров"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order_line__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__message_needaction
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__message_has_error
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__qty_invoiced
+msgid "Invoiced Qty"
+msgstr "Выставлено в счете"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_account_move
+msgid "Journal Entry"
+msgstr "Запись журнала"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Последнее изменение в"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__write_uid
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__write_uid
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__write_uid
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__write_uid
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__write_date
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__write_date
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__write_date
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__write_date
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__line_ids
+msgid "Lines"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__location_id
+msgid "Location"
+msgstr "Место хранения"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__name
+msgid "Name"
+msgstr "Название"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__note
+msgid "Note"
+msgstr "Комментарий"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__operation_type
+msgid "Operation Type"
+msgstr "Тип операции"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__partner_id
+msgid "Partner"
+msgstr "Клиент"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__partner_location_id
+msgid "Partner Location (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/models/sale_stock_return.py:0
+#, python-format
+msgid ""
+"Please define an accounting sales journal for the company %(company_name)s "
+"(%(company_id)s)."
+msgstr ""
+"Пожалуйста, задайте бухгалтерский журнал в настройках для компании "
+"%(company_name)s (%(company_id)s)."
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__access_url
+msgid "Portal Access URL"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__product_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__product_id
+msgid "Product"
+msgstr "Продукт"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__product_description
+msgid "Product Name (nnt.)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__qty_invoiced
+msgid "Product Qty (nnt.)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__product_template_id
+msgid "Product Template"
+msgstr "Шаблон продукта"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__product_uom
+msgid "Product UOM (nnt.)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__qty_delivered
+msgid "Product UOM Qty (nnt.)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "Products"
+msgstr "Продукты"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__quantity_return
+msgid "Quantity"
+msgstr "Количество"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__user_id
+msgid "Responsible"
+msgstr "Ответственный"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__activity_user_id
+msgid "Responsible User"
+msgstr "Ответственный пользователь"
+
+#. module: simbioz_sale_order_return
+#: model:ir.actions.act_window,name:simbioz_sale_order_return.sale_stock_return_action
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__return_order_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__order_id
+msgid "Return Order"
+msgstr "Возвратная накладная"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_sale_return_cancel
+msgid "Return Order Cancel"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.view_order_form
+msgid "Return Orders"
+msgstr "Возвратные накладные"
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/models/sale_stock_return.py:0
+#, python-format
+msgid "Return of %s"
+msgstr "Возврат %s"
+
+#. module: simbioz_sale_order_return
+#: model:ir.ui.menu,name:simbioz_sale_order_return.sale_stock_return_menu
+msgid "Return orders"
+msgstr "Возвратные накладные"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move__qty_returnable
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move_reservation__qty_returnable
+msgid "Returnable Quantity"
+msgstr "Доступное кол-во для возврату"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__sale_order_line_id
+msgid "Sale Order Line"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__sale_order_line_id
+msgid "Sale Order Line (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__sale_order_line_ids
+msgid "Sale Order Lines"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__sale_order_id
+msgid "Sale order"
+msgstr "Заказ на продажу"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_sale_stock_return
+msgid "Sale stock return"
+msgstr "Возвратная накладная"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_bank_statement_line__sale_stock_return_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move__sale_stock_return_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_payment__sale_stock_return_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order__sale_stock_return_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__sale_stock_return_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_picking__sale_stock_return_id
+msgid "Sale stock return (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_sale_stock_return_line
+msgid "Sale stock return line"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order_line__sale_stock_return_line_ids
+msgid "Sale stock return lines (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_sale_order
+msgid "Sales Order"
+msgstr "Заказ на продажу"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Строка заказа на продажу"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__access_token
+msgid "Security Token"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__state
+msgid "State"
+msgstr "Статус"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_stock_move
+msgid "Stock Move"
+msgstr "Складское перемещение"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__stock_picking_ids
+msgid "Stock pickings (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__operation_type__stock_return
+msgid "Stock return"
+msgstr "Возврат товара"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__price_subtotal
+msgid "Subtotal"
+msgstr "Промежуточная сумма"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__price_subtotal
+msgid "Subtotal Price (nnt.)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__price_subtotal_no_discount
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__price_subtotal_no_discount
+msgid "Subtotal Without Discount"
+msgstr "Промежуточная сумма без скидки"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__amount_tax
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__tax_id
+msgid "Taxes"
+msgstr "Налоги"
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/models/sale_stock_return_line.py:0
+#, python-format
+msgid ""
+"The following lines have no quantity to return:\n"
+" %(failed_lines)s"
+msgstr ""
+"В следующих строках не указано количество к возврату:\n"
+" %(failed_lines)s"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__partner_location_id
+msgid ""
+"The stock location used as destination when sending goods to this contact."
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__amount_total
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__price_total
+msgid "Total"
+msgstr "Всего"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__price_total
+msgid "Total Price (nnt.)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__price_tax
+msgid "Total Tax"
+msgstr "Всего налогов"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__price_total_no_discount
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__price_total_no_discount
+msgid "Total Without Discount"
+msgstr "Всего без скдики"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_stock_picking
+msgid "Transfer"
+msgstr "Передача"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__price_unit
+msgid "Unit Price"
+msgstr "Цена"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__product_uom_id
+msgid "Unit of Measure"
+msgstr "Единица измерения"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__amount_untaxed
+msgid "Untaxed Amount"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:res.groups,name:simbioz_sale_order_return.biko_group_return_order
+msgid "Use return orders"
+msgstr "Использовать возвратные накладные"
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
+msgid "Validate"
+msgstr "Подтвердить"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_add_so_lines_wizard_line
+msgid "add.so.lines.wizard.line"
+msgstr ""
