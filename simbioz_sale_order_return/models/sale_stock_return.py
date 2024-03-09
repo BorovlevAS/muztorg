@@ -380,7 +380,7 @@ class SaleStockReturn(models.Model):
                 )
                 invoice_item_sequence += 1
             invoice_vals["invoice_line_ids"] += invoice_line_vals
-            move = self.env["account.move"].create(invoice_vals)
+            move = self.env["account.move"].sudo().create(invoice_vals)
             move._post()
             # reconcile
 
@@ -390,10 +390,10 @@ class SaleStockReturn(models.Model):
             lines_to_reconcile += move.reversed_entry_id.line_ids.filtered(
                 lambda move: move.account_id.reconcile and not move.reconciled
             )
-            lines_to_reconcile.reconcile()
+            lines_to_reconcile.sudo().reconcile()
             created_moves.append(move.id)
 
-        self.account_move_ids = [(6, 0, created_moves)]
+        self.sudo().write({"account_move_ids": [(6, 0, created_moves)]})
 
     def action_validate(self):
         self.ensure_one()

@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* muztorg_purchase_customization
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-03 12:23+0000\n"
+"PO-Revision-Date: 2024-03-03 12:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: muztorg_purchase_customization
+#: model:ir.model.fields,field_description:muztorg_purchase_customization.field_purchase_order_line__biko_country_name
+msgid "Country of manufacture"
+msgstr "Cтрана производства"
+
+#. module: muztorg_purchase_customization
+#: model:ir.model.fields,field_description:muztorg_purchase_customization.field_purchase_order_line__display_name
+msgid "Display Name"
+msgstr "Отображаемое название"
+
+#. module: muztorg_purchase_customization
+#: model:ir.model.fields,field_description:muztorg_purchase_customization.field_purchase_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: muztorg_purchase_customization
+#: model:ir.model.fields,field_description:muztorg_purchase_customization.field_purchase_order_line____last_update
+msgid "Last Modified on"
+msgstr "Последнее изменение в"
+
+#. module: muztorg_purchase_customization
+#: model:ir.model,name:muztorg_purchase_customization.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Позиция заказа на закупку"
+
+#. module: muztorg_purchase_customization
+#: model:ir.model.fields,field_description:muztorg_purchase_customization.field_purchase_order_line__uktzed_id
+msgid "UKTZED"
+msgstr "УКТВЭД"
+
+#. module: muztorg_purchase_customization
+#: model:ir.model.fields,help:muztorg_purchase_customization.field_purchase_order_line__uktzed_id
+msgid "Ukrainian classification of foreign economic activity goods"
+msgstr "Украинская классификация товаров внешнеэкономической деятельности"
