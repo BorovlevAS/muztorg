@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_stock_return_view_form" model="ir.ui.view">
+        <field name="name">sale.stock.return.view.form</field>
+        <field name="model">sale.stock.return</field>
+        <field name="inherit_id" ref="simbioz_sale_order_return.sale_stock_return_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="after">
+                <field name="fiscal_receipt_req" invisible="1" />
+                <widget
+                    name="web_ribbon"
+                    title="Fiscal Receipt Registered"
+                    bg_color="bg-success"
+                    attrs="{'invisible': ['|',
+                        ('checkbox_receipt_id', '=', False),
+                        ('operation_type','not in',['financial_return','full_return'])
+                        ]}"
+                />
+                <widget
+                    name="web_ribbon"
+                    title="Fiscal Receipt Required"
+                    bg_color="bg-danger"
+                    attrs="{'invisible': ['|', '|', '|',
+                        ('checkbox_receipt_id', '!=', False),
+                        ('fiscal_receipt_req','=',False),
+                        ('state','not in',['done']),
+                        ('operation_type','not in',['financial_return','full_return'])
+                        ]}"
+                />
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page
+                    name="checkbox"
+                    string="Checkbox"
+                    attrs="{'invisible': [('operation_type','not in',['financial_return','full_return'])]}"
+                >
+                    <group>
+                        <group>
+                            <field name="pos_session_id" readonly="1" />
+                            <field name="checkbox_receipt_id" />
+                            <field name="checkbox_receipt_qr_code" widget="image" />
+                        </group>
+                        <group>
+                            <field name="pos_config_id" readonly="1" />
+                            <field name="checkbox_receipt_html" widget="html" />
+                        </group>
+                    </group>
+                    <field name="checkbox_receipt_response" nolabel="1" invisible="1" />
+                </page>
+                <page name="pos_payment_types" string="POS payments">
+                    <group>
+                        <field name="return_order_pos_line_ids" readonly="1" nolabel="1">
+                            <tree>
+                                <field name="currency_id" invisible="1" />
+                                <field name="payment_type" />
+                                <field name="pos_payment_method_id" />
+                                <field name="payment_amount" sum="Total" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button
+                    name="action_open_receipt_wizard"
+                    type="object"
+                    string="Send Receipt to Checkbox"
+                    icon="fa-file-text-o"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', '|', '|',
+                        ('checkbox_receipt_id', '!=', False),
+                        ('fiscal_receipt_req', '=', 'no'),
+                        ('state','not in',['done']),
+                        ('operation_type','not in',['financial_return','full_return'])
+                        ]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_stock_return_view_tree" model="ir.ui.view">
+        <field name="name">sale.stock.return.view.tree.inherit</field>
+        <field name="model">sale.stock.return</field>
+        <field name="inherit_id" ref="simbioz_sale_order_return.sale_stock_return_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="is_fiscal_registered" invisible="1" />
+                <button icon="fa-file-text-o" attrs="{'invisible': [('is_fiscal_registered', '=', False)]}" />
+            </field>
+        </field>
+    </record>
+</odoo>
