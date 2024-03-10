@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-09 18:00+0000\n"
-"PO-Revision-Date: 2024-03-09 18:00+0000\n"
+"POT-Creation-Date: 2024-03-10 20:00+0000\n"
+"PO-Revision-Date: 2024-03-10 20:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -203,6 +203,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__date
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "Date"
 msgstr ""
 
@@ -471,6 +472,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__partner_id
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "Partner"
 msgstr ""
 
@@ -495,7 +497,13 @@ msgstr ""
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__product_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__product_id
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "Product"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__product_id
+msgid "Product (nnt)"
 msgstr ""
 
 #. module: simbioz_sale_order_return
@@ -547,6 +555,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:simbioz_sale_order_return.sale_stock_return_action
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__return_order_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__order_id
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "Return Order"
 msgstr ""
 
@@ -580,6 +589,11 @@ msgstr ""
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_has_sms_error
 msgid "SMS Delivery error"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
+msgid "Sale Order"
 msgstr ""
 
 #. module: simbioz_sale_order_return
@@ -644,6 +658,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__state
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "State"
 msgstr ""
 

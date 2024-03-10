@@ -14,7 +14,7 @@ class SaleStockReturn(models.Model):
     _check_company_auto = True
 
     _rec_name = "name"
-    _order = "name ASC"
+    _order = "date DESC, name DESC"
 
     operation_type = fields.Selection(
         [
@@ -166,6 +166,13 @@ class SaleStockReturn(models.Model):
         comodel_name="stock.location",
         string="Partner Location (nnt)",
         related="partner_id.property_stock_customer",
+    )
+
+    product_id = fields.Many2one(
+        "product.product",
+        "Product (nnt)",
+        related="line_ids.product_id",
+        readonly=True,
     )
 
     @api.depends("company_id", "state", "partner_id")
