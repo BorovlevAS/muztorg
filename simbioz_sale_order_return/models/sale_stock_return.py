@@ -14,7 +14,7 @@ class SaleStockReturn(models.Model):
     _check_company_auto = True
 
     _rec_name = "name"
-    _order = "name ASC"
+    _order = "date DESC, name DESC"
 
     operation_type = fields.Selection(
         [
