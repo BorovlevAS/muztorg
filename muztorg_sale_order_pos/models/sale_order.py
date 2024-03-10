@@ -15,6 +15,12 @@ class SaleOrder(models.Model):
         compute="_compute_is_fiscal_registered",
     )
 
+    sale_order_pos_line_ids = fields.One2many(
+        comodel_name="sale.order.pos.line",
+        inverse_name="order_id",
+        string="Sale Order Pos Lines",
+    )
+
     def _compute_is_fiscal_registered(self):
         for order in self:
             order.is_fiscal_registered = order.checkbox_receipt_id
@@ -47,9 +53,9 @@ class SaleOrder(models.Model):
         for payment_type in payment_types:
             new_line = {
                 "payment_type": payment_type.id,
-                "payment_amount": self.amount_total
-                if payment_type == self.so_payment_type_id
-                else 0,
+                "payment_amount": (
+                    self.amount_total if payment_type == self.so_payment_type_id else 0
+                ),
             }
             new_lines.append((0, 0, new_line))
 

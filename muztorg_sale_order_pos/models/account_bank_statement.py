@@ -13,6 +13,8 @@ class AccountBankStatement(models.Model):
                 move_line_ids = line.pos_payment_id.line_ids.filtered(
                     lambda x, line=line: x.account_id
                     == line.pos_payment_id.journal_id.payment_debit_account_id
+                    or x.account_id
+                    == line.pos_payment_id.journal_id.payment_credit_account_id
                 )
                 for move_line in move_line_ids:
                     line.reconcile([{"id": move_line.id}])

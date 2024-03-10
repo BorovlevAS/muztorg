@@ -1,7 +1,13 @@
+import base64
+import logging
+import time
+
 import requests
 
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 CHECKBOX_TAX_TABLE = {
     0: 8,
@@ -10,15 +16,27 @@ CHECKBOX_TAX_TABLE = {
 }
 
 
-class SaleOrderCheckbox(models.TransientModel):
-    _name = "sale.order.checkbox.wizard"
-    _inherit = ["sale.order.checkbox.wizard", "phone.validation.mixin"]
+class ReturnOrderCheckbox(models.TransientModel):
+    _name = "return.order.checkbox.wizard"
+    _inherit = ["phone.validation.mixin"]
+    _description = "Return Order Checkbox Wizard"
 
-    # TODO: make this field computed
+    order_id = fields.Many2one(
+        comodel_name="sale.stock.return", string="Order", readonly=True, required=True
+    )
+
     available_pos_config_ids = fields.Many2many(
         comodel_name="pos.config",
         string="Available POS (nnt)",
     )
+
+    config_id = fields.Many2one(
+        comodel_name="pos.config",
+        domain="[('id', 'in', available_pos_config_ids)]",
+        string="POS",
+        required=True,
+    )
+
     currency_id = fields.Many2one(
         comodel_name="res.currency",
         related="order_id.currency_id",
@@ -28,14 +46,15 @@ class SaleOrderCheckbox(models.TransientModel):
         related="order_id.amount_total",
         string="Order Amount Total",
     )
-    config_id = fields.Many2one(domain="[('id', 'in', available_pos_config_ids)]")
+
     pos_session_id = fields.Many2one(
         comodel_name="pos.session",
+        string="Session",
         related="config_id.current_session_id",
         required=False,
     )
     payment_lines = fields.One2many(
-        comodel_name="sale.order.checkbox.wizard.line",
+        comodel_name="return.order.checkbox.wizard.line",
         inverse_name="wizard_id",
         string="Payments",
     )
@@ -54,11 +73,12 @@ class SaleOrderCheckbox(models.TransientModel):
         payload = {
             "goods": [],
             "payments": [],
+            "related_receipt_id": self.order_id.sale_order_id.checkbox_receipt_id,
             "delivery": {"phone": self.mobile_num},
         }
         so_payment_vals = []
 
-        for line in self.order_id.order_line:
+        for line in self.order_id.line_ids:
             good_value = {
                 "good": {
                     "code": line.product_id.id,
@@ -67,7 +87,8 @@ class SaleOrderCheckbox(models.TransientModel):
                     "barcode": line.product_id.barcode,
                     "tax": [],
                 },
-                "quantity": round(line.product_uom_qty * 1000, 2),
+                "quantity": round(line.quantity_return * 1000, 2),
+                "is_return": "true",
             }
             if line.tax_id:
                 for tax in line.tax_id:
@@ -136,11 +157,51 @@ class SaleOrderCheckbox(models.TransientModel):
                 "checkbox_receipt_id": data["id"],
                 "checkbox_receipt_response": str(data),
                 "pos_session_id": self.pos_session_id.id,
-                "sale_order_pos_line_ids": so_payment_vals,
+                "return_order_pos_line_ids": so_payment_vals,
             }
         )
 
         self._checkbox_get_pdf_receipt()
+
+    def _checkbox_get_pdf_receipt(self):
+        self.ensure_one()
+        if self.order_id.checkbox_receipt_id:
+            time.sleep(10)
+            headers = {
+                "Authorization": "Bearer %s"
+                % self.pos_session_id.checkbox_access_token,
+            }
+
+            response_qrcode = requests.get(
+                "%s/api/v1/receipts/%s/qrcode"
+                % (self.config_id.checkbox_url, self.order_id.checkbox_receipt_id),
+                headers=headers,
+                timeout=5,
+            )
+            if response_qrcode.ok:
+                self.order_id.checkbox_receipt_qr_code = base64.b64encode(
+                    response_qrcode.content
+                )
+
+            response_html = requests.get(
+                "%s/api/v1/receipts/%s/html"
+                % (self.config_id.checkbox_url, self.order_id.checkbox_receipt_id),
+                headers=headers,
+                timeout=5,
+            )
+            if response_html.ok:
+                self.order_id.checkbox_receipt_html = response_html.content.decode()
+
+            response_pdf = requests.get(
+                "%s/api/v1/receipts/%s/pdf"
+                % (self.config_id.checkbox_url, self.order_id.checkbox_receipt_id),
+                headers=headers,
+                timeout=5,
+            )
+            if not response_pdf.ok:
+                _logger.warning(
+                    "Error _checkbox_get_pdf_receipt: %s", response_pdf.text
+                )
 
     def send_receipt_checkbox(self):
         self.ensure_one()
@@ -149,8 +210,18 @@ class SaleOrderCheckbox(models.TransientModel):
         self._register_fiscal_receipt()
 
     def check_settings(self):
-        amount_total = sum(self.payment_lines.mapped("payment_amount"))
-        if amount_total != self.order_id.amount_total:
+        amount_total = tools.float_round(
+            sum(self.payment_lines.mapped("payment_amount")),
+            precision_rounding=self.currency_id.rounding,
+        )
+        if (
+            tools.float_compare(
+                amount_total,
+                self.order_id.amount_total,
+                precision_rounding=self.currency_id.rounding,
+            )
+            != 0
+        ):
             raise ValidationError(
                 _("The amount of payments does not match the amount of the order")
             )
@@ -167,7 +238,7 @@ class SaleOrderCheckbox(models.TransientModel):
             )
 
     def create_payment(self):
-        invoice_id = self.order_id.invoice_ids.filtered(
+        invoice_id = self.order_id.account_move_ids.filtered(
             lambda x: x.state == "posted" and x.payment_state == "not_paid"
         )
         if not invoice_id:
@@ -207,15 +278,15 @@ class SaleOrderCheckbox(models.TransientModel):
             absl_values = {
                 "statement_id": bank_statement_id.id,
                 "date": bank_statement_id.date,
-                "payment_type": "sale",
-                "payment_subtype": "1",
+                "payment_type": "purchase",
+                "payment_subtype": "2",
                 "payment_ref": invoice_id.name,
                 "partner_id": self.order_id.partner_id.id,
                 "contract_id": (
                     self.order_id.contract_id.id if self.order_id.contract_id else False
                 ),
-                "sale_order_id": self.order_id.id,
-                "amount": payment_line.payment_amount,
+                "sale_order_id": self.order_id.sale_order_id.id,
+                "amount": -payment_line.payment_amount,
                 "account_id": payment_line.pos_payment_method_id.cash_journal_id.suspense_account_id.id,
                 "pos_payment_id": payment_id.id,
             }
@@ -233,12 +304,12 @@ class SaleOrderCheckbox(models.TransientModel):
         return super().create(vals)
 
 
-class SaleOrderCheckboxWizardLine(models.TransientModel):
-    _name = "sale.order.checkbox.wizard.line"
-    _description = "Sale Order Checkbox Wizard Line (nnt)"
+class ReturnOrderCheckboxWizardLine(models.TransientModel):
+    _name = "return.order.checkbox.wizard.line"
+    _description = "Return Order Checkbox Wizard Line (nnt)"
 
     wizard_id = fields.Many2one(
-        comodel_name="sale.order.checkbox.wizard", string="Wizard"
+        comodel_name="return.order.checkbox.wizard", string="Wizard"
     )
     pos_config_id = fields.Many2one(
         comodel_name="pos.config",
@@ -258,8 +329,12 @@ class SaleOrderCheckboxWizardLine(models.TransientModel):
         string="Payment Method (nnt)",
         store=True,
     )
-
-    payment_amount = fields.Float(string="Payment Amount", required=True)
+    currency_id = fields.Many2one(
+        comodel_name="res.currency",
+        related="wizard_id.currency_id",
+        string="Currency (nnt)",
+    )
+    payment_amount = fields.Monetary(string="Payment Amount", required=True)
 
     @api.depends("payment_type", "pos_config_id")
     def _compute_pos_pm(self):
