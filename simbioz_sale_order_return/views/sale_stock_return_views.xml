@@ -255,9 +255,10 @@
             <search>
                 <field name="name" string="Return Order" />
                 <field name="partner_id" string="Partner" />
-                <filter name="filter_date" string="Date" date="date" />
+                <field name="product_id" string="Product" />
                 <field name="sale_order_id" string="Sale Order" />
                 <field name="state" string="State" />
+                <filter name="filter_date" string="Date" date="date" />
 
                 <filter name="groupby_state" string="State" context="{'group_by':'state'}" />
                 <filter name="groupby_date" string="Date" context="{'group_by':'date'}" />

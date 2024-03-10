@@ -168,6 +168,13 @@ class SaleStockReturn(models.Model):
         related="partner_id.property_stock_customer",
     )
 
+    product_id = fields.Many2one(
+        "product.product",
+        "Product (nnt)",
+        related="line_ids.product_id",
+        readonly=True,
+    )
+
     @api.depends("company_id", "state", "partner_id")
     def _compute_allowed_order_ids(self):
         for record in self:
