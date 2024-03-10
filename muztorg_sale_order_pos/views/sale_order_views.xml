@@ -52,6 +52,19 @@
                         ]}"
                 />
             </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="pos_payment_types" string="POS payments">
+                    <group>
+                        <field name="sale_order_pos_line_ids" readonly="1" nolabel="1">
+                            <tree>
+                                <field name="payment_type" />
+                                <field name="pos_payment_method_id" />
+                                <field name="payment_amount" sum="Total" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
         </field>
     </record>
 

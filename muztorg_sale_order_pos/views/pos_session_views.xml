@@ -15,6 +15,11 @@
                     string="X-Report"
                 />
             </header>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" type="object" name="get_related_return_orders" icon="fa-undo">
+                    <field name="return_order_counter" string="Return Orders" widget="statinfo" />
+                </button>
+            </xpath>
         </field>
     </record>
 </odoo>

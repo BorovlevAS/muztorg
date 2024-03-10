@@ -1,10 +1,28 @@
 import requests
 
-from odoo import _, models
+from odoo import _, fields, models
 
 
 class PosSession(models.Model):
     _inherit = "pos.session"
+
+    return_order_counter = fields.Integer(
+        string="RO count", compute="_compute_return_order_counter"
+    )
+
+    def _compute_return_order_counter(self):
+        for record in self:
+            record.return_order_counter = self.env["sale.stock.return"].search_count(
+                [("pos_session_id", "=", record.id)]
+            )
+
+    def get_related_return_orders(self):
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "simbioz_sale_order_return.sale_stock_return_action"
+        )
+        action["domain"] = [("pos_session_id", "=", self.id)]
+        return action
 
     def action_print_x_report(self):
         self.ensure_one()
