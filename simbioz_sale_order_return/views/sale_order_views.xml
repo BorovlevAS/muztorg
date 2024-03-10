@@ -11,6 +11,7 @@
                     string="Create Return Order"
                     type="object"
                     states="sale,done"
+                    groups="simbioz_sale_order_return.biko_group_return_order"
                 />
             </button>
             <div class="oe_button_box" position="inside">
@@ -22,6 +23,7 @@
                     icon="fa-undo"
                     string="Return Orders"
                     attrs="{'invisible': [('sale_stock_return_id', '=', [])]}"
+                    groups="simbioz_sale_order_return.biko_group_return_order"
                 />
             </div>
         </field>

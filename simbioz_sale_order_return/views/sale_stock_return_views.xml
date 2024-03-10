@@ -248,6 +248,25 @@
         </field>
     </record>
 
+    <record id="sale_stock_return_view_search" model="ir.ui.view">
+        <field name="name">sale.stock.return.search</field>
+        <field name="model">sale.stock.return</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Return Order" />
+                <field name="partner_id" string="Partner" />
+                <field name="product_id" string="Product" />
+                <field name="sale_order_id" string="Sale Order" />
+                <field name="state" string="State" />
+                <filter name="filter_date" string="Date" date="date" />
+
+                <filter name="groupby_state" string="State" context="{'group_by':'state'}" />
+                <filter name="groupby_date" string="Date" context="{'group_by':'date'}" />
+                <searchpanel />
+            </search>
+        </field>
+    </record>
+
     <record id="sale_stock_return_action" model="ir.actions.act_window">
         <field name="name">Return Order</field>
         <field name="res_model">sale.stock.return</field>
