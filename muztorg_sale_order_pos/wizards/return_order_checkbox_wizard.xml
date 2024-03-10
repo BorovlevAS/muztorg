@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="view_return_order_checkbox_wizard_form" model="ir.ui.view">
+        <field name="name">view_return_order_checkbox_wizard_form</field>
+        <field name="model">return.order.checkbox.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="order_id" />
+                        <field name="order_amount_total" />
+                        <field name="available_pos_config_ids" widget="many2many_tags" invisible="1" />
+                        <field name="config_id" widget="selection" />
+                        <field
+                            name="pos_session_id"
+                            widget="selection"
+                            domain="[('state', '=', 'opened'), ('config_id', '=', config_id)]"
+                            attrs="{'invisible': [('pos_session_id', '=', False)]}"
+                            readonly="1"
+                        />
+                        <div
+                            colspan="2"
+                            class="alert alert-danger"
+                            role="alert"
+                            attrs="{'invisible': [('pos_session_id', '!=', False)]}"
+                        >
+                            <span class="fa fa-exclamation-circle" />
+                            POS session is not opened!
+                        </div>
+                        <field name="mobile_num" required="1" />
+                    </group>
+                </group>
+                <notebook>
+                    <page name="page_payment_types" string="Payments">
+                        <field name="payment_lines" readonly="1">
+                            <tree edit="0">
+                                <field name="currency_id" invisible="1" />
+                                <field
+                                    name="payment_type"
+                                    options="{'no_create': True, 'no_open': True}"
+                                    readonly="1"
+                                />
+                                <field name="payment_amount" sum="Total" />
+                                <field
+                                    name="pos_payment_method_id"
+                                    options="{'no_create': True, 'no_open': True}"
+                                    readonly="1"
+                                />
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                    <button
+                        class="oe_highlight"
+                        name="send_receipt_checkbox"
+                        string="Send Receipt to the Checkbox"
+                        type="object"
+                        attrs="{'invisible': [('pos_session_id', '=', False)]}"
+                    />
+                    <button class="btn-secondary" special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

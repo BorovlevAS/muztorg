@@ -6,14 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-28 12:26+0000\n"
-"PO-Revision-Date: 2024-02-28 12:26+0000\n"
+"POT-Creation-Date: 2024-03-10 18:35+0000\n"
+"PO-Revision-Date: 2024-03-10 18:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__pos_payment_method_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__pos_payment_method_id
+msgid "(POS) Payment Method"
+msgstr "Метод оплаты (POS)"
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_return_order_checkbox_wizard_form
+msgid ""
+"<span class=\"fa fa-exclamation-circle\"/>\n"
+"                            POS session is not opened!"
+msgstr ""
+"<span class=\"fa fa-exclamation-circle\"/>\n"
+"                            Кассовая смена не открыта!"
 
 #. module: muztorg_sale_order_pos
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_wizard_form
@@ -68,6 +83,7 @@ msgid "Autoclose sessions"
 msgstr "Автоматическое закрытие смен"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__available_pos_config_ids
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__available_pos_config_ids
 msgid "Available POS (nnt)"
 msgstr ""
@@ -102,6 +118,11 @@ msgid "CASH"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_return_order_checkbox_wizard_form
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model,name:muztorg_sale_order_pos.model_cash_box_out
 msgid "Cash Box Out"
 msgstr "Деньги из кассы"
@@ -119,9 +140,24 @@ msgid "Cash Out"
 msgstr "Вынос наличных"
 
 #. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.sale_stock_return_view_form
+msgid "Checkbox"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.so_payment_type_view_form
 msgid "Checkbox Integration"
 msgstr "Интеграция с Checkbox"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__checkbox_receipt_id
+msgid "Checkbox receipt id"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__checkbox_receipt_response
+msgid "Checkbox_receipt_response"
+msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.xreport_wizard_view_form
@@ -129,20 +165,31 @@ msgid "Close"
 msgstr "Закрыть"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__create_uid
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__create_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__create_uid
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__create_uid
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__create_date
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__create_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__create_date
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__create_date
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__currency_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__currency_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__currency_id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__currency_id
 msgid "Currency (nnt)"
 msgstr ""
@@ -154,10 +201,15 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_session__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__display_name
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__display_name
 msgid "Display Name"
@@ -179,17 +231,25 @@ msgid "Fiscal Payment Type"
 msgstr "Тип оплаты (POS)"
 
 #. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.sale_stock_return_view_form
+msgid "Fiscal Receipt Registered"
+msgstr "Чек пробит"
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__fiscal_receipt_req
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.sale_stock_return_view_form
 msgid "Fiscal Receipt Required"
 msgstr "Требуется фискальный чек"
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__fiscal_receipt_req
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__fiscal_receipt_req
 msgid "Fiscal Receipt Required (nnt)"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__is_fiscal_registered
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__is_fiscal_registered
 msgid "Fiscal Registered (nnt)"
 msgstr ""
 
@@ -205,10 +265,15 @@ msgstr "Общие настройки"
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_session__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__id
 msgid "ID"
@@ -231,33 +296,47 @@ msgstr "Метка для типа платежа в ПРРО"
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_payment_method____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_session____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line____last_update
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type____last_update
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard____last_update
 msgid "Last Modified on"
 msgstr "Последнее изменение в"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__write_uid
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__write_uid
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__write_uid
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__write_uid
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__write_date
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__write_date
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__write_date
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__write_date
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__mobile_num
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__mobile_num
 msgid "Mobile Number"
-msgstr "Мобильный"
+msgstr "Мбильный телефон"
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__name
@@ -284,16 +363,35 @@ msgstr ""
 "                                Смену\""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__order_id
+msgid "Order"
+msgstr "Возвратная накладная"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__order_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__order_id
+msgid "Order (nnt)"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__order_amount_total
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__order_amount_total
 msgid "Order Amount Total"
-msgstr "Сумма заказа"
+msgstr "Итого"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__config_id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__config_id
 msgid "POS"
-msgstr "Точка продаж"
+msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__pos_config_id
+msgid "POS Config"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__pos_config_id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__pos_config_id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_pos_payment_line__pos_config_id
 msgid "POS Config (nnt)"
@@ -310,17 +408,30 @@ msgid "POS Payment Method"
 msgstr "Тип оплаты (POS)"
 
 #. module: muztorg_sale_order_pos
-#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__payment_amount
-msgid "Payment Amount"
-msgstr "Сумма"
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.sale_stock_return_view_form
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_order_form
+msgid "POS payments"
+msgstr "Платежи по чеку"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__payment_amount
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__payment_amount
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__payment_amount
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__payment_amount
+msgid "Payment Amount"
+msgstr "Сумма оплаты"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__pos_payment_method_id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__pos_payment_method_id
 msgid "Payment Method (nnt)"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__payment_type
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_pos_line__payment_type
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__payment_type
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_pos_line__payment_type
 msgid "Payment Type"
 msgstr "Тип оплаты"
 
@@ -335,7 +446,9 @@ msgid "Payment Types Correspondence"
 msgstr "Соответствие типов платежей"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__payment_lines
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__payment_lines
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_return_order_checkbox_wizard_form
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_wizard_form
 msgid "Payments"
 msgstr "Платежи"
@@ -362,9 +475,44 @@ msgid "Point of Sale Session"
 msgstr "Сессия точки продаж"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__return_order_pos_line_ids
+msgid "Pos Lines"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_session__return_order_counter
+msgid "RO count"
+msgstr "Количество ВН"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__checkbox_receipt_html
+msgid "Receipt HTML"
+msgstr "Чек HTML"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__checkbox_receipt_qr_code
+msgid "Receipt QR code"
+msgstr "Чек QR code"
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__report_data
 msgid "Report data"
 msgstr "Данные отчета"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_return_order_checkbox_wizard
+msgid "Return Order Checkbox Wizard"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_return_order_checkbox_wizard_line
+msgid "Return Order Checkbox Wizard Line (nnt)"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_pos_session_form
+msgid "Return Orders"
+msgstr "Возвратные накладные"
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model,name:muztorg_sale_order_pos.model_sale_order_checkbox_wizard
@@ -387,6 +535,12 @@ msgid "Sale Order Payment Type"
 msgstr "Тип оплаты для заказа покупателя"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order__sale_order_pos_line_ids
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__sale_order_pos_line_ids
+msgid "Sale Order Pos Lines"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model,name:muztorg_sale_order_pos.model_sale_pos_payment_line
 msgid "Sale Payment - POS Payment correspondence"
 msgstr "Тип оплаты заказа - Метод оплаты POS"
@@ -397,23 +551,33 @@ msgid "Sale order POS"
 msgstr "РМК для заказов клиента"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_sale_stock_return
+msgid "Sale stock return"
+msgstr "Возвратные накладные"
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model,name:muztorg_sale_order_pos.model_sale_order
 msgid "Sales Order"
 msgstr "Заказ на продажу"
 
 #. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.sale_stock_return_view_form
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_form
 msgid "Send Receipt to Checkbox"
-msgstr "Зарегистрировать чек в Checkbox"
+msgstr "Зарегистрировать чек"
 
 #. module: muztorg_sale_order_pos
 #: code:addons/muztorg_sale_order_pos/models/sale_order.py:0
+#: code:addons/muztorg_sale_order_pos/models/sale_stock_return.py:0
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_return_order_checkbox_wizard_form
 #, python-format
 msgid "Send Receipt to the Checkbox"
-msgstr "Зарегистрировать чек в Checkbox"
+msgstr "Зарегистрировать чек"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard__pos_session_id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard__pos_session_id
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__pos_session_id
 msgid "Session"
 msgstr "Сессия"
 
@@ -423,6 +587,7 @@ msgid "Sum of opening balance and transactions."
 msgstr "Начальная сумма наличных в кассе."
 
 #. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
 #: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
 #, python-format
 msgid "The amount of payments does not match the amount of the order"
@@ -436,31 +601,43 @@ msgid ""
 msgstr "Способ оплаты - наличные. Кассовый отчет будет создан автоматически."
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,help:muztorg_sale_order_pos.field_sale_stock_return__pos_config_id
+msgid "The physical point of sale you will use."
+msgstr ""
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__cash_register_balance_end
 msgid "Theoretical Closing Balance"
 msgstr "Расчетный остаток на конец смены"
 
 #. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
 #: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
 #, python-format
 msgid "There is no cash statement to add this amount"
-msgstr "Не найдена открытая кассовая книга"
+msgstr "Не открыта кассовая книга. Обратитесь к администратору"
 
 #. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
 #: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
 #, python-format
 msgid "There is no invoice to pay"
-msgstr "Не найдена накладная для оплаты"
+msgstr "Нет накладных для привязки оплаты. Обратитесь к администратору"
 
 #. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
 #: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
 #, python-format
 msgid ""
 "There is no payment method for the selected payment type. Please, contact "
 "the administrator."
-msgstr "Не найден способ оплаты для чека. Обратитесь к администратору."
+msgstr ""
+"Для выбранного типа оплаты не заданы настройки. Обратитесь к администратору"
 
 #. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.sale_stock_return_view_form
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_order_form
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_return_order_checkbox_wizard_form
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_sale_order_checkbox_wizard_form
 msgid "Total"
 msgstr "Итого"
@@ -491,6 +668,7 @@ msgid "Users"
 msgstr "Пользователи"
 
 #. module: muztorg_sale_order_pos
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_return_order_checkbox_wizard_line__wizard_id
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_order_checkbox_wizard_line__wizard_id
 msgid "Wizard"
 msgstr ""
@@ -514,6 +692,17 @@ msgstr "Да"
 
 #. module: muztorg_sale_order_pos
 #: code:addons/muztorg_sale_order_pos/models/sale_order.py:0
+#: code:addons/muztorg_sale_order_pos/models/sale_stock_return.py:0
 #, python-format
 msgid "You can't cancel an order with a fiscal receipt."
-msgstr "Нельзя отменить заказ, для которого зарегистрирован фискальный чек."
+msgstr "Вы не можете отменить документ по которому пробит кассовый чек."
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_return_order_pos_line
+msgid "return.order.pos.line"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: model:ir.model,name:muztorg_sale_order_pos.model_sale_order_pos_line
+msgid "sale.order.pos.line"
+msgstr ""
