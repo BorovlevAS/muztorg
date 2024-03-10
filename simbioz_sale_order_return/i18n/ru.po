@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-09 18:01+0000\n"
-"PO-Revision-Date: 2024-03-09 18:01+0000\n"
+"POT-Creation-Date: 2024-03-10 20:00+0000\n"
+"PO-Revision-Date: 2024-03-10 20:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -209,6 +209,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__date
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "Date"
 msgstr "Дата"
 
@@ -477,6 +478,7 @@ msgstr "Тип операции"
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__partner_id
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "Partner"
 msgstr "Клиент"
 
@@ -503,8 +505,14 @@ msgstr ""
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__product_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__product_id
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "Product"
 msgstr "Продукт"
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__product_id
+msgid "Product (nnt)"
+msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__product_description
@@ -555,6 +563,7 @@ msgstr "Ответственный пользователь"
 #: model:ir.actions.act_window,name:simbioz_sale_order_return.sale_stock_return_action
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__return_order_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__order_id
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "Return Order"
 msgstr "Возвратная накладная"
 
@@ -572,7 +581,7 @@ msgstr "Возвратные накладные"
 #: code:addons/simbioz_sale_order_return/models/sale_stock_return.py:0
 #, python-format
 msgid "Return of %s"
-msgstr "Возврат %s"
+msgstr "Возврат of %s"
 
 #. module: simbioz_sale_order_return
 #: model:ir.ui.menu,name:simbioz_sale_order_return.sale_stock_return_menu
@@ -589,6 +598,11 @@ msgstr "Доступное кол-во для возврату"
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
+msgid "Sale Order"
+msgstr "Заказ на продажу"
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__sale_order_line_id
@@ -652,6 +666,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__state
+#: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "State"
 msgstr "Статус"
 
@@ -667,7 +682,7 @@ msgstr ""
 #. module: simbioz_sale_order_return
 #: model:ir.model,name:simbioz_sale_order_return.model_stock_move
 msgid "Stock Move"
-msgstr "Складское перемещение"
+msgstr "Перемещение запасов"
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__stock_picking_ids
@@ -772,7 +787,7 @@ msgstr ""
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__amount_untaxed
 msgid "Untaxed Amount"
-msgstr ""
+msgstr "Сумма без налогов"
 
 #. module: simbioz_sale_order_return
 #: model:res.groups,name:simbioz_sale_order_return.biko_group_return_order
