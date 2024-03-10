@@ -10,6 +10,7 @@ class SaleOrder(models.Model):
         comodel_name="sale.stock.return",
         inverse_name="sale_order_id",
         string="Sale stock return (nnt)",
+        groups="simbioz_sale_order_return.biko_group_return_order",
     )
 
     def _prepare_return_order_vals(self):
@@ -92,6 +93,7 @@ class SaleOrderLine(models.Model):
         comodel_name="sale.stock.return.line",
         inverse_name="sale_order_line_id",
         string="Sale stock return lines (nnt)",
+        groups="simbioz_sale_order_return.biko_group_return_order",
     )
 
     def _prepare_return_order_line_vals(self):
