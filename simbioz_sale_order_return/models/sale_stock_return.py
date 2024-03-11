@@ -392,10 +392,14 @@ class SaleStockReturn(models.Model):
             # reconcile
 
             lines_to_reconcile = move.line_ids.filtered(
-                lambda line: line.account_id.reconcile and not line.reconciled
+                lambda line: line.account_id.reconcile
+                and not line.reconciled
+                and line.account_id.internal_type in ["receivable", "payable"]
             )
             lines_to_reconcile += move.reversed_entry_id.line_ids.filtered(
-                lambda move: move.account_id.reconcile and not move.reconciled
+                lambda move: move.account_id.reconcile
+                and not move.reconciled
+                and move.account_id.internal_type in ["receivable", "payable"]
             )
             lines_to_reconcile.sudo().reconcile()
             created_moves.append(move.id)
