@@ -4,18 +4,20 @@
         <field name="name">sale.order.form.inherit</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="groups_id" eval="[(4, ref('simbioz_sale_order_return.biko_group_return_order'))]" />
         <field name="arch" type="xml">
+            <xpath expr="//form//header" position="before">
+                <field name="sale_stock_return_id" invisible="1" />
+            </xpath>
             <button name="action_draft" position="after">
                 <button
                     name="action_create_return_order"
                     string="Create Return Order"
                     type="object"
                     states="sale,done"
-                    groups="simbioz_sale_order_return.biko_group_return_order"
                 />
             </button>
             <div class="oe_button_box" position="inside">
-                <field name="sale_stock_return_id" invisible="1" />
                 <button
                     name="action_view_return"
                     type="object"
@@ -23,7 +25,6 @@
                     icon="fa-undo"
                     string="Return Orders"
                     attrs="{'invisible': [('sale_stock_return_id', '=', [])]}"
-                    groups="simbioz_sale_order_return.biko_group_return_order"
                 />
             </div>
         </field>
