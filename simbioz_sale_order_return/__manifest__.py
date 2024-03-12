@@ -12,12 +12,12 @@
         "simbioz_analytic_contract_sale",
     ],
     "data": [
+        "security/ir_access_roles.xml",
         "views/sale_stock_return_views.xml",
         "views/sale_order_views.xml",
         "wizards/sale_return_cancel_views.xml",
         "wizards/select_sale_order_line_views.xml",
         "data/sequence.xml",
-        "security/ir_access_roles.xml",
         "security/ir.model.access.csv",
     ],
     "demo": [],
