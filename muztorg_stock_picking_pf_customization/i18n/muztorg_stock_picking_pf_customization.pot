@@ -27,5 +27,10 @@ msgstr ""
 
 #. module: muztorg_stock_picking_pf_customization
 #: model_terms:ir.ui.view,arch_db:muztorg_stock_picking_pf_customization.report_picking
+msgid "<strong>Dealer:</strong>"
+msgstr ""
+
+#. module: muztorg_stock_picking_pf_customization
+#: model_terms:ir.ui.view,arch_db:muztorg_stock_picking_pf_customization.report_picking
 msgid "<strong>Remainder</strong>"
 msgstr ""
