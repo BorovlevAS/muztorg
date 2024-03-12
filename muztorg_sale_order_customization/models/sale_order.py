@@ -48,7 +48,10 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         self.write({"user_id": self.env.user.id})
-        self.onchange_user_id()
+        for record in self:
+            wh_before = record.warehouse_id
+            record.onchange_user_id()
+            record.warehouse_id = wh_before
         return super().action_confirm()
 
     def _action_cancel(self):
