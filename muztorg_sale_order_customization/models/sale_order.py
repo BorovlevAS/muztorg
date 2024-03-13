@@ -64,6 +64,11 @@ class SaleOrder(models.Model):
 
     def check_pickings_before_cancel(self):
         for record in self:
+            if all(
+                state not in ["done"] for state in record.picking_ids.mapped("state")
+            ):
+                return True
+
             internal_wh_pickings = record.picking_ids.filtered(
                 lambda rec: rec.location_dest_id.usage == "internal"
                 and rec.state not in ["done", "cancel"]
