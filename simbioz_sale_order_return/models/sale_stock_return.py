@@ -233,7 +233,14 @@ class SaleStockReturn(models.Model):
     @api.onchange("sale_order_id")
     def onchange_sale_order_id(self):
         for record in self:
-            record.location_id = record.sale_order_id.warehouse_id.lot_stock_id.id
+            location_id = record.sale_order_id.order_line.mapped("move_ids.location_id")
+            if len(location_id) > 1:
+                location_id = location_id[0]
+            record.location_id = (
+                location_id.id
+                if location_id
+                else record.sale_order_id.warehouse_id.lot_stock_id.id
+            )
 
     def _prepare_move_default_values(self, line, qty, move):
         """Extend this method to add values to return move"""
