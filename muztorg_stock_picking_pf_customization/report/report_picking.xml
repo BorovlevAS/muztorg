@@ -26,6 +26,14 @@
                 </t>
             </td>
         </xpath>
+        <xpath expr="//div[@name='div_incoming_address']//div[3]" position="before">
+            <div t-if="o.group_id.sale_id.biko_dealer_id" style="padding-top: 5px;">
+                <span>
+                    <strong>Dealer:</strong>
+                    <span t-field="o.group_id.sale_id.biko_dealer_id.name" />
+                </span>
+            </div>
+        </xpath>
 
         <xpath expr="//th[@name='th_from']" position="replace" />
         <xpath expr="//th[@name='th_to']" position="replace" />
