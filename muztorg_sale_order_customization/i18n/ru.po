@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-19 22:33+0000\n"
-"PO-Revision-Date: 2024-01-19 22:33+0000\n"
+"POT-Creation-Date: 2024-03-13 18:39+0000\n"
+"PO-Revision-Date: 2024-03-13 18:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -174,9 +174,24 @@ msgid "Sequence"
 msgstr "Порядок"
 
 #. module: muztorg_sale_order_customization
-#: model:res.groups,name:muztorg_sale_order_customization.biko_group_show_margin
-msgid "Show Margin"
-msgstr "Отображать маржу"
+#: code:addons/muztorg_sale_order_customization/models/sale_order.py:0
+#, python-format
+msgid ""
+"There are internal transfers, that are not done. Please, cancel or validate "
+"them first."
+msgstr ""
+"Есть не подтвержденняе межскладские перемещения. Пожалуйста, отмените или "
+"подствердите их."
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order_line__uktzed_id
+msgid "UKTZED"
+msgstr "УКТВЭД"
+
+#. module: muztorg_sale_order_customization
+#: model:ir.model.fields,help:muztorg_sale_order_customization.field_sale_order_line__uktzed_id
+msgid "Ukrainian classification of foreign economic activity goods"
+msgstr ""
 
 #. module: muztorg_sale_order_customization
 #: model:ir.model.fields,field_description:muztorg_sale_order_customization.field_sale_order__biko_website_ref
