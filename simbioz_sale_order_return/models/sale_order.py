@@ -14,13 +14,19 @@ class SaleOrder(models.Model):
     )
 
     def _prepare_return_order_vals(self):
+        location_id = self.order_line.mapped("move_ids.location_id")
+        if len(location_id) > 1:
+            location_id = location_id[0]
+
         return {
             "company_id": self.company_id.id,
             "currency_id": self.currency_id.id,
             "partner_id": self.partner_id.id,
             "contract_id": self.contract_id.id,
             "sale_order_id": self.id,
-            "location_id": self.warehouse_id.lot_stock_id.id,
+            "location_id": (
+                location_id.id if location_id else self.warehouse_id.lot_stock_id.id
+            ),
             "line_ids": [],
         }
 
@@ -99,4 +105,5 @@ class SaleOrderLine(models.Model):
     def _prepare_return_order_line_vals(self):
         return {
             "sale_order_line_id": self.id,
+            "quantity_return": self.product_uom_qty,
         }

@@ -164,18 +164,67 @@ class SaleStockReturnLine(models.Model):
             )
 
     def _check_before_return(self):
-        failed_lines = []
+        failed_lines_no_qty = {}
+        failed_lines_stock = {}
+        line_idx = 0
         for line in self:
+            line_idx += 1
             if not line.quantity_return:
-                failed_lines.append(line.name)
+                failed_lines_no_qty[line] = {"idx": line_idx, "name": line.name}
 
-        if failed_lines:
-            raise UserError(
-                _(
-                    "The following lines have no quantity to return:\n %(failed_lines)s",
-                    failed_lines="\n".join(failed_lines),
+            if line.sale_stock_return_id.operation_type == "financial_return":
+                move_ids = self.env["stock.move"].search(
+                    [
+                        (
+                            "sale_line_id",
+                            "=",
+                            line.sale_order_line_id.id,
+                        )
+                    ]
                 )
-            )
+                origin_moves = move_ids.mapped("move_orig_ids")
+                while origin_moves:
+                    move_ids |= origin_moves
+                    origin_moves = origin_moves.mapped("move_orig_ids")
+
+                states = move_ids.mapped("state")
+                if (
+                    any(
+                        state
+                        in [
+                            "draft",
+                            "waiting",
+                            "confirmed",
+                            "partially_available",
+                            "assigned",
+                        ]
+                        for state in states
+                    )
+                    or line.qty_delivered
+                ):
+                    # failed_lines_stock.append(line.name)
+                    failed_lines_stock[line] = {"idx": line_idx, "name": line.name}
+
+        if failed_lines_no_qty or failed_lines_stock:
+            msg = ""
+            if failed_lines_no_qty:
+                msg_lines = ""
+                for line, data in failed_lines_no_qty.items():  # noqa: B007
+                    msg_lines += "%s: %s\n" % (data["idx"], data["name"])
+                msg += _(
+                    "The following lines have no quantity to return:\n\n%(failed_lines)s",
+                    failed_lines=msg_lines,
+                )
+            if failed_lines_stock:
+                msg_lines = ""
+                for line, data in failed_lines_stock.items():  # noqa: B007
+                    msg_lines += "%s: %s\n" % (data["idx"], data["name"])
+                msg += _(
+                    "\n\nThe following lines have stock to return:\n\n%(failed_lines)s",
+                    failed_lines=msg_lines,
+                )
+
+            raise UserError(msg)
         return True
 
     def _get_moves_domain(self):
