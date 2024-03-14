@@ -219,8 +219,10 @@ class SaleStockReturnLine(models.Model):
                 msg_lines = ""
                 for line, data in failed_lines_stock.items():  # noqa: B007
                     msg_lines += "%s: %s\n" % (data["idx"], data["name"])
+                if msg:
+                    msg += "\n\n"
                 msg += _(
-                    "\n\nThe following lines have stock to return:\n\n%(failed_lines)s",
+                    "The following lines have stock to return:\n\n%(failed_lines)s",
                     failed_lines=msg_lines,
                 )
 

@@ -20,6 +20,7 @@ class SaleStockReturn(models.Model):
         [
             ("financial_return", "Financial return"),
             ("stock_return", "Stock return"),
+            ("exchange", "Product exchange"),
             ("full_return", "Full return"),
         ],
         string="Operation Type",
@@ -175,6 +176,12 @@ class SaleStockReturn(models.Model):
         readonly=True,
     )
 
+    procurement_group_id = fields.Many2one(
+        comodel_name="procurement.group",
+        string="Procurement Group",
+        copy=False,
+    )
+
     @api.depends("company_id", "state", "partner_id")
     def _compute_allowed_order_ids(self):
         for record in self:
@@ -305,23 +312,93 @@ class SaleStockReturn(models.Model):
             return_pickings += new_picking
         return return_pickings
 
+    def _get_procurement_group(self):
+        return self.procurement_group_id
+
+    def _prepare_procurement_group_vals(self):
+        return {
+            "name": self.sale_order_id.name,
+            "move_type": self.sale_order_id.picking_policy,
+            "sale_id": self.sale_order_id.id,
+            "partner_id": self.sale_order_id.partner_shipping_id.id,
+            "sale_stock_return_id": self.id,
+        }
+
+    def launch_stock_rules(self, sale_lines_dict):
+        group_id = self._get_procurement_group()
+        if not group_id:
+            group_id = self.env["procurement.group"].create(
+                self._prepare_procurement_group_vals()
+            )
+            self.procurement_group_id = group_id
+
+        procurements = []
+        for line, product_qty in sale_lines_dict.items():
+            line = line.with_company(line.company_id)
+            if line.state != "sale" or line.product_id.type not in ("consu", "product"):
+                continue
+
+            updated_vals = {}
+            if group_id.partner_id != line.order_id.partner_shipping_id:
+                updated_vals.update(
+                    {"partner_id": line.order_id.partner_shipping_id.id}
+                )
+            if group_id.move_type != line.order_id.picking_policy:
+                updated_vals.update({"move_type": line.order_id.picking_policy})
+            if updated_vals:
+                group_id.write(updated_vals)
+
+            values = line._prepare_procurement_values(group_id=group_id)
+
+            line_uom = line.product_uom
+            quant_uom = line.product_id.uom_id
+            product_qty, procurement_uom = line_uom._adjust_uom_quantities(
+                product_qty, quant_uom
+            )
+            procurements.append(
+                self.env["procurement.group"].Procurement(
+                    line.product_id,
+                    product_qty,
+                    procurement_uom,
+                    line.order_id.partner_shipping_id.property_stock_customer,
+                    line.name,
+                    line.order_id.name,
+                    line.order_id.company_id,
+                    values,
+                )
+            )
+        if procurements:
+            self.env["procurement.group"].run(procurements)
+
+        pickings = self.env["stock.picking"].search([("group_id", "=", group_id.id)])
+        return pickings
+
     def generate_stock_moves(self):
         returnable_moves = self.line_ids._get_returnable_move_ids()
         return_moves = self.env["stock.move"]
+        exchange_products = {}
         done_moves = {}
         for line in returnable_moves.keys():
             for qty, move in returnable_moves[line]:
+                if self.operation_type == "exchange":
+                    if move.sale_line_id not in exchange_products:
+                        exchange_products[move.sale_line_id] = qty
+                    else:
+                        exchange_products[move.sale_line_id] += qty
+
                 if move not in done_moves:
                     vals = self._prepare_move_default_values(line, qty, move)
                     return_move = move.copy(vals)
                 else:
                     return_move = done_moves[move]
                     return_move.product_uom_qty += qty
+
                 done_moves.setdefault(move, self.env["stock.move"])
                 done_moves[move] += return_move
                 return_move._action_confirm()
                 return_move._action_assign()
                 return_moves += return_move
+
         # Finish move traceability
         for move in return_moves:
             vals = {}
@@ -331,9 +408,14 @@ class SaleStockReturn(models.Model):
             vals["move_orig_ids"] = [(4, m.id) for m in move_orig_to_link | origin_move]
             vals["move_dest_ids"] = [(4, m.id) for m in move_dest_to_link]
             move.write(vals)
-        # Make return pickings and link to the proper moves.
+
         origin_pickings = return_moves.mapped("origin_returned_move_id.picking_id")
-        self.stock_picking_ids = self._create_picking(origin_pickings, return_moves)
+        return_pickings = self._create_picking(origin_pickings, return_moves)
+
+        if self.operation_type == "exchange":
+            return_pickings += self.launch_stock_rules(exchange_products)
+
+        self.stock_picking_ids = return_pickings
 
     def _prepare_account_move_vals(self):
         reverse_date = self.date
@@ -420,7 +502,7 @@ class SaleStockReturn(models.Model):
         )
         this = self.with_context(new_context)  # pylint: disable=W8121
         this.line_ids._check_before_return()
-        if this.operation_type in ["stock_return", "full_return"]:
+        if this.operation_type in ["exchange", "stock_return", "full_return"]:
             this.generate_stock_moves()
         if this.operation_type in ["financial_return", "full_return"]:
             this.generate_account_moves()
