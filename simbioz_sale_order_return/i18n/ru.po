@@ -6,30 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-13 18:47+0000\n"
-"PO-Revision-Date: 2024-03-13 18:47+0000\n"
+"POT-Creation-Date: 2024-03-14 15:52+0000\n"
+"PO-Revision-Date: 2024-03-14 15:52+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: simbioz_sale_order_return
-#: code:addons/simbioz_sale_order_return/models/sale_stock_return_line.py:0
-#, python-format
-msgid ""
-"\n"
-"\n"
-"The following lines have stock to return:\n"
-"\n"
-"%(failed_lines)s"
-msgstr ""
-"\n"
-"\n"
-"Для следующих строк есть отгруженные товары. Вернуть только сумму нельзя:\n"
-"\n"
-"%(failed_lines)s"
 
 #. module: simbioz_sale_order_return
 #: code:addons/simbioz_sale_order_return/wizards/select_sale_order_line.py:0
@@ -127,7 +111,7 @@ msgid ""
 "                    Invoices and pickings, which are not in the\n"
 "                    \"Done\" state will be cancelled."
 msgstr ""
-"Вы точно хотите отменит возврат?\n"
+"Вы точно хотите отменить возврат?\n"
 "                    <br/>\n"
 "                    Накладные и неподтвержденные перемещения будут отменены"
 
@@ -259,6 +243,7 @@ msgstr "Промежуточная скидка"
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move__display_name
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__display_name
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_procurement_group__display_name
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order__display_name
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__display_name
@@ -328,6 +313,7 @@ msgstr "Возврат денег и товаров"
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move__id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_procurement_group__id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order__id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order_line__id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__id
@@ -379,6 +365,7 @@ msgstr "Запись журнала"
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move____last_update
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard____last_update
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_procurement_group____last_update
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order____last_update
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel____last_update
@@ -519,6 +506,12 @@ msgid "Portal Access URL"
 msgstr ""
 
 #. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_procurement_group
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__procurement_group_id
+msgid "Procurement Group"
+msgstr "Группа поставки"
+
+#. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__product_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__product_id
 #: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
@@ -554,6 +547,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__qty_delivered
 msgid "Product UOM Qty (nnt.)"
 msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__operation_type__exchange
+msgid "Product exchange"
+msgstr "Обмен товара"
 
 #. module: simbioz_sale_order_return
 #: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_form
@@ -649,6 +647,7 @@ msgstr "Возвратная накладная"
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_bank_statement_line__sale_stock_return_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move__sale_stock_return_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_payment__sale_stock_return_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_procurement_group__sale_stock_return_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_order__sale_stock_return_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__sale_stock_return_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_picking__sale_stock_return_id
@@ -741,6 +740,18 @@ msgid ""
 "%(failed_lines)s"
 msgstr ""
 "Для следующих строк не задано возвращаемое количество:\n"
+"\n"
+"%(failed_lines)s"
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/models/sale_stock_return_line.py:0
+#, python-format
+msgid ""
+"The following lines have stock to return:\n"
+"\n"
+"%(failed_lines)s"
+msgstr ""
+"Для следующих строк есть отгруженные товары. Вернуть только сумму нельзя:\n"
 "\n"
 "%(failed_lines)s"
 

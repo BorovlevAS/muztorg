@@ -47,3 +47,12 @@ class StockMove(models.Model):
             move.qty_returnable = move.quantity_done - sum(
                 move.returned_move_ids.mapped("qty_returnable")
             )
+
+
+class ProcurementGroup(models.Model):
+    _inherit = "procurement.group"
+
+    sale_stock_return_id = fields.Many2one(
+        comodel_name="sale.stock.return",
+        string="Sale stock return (nnt)",
+    )
