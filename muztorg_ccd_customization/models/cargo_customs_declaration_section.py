@@ -14,6 +14,10 @@ class CargoCustomsDeclarationSection(models.Model):
         string="Customs Amount (UAH)",
         currency_field="uah_currency_id",
     )
+    customs_amount_fr_uah = fields.Monetary(
+        string="Customs Amount with freight (UAH)",
+        currency_field="uah_currency_id",
+    )
     duty_amount_uah = fields.Monetary(
         string="Duty Amount (UAH)",
         currency_field="uah_currency_id",
@@ -29,6 +33,11 @@ class CargoCustomsDeclarationSection(models.Model):
 
     customs_amount = fields.Monetary(
         compute="_compute_customs_amount",
+        store=True,
+    )
+    customs_amount_fr = fields.Monetary(
+        string="Customs Amount with freight",
+        compute="_compute_customs_amount_fr",
         store=True,
     )
     duty_amount = fields.Monetary(
@@ -56,6 +65,19 @@ class CargoCustomsDeclarationSection(models.Model):
                 )
             else:
                 section.customs_amount = section.customs_amount_uah
+
+    @api.depends("customs_amount_fr_uah", "customs_declaration_id.date")
+    def _compute_customs_amount_fr(self):
+        for section in self:
+            if section.uah_currency_id != section.currency_id:
+                section.customs_amount_fr = section.uah_currency_id._convert(
+                    section.customs_amount_fr_uah,
+                    section.currency_id,
+                    section.company_id,
+                    section.customs_declaration_id.date,
+                )
+            else:
+                section.customs_amount_fr = section.customs_amount_fr_uah
 
     @api.depends("duty_amount_uah", "customs_declaration_id.date")
     def _compute_duty_amount(self):
@@ -98,6 +120,7 @@ class CargoCustomsDeclarationSection(models.Model):
 
     @api.onchange(
         "customs_amount_uah",
+        "customs_amount_fr_uah",
         "duty_amount_uah",
         "excide_tax_amount_uah",
         "vat_amount_uah",
@@ -105,8 +128,9 @@ class CargoCustomsDeclarationSection(models.Model):
     )
     def _onchange_customs_amount(self):
         for line in self:
+            customs_amount = line.customs_amount_fr_uah or line.customs_amount_uah
             taxes = line.tax_ids.compute_all(
-                price_unit=line.customs_amount_uah
+                price_unit=customs_amount
                 + line.duty_amount_uah
                 + line.excide_tax_amount_uah,
                 currency=line.uah_currency_id,
@@ -119,33 +143,47 @@ class CargoCustomsDeclarationSection(models.Model):
                 }
             )
 
-    @api.onchange("duty_rate", "customs_amount_uah")
+    @api.onchange(
+        "duty_rate",
+        "customs_amount_uah",
+        "customs_amount_fr_uah",
+    )
     def _onchange_duty_rate(self):
         for line in self:
-            line.duty_amount_uah = line.duty_rate / 100 * line.customs_amount_uah
+            line.duty_amount_uah = (
+                line.duty_rate
+                / 100
+                * (line.customs_amount_fr_uah or line.customs_amount_uah)
+            )
 
     @api.onchange("duty_amount_uah")
     def _onchange_duty_amount(self):
         for line in self:
+            customs_amount = line.customs_amount_fr_uah or line.customs_amount_uah
             line.duty_rate = (
-                line.duty_amount_uah / line.customs_amount_uah * 100
-                if line.customs_amount_uah
-                else 0
+                line.duty_amount_uah / customs_amount * 100 if customs_amount else 0
             )
 
     @api.onchange("excide_tax_rate")
     def _onchange_excide_tax_rate(self):
         for line in self:
             line.excide_tax_amount_uah = (
-                line.excide_tax_rate / 100 * line.customs_amount_uah
+                line.excide_tax_rate
+                / 100
+                * (line.customs_amount_fr_uah or line.customs_amount_uah)
             )
 
-    @api.onchange("excide_tax_amount_uah", "customs_amount_uah")
+    @api.onchange(
+        "excide_tax_amount_uah",
+        "customs_amount_uah",
+        "customs_amount_fr_uah",
+    )
     def _onchange_excide_tax_amount(self):
         for line in self:
+            customs_amount = line.customs_amount_fr_uah or line.customs_amount_uah
             line.excide_tax_rate = (
-                line.excide_tax_amount_uah / line.customs_amount_uah * 100
-                if line.customs_amount_uah
+                line.excide_tax_amount_uah / customs_amount * 100
+                if customs_amount
                 else 0
             )
 
@@ -154,6 +192,10 @@ class CargoCustomsDeclarationSection(models.Model):
             customs_amount = sum(section.mapped("line_ids.customs_amount") or [0])
             customs_amount_uah = sum(
                 section.mapped("line_ids.customs_amount_uah") or [0]
+            )
+            customs_amount_fr = sum(section.mapped("line_ids.customs_amount_fr") or [0])
+            customs_amount_fr_uah = sum(
+                section.mapped("line_ids.customs_amount_fr_uah") or [0]
             )
             duty_amount = sum(section.mapped("line_ids.duty_amount") or [0])
             duty_amount_uah = sum(section.mapped("line_ids.duty_amount_uah") or [0])
@@ -167,6 +209,8 @@ class CargoCustomsDeclarationSection(models.Model):
 
             section.customs_amount_uah = customs_amount_uah
             section.customs_amount = customs_amount
+            section.customs_amount_fr_uah = customs_amount_fr_uah
+            section.customs_amount_fr = customs_amount_fr
             section.duty_amount_uah = duty_amount_uah
             section.duty_amount = duty_amount
             section.duty_rate = (
@@ -203,6 +247,8 @@ class CargoCustomsDeclarationSection(models.Model):
 
         customs_amount_rest = self.customs_amount_uah
         coef_customs_amount = customs_amount_rest / customs_amount_total
+        customs_amount_fr_rest = self.customs_amount_fr_uah
+        coef_customs_amount_fr = customs_amount_fr_rest / customs_amount_total
         duty_amount_rest = self.duty_amount_uah
         coef_duty_amount = duty_amount_rest / customs_amount_total
         excide_tax_amount_rest = self.excide_tax_amount_uah
@@ -213,6 +259,10 @@ class CargoCustomsDeclarationSection(models.Model):
         for line in self.line_ids:
             line.customs_amount_uah = coef_values.get(line.id, 0) * coef_customs_amount
             customs_amount_rest -= line.customs_amount_uah
+            line.customs_amount_fr_uah = (
+                coef_values.get(line.id, 0) * coef_customs_amount_fr
+            )
+            customs_amount_fr_rest -= line.customs_amount_fr_uah
             line.duty_amount_uah = coef_values.get(line.id, 0) * coef_duty_amount
             duty_amount_rest -= line.duty_amount_uah
             line.excide_tax_amount_uah = (
@@ -224,6 +274,7 @@ class CargoCustomsDeclarationSection(models.Model):
             line.tax_ids = [(6, 0, set(self.tax_ids._ids))]
 
         self.line_ids[max_cat_ids].customs_amount_uah += customs_amount_rest
+        self.line_ids[max_cat_ids].customs_amount_fr_uah += customs_amount_fr_rest
         self.line_ids[max_cat_ids].duty_amount_uah += duty_amount_rest
         self.line_ids[max_cat_ids].excide_tax_amount_uah += excide_tax_amount_rest
         self.line_ids[max_cat_ids].vat_amount_uah += vat_amount_rest
