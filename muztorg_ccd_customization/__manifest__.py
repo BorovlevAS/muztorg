@@ -5,6 +5,7 @@
     "company": "BIKO Solutions",
     "depends": [
         "simbioz_account_cargo_customs_declaration",
+        "biko_add_product_class",
     ],
     "data": [
         "views/cargo_customs_declaration_views.xml",

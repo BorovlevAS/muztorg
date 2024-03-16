@@ -224,9 +224,9 @@ class CargoCustomsDeclaration(models.Model):
             return
 
         sections = {
-            uktzed: sec_id
-            for uktzed, sec_id in self.section_ids.mapped(
-                lambda rec: (rec.uktzed_id.id, rec)
+            (uktzed, country): sec_id
+            for uktzed, country, sec_id in self.section_ids.mapped(
+                lambda rec: (rec.uktzed_id.id, rec.country_id.id, rec)
             )
         }
 
@@ -245,22 +245,23 @@ class CargoCustomsDeclaration(models.Model):
                 "customs_amount_po_curr": line.purchase_line_id.price_total,
                 "tax_ids": [(6, 0, self.company_id.ccd_vat_tax_id.ids)],
             }
-            uktzed_key = product_id.uktzed_id.id
-            section_id = sections.get(uktzed_key, False)
+            section_key = (product_id.uktzed_id.id, product_id.biko_country.id)
+            section_id = sections.get(section_key, False)
             if section_id:
                 if sections_to_update.get(section_id):
                     sections_to_update[section_id].append((0, 0, new_line_vals))
                 else:
                     sections_to_update[section_id] = [(0, 0, new_line_vals)]
             else:
-                if sections_to_create.get(uktzed_key):
-                    sections_to_create[uktzed_key]["line_ids"].append(
+                if sections_to_create.get(section_key):
+                    sections_to_create[section_key]["line_ids"].append(
                         (0, 0, new_line_vals)
                     )
                 else:
                     max_section_num += 1
-                    sections_to_create[uktzed_key] = {
-                        "uktzed_id": uktzed_key,
+                    sections_to_create[section_key] = {
+                        "uktzed_id": section_key[0],
+                        "country_id": section_key[1],
                         "customs_declaration_id": self.id,
                         "sequence": max_section_num + 1,
                         "tax_ids": [(6, 0, self.company_id.ccd_vat_tax_id.ids)],

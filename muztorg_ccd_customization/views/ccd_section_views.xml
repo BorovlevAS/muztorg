@@ -24,6 +24,9 @@
             <xpath expr="//group[@name='header']//field[@name='vat_amount']" position="before">
                 <field name="vat_amount_uah" readonly="1" />
             </xpath>
+            <xpath expr="//group[@name='header']//field[@name='uktzed_id']" position="after">
+                <field name="country_id" readonly="1" />
+            </xpath>
 
             <!-- tree -->
             <xpath expr="//tree/field[@name='currency_id']" position="before">

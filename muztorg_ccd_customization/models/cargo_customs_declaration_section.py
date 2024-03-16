@@ -4,6 +4,7 @@ from odoo import api, fields, models
 class CargoCustomsDeclarationSection(models.Model):
     _inherit = "cargo.customs.declaration.section"
 
+    country_id = fields.Many2one(comodel_name="res.country", string="Country")
     uah_currency_id = fields.Many2one(
         comodel_name="res.currency",
         string="UAH Currency",
