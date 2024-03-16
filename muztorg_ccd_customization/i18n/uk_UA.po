@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-19 21:43+0000\n"
-"PO-Revision-Date: 2024-02-19 21:43+0000\n"
+"POT-Creation-Date: 2024-03-16 10:47+0000\n"
+"PO-Revision-Date: 2024-03-16 10:47+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,11 @@ msgid "Config Settings"
 msgstr "Налаштування"
 
 #. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__country_id
+msgid "Country"
+msgstr "Країна"
+
+#. module: muztorg_ccd_customization
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__customs_amount
 msgid "Customs Amount"
 msgstr "Митна вартість"
@@ -57,9 +62,35 @@ msgid "Customs Amount (UAH)"
 msgstr "Митна вартість (ГРН)"
 
 #. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__customs_amount_fr
+msgid "Customs Amount Freight"
+msgstr "Вартість з фрахтом"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_line__customs_amount_fr_uah
+msgid "Customs Amount Freight (UAH)"
+msgstr "Вартість з фрахтом (ГРН)"
+
+#. module: muztorg_ccd_customization
 #: model:ir.model.fields,help:muztorg_ccd_customization.field_cargo_customs_declaration_line__customs_amount_uah
 msgid "Customs Amount in UAH"
 msgstr "Митна вартість в ГРН"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__customs_amount_fr
+#: model:ir.model.fields,help:muztorg_ccd_customization.field_cargo_customs_declaration_line__customs_amount_fr
+msgid "Customs Amount with freight"
+msgstr "Вартість з фрахтом"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration_section__customs_amount_fr_uah
+msgid "Customs Amount with freight (UAH)"
+msgstr "Вартість з фрахтом (ГРН)"
+
+#. module: muztorg_ccd_customization
+#: model:ir.model.fields,help:muztorg_ccd_customization.field_cargo_customs_declaration_line__customs_amount_fr_uah
+msgid "Customs Amount with freight in UAH"
+msgstr "Вартість з фрахтом у ГРН"
 
 #. module: muztorg_ccd_customization
 #: model:ir.model.fields,field_description:muztorg_ccd_customization.field_cargo_customs_declaration__customs_fee
