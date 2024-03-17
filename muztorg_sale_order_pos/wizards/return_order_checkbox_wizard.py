@@ -2,8 +2,6 @@ import base64
 import logging
 import time
 
-import requests
-
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 
@@ -139,15 +137,7 @@ class ReturnOrderCheckbox(models.TransientModel):
                 )
             )
 
-        response = requests.post(
-            self.config_id.checkbox_url + "/api/v1/receipts/sell",
-            headers={
-                "Accept": "application/json;",
-                "Authorization": "Bearer " + self.pos_session_id.checkbox_access_token,
-            },
-            json=payload,
-            timeout=5,
-        )
+        response = self.pos_session_id._checkbox_register_sell_return(payload)
         if not response.ok:
             raise ValidationError(response.text)
 
@@ -161,47 +151,46 @@ class ReturnOrderCheckbox(models.TransientModel):
             }
         )
 
+        time.sleep(5)
         self._checkbox_get_pdf_receipt()
 
     def _checkbox_get_pdf_receipt(self):
         self.ensure_one()
         if self.order_id.checkbox_receipt_id:
-            time.sleep(10)
-            headers = {
-                "Authorization": "Bearer %s"
-                % self.pos_session_id.checkbox_access_token,
-            }
+            pos_session = self.env["pos.session"]
+            response_pdf = pos_session._checkbox_get_receipt_info(
+                self.order_id.checkbox_receipt_id, "pdf"
+            )
+            if not response_pdf.ok:
+                self.order_id.message_post(
+                    body=_("Error _checkbox_get_pdf_receipt: %s", response_pdf.text)
+                )
+            else:
+                pdf_data = base64.b64encode(response_pdf.content)
+                attachment_id = self.env["ir.attachment"].create(
+                    {
+                        "datas": pdf_data,
+                        "name": self.order_id.checkbox_receipt_id + ".pdf",
+                    }
+                )
+                self.order_id.message_post(
+                    body=_("Receipt PDF was created and attached"),
+                    attachment_ids=[attachment_id.id],
+                )
 
-            response_qrcode = requests.get(
-                "%s/api/v1/receipts/%s/qrcode"
-                % (self.config_id.checkbox_url, self.order_id.checkbox_receipt_id),
-                headers=headers,
-                timeout=5,
+            response_qrcode = pos_session._checkbox_get_receipt_info(
+                self.order_id.checkbox_receipt_id, "qrcode"
             )
             if response_qrcode.ok:
                 self.order_id.checkbox_receipt_qr_code = base64.b64encode(
                     response_qrcode.content
                 )
 
-            response_html = requests.get(
-                "%s/api/v1/receipts/%s/html"
-                % (self.config_id.checkbox_url, self.order_id.checkbox_receipt_id),
-                headers=headers,
-                timeout=5,
+            response_html = pos_session._checkbox_get_receipt_info(
+                self.order_id.checkbox_receipt_id, "html"
             )
             if response_html.ok:
                 self.order_id.checkbox_receipt_html = response_html.content.decode()
-
-            response_pdf = requests.get(
-                "%s/api/v1/receipts/%s/pdf"
-                % (self.config_id.checkbox_url, self.order_id.checkbox_receipt_id),
-                headers=headers,
-                timeout=5,
-            )
-            if not response_pdf.ok:
-                _logger.warning(
-                    "Error _checkbox_get_pdf_receipt: %s", response_pdf.text
-                )
 
     def send_receipt_checkbox(self):
         self.ensure_one()
