@@ -1,8 +1,5 @@
-import logging
-
-from odoo import api, fields, models
-
-_logger = logging.getLogger(__name__)
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
@@ -48,14 +45,40 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         self.write({"user_id": self.env.user.id})
-        self.onchange_user_id()
+        for record in self:
+            wh_before = record.warehouse_id
+            record.onchange_user_id()
+            record.warehouse_id = wh_before
         return super().action_confirm()
 
     def _action_cancel(self):
+        self.check_pickings_before_cancel()
         result = super()._action_cancel()
         if result:
             inv = self.invoice_ids.filtered(
                 lambda inv: inv.state == "posted" and inv.payment_state == "not_paid"
             )
+            inv.button_draft()
             inv.button_cancel()
         return result
+
+    def check_pickings_before_cancel(self):
+        for record in self:
+            if all(
+                state not in ["done"] for state in record.picking_ids.mapped("state")
+            ):
+                return True
+
+            internal_wh_pickings = record.picking_ids.filtered(
+                lambda rec: rec.location_dest_id.usage == "internal"
+                and rec.state not in ["done", "cancel"]
+            )
+            if not internal_wh_pickings:
+                return True
+
+            raise ValidationError(
+                _(
+                    "There are internal transfers, that are not done. Please, cancel or validate them first."
+                )
+            )
+        return True

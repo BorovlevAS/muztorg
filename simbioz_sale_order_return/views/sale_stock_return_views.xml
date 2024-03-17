@@ -151,7 +151,7 @@
                                     <field
                                         name="qty_delivered"
                                         optional="show"
-                                        attrs="{'column_invisible': [('parent.operation_type', 'not in', ('stock_return', 'full_return'))]}"
+                                        attrs="{'column_invisible': [('parent.operation_type', 'not in', ('exchange', 'stock_return', 'full_return'))]}"
                                     />
                                     <field name="product_uom_id" optional="show" />
                                     <field
