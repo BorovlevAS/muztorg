@@ -11,6 +11,7 @@
         "muztorg_sale_order_customization",
         "field_timepicker",
         "simbioz_sale_order_return",
+        "simbioz_checkbox_integration_base",
     ],
     "data": [
         "views/sale_order_pos_menu.xml",
