@@ -1,10 +1,11 @@
 {
     "name": "BIKO: Cargo Customs Declaration for MUZTORG",
-    "version": "14.0.1.1.1",
+    "version": "14.0.1.2.0",
     "author": "Borovlev A.S.",
     "company": "BIKO Solutions",
     "depends": [
         "simbioz_account_cargo_customs_declaration",
+        "biko_add_product_class",
     ],
     "data": [
         "views/cargo_customs_declaration_views.xml",
