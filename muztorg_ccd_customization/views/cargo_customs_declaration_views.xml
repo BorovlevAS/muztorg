@@ -10,6 +10,9 @@
                 <field name="purchase_currency_id" required="1" />
                 <field name="purchase_currency_rate" required="1" />
             </field>
+            <field name="uktzed_id" position="before">
+                <field name="country_id" optional="show" />
+            </field>
             <field name="customs_fee" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
@@ -34,7 +37,9 @@
             </xpath>
 
             <xpath expr="//field[@name='section_ids']//field[@name='customs_amount']" position="before">
+                <field name="customs_amount_fr_uah" sum="Total" optional="show" />
                 <field name="customs_amount_uah" sum="Total" />
+                <field name="customs_amount_fr" sum="Total" optional="hide" />
             </xpath>
             <xpath expr="//field[@name='section_ids']//field[@name='duty_amount']" position="before">
                 <field name="duty_amount_uah" sum="Total" />
