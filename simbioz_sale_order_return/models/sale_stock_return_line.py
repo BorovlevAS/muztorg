@@ -132,6 +132,16 @@ class SaleStockReturnLine(models.Model):
                 partner=line.sale_stock_return_id.partner_id,
             )
 
+            line.update(
+                {
+                    "price_tax": sum(
+                        t.get("amount", 0.0) for t in taxes.get("taxes", [])
+                    ),
+                    "price_total": taxes["total_included"],
+                    "price_subtotal": taxes["total_excluded"],
+                }
+            )
+
             if not line.discount:
                 price_total_no_discount = taxes["total_included"]
                 price_subtotal_no_discount = taxes["total_excluded"]
@@ -152,11 +162,6 @@ class SaleStockReturnLine(models.Model):
 
             line.update(
                 {
-                    "price_tax": sum(
-                        t.get("amount", 0.0) for t in taxes.get("taxes", [])
-                    ),
-                    "price_total": taxes["total_included"],
-                    "price_subtotal": taxes["total_excluded"],
                     "discount_total": discount_total,
                     "price_subtotal_no_discount": price_subtotal_no_discount,
                     "price_total_no_discount": price_total_no_discount,
