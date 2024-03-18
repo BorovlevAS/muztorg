@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="pos_config_view_form_inherit1" model="ir.ui.view">
+        <field name="name">pos.config.view.form.inherit1</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="checkbox_integration.view_pos_config_use_checkbox_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='checkbox_mode']/../.." position="after">
+                <div
+                    class="col-xs-12 col-md-6 o_setting_box"
+                    attrs="{'invisible':[('checkbox_mode', '!=', 'checkbox_kassa')]}"
+                >
+                    <div class="o_setting_right_pane">
+                        <label for="checkbox_url" string="URL" />
+                        <div class="text-muted">Kassa manager URL</div>
+                        <div class="content-group mt16">
+                            <field name="checkbox_url" />
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-xs-12 col-md-6 o_setting_box"
+                    attrs="{'invisible':[('checkbox_mode', '!=', 'checkbox_kassa')]}"
+                >
+                    <div class="o_setting_right_pane">
+                        <label for="checkbox_port" string="Port" />
+                        <div class="text-muted">Kassa manager Port</div>
+                        <div class="content-group mt16">
+                            <field name="checkbox_port" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

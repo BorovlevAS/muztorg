@@ -1,5 +1,3 @@
-import requests
-
 from odoo import _, fields, models
 
 
@@ -25,37 +23,12 @@ class PosSession(models.Model):
         return action
 
     def action_print_x_report(self):
-        self.ensure_one()
-        if not self.config_id.use_checkbox:
+        response = self._checkbox_xreport()
+
+        if not response["ok"]:
             return False
 
-        response = requests.post(
-            self.config_id.checkbox_url + "/api/v1/reports",
-            headers={
-                "Accept": "application/json;",
-                "Authorization": "Bearer " + self.checkbox_access_token,
-            },
-            timeout=5,
-        )
-
-        response_json = response.json()
-        if not response_json.get("id", False):
-            return False
-
-        report_id = response_json["id"]
-        response = requests.get(
-            self.config_id.checkbox_url + f"/api/v1/reports/{report_id}/text",
-            headers={
-                "Accept": "application/json;",
-                "Authorization": "Bearer " + self.checkbox_access_token,
-            },
-            timeout=5,
-        )
-
-        if not response.ok:
-            return False
-
-        report_text = response.text
+        report_text = response["text"]
 
         wizard = self.env["xreport.wizard"].create(
             {

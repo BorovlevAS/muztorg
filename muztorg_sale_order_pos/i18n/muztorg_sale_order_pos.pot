@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-10 18:34+0000\n"
-"PO-Revision-Date: 2024-03-10 18:34+0000\n"
+"POT-Creation-Date: 2024-03-18 11:55+0000\n"
+"PO-Revision-Date: 2024-03-18 11:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -207,6 +207,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_so_payment_type__display_name
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
+#: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
+#, python-format
+msgid "Error _checkbox_get_pdf_receipt: %s"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
@@ -479,6 +486,13 @@ msgstr ""
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__checkbox_receipt_html
 msgid "Receipt HTML"
+msgstr ""
+
+#. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
+#: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
+#, python-format
+msgid "Receipt PDF was created and attached"
 msgstr ""
 
 #. module: muztorg_sale_order_pos
