@@ -10,7 +10,7 @@ class CheckboxAPI:
         if mode == "checkbox_kassa":
             api_url = api_url + ":" + str(api_port)
         self.api_url = api_url
-        self.license = license
+        self.license = cb_license
         self.access_token = access_token
 
     def send_request(self, endpoint, method, payload, headers=None):
