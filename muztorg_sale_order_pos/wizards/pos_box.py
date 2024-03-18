@@ -14,6 +14,9 @@ class BikoPosCheckbox(PosCheckbox):
     )
     amount_user = fields.Float(string="Amount", digits=0, required=True)
 
+    def _service_receipt_checkbox(self, values, session):
+        return session._checkbox_service(values["amount"])
+
 
 class PosBoxOut(BikoPosCheckbox):
     _inherit = "cash.box.out"

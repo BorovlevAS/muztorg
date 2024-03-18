@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-10 18:35+0000\n"
-"PO-Revision-Date: 2024-03-10 18:35+0000\n"
+"POT-Creation-Date: 2024-03-18 11:56+0000\n"
+"PO-Revision-Date: 2024-03-18 11:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -214,6 +214,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_xreport_wizard__display_name
 msgid "Display Name"
 msgstr "Отображаемое название"
+
+#. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
+#: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
+#, python-format
+msgid "Error _checkbox_get_pdf_receipt: %s"
+msgstr "Ошибка _checkbox_get_pdf_receipt: %s"
 
 #. module: muztorg_sale_order_pos
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_order_form
@@ -490,6 +497,13 @@ msgid "Receipt HTML"
 msgstr "Чек HTML"
 
 #. module: muztorg_sale_order_pos
+#: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
+#: code:addons/muztorg_sale_order_pos/wizards/sale_order_checkbox_wizard.py:0
+#, python-format
+msgid "Receipt PDF was created and attached"
+msgstr "Чек PDF создан и прикреплен"
+
+#. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_sale_stock_return__checkbox_receipt_qr_code
 msgid "Receipt QR code"
 msgstr "Чек QR code"
@@ -553,7 +567,7 @@ msgstr "РМК для заказов клиента"
 #. module: muztorg_sale_order_pos
 #: model:ir.model,name:muztorg_sale_order_pos.model_sale_stock_return
 msgid "Sale stock return"
-msgstr "Возвратные накладные"
+msgstr ""
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model,name:muztorg_sale_order_pos.model_sale_order
