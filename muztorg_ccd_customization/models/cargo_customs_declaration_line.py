@@ -18,6 +18,20 @@ class CargoCustomsDeclarationLine(models.Model):
         currency_field="uah_currency_id",
         store=True,
     )
+    customs_amount_fr = fields.Monetary(
+        string="Customs Amount Freight",
+        compute="_compute_customs_amount_fr",
+        inverse="_inverse_customs_amount_fr",
+        help="Customs Amount with freight",
+        currency_field="currency_id",
+        store=True,
+    )
+    customs_amount_fr_uah = fields.Monetary(
+        string="Customs Amount Freight (UAH)",
+        help="Customs Amount with freight in UAH",
+        currency_field="uah_currency_id",
+        store=True,
+    )
     duty_amount = fields.Monetary(
         compute="_compute_duty_amount",
         store=True,
@@ -136,16 +150,45 @@ class CargoCustomsDeclarationLine(models.Model):
                 line.customs_amount_po_curr = line.customs_amount_uah
 
     @api.depends(
+        "customs_amount_fr_uah",
+        "po_currency_id",
+        "customs_section_id.customs_declaration_id.date",
+    )
+    def _compute_customs_amount_fr(self):
+        for line in self:
+            if line.po_currency_id != line.uah_currency_id:
+                line.customs_amount_fr = (
+                    line.customs_amount_fr_uah
+                    / line.customs_declaration_id.purchase_currency_rate
+                    if line.customs_declaration_id.purchase_currency_rate
+                    else 0.0
+                )
+            else:
+                line.customs_amount_fr = line.customs_amount_fr_uah
+
+    def _inverse_customs_amount_fr(self):
+        for line in self:
+            if line.po_currency_id != line.uah_currency_id:
+                line.customs_amount_fr_uah = (
+                    line.customs_amount_fr
+                    * line.customs_declaration_id.purchase_currency_rate
+                )
+            else:
+                line.customs_amount_fr_uah = line.customs_amount_fr
+
+    @api.depends(
         "product_qty",
         "customs_amount_uah",
+        "customs_amount_fr_uah",
         "tax_ids",
         "duty_amount_uah",
         "excide_tax_amount_uah",
     )
     def _compute_vat_amount_uah(self):
         for line in self:
+            customs_amount = line.customs_amount_fr_uah or line.customs_amount_uah
             taxes = line.tax_ids.compute_all(
-                price_unit=line.customs_amount_uah
+                price_unit=customs_amount
                 + line.duty_amount_uah
                 + line.excide_tax_amount_uah,
                 currency=line.uah_currency_id,

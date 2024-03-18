@@ -24,6 +24,9 @@
             <xpath expr="//group[@name='header']//field[@name='vat_amount']" position="before">
                 <field name="vat_amount_uah" readonly="1" />
             </xpath>
+            <xpath expr="//group[@name='header']//field[@name='uktzed_id']" position="after">
+                <field name="country_id" readonly="1" />
+            </xpath>
 
             <!-- tree -->
             <xpath expr="//tree/field[@name='currency_id']" position="before">
@@ -47,7 +50,9 @@
             </xpath>
 
             <xpath expr="//tree/field[@name='customs_amount']" position="before">
+                <field name="customs_amount_fr_uah" required="0" sum="Total" optional="show" />
                 <field name="customs_amount_uah" required="1" sum="Total" optional="show" />
+                <field name="customs_amount_fr" readonly="1" sum="Total" optional="hide" />
             </xpath>
             <xpath expr="//tree/field[@name='duty_amount']" position="before">
                 <field name="duty_amount_uah" required="1" sum="Total" optional="show" />
