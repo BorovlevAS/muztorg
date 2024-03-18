@@ -145,7 +145,7 @@ class CheckboxAPI:
         else:
             endpoint = "/api/v1/reports"
             headers = {
-                "Authorization": "Bearer " + self.checkbox_access_token,
+                "Authorization": "Bearer " + self.access_token,
             }
             result = self.send_request(
                 endpoint,
