@@ -525,8 +525,8 @@ class SaleStockReturn(models.Model):
             )
             lines_to_reconcile.sudo().reconcile()
             created_moves.append(move.id)
-
-        self.sudo().write({"account_move_ids": [(6, 0, created_moves)]})
+        account_move_ids = self.account_move_ids.ids + created_moves
+        self.sudo().write({"account_move_ids": [(6, 0, account_move_ids)]})
 
     def cancel_out_moves(self):
         move_ids = self.line_ids.sale_order_line_id.mapped("move_ids")

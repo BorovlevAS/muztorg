@@ -70,11 +70,13 @@ class StockMove(models.Model):
 
     def _action_done(self, cancel_backorder=False):
         done_moves = super()._action_done(cancel_backorder=cancel_backorder)
-        return_order_ids = done_moves.mapped("stock_return_line_id").mapped(
-            "sale_stock_return_id"
+        return_order_ids = done_moves.mapped(
+            "stock_return_line_id.sale_stock_return_id"
         )
 
-        for order in return_order_ids:
+        for order in return_order_ids.filtered(
+            lambda order: order.operation_type == "full_return"
+        ):
             order.generate_account_moves()
 
         return done_moves
