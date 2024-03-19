@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import frozendict
@@ -85,10 +87,11 @@ class SaleStockReturn(models.Model):
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
+            ("waiting_stock", "Waiging Stock"),
             ("done", "Done"),
             ("cancel", "Cancelled"),
         ],
-        default="draft",
+        compute="_compute_state",
     )
 
     allowed_sale_order_ids = fields.One2many(
@@ -182,6 +185,51 @@ class SaleStockReturn(models.Model):
         copy=False,
     )
 
+    @api.depends("line_ids.state")
+    def _compute_state(self):
+        return_moves_state_map = defaultdict(dict)
+        return_move_lines = defaultdict(set)
+        for line in self.env["sale.stock.return.line"].search(
+            [("sale_stock_return_id", "in", self.ids)]
+        ):
+            return_id = line.sale_stock_return_id
+            return_state = line.state
+            return_moves_state_map[return_id.id].update(
+                {
+                    "any_draft": return_moves_state_map[return_id.id].get(
+                        "any_draft", False
+                    )
+                    or return_state == "draft",
+                    "any_waiting_stock": return_moves_state_map[return_id.id].get(
+                        "any_waiting_stock", False
+                    )
+                    or return_state == "waiting_stock",
+                    "all_cancel": return_moves_state_map[return_id.id].get(
+                        "all_cancel", True
+                    )
+                    and return_state == "cancel",
+                    "all_cancel_done": return_moves_state_map[return_id.id].get(
+                        "all_cancel_done", True
+                    )
+                    and return_state in ("cancel", "done"),
+                }
+            )
+            return_move_lines[return_id.id].add(line.id)
+        for return_order in self:
+            return_id = (return_order.ids and return_order.ids[0]) or return_order.id
+            if not return_moves_state_map[return_id]:
+                return_order.state = "draft"
+            elif return_moves_state_map[return_id]["any_draft"]:
+                return_order.state = "draft"
+            elif return_moves_state_map[return_id]["any_waiting_stock"]:
+                return_order.state = "waiting_stock"
+            elif return_moves_state_map[return_id]["all_cancel"]:
+                return_order.state = "cancel"
+            elif return_moves_state_map[return_id]["all_cancel_done"]:
+                return_order.state = "done"
+            else:
+                return_order.state = "draft"
+
     @api.depends("company_id", "state", "partner_id")
     def _compute_allowed_order_ids(self):
         for record in self:
@@ -248,21 +296,6 @@ class SaleStockReturn(models.Model):
                 if location_id
                 else record.sale_order_id.warehouse_id.lot_stock_id.id
             )
-
-    def _prepare_move_default_values(self, line, qty, move):
-        """Extend this method to add values to return move"""
-        vals = {
-            "product_id": line.product_id.id,
-            "product_uom_qty": qty,
-            "product_uom": line.product_uom_id.id,
-            "state": "draft",
-            "location_id": line.sale_stock_return_id.partner_location_id.id,
-            "location_dest_id": line.sale_stock_return_id.location_id.id,
-            "origin_returned_move_id": move.id,
-            "to_refund": True,
-            "procure_method": "make_to_stock",
-        }
-        return vals
 
     def _prepare_return_picking(self, picking_dict, moves):
         """Extend to add more values if needed"""
@@ -387,7 +420,7 @@ class SaleStockReturn(models.Model):
                         exchange_products[move.sale_line_id] += qty
 
                 if move not in done_moves:
-                    vals = self._prepare_move_default_values(line, qty, move)
+                    vals = line._prepare_move_default_values(qty, move)
                     return_move = move.copy(vals)
                 else:
                     return_move = done_moves[move]
@@ -509,13 +542,18 @@ class SaleStockReturn(models.Model):
         this.line_ids._check_before_return()
         if this.operation_type in ["exchange", "stock_return", "full_return"]:
             this.generate_stock_moves()
-        if this.operation_type in ["financial_return", "full_return"]:
-            this.generate_account_moves()
         if this.operation_type == "financial_return":
+            this.generate_account_moves()
             this.cancel_out_moves()
-        this.write({"state": "done"})
+        if this.operation_type == "full_return":
+            this.line_ids.write({"state": "waiting_stock"})
+        else:
+            this.line_ids.write({"state": "done"})
+
+        self.line_ids._update_state()
 
     def action_set_cancel(self):
+        self.check_before_cancel()
         cancel_warning = self._show_cancel_wizard()
         if cancel_warning:
             return {
@@ -535,7 +573,18 @@ class SaleStockReturn(models.Model):
         self.account_move_ids.button_draft()
         self.account_move_ids.button_cancel()
         self.stock_picking_ids.filtered(lambda p: p.state != "done").action_cancel()
-        self.write({"state": "cancel"})
+        self.line_ids.write({"state": "cancel"})
+        self.line_ids._update_state()
+
+    def check_before_cancel(self):
+        for record in self:
+            states = record.line_ids.mapped("move_ids.state")
+            if any(state == "done" for state in states):
+                raise UserError(
+                    _(
+                        "There are already done stock moves for this return order. You cannot cancel it."
+                    )
+                )
 
     def _show_cancel_wizard(self):
         if not self._context.get("disable_cancel_warning"):
@@ -543,7 +592,8 @@ class SaleStockReturn(models.Model):
         return False
 
     def action_back_to_draft(self):
-        self.write({"state": "draft"})
+        self.line_ids.write({"state": "draft"})
+        self.line_ids._update_state()
 
     def generate_action(self, field_name, module_name, action_name, form_name):
         record_ids = self.mapped(field_name)
