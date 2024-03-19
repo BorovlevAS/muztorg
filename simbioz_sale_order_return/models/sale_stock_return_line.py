@@ -178,36 +178,22 @@ class SaleStockReturnLine(models.Model):
                 failed_lines_no_qty[line] = {"idx": line_idx, "name": line.name}
 
             if line.sale_stock_return_id.operation_type == "financial_return":
-                move_ids = self.env["stock.move"].search(
-                    [
-                        (
-                            "sale_line_id",
-                            "=",
-                            line.sale_order_line_id.id,
-                        )
-                    ]
-                )
-                origin_moves = move_ids.mapped("move_orig_ids")
-                while origin_moves:
-                    move_ids |= origin_moves
-                    origin_moves = origin_moves.mapped("move_orig_ids")
+                # move_ids = self.env["stock.move"].search(
+                #     [
+                #         (
+                #             "sale_line_id",
+                #             "=",
+                #             line.sale_order_line_id.id,
+                #         )
+                #     ]
+                # )
+                # origin_moves = move_ids.mapped("move_orig_ids")
+                # while origin_moves:
+                #     move_ids |= origin_moves
+                #     origin_moves = origin_moves.mapped("move_orig_ids")
 
-                states = move_ids.mapped("state")
-                if (
-                    any(
-                        state
-                        in [
-                            "draft",
-                            "waiting",
-                            "confirmed",
-                            "partially_available",
-                            "assigned",
-                        ]
-                        for state in states
-                    )
-                    or line.qty_delivered
-                ):
-                    # failed_lines_stock.append(line.name)
+                # states = move_ids.mapped("state")
+                if line.qty_delivered:
                     failed_lines_stock[line] = {"idx": line_idx, "name": line.name}
 
         if failed_lines_no_qty or failed_lines_stock:

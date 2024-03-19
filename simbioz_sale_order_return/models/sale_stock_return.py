@@ -495,6 +495,11 @@ class SaleStockReturn(models.Model):
 
         self.sudo().write({"account_move_ids": [(6, 0, created_moves)]})
 
+    def cancel_out_moves(self):
+        move_ids = self.line_ids.sale_order_line_id.mapped("move_ids")
+        move_ids = move_ids.filtered(lambda move: move.state not in ["done", "cancel"])
+        move_ids._action_cancel()
+
     def action_validate(self):
         self.ensure_one()
         new_context = frozendict(
@@ -506,6 +511,8 @@ class SaleStockReturn(models.Model):
             this.generate_stock_moves()
         if this.operation_type in ["financial_return", "full_return"]:
             this.generate_account_moves()
+        if this.operation_type == "financial_return":
+            this.cancel_out_moves()
         this.write({"state": "done"})
 
     def action_set_cancel(self):
