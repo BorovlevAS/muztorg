@@ -53,6 +53,7 @@ class SaleOrder(models.Model):
 
     def _action_cancel(self):
         self.check_pickings_before_cancel()
+        self.check_invoice_before_cancel()
         result = super()._action_cancel()
         if result:
             inv = self.invoice_ids.filtered(
@@ -62,13 +63,36 @@ class SaleOrder(models.Model):
             inv.button_cancel()
         return result
 
+    def check_invoice_before_cancel(self):
+        for record in self:
+            if record.invoice_ids.filtered(
+                lambda inv: inv.state == "posted" and inv.payment_state != "not_paid"
+            ):
+                raise ValidationError(
+                    _(
+                        "There are already paid invoices for this sale order. You cannot cancel it."
+                    )
+                )
+
     def check_pickings_before_cancel(self):
         for record in self:
+            #  all pickings are not done
             if all(
                 state not in ["done"] for state in record.picking_ids.mapped("state")
             ):
                 return True
 
+            out_pickings = record.picking_ids.filtered(
+                lambda rec: rec.location_dest_id.usage == "customer"
+            )
+            # we have at least one customer-picking done
+            if any(state == "done" for state in out_pickings.mapped("state")):
+                raise ValidationError(
+                    _(
+                        "There are already done pickings for this sale order. You cannot cancel it."
+                    )
+                )
+            # check inter-warehouse transfers
             internal_wh_pickings = record.picking_ids.filtered(
                 lambda rec: rec.location_dest_id.usage == "internal"
                 and rec.state not in ["done", "cancel"]

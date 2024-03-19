@@ -17,6 +17,16 @@ class SaleStockReturnLine(models.Model):
         copy=False,
     )
 
+    state = fields.Selection(
+        selection=[
+            ("draft", "Draft"),
+            ("waiting_stock", "Waiting for Stock"),
+            ("done", "Done"),
+            ("cancel", "Cancelled"),
+        ],
+        default="draft",
+    )
+
     sale_order_line_id = fields.Many2one(
         comodel_name="sale.order.line",
         string="Sale Order Line (nnt)",
@@ -56,6 +66,12 @@ class SaleStockReturnLine(models.Model):
         default=0.0,
     )
 
+    returned_qty = fields.Float(
+        string="Returned Quantity",
+        compute="_compute_returned_qty",
+        store=True,
+    )
+
     product_uom_id = fields.Many2one(
         comodel_name="uom.uom",
         string="Unit of Measure",
@@ -65,6 +81,12 @@ class SaleStockReturnLine(models.Model):
         related="sale_order_line_id.qty_invoiced",
         string="Invoiced Qty",
     )
+    qty_returned_inv = fields.Float(
+        string="Return Inv Qty",
+        compute="_compute_qty_returned_inv",
+        store=True,
+    )
+
     qty_delivered = fields.Float(
         related="sale_order_line_id.qty_delivered",
         string="Delivered Qty",
@@ -117,6 +139,20 @@ class SaleStockReturnLine(models.Model):
         compute="_compute_amount", string="Total Without Discount", store=True
     )
 
+    move_ids = fields.One2many(
+        comodel_name="stock.move",
+        inverse_name="stock_return_line_id",
+        string="Stock Moves (nnt)",
+        copy=False,
+    )
+
+    invoice_line_ids = fields.One2many(
+        comodel_name="account.move.line",
+        inverse_name="stock_return_line_id",
+        string="Invoice Lines (nnt)",
+        copy=False,
+    )
+
     @api.depends("quantity_return")
     def _compute_amount(self):
         """
@@ -130,6 +166,16 @@ class SaleStockReturnLine(models.Model):
                 line.quantity_return,
                 product=line.product_id,
                 partner=line.sale_stock_return_id.partner_id,
+            )
+
+            line.update(
+                {
+                    "price_tax": sum(
+                        t.get("amount", 0.0) for t in taxes.get("taxes", [])
+                    ),
+                    "price_total": taxes["total_included"],
+                    "price_subtotal": taxes["total_excluded"],
+                }
             )
 
             if not line.discount:
@@ -152,20 +198,66 @@ class SaleStockReturnLine(models.Model):
 
             line.update(
                 {
-                    "price_tax": sum(
-                        t.get("amount", 0.0) for t in taxes.get("taxes", [])
-                    ),
-                    "price_total": taxes["total_included"],
-                    "price_subtotal": taxes["total_excluded"],
                     "discount_total": discount_total,
                     "price_subtotal_no_discount": price_subtotal_no_discount,
                     "price_total_no_discount": price_total_no_discount,
                 }
             )
 
+    @api.depends(
+        "move_ids.state",
+        "move_ids.product_uom_qty",
+        "move_ids.product_uom",
+    )
+    def _compute_returned_qty(self):
+        for line in self:
+            move_ids = line.move_ids.filtered(
+                lambda x: x.state == "done" and not x.scrapped
+            )
+            line.returned_qty = sum(move_ids.mapped("product_uom_qty"))
+            line._update_state()
+
+    @api.depends("invoice_line_ids.move_id.state", "invoice_line_ids.quantity")
+    def _compute_qty_returned_inv(self):
+        """
+        Compute the quantity invoiced. If case of a refund, the quantity invoiced is decreased. Note
+        that this is the case only if the refund is generated from the SO and that is intentional: if
+        a refund made would automatically decrease the invoiced quantity, then there is a risk of reinvoicing
+        it automatically, which may not be wanted at all. That's why the refund has to be created from the SO
+        """
+        for line in self:
+            qty_invoiced = 0.0
+            for invoice_line in line.invoice_line_ids:
+                if invoice_line.move_id.state == "posted":
+                    qty_invoiced += invoice_line.product_uom_id._compute_quantity(
+                        invoice_line.quantity, line.product_uom_id
+                    )
+            line.qty_returned_inv = qty_invoiced
+
+    def _update_state(self):
+        for line in self:
+            is_full_return = self.sale_stock_return_id.operation_type == "full_return"
+            if is_full_return:
+                move_states = line.move_ids.mapped("state")
+                if not line.move_ids:
+                    line.state = "draft"
+                elif all(state == "done" for state in move_states):
+                    line.state = "done"
+                elif all(state == "cancel" for state in move_states):
+                    line.state = "cancel"
+                elif (
+                    any(state == "cancel" for state in move_states)
+                    and any(state == "done" for state in move_states)
+                    and all(state in ["done", "cancel"] for state in move_states)
+                ):
+                    line.state = "done"
+                else:
+                    line.state = "waiting_stock"
+
     def _check_before_return(self):
         failed_lines_no_qty = {}
         failed_lines_stock = {}
+        failed_lines_not_en = {}
         line_idx = 0
         for line in self:
             line_idx += 1
@@ -173,39 +265,16 @@ class SaleStockReturnLine(models.Model):
                 failed_lines_no_qty[line] = {"idx": line_idx, "name": line.name}
 
             if line.sale_stock_return_id.operation_type == "financial_return":
-                move_ids = self.env["stock.move"].search(
-                    [
-                        (
-                            "sale_line_id",
-                            "=",
-                            line.sale_order_line_id.id,
-                        )
-                    ]
-                )
-                origin_moves = move_ids.mapped("move_orig_ids")
-                while origin_moves:
-                    move_ids |= origin_moves
-                    origin_moves = origin_moves.mapped("move_orig_ids")
-
-                states = move_ids.mapped("state")
-                if (
-                    any(
-                        state
-                        in [
-                            "draft",
-                            "waiting",
-                            "confirmed",
-                            "partially_available",
-                            "assigned",
-                        ]
-                        for state in states
-                    )
-                    or line.qty_delivered
-                ):
-                    # failed_lines_stock.append(line.name)
+                if line.qty_delivered:
                     failed_lines_stock[line] = {"idx": line_idx, "name": line.name}
 
-        if failed_lines_no_qty or failed_lines_stock:
+            if (
+                line.sale_stock_return_id.operation_type not in ["financial_return"]
+                and line.quantity_return > line.qty_delivered
+            ):
+                failed_lines_not_en[line] = {"idx": line_idx, "name": line.name}
+
+        if failed_lines_no_qty or failed_lines_stock or failed_lines_not_en:
             msg = ""
             if failed_lines_no_qty:
                 msg_lines = ""
@@ -223,6 +292,16 @@ class SaleStockReturnLine(models.Model):
                     msg += "\n\n"
                 msg += _(
                     "The following lines have stock to return:\n\n%(failed_lines)s",
+                    failed_lines=msg_lines,
+                )
+            if failed_lines_not_en:
+                msg_lines = ""
+                for line, data in failed_lines_not_en.items():  # noqa: B007
+                    msg_lines += "%s: %s\n" % (data["idx"], data["name"])
+                if msg:
+                    msg += "\n\n"
+                msg += _(
+                    "You can't return more products, than delivered:\n\n%(failed_lines)s",
                     failed_lines=msg_lines,
                 )
 
@@ -289,6 +368,22 @@ class SaleStockReturnLine(models.Model):
                     break
         return moves_for_return
 
+    def _prepare_move_default_values(self, qty, move):
+        self.ensure_one()
+        vals = {
+            "product_id": self.product_id.id,
+            "product_uom_qty": qty,
+            "product_uom": self.product_uom_id.id,
+            "state": "draft",
+            "location_id": self.sale_stock_return_id.partner_location_id.id,
+            "location_dest_id": self.sale_stock_return_id.location_id.id,
+            "origin_returned_move_id": move.id,
+            "to_refund": True,
+            "procure_method": "make_to_stock",
+            "stock_return_line_id": self.id,
+        }
+        return vals
+
     def _get_acc_returnable_ids(self):
         """Gets returnable account.moves for the given request conditions
 
@@ -297,8 +392,13 @@ class SaleStockReturnLine(models.Model):
         :rtype: dictionary
         """
         moves_for_return = {}
+        is_full_return = self.sale_stock_return_id.operation_type == "full_return"
+        if is_full_return:
+            lines_to_process = self.filtered("returned_qty")
+        else:
+            lines_to_process = self.filtered("quantity_return")
         # Avoid lines with quantity to 0.0
-        for line in self.filtered("quantity_return"):
+        for line in lines_to_process:
             # AML : qty
             moves_for_return[line] = {}
             precision = line.product_uom_id.rounding
@@ -318,7 +418,11 @@ class SaleStockReturnLine(models.Model):
 
         moves_to_create = {}
         for line, move_data in moves_for_return.items():
-            qty_to_complete = line.quantity_return
+            qty_to_complete = (
+                line.quantity_return
+                if not is_full_return
+                else (line.returned_qty - line.qty_returned_inv)
+            )
             precision = line.product_uom_id.rounding
             for move, qty_remaining in move_data.items():
                 if float_compare(qty_remaining, 0.0, precision_rounding=precision) > 0:
@@ -348,6 +452,7 @@ class SaleStockReturnLine(models.Model):
             "price_unit": self.price_unit,
             "tax_ids": [(6, 0, self.tax_id.ids)],
             "sale_line_ids": [(4, self.sale_order_line_id.id)],
+            "stock_return_line_id": self.id,
         }
         if optional_values:
             res.update(optional_values)
