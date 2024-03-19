@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-14 15:51+0000\n"
-"PO-Revision-Date: 2024-03-14 15:51+0000\n"
+"POT-Creation-Date: 2024-03-19 22:39+0000\n"
+"PO-Revision-Date: 2024-03-19 22:39+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -133,6 +133,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__state__cancel
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return_line__state__cancel
 msgid "Cancelled"
 msgstr ""
 
@@ -235,6 +236,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move__display_name
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__display_name
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__display_name
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_procurement_group__display_name
@@ -255,11 +257,13 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__state__done
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return_line__state__done
 msgid "Done"
 msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__state__draft
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return_line__state__draft
 msgid "Draft"
 msgstr ""
 
@@ -305,6 +309,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move__id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move_line__id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line__id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_procurement_group__id
@@ -341,6 +346,11 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__invoice_line_ids
+msgid "Invoice Lines (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__qty_invoiced
 msgid "Invoiced Qty"
 msgstr ""
@@ -356,7 +366,13 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: simbioz_sale_order_return
+#: model:ir.model,name:simbioz_sale_order_return.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move____last_update
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard____last_update
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard_line____last_update
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_procurement_group____last_update
@@ -566,6 +582,11 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__qty_returned_inv
+msgid "Return Inv Qty"
+msgstr ""
+
+#. module: simbioz_sale_order_return
 #: model:ir.actions.act_window,name:simbioz_sale_order_return.sale_stock_return_action
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_add_so_lines_wizard__return_order_id
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_return_cancel__order_id
@@ -598,6 +619,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move__qty_returnable
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move_reservation__qty_returnable
 msgid "Returnable Quantity"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__returned_qty
+msgid "Returned Quantity"
 msgstr ""
 
 #. module: simbioz_sale_order_return
@@ -673,6 +699,7 @@ msgstr ""
 
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__state
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__state
 #: model_terms:ir.ui.view,arch_db:simbioz_sale_order_return.sale_stock_return_view_search
 msgid "State"
 msgstr ""
@@ -689,6 +716,18 @@ msgstr ""
 #. module: simbioz_sale_order_return
 #: model:ir.model,name:simbioz_sale_order_return.model_stock_move
 msgid "Stock Move"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return_line__move_ids
+msgid "Stock Moves (nnt)"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_account_move_line__stock_return_line_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move__stock_return_line_id
+#: model:ir.model.fields,field_description:simbioz_sale_order_return.field_stock_move_reservation__stock_return_line_id
+msgid "Stock Return Line (nnt)"
 msgstr ""
 
 #. module: simbioz_sale_order_return
@@ -745,6 +784,14 @@ msgstr ""
 #: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__partner_location_id
 msgid ""
 "The stock location used as destination when sending goods to this contact."
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/models/sale_stock_return.py:0
+#, python-format
+msgid ""
+"There are already done stock moves for this return order. You cannot cancel "
+"it."
 msgstr ""
 
 #. module: simbioz_sale_order_return
@@ -815,6 +862,12 @@ msgid "Validate"
 msgstr ""
 
 #. module: simbioz_sale_order_return
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return__state__waiting_stock
+#: model:ir.model.fields.selection,name:simbioz_sale_order_return.selection__sale_stock_return_line__state__waiting_stock
+msgid "Waiting for Stock"
+msgstr ""
+
+#. module: simbioz_sale_order_return
 #: model:ir.model.fields,field_description:simbioz_sale_order_return.field_sale_stock_return__website_message_ids
 msgid "Website Messages"
 msgstr ""
@@ -822,6 +875,15 @@ msgstr ""
 #. module: simbioz_sale_order_return
 #: model:ir.model.fields,help:simbioz_sale_order_return.field_sale_stock_return__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: simbioz_sale_order_return
+#: code:addons/simbioz_sale_order_return/models/sale_stock_return_line.py:0
+#, python-format
+msgid ""
+"You can't return more products, than delivered:\n"
+"\n"
+"%(failed_lines)s"
 msgstr ""
 
 #. module: simbioz_sale_order_return
