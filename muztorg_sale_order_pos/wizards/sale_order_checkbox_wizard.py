@@ -143,7 +143,7 @@ class SaleOrderCheckbox(models.TransientModel):
             )
             if not response_pdf.ok:
                 self.order_id.message_post(
-                    _("Error _checkbox_get_pdf_receipt: %s", response_pdf.text)
+                    body=_("Error _checkbox_get_pdf_receipt: %s", response_pdf.text)
                 )
             else:
                 pdf_data = base64.b64encode(response_pdf.content)
