@@ -20,7 +20,7 @@ class SaleStockReturnLine(models.Model):
     state = fields.Selection(
         selection=[
             ("draft", "Draft"),
-            ("waiting_stock", "Waiging Stock"),
+            ("waiting_stock", "Waiting for Stock"),
             ("done", "Done"),
             ("cancel", "Cancelled"),
         ],

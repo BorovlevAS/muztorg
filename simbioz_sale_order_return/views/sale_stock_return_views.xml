@@ -161,7 +161,7 @@
                                     />
                                     <field
                                         name="qty_returned_inv"
-                                        optional="show"
+                                        optional="hide"
                                         attrs="{'column_invisible': [('parent.operation_type', 'not in', ('financial_return', 'full_return'))]}"
                                     />
                                     <field name="product_uom_id" optional="show" />
@@ -207,7 +207,7 @@
                                         attrs="{'column_invisible': [('parent.operation_type', 'not in', ('financial_return', 'full_return'))]}"
                                     />
                                     <field name="sale_order_line_id" invisible="1" />
-                                    <field name="move_ids" widget="many2many_tags" optional="hide" />
+                                    <!-- <field name="move_ids" widget="many2many_tags" optional="hide" />
                                     <field name="invoice_line_ids" widget="many2many_tags" optional="hide" />
                                     <field
                                         name="state"
@@ -216,7 +216,7 @@
                                         decoration-warning="state == 'draft'"
                                         decoration-success="state == 'done'"
                                         optional="hide"
-                                    />
+                                    /> -->
                                 </tree>
                             </field>
                             <group
