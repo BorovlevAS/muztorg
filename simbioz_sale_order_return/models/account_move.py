@@ -9,3 +9,14 @@ class AccountMove(models.Model):
         string="Sale stock return (nnt)",
         ondelete="restrict",
     )
+
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    stock_return_line_id = fields.Many2one(
+        comodel_name="sale.stock.return.line",
+        string="Stock Return Line (nnt)",
+        ondelete="restrict",
+        index=True,
+    )

@@ -18,6 +18,7 @@
                     name="state"
                     widget="badge"
                     decoration-info="state == 'draft'"
+                    decoration-warning="state == 'waiting_stock'"
                     decoration-success="state == 'done'"
                     optional="show"
                 />
@@ -47,16 +48,16 @@
                         name="action_set_cancel"
                         type="object"
                         string="Cancel"
-                        attrs="{'invisible': [('state', 'not in', ['draft', 'done'])]}"
+                        attrs="{'invisible': [('state', 'not in', ['draft', 'waiting_stock', 'done'])]}"
                     />
 
                     <button
                         name="action_back_to_draft"
                         type="object"
                         string="Back to draft"
-                        attrs="{'invisible': [('state', 'not in', ['cancel'])]}"
+                        attrs="{'invisible': ['|', ('state', 'not in', ['cancel']), ('operation_type', '=', 'full_return')]}"
                     />
-                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,cancel" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft,waiting_stock,done,cancel" />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -153,6 +154,16 @@
                                         optional="show"
                                         attrs="{'column_invisible': [('parent.operation_type', 'not in', ('exchange', 'stock_return', 'full_return'))]}"
                                     />
+                                    <field
+                                        name="returned_qty"
+                                        optional="hide"
+                                        attrs="{'column_invisible': [('parent.operation_type', 'not in', ('exchange', 'stock_return', 'full_return'))]}"
+                                    />
+                                    <field
+                                        name="qty_returned_inv"
+                                        optional="hide"
+                                        attrs="{'column_invisible': [('parent.operation_type', 'not in', ('financial_return', 'full_return'))]}"
+                                    />
                                     <field name="product_uom_id" optional="show" />
                                     <field
                                         name="price_unit"
@@ -196,6 +207,22 @@
                                         attrs="{'column_invisible': [('parent.operation_type', 'not in', ('financial_return', 'full_return'))]}"
                                     />
                                     <field name="sale_order_line_id" invisible="1" />
+                                    <field name="move_ids" widget="many2many_tags" optional="hide" invisible="1" />
+                                    <field
+                                        name="invoice_line_ids"
+                                        widget="many2many_tags"
+                                        optional="hide"
+                                        invisible="1"
+                                    />
+                                    <field
+                                        name="state"
+                                        widget="badge"
+                                        decoration-info="state == 'draft'"
+                                        decoration-warning="state == 'draft'"
+                                        decoration-success="state == 'done'"
+                                        optional="hide"
+                                        invisible="1"
+                                    />
                                 </tree>
                             </field>
                             <group
