@@ -1,3 +1,4 @@
+import json
 import logging
 
 import pytz
@@ -56,6 +57,8 @@ class PosConfig(models.Model):
         help="Sum of opening balance and transactions.",
         readonly=True,
     )
+    pos_payment_lines = fields.One2many(related="current_session_id.pos_payment_lines")
+    pos_payment_lines_json = fields.Text(compute="_compute_pos_payment_lines_json")
 
     @api.depends("autoclose_session_time_string")
     def _compute_autoclose_session_time(self):
@@ -83,6 +86,14 @@ class PosConfig(models.Model):
                     )
 
             record.autoclose_session_time = date_time
+
+    def _compute_pos_payment_lines_json(self):
+        for record in self:
+            pos_payment_lines = record.pos_payment_lines
+            pos_payment_lines_json = []
+            for line in pos_payment_lines:
+                pos_payment_lines_json.append(line.get_line_data())
+            record.pos_payment_lines_json = json.dumps(pos_payment_lines_json)
 
     @api.model
     def get_pos_config(self, user_id):

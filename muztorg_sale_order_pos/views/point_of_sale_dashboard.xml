@@ -18,26 +18,33 @@
             <button name="open_ui" position="attributes">
                 <attribute name="invisible">1</attribute>
             </button>
-            <xpath expr="//field[@name='last_session_closing_cash']/../../.." position="after">
-                <div t-if="record.current_session_id" attrs='{"invisible": [("cash_control","=",False)]}' class="row">
-                    <div class="col-6">
-                        <span>Transactions</span>
-                    </div>
-                    <div class="col-6">
-                        <span>
-                            <field name="cash_register_total_entry_encoding" widget="monetary" />
-                        </span>
-                    </div>
-                </div>
-                <div t-if="record.current_session_id" attrs='{"invisible": [("cash_control","=",False)]}' class="row">
-                    <div class="col-6">
-                        <span>Expected in Cash</span>
-                    </div>
-                    <div class="col-6">
-                        <span>
-                            <field name="cash_register_balance_end" widget="monetary" />
-                        </span>
-                    </div>
+            <xpath expr="//kanban/templates" position="before">
+                <field name="pos_payment_lines_json" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='last_session_closing_cash']/../../.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('o_kanban_card_content')]/div[hasclass('row')]" position="after">
+                <div t-if="record.current_session_id" attrs='{"invisible": [("cash_control","=",False)]}'>
+                    <t t-set="pos_line_data" t-value="JSON.parse(record.pos_payment_lines_json.raw_value)" />
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col">Payment type</th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <t t-foreach="pos_line_data" t-as="pos_line">
+                            <tr>
+                                <td>
+                                    <t t-esc="pos_line['name']" />
+                                </td>
+                                <td style="text-align:right;">
+                                    <span t-esc="pos_line['amount']" t-options="{'widget': 'float', 'precision': 2}" />
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
                 </div>
             </xpath>
         </field>

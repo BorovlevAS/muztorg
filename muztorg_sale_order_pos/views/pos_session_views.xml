@@ -20,6 +20,29 @@
                     <field name="return_order_counter" string="Return Orders" widget="statinfo" />
                 </button>
             </xpath>
+            <xpath expr="//page[@name='cash_control']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <notebook>
+                <page name="cash_control_muztorg" string="Cash control">
+                    <button
+                        class="btn-primary"
+                        name="%(point_of_sale.action_pos_box_out)d"
+                        type="action"
+                        attrs="{'invisible' : [('state', '=', 'closed')]}"
+                    >
+                        Cash In/Out
+                    </button>
+                    <field name="pos_payment_lines" readonly="1" style="margin-top: 5px;">
+                        <tree edit="0">
+                            <field name="name" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="amount" />
+                            <field name="pos_session_id" invisible="1" />
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
         </field>
     </record>
 </odoo>
