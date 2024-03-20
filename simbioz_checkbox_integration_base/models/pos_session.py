@@ -61,27 +61,6 @@ class PosSession(models.Model):
         if not r["ok"]:
             raise exceptions.Warning(r["text"])
 
-    def action_pos_session_closing_control(self):
-        res = super().action_pos_session_closing_control()
-        for session in self.filtered(lambda s: s.use_checkbox):
-            try:
-                session._checkbox_shift_close()
-                session._checkbox_cashier_signout()
-                session.message_post(
-                    body=_("Checkbox shift closed and cashier signed out"),
-                    author_id=1,
-                )
-            except exceptions.Warning as e:
-                session.message_post(
-                    body=_(
-                        "Session closed but checkbox shift wasn't closed. Error: %(cb_error)s",
-                        cb_error=e,
-                    ),
-                    author_id=1,
-                )
-
-        return res
-
     def _checkbox_cashier_signout(self):
         self.ensure_one()
         if self.checkbox_access_token:
