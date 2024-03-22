@@ -1,5 +1,7 @@
 import requests
 
+from odoo.exceptions import ValidationError
+
 
 class CheckboxAPI:
     def __init__(self, api_url, api_port, cb_license, mode, access_token=None):
@@ -22,13 +24,16 @@ class CheckboxAPI:
                 "Content-Type": "application/json",
             }
         )
-        r = requests.request(
-            method,
-            self.api_url + endpoint,
-            headers=headers,
-            json=payload,
-            timeout=5,
-        )
+        try:
+            r = requests.request(
+                method,
+                self.api_url + endpoint,
+                headers=headers,
+                json=payload,
+                timeout=5,
+            )
+        except requests.exceptions.RequestException as e:
+            raise ValidationError(f"Request error: {e}") from e
 
         return r
 
