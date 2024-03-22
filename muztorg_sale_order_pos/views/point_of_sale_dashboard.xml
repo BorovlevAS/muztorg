@@ -25,7 +25,8 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//div[hasclass('o_kanban_card_content')]/div[hasclass('row')]" position="after">
-                <div t-if="record.current_session_id" attrs='{"invisible": [("cash_control","=",False)]}'>
+                <div t-if="record.current_session_id.raw_value" attrs='{"invisible": [("cash_control","=",False)]}'>
+                    <p />
                     <t t-set="pos_line_data" t-value="JSON.parse(record.pos_payment_lines_json.raw_value)" />
                     <table class="table table-sm">
                         <thead>

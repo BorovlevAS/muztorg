@@ -237,12 +237,13 @@ class ReturnOrderCheckbox(models.TransientModel):
             invoice_id = invoice_id[0]
 
         for payment_line in self.payment_lines.filtered(lambda x: x.payment_amount > 0):
+            self_sudo = self.sudo()
             create_vals = {
                 "journal_id": payment_line.pos_payment_method_id.cash_journal_id.id,
                 "amount": payment_line.payment_amount,
             }
             wizard = (
-                self.env["account.payment.register"]
+                self_sudo.env["account.payment.register"]
                 .with_context(
                     active_model="account.move",
                     active_ids=invoice_id.ids,
@@ -279,7 +280,7 @@ class ReturnOrderCheckbox(models.TransientModel):
                 "account_id": payment_line.pos_payment_method_id.cash_journal_id.suspense_account_id.id,
                 "pos_payment_id": payment_id.id,
             }
-            self.env["account.bank.statement.line"].create(absl_values)
+            self_sudo.env["account.bank.statement.line"].create(absl_values)
 
     @api.model_create_multi
     def create(self, vals):
