@@ -49,7 +49,7 @@ class CheckboxAPI:
                 "ok": True,
             }
         else:
-            return {"error_msg": result.text, "ok": False}
+            return {"text": result.text, "ok": False}
 
     def cashier_signout(self):
         if self.mode == "checkbox_kassa":
