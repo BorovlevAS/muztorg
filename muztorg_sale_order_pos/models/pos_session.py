@@ -159,6 +159,6 @@ class PosSession(models.Model):
                         }
                     )
                 session._compute_cash_balance()
-                session.action_pos_session_close()
+                session.sudo().action_pos_session_close()
 
         return res
