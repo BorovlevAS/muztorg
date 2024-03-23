@@ -1,8 +1,6 @@
 import json
 import logging
 
-import pytz
-
 from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
@@ -31,10 +29,9 @@ class PosConfig(models.Model):
         default=False,
     )
 
-    autoclose_session_time_string = fields.Char(string="Autoclose Session Time")
+    # autoclose_session_time_string = fields.Char(string="Autoclose Session Time")
     autoclose_session_time = fields.Datetime(
-        string="Autoclose Session Time (nnt)",
-        compute="_compute_autoclose_session_time",
+        string="Autoclose Session Time",
         store=True,
     )
 
@@ -60,32 +57,32 @@ class PosConfig(models.Model):
     pos_payment_lines = fields.One2many(related="current_session_id.pos_payment_lines")
     pos_payment_lines_json = fields.Text(compute="_compute_pos_payment_lines_json")
 
-    @api.depends("autoclose_session_time_string")
-    def _compute_autoclose_session_time(self):
-        for record in self:
-            if not record.autoclose_session_time_string:
-                continue
+    # @api.depends("autoclose_session_time_string")
+    # def _compute_autoclose_session_time(self):
+    #     for record in self:
+    #         if not record.autoclose_session_time_string:
+    #             continue
 
-            date_time = fields.Datetime.to_datetime(
-                "2020-01-01 {}".format(
-                    record.autoclose_session_time_string.replace(" ", "")
-                )
-            )
-            tz_name = record._context.get("tz") or record.env.user.tz
-            if tz_name:
-                try:
-                    timezone = pytz.timezone(tz_name)
-                    tz_date = timezone.localize(date_time, is_dst=False)
-                    autoclose_session_time = tz_date.astimezone(pytz.UTC)
-                    date_time = autoclose_session_time.replace(tzinfo=None)
-                except Exception:
-                    _logger.debug(
-                        "failed to compute context/client-specific timestamp, "
-                        "using the UTC value",
-                        exc_info=True,
-                    )
+    #         date_time = fields.Datetime.to_datetime(
+    #             "2020-01-01 {}".format(
+    #                 record.autoclose_session_time_string.replace(" ", "")
+    #             )
+    #         )
+    #         tz_name = record._context.get("tz") or record.env.user.tz
+    #         if tz_name:
+    #             try:
+    #                 timezone = pytz.timezone(tz_name)
+    #                 tz_date = timezone.localize(date_time, is_dst=False)
+    #                 autoclose_session_time = tz_date.astimezone(pytz.UTC)
+    #                 date_time = autoclose_session_time.replace(tzinfo=None)
+    #             except Exception:
+    #                 _logger.debug(
+    #                     "failed to compute context/client-specific timestamp, "
+    #                     "using the UTC value",
+    #                     exc_info=True,
+    #                 )
 
-            record.autoclose_session_time = date_time
+    #         record.autoclose_session_time = date_time
 
     def _compute_pos_payment_lines_json(self):
         for record in self:
