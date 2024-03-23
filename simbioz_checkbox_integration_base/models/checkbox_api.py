@@ -1,6 +1,10 @@
+import logging
+
 import requests
 
 from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 
 class CheckboxAPI:
@@ -33,6 +37,7 @@ class CheckboxAPI:
                 timeout=5,
             )
         except requests.exceptions.RequestException as e:
+            _logger.error(f"===CHECKBOX===: Request error: {e}")
             raise ValidationError(f"Request error: {e}") from e
 
         return r
