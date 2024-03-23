@@ -56,12 +56,11 @@
                                 <div class="row mt16">
                                     <label
                                         string="Autoclose Session Time"
-                                        for="autoclose_session_time_string"
+                                        for="autoclose_session_time"
                                         class="col-lg-3 o_light_label"
                                     />
                                     <field
-                                        name="autoclose_session_time_string"
-                                        widget="timepicker"
+                                        name="autoclose_session_time"
                                         attrs="{'required' : [('autoclose_session', '=', True)]}"
                                     />
                                 </div>
