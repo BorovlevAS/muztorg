@@ -130,6 +130,10 @@ class PosConfig(models.Model):
                         record.autoclose_session_time.minute,
                     )
 
+                    _logger.debug(
+                        f"===CHECKBOX===: Autoclose pos session: now {now_hour}:{now_min}, autocl {ac_hour}:{ac_min}"
+                    )
+
                     if now_hour >= ac_hour and now_min >= ac_min:
                         opened_sessions = record.session_ids.filtered(
                             lambda s: not s.state == "closed"
