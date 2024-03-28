@@ -322,7 +322,7 @@ class SiteIntegrationSync(models.TransientModel):
         return partner, contact_person, recipient, delivery_address, dealer
 
     def load_order(self, data_order):
-        def get_so_line(so, product_dict):
+        def get_so_line(so, product_dict, is_dealer):
             product = self.env["product.product"].search(
                 [
                     ("biko_control_code", "=", product_dict.get("product_id")),
@@ -344,7 +344,68 @@ class SiteIntegrationSync(models.TransientModel):
 
                 order_line = self.env["sale.order.line"].create(str_values)
                 order_line.product_id_change()
-                order_line.price_unit = product_dict.get("price", order_line.price_unit)
+                if not is_dealer:
+                    order_line.price_unit = product_dict.get(
+                        "price", order_line.price_unit
+                    )
+                else:
+                    product_context = dict(
+                        self.env.context,
+                        partner_id=so.partner_id.id,
+                        date=so.date_order,
+                        uom=order_line.product_uom.id,
+                    )
+                    final_price, rule_id = so.pricelist_id.with_context(
+                        **product_context
+                    ).get_product_price_rule(
+                        product or order_line.product_id,
+                        order_line.product_uom_qty or 1.0,
+                        so.partner_id,
+                    )
+                    order_line.price_unit = product._get_tax_included_unit_price(
+                        order_line.company_id,
+                        so.currency_id,
+                        so.date_order,
+                        "sale",
+                        fiscal_position=so.fiscal_position_id,
+                        # product_price_unit=order_line._get_display_price(product),
+                        product_price_unit=final_price if rule_id else 0,
+                        product_currency=so.currency_id,
+                    )
+
+                    if order_line.price_unit == 0:
+                        # в ошибки выводить что
+                        # по №заказа, товар название, товар Контрольный код - нет цены с таким прайс-листом
+                        # self.protocol_id.note = self.protocol_id.note + _(
+                        #     "\nBy #.%s, product %s, Control code %s - no price with %s",
+                        #     so.biko_website_ref,
+                        #     product.name,
+                        #     product_dict.get("product_id"),
+                        #     so.pricelist_id.name,
+                        # )
+                        self.protocol_id.note = self.protocol_id.note + _(
+                            "\nBy #.%(biko_website_ref)s, product %(product_name)s, Control code %(control_code)s - no price with %(pricelist_name)s",
+                            {
+                                "biko_website_ref": so.biko_website_ref,
+                                "product_name": product.name,
+                                "control_code": product_dict.get("product_id"),
+                                "pricelist_name": so.pricelist_id.name,
+                            },
+                        )
+
+                        so.message_post(
+                            body=_(
+                                "\nBy #.%(biko_website_ref)s, product %(product_name)s, Control code %(control_code)s - no price with %(pricelist_name)s",
+                                {
+                                    "biko_website_ref": so.biko_website_ref,
+                                    "product_name": product.name,
+                                    "control_code": product_dict.get("product_id"),
+                                    "pricelist_name": so.pricelist_id.name,
+                                },
+                            )
+                        )
+                        return True
+
                 return False
             else:
                 self.protocol_id.note = self.protocol_id.note + _(
@@ -535,6 +596,9 @@ class SiteIntegrationSync(models.TransientModel):
         if self.settings_id.type_exchange == "dealer":
             so_values = {
                 "partner_id": partner.id if partner else False,
+                "pricelist_id": partner.property_product_pricelist.id
+                if partner
+                else False,
                 "biko_contact_person_type": "person",
                 "biko_contact_person_id": contact_person.id
                 if contact_person
@@ -565,11 +629,11 @@ class SiteIntegrationSync(models.TransientModel):
                 "note": note,
                 "so_payment_type_id": payment_type.id,
             }
+            if pricelist_value:
+                so_values["pricelist_id"] = pricelist_value.id
+
         if carrier_value:
             so_values["carrier_id"] = carrier_value.id
-        if pricelist_value:
-            so_values["pricelist_id"] = pricelist_value.id
-
         if address:
             so_values["partner_shipping_id"] = address.id
         if warehouse_value:
@@ -611,10 +675,14 @@ class SiteIntegrationSync(models.TransientModel):
         if products:
             product = products["product"]
             if isinstance(product, dict):
-                is_error += get_so_line(so, product)
+                is_error += get_so_line(
+                    so, product, self.settings_id.type_exchange == "dealer"
+                )
             else:
                 for product_dict in product:
-                    is_error += get_so_line(so, product_dict)
+                    is_error += get_so_line(
+                        so, product_dict, self.settings_id.type_exchange == "dealer"
+                    )
 
         if (
             len(so.order_line) != 0
