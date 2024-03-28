@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-22 09:15+0000\n"
-"PO-Revision-Date: 2024-02-22 09:15+0000\n"
+"POT-Creation-Date: 2024-03-28 10:51+0000\n"
+"PO-Revision-Date: 2024-03-28 10:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,6 +29,15 @@ msgstr ""
 msgid ""
 "\n"
 "Address street not found %s"
+msgstr ""
+
+#. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
+#, python-format
+msgid ""
+"\n"
+"By #.%(biko_website_ref)s, product %(product_name)s, Control code %(control_code)s - no price with %(pricelist_name)s"
 msgstr ""
 
 #. module: muztorg_site_integration_base
@@ -89,6 +98,7 @@ msgid ""
 msgstr ""
 
 #. module: muztorg_site_integration_base
+#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
 #: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
 #, python-format
 msgid ""
@@ -152,12 +162,6 @@ msgstr ""
 #: code:addons/muztorg_site_integration_base/models/site_integration_protocol.py:0
 #, python-format
 msgid " of "
-msgstr ""
-
-#. module: muztorg_site_integration_base
-#: code:addons/muztorg_site_integration_base/wizards/site_integration_sinc.py:0
-#, python-format
-msgid "%(loading_text)s"
 msgstr ""
 
 #. module: muztorg_site_integration_base
