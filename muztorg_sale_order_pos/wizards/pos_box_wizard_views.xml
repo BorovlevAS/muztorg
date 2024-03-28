@@ -6,14 +6,45 @@
         <field name="inherit_id" ref="account.cash_box_out_form" />
         <field name="arch" type="xml">
             <field name="name" position="before">
-                <field name="in_out" class="oe_inline" widget="radio" options="{'horizontal': true}" />
+                <field
+                    name="in_out"
+                    class="oe_inline"
+                    widget="radio"
+                    options="{'horizontal': true}"
+                    invisible="1"
+                />
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="invisible">1</attribute>
             </field>
             <field name="name" position="after">
-                <field name="amount_user" class="oe_inline" />
+                <field name="amount_user" string="Amount" class="oe_inline" />
             </field>
             <field name="amount" position="attributes">
                 <attribute name="invisible">1</attribute>
             </field>
+            <button name="run" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <button name="run" position="after">
+                <button
+                    name="run"
+                    string="Take Money In"
+                    type="object"
+                    class="btn-primary"
+                    attrs="{'invisible': [('in_out', '=', 'out')]}"
+                />
+                <button
+                    name="run"
+                    string="Take Money Out"
+                    type="object"
+                    class="btn-primary"
+                    attrs="{'invisible': [('in_out', '=', 'in')]}"
+                />
+            </button>
+            <separator position="attributes">
+                <attribute name="string">Please, fill amount</attribute>
+            </separator>
         </field>
     </record>
 </odoo>
