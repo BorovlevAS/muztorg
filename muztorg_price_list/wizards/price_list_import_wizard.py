@@ -1,5 +1,8 @@
 import base64
 import logging
+from datetime import datetime, time
+
+from pytz import UTC, timezone
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -139,6 +142,7 @@ class PriceListImportWizard(models.TransientModel):
         item_line = all_item.filtered(lambda x: x.product_tmpl_id.id == product.id)
 
         PricelistItem = self.env["product.pricelist.item"]
+        tz = self.env.user.tz
 
         if len(item_line) == 0:
             vals = {
@@ -149,9 +153,19 @@ class PriceListImportWizard(models.TransientModel):
             }
             vals["product_tmpl_id"] = product.id
             if single_line_data["date1"]:
-                vals["date_start"] = single_line_data["date1"]
+                vals["date_start"] = (
+                    timezone(tz)
+                    .localize(single_line_data["date1"])
+                    .astimezone(UTC)
+                    .replace(tzinfo=None)
+                )
             if single_line_data["date2"]:
-                vals["date_end"] = single_line_data["date2"]
+                vals["date_end"] = (
+                    timezone(tz)
+                    .localize(datetime.combine(single_line_data["date2"], time.max))
+                    .astimezone(UTC)
+                    .replace(tzinfo=None)
+                )
             vals["fixed_price"] = single_line_data["price"]
 
             new_line = PricelistItem.create(vals)
@@ -179,11 +193,27 @@ class PriceListImportWizard(models.TransientModel):
                         continue
                     # проверим пертоды, не загружаем ли пересекающийся
                     if (
-                        line.date_start <= single_line_data["date2"]
-                        and line.date_start >= single_line_data["date1"]
+                        line.date_start
+                        <= timezone(tz)
+                        .localize(datetime.combine(single_line_data["date2"], time.max))
+                        .astimezone(UTC)
+                        .replace(tzinfo=None)
+                        and line.date_start
+                        >= timezone(tz)
+                        .localize(single_line_data["date1"])
+                        .astimezone(UTC)
+                        .replace(tzinfo=None)
                     ) or (
-                        line.date_end <= single_line_data["date2"]
-                        and line.date_end >= single_line_data["date1"]
+                        line.date_end
+                        <= timezone(tz)
+                        .localize(datetime.combine(single_line_data["date2"], time.max))
+                        .astimezone(UTC)
+                        .replace(tzinfo=None)
+                        and line.date_end
+                        >= timezone(tz)
+                        .localize(single_line_data["date1"])
+                        .astimezone(UTC)
+                        .replace(tzinfo=None)
                     ):
                         notifications += [
                             {
@@ -206,9 +236,19 @@ class PriceListImportWizard(models.TransientModel):
             }
             vals["product_tmpl_id"] = product.id
             if single_line_data["date1"]:
-                vals["date_start"] = single_line_data["date1"]
+                vals["date_start"] = (
+                    timezone(tz)
+                    .localize(single_line_data["date1"])
+                    .astimezone(UTC)
+                    .replace(tzinfo=None)
+                )
             if single_line_data["date2"]:
-                vals["date_end"] = single_line_data["date2"]
+                vals["date_end"] = (
+                    timezone(tz)
+                    .localize(datetime.combine(single_line_data["date2"], time.max))
+                    .astimezone(UTC)
+                    .replace(tzinfo=None)
+                )
             vals["fixed_price"] = single_line_data["price"]
 
             new_line = PricelistItem.create(vals)
