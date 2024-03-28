@@ -1,5 +1,25 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
+    <record id="action_pos_box_in" model="ir.actions.act_window">
+        <field name="name">Take Money In</field>
+        <field name="res_model">cash.box.out</field>
+        <field name="view_mode">form</field>
+        <field name="context">
+            {'default_in_out': 'in', 'default_name': 'Cash In'}
+        </field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_pos_box_out" model="ir.actions.act_window">
+        <field name="name">Take Money Out</field>
+        <field name="res_model">cash.box.out</field>
+        <field name="view_mode">form</field>
+        <field name="context">
+            {'default_in_out': 'out', 'default_name': 'Cash Out'}
+        </field>
+        <field name="target">new</field>
+    </record>
+
     <record id="view_pos_session_form" model="ir.ui.view">
         <field name="name">pos.session.form.view.inherit</field>
         <field name="model">pos.session</field>
@@ -16,8 +36,17 @@
                 />
             </header>
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button class="oe_stat_button" type="object" name="get_related_return_orders" icon="fa-undo">
-                    <field name="return_order_counter" string="Return Orders" widget="statinfo" />
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="get_related_return_orders"
+                    icon="fa-undo"
+                >
+                    <field
+                        name="return_order_counter"
+                        string="Return Orders"
+                        widget="statinfo"
+                    />
                 </button>
             </xpath>
             <xpath expr="//page[@name='cash_control']" position="attributes">
@@ -27,13 +56,26 @@
                 <page name="cash_control_muztorg" string="Cash control">
                     <button
                         class="btn-primary"
-                        name="%(point_of_sale.action_pos_box_out)d"
+                        name="%(muztorg_sale_order_pos.action_pos_box_in)d"
+                        type="action"
+                        attrs="{'invisible' : [('state', '=', 'closed')]}"
+                        style="margin-right: 5px;"
+                    >
+                        Cash In
+                    </button>
+                    <button
+                        class="btn-primary"
+                        name="%(muztorg_sale_order_pos.action_pos_box_out)d"
                         type="action"
                         attrs="{'invisible' : [('state', '=', 'closed')]}"
                     >
-                        Cash In/Out
+                        Cash Out
                     </button>
-                    <field name="pos_payment_lines" readonly="1" style="margin-top: 5px;">
+                    <field
+                        name="pos_payment_lines"
+                        readonly="1"
+                        style="margin-top: 5px;"
+                    >
                         <tree edit="0">
                             <field name="name" />
                             <field name="currency_id" invisible="1" />
