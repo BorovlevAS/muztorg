@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 19:41+0000\n"
-"PO-Revision-Date: 2024-03-20 19:41+0000\n"
+"POT-Creation-Date: 2024-03-28 14:23+0000\n"
+"PO-Revision-Date: 2024-03-28 14:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -46,6 +46,7 @@ msgstr "Після отримання замовлення"
 
 #. module: muztorg_sale_order_pos
 #: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_session_payment_data__amount
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.cash_box_out_form
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_pos_config_kanban
 msgid "Amount"
 msgstr "Сума"
@@ -61,15 +62,10 @@ msgid "Autoclose Session"
 msgstr "Автоматичне закриття зміни"
 
 #. module: muztorg_sale_order_pos
-#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__autoclose_session_time_string
+#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__autoclose_session_time
 #: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.pos_config_view_form
 msgid "Autoclose Session Time"
-msgstr "Час закриття зміни"
-
-#. module: muztorg_sale_order_pos
-#: model:ir.model.fields,field_description:muztorg_sale_order_pos.field_pos_config__autoclose_session_time
-msgid "Autoclose Session Time (nnt)"
-msgstr ""
+msgstr "Час автозакриття зміни"
 
 #. module: muztorg_sale_order_pos
 #: model:ir.actions.server,name:muztorg_sale_order_pos.ir_cron_autoclose_sessions_ir_actions_server
@@ -140,17 +136,14 @@ msgstr "Гроші з каси"
 
 #. module: muztorg_sale_order_pos
 #: code:addons/muztorg_sale_order_pos/wizards/pos_box.py:0
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_pos_session_form
 #, python-format
 msgid "Cash In"
 msgstr "Внесення готівки"
 
 #. module: muztorg_sale_order_pos
-#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_pos_session_form
-msgid "Cash In/Out"
-msgstr "Внесення/Винесення готівки"
-
-#. module: muztorg_sale_order_pos
 #: code:addons/muztorg_sale_order_pos/wizards/pos_box.py:0
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.view_pos_session_form
 #, python-format
 msgid "Cash Out"
 msgstr "Винесення готівки"
@@ -513,6 +506,11 @@ msgid "Payments"
 msgstr "Платежі по чеку"
 
 #. module: muztorg_sale_order_pos
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.cash_box_out_form
+msgid "Please, fill amount"
+msgstr "Вкажіть суму операції"
+
+#. module: muztorg_sale_order_pos
 #: model:ir.actions.act_window,name:muztorg_sale_order_pos.action_pos_config_kanban
 #: model:ir.ui.menu,name:muztorg_sale_order_pos.menu_pos_config_kanban
 msgid "Point of Sale"
@@ -656,6 +654,18 @@ msgstr "Сесія"
 #: model:ir.model.fields,help:muztorg_sale_order_pos.field_pos_config__cash_register_balance_end
 msgid "Sum of opening balance and transactions."
 msgstr "Початкова сума готівки у касі."
+
+#. module: muztorg_sale_order_pos
+#: model:ir.actions.act_window,name:muztorg_sale_order_pos.action_pos_box_in
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.cash_box_out_form
+msgid "Take Money In"
+msgstr "Внесення готівки"
+
+#. module: muztorg_sale_order_pos
+#: model:ir.actions.act_window,name:muztorg_sale_order_pos.action_pos_box_out
+#: model_terms:ir.ui.view,arch_db:muztorg_sale_order_pos.cash_box_out_form
+msgid "Take Money Out"
+msgstr "Винесення готівки"
 
 #. module: muztorg_sale_order_pos
 #: code:addons/muztorg_sale_order_pos/wizards/return_order_checkbox_wizard.py:0
