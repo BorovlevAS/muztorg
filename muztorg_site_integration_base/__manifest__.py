@@ -1,6 +1,6 @@
 {
     "name": "BIKO: site integration (base)",
-    "version": "14.0.2.0.0",
+    "version": "14.0.3.0.0",
     "author": "Zhmyhova T.N.",
     "company": "BIKO Solutions",
     "depends": [
